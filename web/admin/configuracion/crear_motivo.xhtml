@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:jsf="http://xmlns.jcp.org/jsf">
+    <ui:composition template="/html_plantillas/template.xhtml">
+        <ui:define name="title">Crear Motivo</ui:define>        
+        <ui:define name="body">
+                <h:form>
+                    <h1><h:outputText value="Crear Motivo"/></h1>
+                    <h:panelGrid columns="2">
+                        <h:outputLabel value="Motivo:" for="nomMotivo" />
+                        <input jsf:id="nomMotivoInputText" jsf:value="#{motivoController.motivoActual.motivo}" 
+                                     type="text" required="true"
+                                     jsf:requiredMessage="Por favor ingrese el nombre de la Especialidad"
+                                     jsf:validatorMessage="Use solo letras, ej: masculino"> 
+                                     <f:validateRegex pattern="[a-zA-Z áéíóúÁÉÍÓÚÑñ]*"/>
+                                     <f:ajax execute="@this" render="nomMotivoMessage"/>
+                        </input>
+                        <h:message id="nomMotivoMessage" for="nomMotivoInputText" styleClass="error"/>
+                    </h:panelGrid>
+                    <h:commandButton value="Guardar" action="#{motivoController.addMotivo}"/>
+                    <br/>
+                    <h:button value="Volver atras" outcome="/index"/>
+                </h:form> 
+        </ui:define>
+    </ui:composition>
+</html>

@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:jsf="http://xmlns.jcp.org/jsf">
+    <ui:composition template="/html_plantillas/template.xhtml">
+        <ui:define name="title">Crear Empresa</ui:define>        
+        <ui:define name="body">
+                <h:form>
+                    <h1><h:outputText value="Crear Empresa"/></h1>
+                    <h:panelGrid columns="1">
+                        <h:outputLabel value="Nombre Empresa:" for="nomEmpresa" />
+                        <input jsf:id="nomEmpresaInputText" jsf:value="#{empresaController.empresaActual.nombreEmpresa}" 
+                                     type="text" required="true"
+                                     jsf:requiredMessage="Por favor ingrese el nombre de la Empresa"
+                                     jsf:validatorMessage="Use solo letras, ej: SONY"> 
+                                     <f:validateRegex pattern="[a-zA-Z áéíóúÁÉÍÓÚÑñ ]*"/>
+                                     <f:ajax execute="@this" render="nomEmpresaMessage"/>
+                        </input>
+                        <h:message id="nomEmpresaMessage" for="nomEmpresaInputText" styleClass="error"/>
+                        <h:outputLabel value="Nombre del Representante:" for="nomRepresentante" />
+                        <input jsf:id="nomRepresentanteInputText" jsf:value="#{empresaController.empresaActual.representante}" 
+                                     type="text" required="true"
+                                     jsf:requiredMessage="Por favor ingrese el nombre del Representante de la Empresa"
+                                     jsf:validatorMessage="Use solo letras, ej: Carlos Soto"> 
+                                     <f:validateRegex pattern="[a-zA-Z áéíóúÁÉÍÓÚÑñ]*"/>
+                                     <f:ajax execute="@this" render="nomRepresentanteMessage"/>
+                        </input>
+                        <h:message id="nomRepresentanteMessage" for="nomRepresentanteInputText" styleClass="error"/>
+                        
+                        <h:outputLabel value="Telefono del Representante:" for="tel" />
+                        <input type="tel" jsf:id="telefonoInputText" required="true"
+                                     jsf:requiredMessage="Por favor ingrese el numero telefonico"
+                                     jsf:validatorMessage="Ingrese un telefono valido solo debe contener numeros" 
+                                     jsf:value="#{empresaController.empresaActual.telefono}"  maxlength="16" class="Form-inputRegistro">
+                            <f:validateRegex pattern="[0-9]*"/>
+                            <f:ajax execute="@this" render="telefonoMessage"/>
+                        </input>
+                        <h:message id="telefonoMessage" for="telefonoInputText" styleClass="error"/>
+                        
+                        <h:outputLabel value="Correo del Representante:" for="correo" />
+                        <input type="email" jsf:id="correoInputText" required="true"
+                               jsf:value="#{empresaController.empresaActual.correo}" maxlength="30"  class="Form-inputRegistro"
+                                 jsf:validatorMessage="Dirección de correo electronico no valido">
+                            <f:validateRegex pattern="[\w\.-]*[a-zA-Z0-9_]@[\w\.-]*[a-zA-Z0-9]\.[a-zA-Z][a-zA-Z\.]*[a-zA-Z]*" />
+                            <f:ajax execute="@this" render="correoMessage"/>
+                        </input>
+                        <h:message id="correoMessage" for="correoInputText" styleClass="error"/>
+                        </h:panelGrid>
+                        <h:commandButton value="Guardar" action="#{empresaController.addEmpresa}"/>
+                    <br/>
+                    <h:button value="Volver atras" outcome="/index"/>
+                </h:form> 
+        </ui:define>
+    </ui:composition>
+</html>
