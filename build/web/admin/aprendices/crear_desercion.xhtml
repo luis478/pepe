@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:jsf="http://xmlns.jcp.org/jsf">
+    <ui:composition template="/html_plantillas/template.xhtml">
+        <ui:define name="title">Crear desercion</ui:define>        
+        <ui:define name="body">
+                <h:form>
+                    <h1><h:outputText value="Crear desercion"/></h1>
+                    <h:panelGrid columns="1">
+                        
+                        <h:outputLabel value="Estado:"  />
+                        <h:selectOneMenu id="idEstadoselect" value="#{desercionController.desercionActual.idEstado}"  required="true" >
+                            <f:selectItem itemLabel="Seleccionar uno.." />
+                            <f:selectItems value="#{desercionController.listaEstadoSelectOne}" var="estado" itemValue="#{estado}"/>  
+                        </h:selectOneMenu>
+                        
+                        <h:outputLabel value="Motivo:" />
+                        <h:selectOneMenu id="idMotivoselect" value="#{desercionController.desercionActual.idMotivo}"  required="true" >
+                            <f:selectItem itemLabel="Seleccionar uno.." />
+                            <f:selectItems value="#{desercionController.listaMotivoSelectOne}" var="motivo" itemValue="#{motivo}"/>  
+                        </h:selectOneMenu>
+                        
+                        <h:outputLabel value="Desercion:"  />
+                        <input jsf:id="nomDesercionInputText" jsf:value="#{desercionController.desercionActual.desercion}" 
+                                     type="text" required="true"
+                                     jsf:requiredMessage="Por favor ingrese el nombre de la Desercion"
+                                     jsf:validatorMessage="Use solo letras, ej: Juan"> 
+                                     <f:validateRegex pattern="[a-zA-Z áéíóúÁÉÍÓÚÑñ ]*"/>
+                                     <f:ajax execute="@this" render="nomDesercionMessage"/>
+                        </input>
+                        <h:message id="nomDesercionMessage" for="nomDesercionInputText" styleClass="error"/>
+                        
+                        <h:outputLabel value="Fecha de desercion:"  />
+                        <input  type="date" 
+                                jsf:id="fecha" 
+                                required="true" 
+                                min="1914-01-01"
+                                max="2000-12-31"
+                                jsf:requiredMessage="Ingresa Fecha de desercion" 
+                                jsf:value="#{desercionController.desercionActual.fecha}">
+                        <f:convertDateTime pattern="yyyy-MM-dd"/>
+                        <f:ajax execute="fecha" 
+                                render="msgFecha"/>
+                        
+                        </input>
+                        <h:message id="msgFecha" for="fecha"  styleClass="error"/>
+                        
+                    </h:panelGrid>
+                    <h:commandButton value="Guardar" action="#{desercionController.addDesercion}"/>
+                   <br/>
+                    <h:button value="Volver atras" outcome="/index"/>
+                </h:form>
+        </ui:define>
+    </ui:composition>
+</html>

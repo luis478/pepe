@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:jsf="http://xmlns.jcp.org/jsf">
+    <ui:composition template="/html_plantillas/template.xhtml">
+        <ui:define name="title">Crear Tipo vocero</ui:define>        
+        <ui:define name="body">
+                <h:form>
+                    <h1><h:outputText value="Crear Tipo vocero"/></h1>
+                    <h:panelGrid columns="1">
+                        
+                        <h:outputLabel value="Id tipo de vocero:" for="nomIdTipoVocero" />
+                        <input jsf:id="nomIdTipoVoceroInputText" jsf:value="#{tipoVoceroController.tipoVoceroActual.idTipoVocero}" 
+                                     type="number" required="true"
+                                     jsf:requiredMessage="Por favor ingrese el id del tipo de vocero"
+                                     jsf:validatorMessage="Use solo numeros, ej: 1"> 
+                                     
+                                     <f:ajax execute="@this" render="nomIdTipoVoceroMessage"/>
+                        </input>
+                        <h:message id="nomIdTipoVoceroMessage" for="nomIdTipoVoceroInputText" styleClass="error"/>
+                        
+                        <h:outputLabel value="Tipo de vocero:" for="nomTipoVocero" />
+                        <input jsf:id="nomTipoVoceroInputText" jsf:value="#{tipoVoceroController.tipoVoceroActual.nombreTipoVocero}" 
+                                     type="text" required="true"
+                                     jsf:requiredMessage="Por favor ingrese el nombre del tipo de vocero"
+                                     jsf:validatorMessage="Use solo letras, ej: tecnico"> 
+                                     <f:validateRegex pattern="[a-zA-Z áéíóúÁÉÍÓÚÑñ]*"/>
+                                     <f:ajax execute="@this" render="nomTipoVoceroMessage"/>
+                        </input>
+                        <h:message id="nomTipoVoceroMessage" for="nomTipoVoceroInputText" styleClass="error"/>
+                    </h:panelGrid>
+                    <h:commandButton value="Guardar" action="#{tipoVoceroController.addTipoVocero}"/>
+                    <br/>
+                    <h:button value="Volver atras" outcome="/index"/>
+                </h:form> 
+        </ui:define>
+    </ui:composition>
+</html>
