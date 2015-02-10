@@ -3,7 +3,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:jsf="http://xmlns.jcp.org/jsf"
-      xmlns:p="http://primefaces.org/ui">
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
 
     <head jsf:id="head">
         <title>PEPE</title>
@@ -77,24 +78,21 @@
 
 
              <nav class="seccion4">
-                 <ul class="Pepe-Lista">
-                     <li class="Pepe-botonesLista">
-                     <a href=" " class="Pepe-botones">Cerrar Sesión</a>
-                     </li>
-                     <li class="Pepe-botonesLista">
-                     <a href=" " class="Pepe-botones">Crear Proyecto Basado en Otro</a>
-                     </li>
-                     <li class="Pepe-botonesLista">
-                     <a href=" " class="Pepe-botones">Consultar</a>
-                     </li>
-                     <li class="Pepe-botonesLista">
-                     <a href=" " class="Pepe-botones">Crear Nuevo</a>
-                     </li>
-                 </ul>
+                   <h:form class="Form-opciones-header">
+              
+                     <h:commandButton value="Cerrar sesión" action="#{loginController.logout}" class="Pepe-botones"/>
+              
+                 </h:form>
              </nav>
 
 
          </form>
+          <h:form> 
+                <h:commandButton value="Menu Planeacion pedagogica" type="button" onclick="PF('botonPlaneacionPedagogicaDlg').show();"/>
+                <br></br>
+                <h:commandButton value="Menu crear usuario" type="button" onclick="PF('botonCrearUsuarioDlg').show();" rendered="#{loginController.administrador}"/>
+        </h:form> 
+       
         <hr width="100%" size="8" align="right"/>
              <footer class="Pepe-footer" >
              <figure class="Footer-imageContainer">
@@ -133,5 +131,7 @@
                   2015</p>
              </section>
          </footer>
+         <ui:include src="/admin/dlg_menuCrearUsuario.xhtml"/>
+        <ui:include src="/planeacionpedagogica/dlg_menuPlaneacionPedagogica.xhtml"/>
     </body>
 </html>

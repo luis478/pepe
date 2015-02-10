@@ -31,12 +31,12 @@ public class LoginController implements Serializable {
     @EJB
     private UsuarioFacade usuarioFacade;
 
-    public LoginController() {
-      /*  HttpSession session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
+    /*public LoginController() {
+     HttpSession session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
         if (session != null) {
             session.invalidate();
-        }*/
-    }
+        }
+    }*/
 
     public String getUsername() {
         return username;
@@ -113,7 +113,7 @@ public class LoginController implements Serializable {
             }
             //Redirigir a la página de portada
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Bienvenid@ " + usuario.toString(), null));
-            return "/index";
+            return "/index2";
 
         } catch (ServletException ex) {
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Usuario o Contraseña Invalida", null));
@@ -122,7 +122,7 @@ public class LoginController implements Serializable {
     }
 
     public String logout() {
-        FacesContext context = FacesContext.getCurrentInstance();
+             FacesContext context = FacesContext.getCurrentInstance();
         HttpServletRequest request = (HttpServletRequest) context.getExternalContext().getRequest();
 
         try {
@@ -130,10 +130,10 @@ public class LoginController implements Serializable {
             HttpSession session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
             session.invalidate();
             limpiar();
-            return "/index";
+            return "/user/close";
         } catch (ServletException e) {
             log.log(Level.SEVERE, "Failed to logout user!", e);
-            return "/user/user_index";
+            return "/index";
         }
     }
 

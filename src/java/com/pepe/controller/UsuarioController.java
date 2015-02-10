@@ -269,7 +269,7 @@ public class UsuarioController implements Serializable{
             usuarioActual.setEstado(true);
               if (listaRol == null || listaRol.isEmpty()) {
                 listaRol= new ArrayList<>();
-                listaRol.add(new Rol(1));
+                listaRol.add(new Rol(2));
                 usuarioActual.setRolList(listaRol); 
             } else {
                 usuarioActual.setRolList(listaRol);
