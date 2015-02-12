@@ -113,7 +113,7 @@ public class LoginController implements Serializable {
             }
             //Redirigir a la página de portada
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Bienvenid@ " + usuario.toString(), null));
-            return "/index";
+            return "index2";
 
         } catch (ServletException ex) {
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Usuario o Contraseña Invalida", null));
