@@ -16,6 +16,7 @@ import com.pepe.jpa.entities.Ficha;
 import com.pepe.jpa.entities.Genero;
 import com.pepe.jpa.entities.LibretaMilitar;
 import com.pepe.jpa.entities.Patrocinio;
+import com.pepe.jpa.entities.ResultadoAprendizaje;
 import com.pepe.jpa.entities.Revision;
 import com.pepe.jpa.entities.Rol;
 import com.pepe.jpa.entities.TipoDocumento;
@@ -29,7 +30,7 @@ import javax.persistence.metamodel.ListAttribute;
 import javax.persistence.metamodel.SingularAttribute;
 import javax.persistence.metamodel.StaticMetamodel;
 
-@Generated(value="EclipseLink-2.5.1.v20130918-rNA", date="2015-02-13T16:43:57")
+@Generated(value="EclipseLink-2.5.1.v20130918-rNA", date="2015-02-13T18:03:49")
 @StaticMetamodel(Usuario.class)
 public class Usuario_ { 
 
@@ -63,6 +64,7 @@ public class Usuario_ {
     public static volatile ListAttribute<Usuario, Revision> revisionList;
     public static volatile ListAttribute<Usuario, Ciudad> ciudadList;
     public static volatile ListAttribute<Usuario, Ficha> fichaList;
+    public static volatile ListAttribute<Usuario, ResultadoAprendizaje> resultadoAprendizajeList;
     public static volatile SingularAttribute<Usuario, Date> fechaExpedicion;
     public static volatile SingularAttribute<Usuario, String> correo2;
     public static volatile SingularAttribute<Usuario, String> correo1;

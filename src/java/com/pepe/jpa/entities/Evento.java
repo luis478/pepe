@@ -56,7 +56,7 @@ public class Evento implements Serializable {
     @Basic(optional = false)
     @NotNull
     @Column(name = "fecha_fin")
-    @Temporal(TemporalType.DATE)
+    @Temporal(TemporalType.TIMESTAMP)
     private Date fechaFin;
     @JoinTable(name = "evento_has_trimestre", joinColumns = {
         @JoinColumn(name = "id_evento", referencedColumnName = "id_evento")}, inverseJoinColumns = {
@@ -68,6 +68,11 @@ public class Evento implements Serializable {
         @JoinColumn(name = "id_usuario", referencedColumnName = "id_usuario")})
     @ManyToMany
     private List<Usuario> usuarioList;
+    @JoinTable(name = "evento_has_resultado_aprendizaje", joinColumns = {
+        @JoinColumn(name = "id_evento", referencedColumnName = "id_evento")}, inverseJoinColumns = {
+        @JoinColumn(name = "id_resultado_aprendizaje", referencedColumnName = "id_resultado_aprendizaje")})
+    @ManyToMany
+    private List<ResultadoAprendizaje> resultadoAprendizajeList;
     @JoinColumn(name = "id_ambiente_formacion", referencedColumnName = "id_ambiente_formacion")
     @ManyToOne(optional = false)
     private AmbienteFormacion idAmbienteFormacion;
@@ -133,6 +138,15 @@ public class Evento implements Serializable {
 
     public void setUsuarioList(List<Usuario> usuarioList) {
         this.usuarioList = usuarioList;
+    }
+
+    @XmlTransient
+    public List<ResultadoAprendizaje> getResultadoAprendizajeList() {
+        return resultadoAprendizajeList;
+    }
+
+    public void setResultadoAprendizajeList(List<ResultadoAprendizaje> resultadoAprendizajeList) {
+        this.resultadoAprendizajeList = resultadoAprendizajeList;
     }
 
     public AmbienteFormacion getIdAmbienteFormacion() {

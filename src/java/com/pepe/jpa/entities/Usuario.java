@@ -6,14 +6,9 @@
 
 package com.pepe.jpa.entities;
 
-import controller.util.DigestUtil;
 import java.io.Serializable;
-import java.io.UnsupportedEncodingException;
-import java.security.NoSuchAlgorithmException;
 import java.util.Date;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -156,9 +151,6 @@ public class Usuario implements Serializable {
     @JoinColumn(name = "id_patrocinio", referencedColumnName = "id_patrocinio")
     @ManyToOne
     private Patrocinio idPatrocinio;
-    @JoinColumn(name = "id_tipo_instructor", referencedColumnName = "id_tipo_instructor")
-    @ManyToOne
-    private TipoInstructor idTipoInstructor;
     @JoinColumn(name = "id_desercion", referencedColumnName = "id_desercion")
     @ManyToOne
     private Desercion idDesercion;
@@ -177,12 +169,17 @@ public class Usuario implements Serializable {
     @JoinColumn(name = "id_libreta_militar", referencedColumnName = "id_libreta_militar")
     @ManyToOne
     private LibretaMilitar idLibretaMilitar;
+    @JoinColumn(name = "id_tipo_instructor", referencedColumnName = "id_tipo_instructor")
+    @ManyToOne
+    private TipoInstructor idTipoInstructor;
     @JoinColumn(name = "id_especialidad", referencedColumnName = "id_especialidad")
     @ManyToOne
     private Especialidad idEspecialidad;
     @JoinColumn(name = "id_eps", referencedColumnName = "id_eps")
     @ManyToOne(optional = false)
     private Eps idEps;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idUsuario")
+    private List<ResultadoAprendizaje> resultadoAprendizajeList;
 
     public Usuario() {
     }
@@ -297,13 +294,7 @@ public class Usuario implements Serializable {
     }
 
     public void setPassword(String password) {
-       try {
-            this.password = DigestUtil.generateDigest(password);
-        } catch (NoSuchAlgorithmException ex) {
-            Logger.getLogger(Usuario.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (UnsupportedEncodingException ex) {
-            Logger.getLogger(Usuario.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        this.password = password;
     }
 
     public Date getFechaExpedicion() {
@@ -453,14 +444,6 @@ public class Usuario implements Serializable {
         this.idPatrocinio = idPatrocinio;
     }
 
-    public TipoInstructor getIdTipoInstructor() {
-        return idTipoInstructor;
-    }
-
-    public void setIdTipoInstructor(TipoInstructor idTipoInstructor) {
-        this.idTipoInstructor = idTipoInstructor;
-    }
-
     public Desercion getIdDesercion() {
         return idDesercion;
     }
@@ -509,6 +492,14 @@ public class Usuario implements Serializable {
         this.idLibretaMilitar = idLibretaMilitar;
     }
 
+    public TipoInstructor getIdTipoInstructor() {
+        return idTipoInstructor;
+    }
+
+    public void setIdTipoInstructor(TipoInstructor idTipoInstructor) {
+        this.idTipoInstructor = idTipoInstructor;
+    }
+
     public Especialidad getIdEspecialidad() {
         return idEspecialidad;
     }
@@ -523,6 +514,15 @@ public class Usuario implements Serializable {
 
     public void setIdEps(Eps idEps) {
         this.idEps = idEps;
+    }
+
+    @XmlTransient
+    public List<ResultadoAprendizaje> getResultadoAprendizajeList() {
+        return resultadoAprendizajeList;
+    }
+
+    public void setResultadoAprendizajeList(List<ResultadoAprendizaje> resultadoAprendizajeList) {
+        this.resultadoAprendizajeList = resultadoAprendizajeList;
     }
 
     @Override

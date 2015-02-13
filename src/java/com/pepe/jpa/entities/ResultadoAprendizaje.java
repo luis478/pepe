@@ -57,6 +57,8 @@ public class ResultadoAprendizaje implements Serializable {
     @Column(name = "estado")
     private short estado;
     @ManyToMany(mappedBy = "resultadoAprendizajeList")
+    private List<Evento> eventoList;
+    @ManyToMany(mappedBy = "resultadoAprendizajeList")
     private List<Actividad> actividadList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "resultadoAprendizaje")
     private List<ActividadAprendizajeHasResultadoAprendizaje> actividadAprendizajeHasResultadoAprendizajeList;
@@ -66,6 +68,9 @@ public class ResultadoAprendizaje implements Serializable {
     @JoinColumn(name = "id_competencia", referencedColumnName = "id_competencia")
     @ManyToOne(optional = false)
     private Competencia idCompetencia;
+    @JoinColumn(name = "id_usuario", referencedColumnName = "id_usuario")
+    @ManyToOne(optional = false)
+    private Usuario idUsuario;
 
     public ResultadoAprendizaje() {
     }
@@ -105,6 +110,15 @@ public class ResultadoAprendizaje implements Serializable {
     }
 
     @XmlTransient
+    public List<Evento> getEventoList() {
+        return eventoList;
+    }
+
+    public void setEventoList(List<Evento> eventoList) {
+        this.eventoList = eventoList;
+    }
+
+    @XmlTransient
     public List<Actividad> getActividadList() {
         return actividadList;
     }
@@ -136,6 +150,14 @@ public class ResultadoAprendizaje implements Serializable {
 
     public void setIdCompetencia(Competencia idCompetencia) {
         this.idCompetencia = idCompetencia;
+    }
+
+    public Usuario getIdUsuario() {
+        return idUsuario;
+    }
+
+    public void setIdUsuario(Usuario idUsuario) {
+        this.idUsuario = idUsuario;
     }
 
     @Override
