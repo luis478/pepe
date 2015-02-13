@@ -45,8 +45,7 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Ficha.findByCodigoFicha", query = "SELECT f FROM Ficha f WHERE f.codigoFicha = :codigoFicha"),
     @NamedQuery(name = "Ficha.findByFechaInicio", query = "SELECT f FROM Ficha f WHERE f.fechaInicio = :fechaInicio"),
     @NamedQuery(name = "Ficha.findByTrimestresLectiva", query = "SELECT f FROM Ficha f WHERE f.trimestresLectiva = :trimestresLectiva"),
-    @NamedQuery(name = "Ficha.findByEstado", query = "SELECT f FROM Ficha f WHERE f.estado = :estado"),
-    @NamedQuery(name = "Ficha.findByIdPrograma", query = "SELECT f FROM Ficha f WHERE f.idPrograma = :idPrograma")})
+    @NamedQuery(name = "Ficha.findByEstado", query = "SELECT f FROM Ficha f WHERE f.estado = :estado")})
 public class Ficha implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
@@ -70,25 +69,22 @@ public class Ficha implements Serializable {
     private short trimestresLectiva;
     @Basic(optional = false)
     @NotNull
-    @Size(min = 1, max = 45)
     @Column(name = "estado")
-    private String estado;
-    @Basic(optional = false)
-    @NotNull
-    @Column(name = "id_programa")
-    private int idPrograma;
-    @JoinTable(name = "proyecto_has_ficha", joinColumns = {
-        @JoinColumn(name = "id_ficha", referencedColumnName = "id_ficha")}, inverseJoinColumns = {
-        @JoinColumn(name = "id_proyecto", referencedColumnName = "id_proyecto")})
-    @ManyToMany
-    private List<Proyecto> proyectoList;
+    private short estado;
     @JoinTable(name = "trimestre_has_ficha", joinColumns = {
         @JoinColumn(name = "id_fecha", referencedColumnName = "id_ficha")}, inverseJoinColumns = {
         @JoinColumn(name = "id_trimestre", referencedColumnName = "id_trimestre")})
     @ManyToMany
     private List<Trimestre> trimestreList;
+    @JoinTable(name = "usuario_has_ficha", joinColumns = {
+        @JoinColumn(name = "id_ficha", referencedColumnName = "id_ficha")}, inverseJoinColumns = {
+        @JoinColumn(name = "id_usuario", referencedColumnName = "id_usuario")})
+    @ManyToMany
+    private List<Usuario> usuarioList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idFicha")
     private List<Evento> eventoList;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "ficha")
+    private List<Aspectos> aspectosList;
     @JoinColumn(name = "id_centro_formacion", referencedColumnName = "id_centro_formacion")
     @ManyToOne(optional = false)
     private CentroFormacion idCentroFormacion;
@@ -106,12 +102,11 @@ public class Ficha implements Serializable {
     @JoinColumn(name = "id_tipo_formacion", referencedColumnName = "id_tipo_formacion")
     @ManyToOne(optional = false)
     private TipoFormacion idTipoFormacion;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "ficha")
-    private List<UsuarioHasFicha> usuarioHasFichaList;
+    @JoinColumn(name = "id_proyecto", referencedColumnName = "id_proyecto")
+    @ManyToOne
+    private Proyecto idProyecto;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idFicha")
-    private List<GuiaAprendizaje> guiaAprendizajeList;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idFicha")
-    private List<Acompañamiento> acompañamientoList;
+    private List<Acompanamiento> acompanamientoList;
 
     public Ficha() {
     }
@@ -120,13 +115,12 @@ public class Ficha implements Serializable {
         this.idFicha = idFicha;
     }
 
-    public Ficha(Integer idFicha, String codigoFicha, Date fechaInicio, short trimestresLectiva, String estado, int idPrograma) {
+    public Ficha(Integer idFicha, String codigoFicha, Date fechaInicio, short trimestresLectiva, short estado) {
         this.idFicha = idFicha;
         this.codigoFicha = codigoFicha;
         this.fechaInicio = fechaInicio;
         this.trimestresLectiva = trimestresLectiva;
         this.estado = estado;
-        this.idPrograma = idPrograma;
     }
 
     public Integer getIdFicha() {
@@ -161,29 +155,12 @@ public class Ficha implements Serializable {
         this.trimestresLectiva = trimestresLectiva;
     }
 
-    public String getEstado() {
+    public short getEstado() {
         return estado;
     }
 
-    public void setEstado(String estado) {
+    public void setEstado(short estado) {
         this.estado = estado;
-    }
-
-    public int getIdPrograma() {
-        return idPrograma;
-    }
-
-    public void setIdPrograma(int idPrograma) {
-        this.idPrograma = idPrograma;
-    }
-
-    @XmlTransient
-    public List<Proyecto> getProyectoList() {
-        return proyectoList;
-    }
-
-    public void setProyectoList(List<Proyecto> proyectoList) {
-        this.proyectoList = proyectoList;
     }
 
     @XmlTransient
@@ -196,12 +173,30 @@ public class Ficha implements Serializable {
     }
 
     @XmlTransient
+    public List<Usuario> getUsuarioList() {
+        return usuarioList;
+    }
+
+    public void setUsuarioList(List<Usuario> usuarioList) {
+        this.usuarioList = usuarioList;
+    }
+
+    @XmlTransient
     public List<Evento> getEventoList() {
         return eventoList;
     }
 
     public void setEventoList(List<Evento> eventoList) {
         this.eventoList = eventoList;
+    }
+
+    @XmlTransient
+    public List<Aspectos> getAspectosList() {
+        return aspectosList;
+    }
+
+    public void setAspectosList(List<Aspectos> aspectosList) {
+        this.aspectosList = aspectosList;
     }
 
     public CentroFormacion getIdCentroFormacion() {
@@ -244,31 +239,21 @@ public class Ficha implements Serializable {
         this.idTipoFormacion = idTipoFormacion;
     }
 
-    @XmlTransient
-    public List<UsuarioHasFicha> getUsuarioHasFichaList() {
-        return usuarioHasFichaList;
+    public Proyecto getIdProyecto() {
+        return idProyecto;
     }
 
-    public void setUsuarioHasFichaList(List<UsuarioHasFicha> usuarioHasFichaList) {
-        this.usuarioHasFichaList = usuarioHasFichaList;
-    }
-
-    @XmlTransient
-    public List<GuiaAprendizaje> getGuiaAprendizajeList() {
-        return guiaAprendizajeList;
-    }
-
-    public void setGuiaAprendizajeList(List<GuiaAprendizaje> guiaAprendizajeList) {
-        this.guiaAprendizajeList = guiaAprendizajeList;
+    public void setIdProyecto(Proyecto idProyecto) {
+        this.idProyecto = idProyecto;
     }
 
     @XmlTransient
-    public List<Acompañamiento> getAcompañamientoList() {
-        return acompañamientoList;
+    public List<Acompanamiento> getAcompanamientoList() {
+        return acompanamientoList;
     }
 
-    public void setAcompañamientoList(List<Acompañamiento> acompañamientoList) {
-        this.acompañamientoList = acompañamientoList;
+    public void setAcompanamientoList(List<Acompanamiento> acompanamientoList) {
+        this.acompanamientoList = acompanamientoList;
     }
 
     @Override

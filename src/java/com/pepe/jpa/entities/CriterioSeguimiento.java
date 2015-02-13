@@ -15,9 +15,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.Lob;
-import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
@@ -36,7 +34,8 @@ import javax.xml.bind.annotation.XmlTransient;
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "CriterioSeguimiento.findAll", query = "SELECT c FROM CriterioSeguimiento c"),
-    @NamedQuery(name = "CriterioSeguimiento.findByIdCriterioSeguimiento", query = "SELECT c FROM CriterioSeguimiento c WHERE c.idCriterioSeguimiento = :idCriterioSeguimiento")})
+    @NamedQuery(name = "CriterioSeguimiento.findByIdCriterioSeguimiento", query = "SELECT c FROM CriterioSeguimiento c WHERE c.idCriterioSeguimiento = :idCriterioSeguimiento"),
+    @NamedQuery(name = "CriterioSeguimiento.findByIdCategoria", query = "SELECT c FROM CriterioSeguimiento c WHERE c.idCategoria = :idCategoria")})
 public class CriterioSeguimiento implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
@@ -50,14 +49,12 @@ public class CriterioSeguimiento implements Serializable {
     @Size(min = 1, max = 65535)
     @Column(name = "descrpcion")
     private String descrpcion;
+    @Basic(optional = false)
+    @NotNull
+    @Column(name = "id_categoria")
+    private int idCategoria;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "criterioSeguimiento")
-    private List<CriterioSeguimientoHasAcompañamiento> criterioSeguimientoHasAcompañamientoList;
-    @JoinColumn(name = "id_valoracion", referencedColumnName = "id_valoracion")
-    @ManyToOne(optional = false)
-    private Valoracion idValoracion;
-    @JoinColumn(name = "id_categoria", referencedColumnName = "id_categoria")
-    @ManyToOne(optional = false)
-    private Categoria idCategoria;
+    private List<CriterioSeguimientoHasAcompanamiento> criterioSeguimientoHasAcompanamientoList;
 
     public CriterioSeguimiento() {
     }
@@ -66,9 +63,10 @@ public class CriterioSeguimiento implements Serializable {
         this.idCriterioSeguimiento = idCriterioSeguimiento;
     }
 
-    public CriterioSeguimiento(Integer idCriterioSeguimiento, String descrpcion) {
+    public CriterioSeguimiento(Integer idCriterioSeguimiento, String descrpcion, int idCategoria) {
         this.idCriterioSeguimiento = idCriterioSeguimiento;
         this.descrpcion = descrpcion;
+        this.idCategoria = idCategoria;
     }
 
     public Integer getIdCriterioSeguimiento() {
@@ -87,29 +85,21 @@ public class CriterioSeguimiento implements Serializable {
         this.descrpcion = descrpcion;
     }
 
-    @XmlTransient
-    public List<CriterioSeguimientoHasAcompañamiento> getCriterioSeguimientoHasAcompañamientoList() {
-        return criterioSeguimientoHasAcompañamientoList;
-    }
-
-    public void setCriterioSeguimientoHasAcompañamientoList(List<CriterioSeguimientoHasAcompañamiento> criterioSeguimientoHasAcompañamientoList) {
-        this.criterioSeguimientoHasAcompañamientoList = criterioSeguimientoHasAcompañamientoList;
-    }
-
-    public Valoracion getIdValoracion() {
-        return idValoracion;
-    }
-
-    public void setIdValoracion(Valoracion idValoracion) {
-        this.idValoracion = idValoracion;
-    }
-
-    public Categoria getIdCategoria() {
+    public int getIdCategoria() {
         return idCategoria;
     }
 
-    public void setIdCategoria(Categoria idCategoria) {
+    public void setIdCategoria(int idCategoria) {
         this.idCategoria = idCategoria;
+    }
+
+    @XmlTransient
+    public List<CriterioSeguimientoHasAcompanamiento> getCriterioSeguimientoHasAcompanamientoList() {
+        return criterioSeguimientoHasAcompanamientoList;
+    }
+
+    public void setCriterioSeguimientoHasAcompanamientoList(List<CriterioSeguimientoHasAcompanamiento> criterioSeguimientoHasAcompanamientoList) {
+        this.criterioSeguimientoHasAcompanamientoList = criterioSeguimientoHasAcompanamientoList;
     }
 
     @Override

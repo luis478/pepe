@@ -49,7 +49,7 @@ public class Conclusiones implements Serializable {
     @Column(name = "descripcion")
     private String descripcion;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idConclusiones")
-    private List<CriterioSeguimientoHasAcompañamiento> criterioSeguimientoHasAcompañamientoList;
+    private List<CriterioSeguimientoHasAcompanamiento> criterioSeguimientoHasAcompanamientoList;
 
     public Conclusiones() {
     }
@@ -80,12 +80,12 @@ public class Conclusiones implements Serializable {
     }
 
     @XmlTransient
-    public List<CriterioSeguimientoHasAcompañamiento> getCriterioSeguimientoHasAcompañamientoList() {
-        return criterioSeguimientoHasAcompañamientoList;
+    public List<CriterioSeguimientoHasAcompanamiento> getCriterioSeguimientoHasAcompanamientoList() {
+        return criterioSeguimientoHasAcompanamientoList;
     }
 
-    public void setCriterioSeguimientoHasAcompañamientoList(List<CriterioSeguimientoHasAcompañamiento> criterioSeguimientoHasAcompañamientoList) {
-        this.criterioSeguimientoHasAcompañamientoList = criterioSeguimientoHasAcompañamientoList;
+    public void setCriterioSeguimientoHasAcompanamientoList(List<CriterioSeguimientoHasAcompanamiento> criterioSeguimientoHasAcompanamientoList) {
+        this.criterioSeguimientoHasAcompanamientoList = criterioSeguimientoHasAcompanamientoList;
     }
 
     @Override

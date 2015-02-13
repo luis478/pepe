@@ -62,11 +62,6 @@ public class ActividadAprendizaje implements Serializable {
     @Size(min = 1, max = 45)
     @Column(name = "observaciones")
     private String observaciones;
-    @JoinTable(name = "actividad_aprendizaje_has_resultado_aprendizaje", joinColumns = {
-        @JoinColumn(name = "id_actividad_aprendizaje", referencedColumnName = "id_actividad_aprendizaje")}, inverseJoinColumns = {
-        @JoinColumn(name = "id_resultado_aprendizaje", referencedColumnName = "id_resultado_aprendizaje")})
-    @ManyToMany
-    private List<ResultadoAprendizaje> resultadoAprendizajeList;
     @JoinTable(name = "actividad_aprendizaje_has_usuario", joinColumns = {
         @JoinColumn(name = "id_actividad_aprendizaje", referencedColumnName = "id_actividad_aprendizaje")}, inverseJoinColumns = {
         @JoinColumn(name = "id_usuario", referencedColumnName = "id_usuario")})
@@ -82,9 +77,9 @@ public class ActividadAprendizaje implements Serializable {
     @ManyToOne(optional = false)
     private TipoActividadAprendizaje idTipoActividadAprendizaje;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idActividadAprendizaje")
-    private List<Evento> eventoList;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idActividadAprendizaje")
     private List<Evidencia> evidenciaList;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "actividadAprendizaje")
+    private List<ActividadAprendizajeHasResultadoAprendizaje> actividadAprendizajeHasResultadoAprendizajeList;
 
     public ActividadAprendizaje() {
     }
@@ -133,15 +128,6 @@ public class ActividadAprendizaje implements Serializable {
     }
 
     @XmlTransient
-    public List<ResultadoAprendizaje> getResultadoAprendizajeList() {
-        return resultadoAprendizajeList;
-    }
-
-    public void setResultadoAprendizajeList(List<ResultadoAprendizaje> resultadoAprendizajeList) {
-        this.resultadoAprendizajeList = resultadoAprendizajeList;
-    }
-
-    @XmlTransient
     public List<Usuario> getUsuarioList() {
         return usuarioList;
     }
@@ -175,21 +161,21 @@ public class ActividadAprendizaje implements Serializable {
     }
 
     @XmlTransient
-    public List<Evento> getEventoList() {
-        return eventoList;
-    }
-
-    public void setEventoList(List<Evento> eventoList) {
-        this.eventoList = eventoList;
-    }
-
-    @XmlTransient
     public List<Evidencia> getEvidenciaList() {
         return evidenciaList;
     }
 
     public void setEvidenciaList(List<Evidencia> evidenciaList) {
         this.evidenciaList = evidenciaList;
+    }
+
+    @XmlTransient
+    public List<ActividadAprendizajeHasResultadoAprendizaje> getActividadAprendizajeHasResultadoAprendizajeList() {
+        return actividadAprendizajeHasResultadoAprendizajeList;
+    }
+
+    public void setActividadAprendizajeHasResultadoAprendizajeList(List<ActividadAprendizajeHasResultadoAprendizaje> actividadAprendizajeHasResultadoAprendizajeList) {
+        this.actividadAprendizajeHasResultadoAprendizajeList = actividadAprendizajeHasResultadoAprendizajeList;
     }
 
     @Override

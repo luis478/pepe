@@ -1,9 +1,8 @@
 package com.pepe.jpa.entities;
 
 import com.pepe.jpa.entities.Actividad;
-import com.pepe.jpa.entities.Evento;
+import com.pepe.jpa.entities.ActividadAprendizajeHasResultadoAprendizaje;
 import com.pepe.jpa.entities.Evidencia;
-import com.pepe.jpa.entities.ResultadoAprendizaje;
 import com.pepe.jpa.entities.TecnicaDidactica;
 import com.pepe.jpa.entities.TipoActividadAprendizaje;
 import com.pepe.jpa.entities.Usuario;
@@ -12,7 +11,7 @@ import javax.persistence.metamodel.ListAttribute;
 import javax.persistence.metamodel.SingularAttribute;
 import javax.persistence.metamodel.StaticMetamodel;
 
-@Generated(value="EclipseLink-2.5.1.v20130918-rNA", date="2015-02-11T23:16:19")
+@Generated(value="EclipseLink-2.5.1.v20130918-rNA", date="2015-02-13T16:43:57")
 @StaticMetamodel(ActividadAprendizaje.class)
 public class ActividadAprendizaje_ { 
 
@@ -22,10 +21,9 @@ public class ActividadAprendizaje_ {
     public static volatile SingularAttribute<ActividadAprendizaje, Integer> duracionActividadAprendizaje;
     public static volatile ListAttribute<ActividadAprendizaje, Evidencia> evidenciaList;
     public static volatile SingularAttribute<ActividadAprendizaje, String> observaciones;
-    public static volatile ListAttribute<ActividadAprendizaje, Evento> eventoList;
     public static volatile SingularAttribute<ActividadAprendizaje, Integer> idActividadAprendizaje;
     public static volatile SingularAttribute<ActividadAprendizaje, TipoActividadAprendizaje> idTipoActividadAprendizaje;
-    public static volatile ListAttribute<ActividadAprendizaje, ResultadoAprendizaje> resultadoAprendizajeList;
+    public static volatile ListAttribute<ActividadAprendizaje, ActividadAprendizajeHasResultadoAprendizaje> actividadAprendizajeHasResultadoAprendizajeList;
     public static volatile SingularAttribute<ActividadAprendizaje, TecnicaDidactica> idTecnicaDidactica;
 
 }

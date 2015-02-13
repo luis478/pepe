@@ -16,6 +16,16 @@ and open the template in the editor.
                 <h:form>
                     <h1><h:outputText value="Crear Eps"/></h1>
                     <h:panelGrid columns="1">
+                         <h:outputLabel value="Codigo Eps:" for="codEps" />
+                         <input jsf:id="codEpsInputText" jsf:value="#{epsController.epsActual.idEps}" 
+                                     type="text" required="true"
+                                     jsf:requiredMessage="Por favor ingrese el nombre de la Eps"
+                                     jsf:validatorMessage="Use solo letras, ej: SOS"> 
+                                     <f:validateRegex pattern="[a-zA-Z áéíóúÁÉÍÓÚÑñ]*"/>
+                                     <f:ajax execute="@this" render="nomEpsMessage"/>
+                        </input>
+                        <h:message id="codEpsMessage" for="codEpsInputText" styleClass="error"/>
+                        
                         <h:outputLabel value="Nombre Eps:" for="nomEps" />
                         <input jsf:id="nomEpsInputText" jsf:value="#{epsController.epsActual.nombreEps}" 
                                      type="text" required="true"

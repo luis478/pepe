@@ -57,8 +57,6 @@ public class AmbienteFormacion implements Serializable {
     private List<Evento> eventoList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idAmbienteFormacion")
     private List<Verificacion> verificacionList;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idAmbienteFormacion")
-    private List<Acompañamiento> acompañamientoList;
 
     public AmbienteFormacion() {
     }
@@ -113,15 +111,6 @@ public class AmbienteFormacion implements Serializable {
 
     public void setVerificacionList(List<Verificacion> verificacionList) {
         this.verificacionList = verificacionList;
-    }
-
-    @XmlTransient
-    public List<Acompañamiento> getAcompañamientoList() {
-        return acompañamientoList;
-    }
-
-    public void setAcompañamientoList(List<Acompañamiento> acompañamientoList) {
-        this.acompañamientoList = acompañamientoList;
     }
 
     @Override

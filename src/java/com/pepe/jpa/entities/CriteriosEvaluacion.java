@@ -32,7 +32,8 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "CriteriosEvaluacion.findAll", query = "SELECT c FROM CriteriosEvaluacion c"),
-    @NamedQuery(name = "CriteriosEvaluacion.findByIdCriteriosEvaluacion", query = "SELECT c FROM CriteriosEvaluacion c WHERE c.idCriteriosEvaluacion = :idCriteriosEvaluacion")})
+    @NamedQuery(name = "CriteriosEvaluacion.findByIdCriteriosEvaluacion", query = "SELECT c FROM CriteriosEvaluacion c WHERE c.idCriteriosEvaluacion = :idCriteriosEvaluacion"),
+    @NamedQuery(name = "CriteriosEvaluacion.findByEstado", query = "SELECT c FROM CriteriosEvaluacion c WHERE c.estado = :estado")})
 public class CriteriosEvaluacion implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
@@ -48,10 +49,8 @@ public class CriteriosEvaluacion implements Serializable {
     private String nombreCriteriosEvaluacion;
     @Basic(optional = false)
     @NotNull
-    @Lob
-    @Size(min = 1, max = 2147483647)
     @Column(name = "estado")
-    private String estado;
+    private short estado;
     @JoinColumn(name = "id_competencia", referencedColumnName = "id_competencia")
     @ManyToOne(optional = false)
     private Competencia idCompetencia;
@@ -63,7 +62,7 @@ public class CriteriosEvaluacion implements Serializable {
         this.idCriteriosEvaluacion = idCriteriosEvaluacion;
     }
 
-    public CriteriosEvaluacion(Integer idCriteriosEvaluacion, String nombreCriteriosEvaluacion, String estado) {
+    public CriteriosEvaluacion(Integer idCriteriosEvaluacion, String nombreCriteriosEvaluacion, short estado) {
         this.idCriteriosEvaluacion = idCriteriosEvaluacion;
         this.nombreCriteriosEvaluacion = nombreCriteriosEvaluacion;
         this.estado = estado;
@@ -85,11 +84,11 @@ public class CriteriosEvaluacion implements Serializable {
         this.nombreCriteriosEvaluacion = nombreCriteriosEvaluacion;
     }
 
-    public String getEstado() {
+    public short getEstado() {
         return estado;
     }
 
-    public void setEstado(String estado) {
+    public void setEstado(short estado) {
         this.estado = estado;
     }
 

@@ -12,8 +12,6 @@ import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
@@ -38,10 +36,11 @@ import javax.xml.bind.annotation.XmlTransient;
 public class Eps implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 20)
     @Column(name = "id_eps")
-    private Integer idEps;
+    private String idEps;
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 45)
@@ -53,20 +52,20 @@ public class Eps implements Serializable {
     public Eps() {
     }
 
-    public Eps(Integer idEps) {
+    public Eps(String idEps) {
         this.idEps = idEps;
     }
 
-    public Eps(Integer idEps, String nombreEps) {
+    public Eps(String idEps, String nombreEps) {
         this.idEps = idEps;
         this.nombreEps = nombreEps;
     }
 
-    public Integer getIdEps() {
+    public String getIdEps() {
         return idEps;
     }
 
-    public void setIdEps(Integer idEps) {
+    public void setIdEps(String idEps) {
         this.idEps = idEps;
     }
 

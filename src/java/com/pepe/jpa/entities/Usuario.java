@@ -22,7 +22,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
@@ -109,10 +108,10 @@ public class Usuario implements Serializable {
     @Basic(optional = false)
     @NotNull
     @Column(name = "estado")
-    private boolean estado;
+    private short estado;
     @Basic(optional = false)
     @NotNull
-    @Size(min = 1, max = 64)
+    @Size(min = 1, max = 65)
     @Column(name = "password")
     private String password;
     @Basic(optional = false)
@@ -130,24 +129,24 @@ public class Usuario implements Serializable {
     private List<Revision> revisionList;
     @ManyToMany(mappedBy = "usuarioList")
     private List<CentroFormacion> centroFormacionList;
-    
     @ManyToMany(mappedBy = "usuarioList")
-    private List<Ciudad> ciudadList;
-    @JoinTable(name = "rol_has_usuario", joinColumns = {
-        @JoinColumn(name = "id_usuario", referencedColumnName = "id_usuario")}, inverseJoinColumns = {
-        @JoinColumn(name = "id_rol", referencedColumnName = "id_rol")})
-    @ManyToMany
     private List<Rol> rolList;
     @ManyToMany(mappedBy = "usuarioList")
+    private List<Aspectos> aspectosList;
+    @ManyToMany(mappedBy = "usuarioList")
+    private List<Acompanamiento> acompanamientoList;
+    @ManyToMany(mappedBy = "usuarioList")
+    private List<Ciudad> ciudadList;
+    @ManyToMany(mappedBy = "usuarioList")
     private List<Area> areaList;
+    @ManyToMany(mappedBy = "usuarioList")
+    private List<Ficha> fichaList;
     @ManyToMany(mappedBy = "usuarioList")
     private List<Evento> eventoList;
     @ManyToMany(mappedBy = "usuarioList")
     private List<ActividadAprendizaje> actividadAprendizajeList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idUsuario")
     private List<Verificacion> verificacionList;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idUsuario")
-    private List<CriterioSeguimientoHasAcompañamiento> criterioSeguimientoHasAcompañamientoList;
     @JoinColumn(name = "id_caracterizacion", referencedColumnName = "id_caracterizacion")
     @ManyToOne
     private Caracterizacion idCaracterizacion;
@@ -157,6 +156,9 @@ public class Usuario implements Serializable {
     @JoinColumn(name = "id_patrocinio", referencedColumnName = "id_patrocinio")
     @ManyToOne
     private Patrocinio idPatrocinio;
+    @JoinColumn(name = "id_tipo_instructor", referencedColumnName = "id_tipo_instructor")
+    @ManyToOne
+    private TipoInstructor idTipoInstructor;
     @JoinColumn(name = "id_desercion", referencedColumnName = "id_desercion")
     @ManyToOne
     private Desercion idDesercion;
@@ -175,14 +177,12 @@ public class Usuario implements Serializable {
     @JoinColumn(name = "id_libreta_militar", referencedColumnName = "id_libreta_militar")
     @ManyToOne
     private LibretaMilitar idLibretaMilitar;
+    @JoinColumn(name = "id_especialidad", referencedColumnName = "id_especialidad")
+    @ManyToOne
+    private Especialidad idEspecialidad;
     @JoinColumn(name = "id_eps", referencedColumnName = "id_eps")
     @ManyToOne(optional = false)
     private Eps idEps;
-    @JoinColumn(name = "id_especialidad", referencedColumnName = "id_especialidad")
-    @ManyToOne(optional = false)
-    private Especialidad idEspecialidad;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "usuario")
-    private List<UsuarioHasFicha> usuarioHasFichaList;
 
     public Usuario() {
     }
@@ -191,7 +191,7 @@ public class Usuario implements Serializable {
         this.idUsuario = idUsuario;
     }
 
-    public Usuario(Integer idUsuario, String numeroDocumento, String nombre1, String apellido1, String telefono, String correo1, String direccion, boolean estado, String password, Date fechaExpedicion) {
+    public Usuario(Integer idUsuario, String numeroDocumento, String nombre1, String apellido1, String telefono, String correo1, String direccion, short estado, String password, Date fechaExpedicion) {
         this.idUsuario = idUsuario;
         this.numeroDocumento = numeroDocumento;
         this.nombre1 = nombre1;
@@ -284,11 +284,11 @@ public class Usuario implements Serializable {
         this.direccion = direccion;
     }
 
-    public boolean getEstado() {
+    public short getEstado() {
         return estado;
     }
 
-    public void setEstado(boolean estado) {
+    public void setEstado(short estado) {
         this.estado = estado;
     }
 
@@ -297,7 +297,7 @@ public class Usuario implements Serializable {
     }
 
     public void setPassword(String password) {
-               try {
+       try {
             this.password = DigestUtil.generateDigest(password);
         } catch (NoSuchAlgorithmException ex) {
             Logger.getLogger(Usuario.class.getName()).log(Level.SEVERE, null, ex);
@@ -358,6 +358,24 @@ public class Usuario implements Serializable {
     }
 
     @XmlTransient
+    public List<Aspectos> getAspectosList() {
+        return aspectosList;
+    }
+
+    public void setAspectosList(List<Aspectos> aspectosList) {
+        this.aspectosList = aspectosList;
+    }
+
+    @XmlTransient
+    public List<Acompanamiento> getAcompanamientoList() {
+        return acompanamientoList;
+    }
+
+    public void setAcompanamientoList(List<Acompanamiento> acompanamientoList) {
+        this.acompanamientoList = acompanamientoList;
+    }
+
+    @XmlTransient
     public List<Ciudad> getCiudadList() {
         return ciudadList;
     }
@@ -373,6 +391,15 @@ public class Usuario implements Serializable {
 
     public void setAreaList(List<Area> areaList) {
         this.areaList = areaList;
+    }
+
+    @XmlTransient
+    public List<Ficha> getFichaList() {
+        return fichaList;
+    }
+
+    public void setFichaList(List<Ficha> fichaList) {
+        this.fichaList = fichaList;
     }
 
     @XmlTransient
@@ -402,15 +429,6 @@ public class Usuario implements Serializable {
         this.verificacionList = verificacionList;
     }
 
-    @XmlTransient
-    public List<CriterioSeguimientoHasAcompañamiento> getCriterioSeguimientoHasAcompañamientoList() {
-        return criterioSeguimientoHasAcompañamientoList;
-    }
-
-    public void setCriterioSeguimientoHasAcompañamientoList(List<CriterioSeguimientoHasAcompañamiento> criterioSeguimientoHasAcompañamientoList) {
-        this.criterioSeguimientoHasAcompañamientoList = criterioSeguimientoHasAcompañamientoList;
-    }
-
     public Caracterizacion getIdCaracterizacion() {
         return idCaracterizacion;
     }
@@ -433,6 +451,14 @@ public class Usuario implements Serializable {
 
     public void setIdPatrocinio(Patrocinio idPatrocinio) {
         this.idPatrocinio = idPatrocinio;
+    }
+
+    public TipoInstructor getIdTipoInstructor() {
+        return idTipoInstructor;
+    }
+
+    public void setIdTipoInstructor(TipoInstructor idTipoInstructor) {
+        this.idTipoInstructor = idTipoInstructor;
     }
 
     public Desercion getIdDesercion() {
@@ -483,14 +509,6 @@ public class Usuario implements Serializable {
         this.idLibretaMilitar = idLibretaMilitar;
     }
 
-    public Eps getIdEps() {
-        return idEps;
-    }
-
-    public void setIdEps(Eps idEps) {
-        this.idEps = idEps;
-    }
-
     public Especialidad getIdEspecialidad() {
         return idEspecialidad;
     }
@@ -499,13 +517,12 @@ public class Usuario implements Serializable {
         this.idEspecialidad = idEspecialidad;
     }
 
-    @XmlTransient
-    public List<UsuarioHasFicha> getUsuarioHasFichaList() {
-        return usuarioHasFichaList;
+    public Eps getIdEps() {
+        return idEps;
     }
 
-    public void setUsuarioHasFichaList(List<UsuarioHasFicha> usuarioHasFichaList) {
-        this.usuarioHasFichaList = usuarioHasFichaList;
+    public void setIdEps(Eps idEps) {
+        this.idEps = idEps;
     }
 
     @Override

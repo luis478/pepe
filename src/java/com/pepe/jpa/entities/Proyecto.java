@@ -97,7 +97,7 @@ public class Proyecto implements Serializable {
     @NotNull
     @Lob
     @Size(min = 1, max = 65535)
-    @Column(name = "Impacto_2_5_2")
+    @Column(name = "impacto_2_5_2")
     private String impacto252;
     @Basic(optional = false)
     @NotNull
@@ -156,8 +156,6 @@ public class Proyecto implements Serializable {
     @Column(name = "descripcion_ambiente")
     private String descripcionAmbiente;
     @ManyToMany(mappedBy = "proyectoList")
-    private List<Ficha> fichaList;
-    @ManyToMany(mappedBy = "proyectoList")
     private List<Empresa> empresaList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idProyecto")
     private List<VisitaTecnica> visitaTecnicaList;
@@ -165,6 +163,8 @@ public class Proyecto implements Serializable {
     private List<Revision> revisionList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idProyecto")
     private List<Verificacion> verificacionList;
+    @OneToMany(mappedBy = "idProyecto")
+    private List<Ficha> fichaList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idProyecto")
     private List<GuiaAprendizaje> guiaAprendizajeList;
 
@@ -368,15 +368,6 @@ public class Proyecto implements Serializable {
     }
 
     @XmlTransient
-    public List<Ficha> getFichaList() {
-        return fichaList;
-    }
-
-    public void setFichaList(List<Ficha> fichaList) {
-        this.fichaList = fichaList;
-    }
-
-    @XmlTransient
     public List<Empresa> getEmpresaList() {
         return empresaList;
     }
@@ -410,6 +401,15 @@ public class Proyecto implements Serializable {
 
     public void setVerificacionList(List<Verificacion> verificacionList) {
         this.verificacionList = verificacionList;
+    }
+
+    @XmlTransient
+    public List<Ficha> getFichaList() {
+        return fichaList;
+    }
+
+    public void setFichaList(List<Ficha> fichaList) {
+        this.fichaList = fichaList;
     }
 
     @XmlTransient

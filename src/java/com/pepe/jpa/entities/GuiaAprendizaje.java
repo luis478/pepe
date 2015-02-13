@@ -53,9 +53,6 @@ public class GuiaAprendizaje implements Serializable {
     @JoinColumn(name = "id_proyecto", referencedColumnName = "id_proyecto")
     @ManyToOne(optional = false)
     private Proyecto idProyecto;
-    @JoinColumn(name = "id_ficha", referencedColumnName = "id_ficha")
-    @ManyToOne(optional = false)
-    private Ficha idFicha;
 
     public GuiaAprendizaje() {
     }
@@ -112,14 +109,6 @@ public class GuiaAprendizaje implements Serializable {
 
     public void setIdProyecto(Proyecto idProyecto) {
         this.idProyecto = idProyecto;
-    }
-
-    public Ficha getIdFicha() {
-        return idFicha;
-    }
-
-    public void setIdFicha(Ficha idFicha) {
-        this.idFicha = idFicha;
     }
 
     @Override

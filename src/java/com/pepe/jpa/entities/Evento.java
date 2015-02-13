@@ -16,6 +16,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinColumns;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
@@ -50,7 +51,7 @@ public class Evento implements Serializable {
     @Basic(optional = false)
     @NotNull
     @Column(name = "fecha_inicio")
-    @Temporal(TemporalType.DATE)
+    @Temporal(TemporalType.TIMESTAMP)
     private Date fechaInicio;
     @Basic(optional = false)
     @NotNull
@@ -73,9 +74,11 @@ public class Evento implements Serializable {
     @JoinColumn(name = "id_ficha", referencedColumnName = "id_ficha")
     @ManyToOne(optional = false)
     private Ficha idFicha;
-    @JoinColumn(name = "id_actividad_aprendizaje", referencedColumnName = "id_actividad_aprendizaje")
+    @JoinColumns({
+        @JoinColumn(name = "id_actividad_aprendizaje", referencedColumnName = "id_actividad_aprendizaje"),
+        @JoinColumn(name = "id_resultado_aprendizaje", referencedColumnName = "id_resultado_aprendizaje")})
     @ManyToOne(optional = false)
-    private ActividadAprendizaje idActividadAprendizaje;
+    private ActividadAprendizajeHasResultadoAprendizaje actividadAprendizajeHasResultadoAprendizaje;
 
     public Evento() {
     }
@@ -148,12 +151,12 @@ public class Evento implements Serializable {
         this.idFicha = idFicha;
     }
 
-    public ActividadAprendizaje getIdActividadAprendizaje() {
-        return idActividadAprendizaje;
+    public ActividadAprendizajeHasResultadoAprendizaje getActividadAprendizajeHasResultadoAprendizaje() {
+        return actividadAprendizajeHasResultadoAprendizaje;
     }
 
-    public void setIdActividadAprendizaje(ActividadAprendizaje idActividadAprendizaje) {
-        this.idActividadAprendizaje = idActividadAprendizaje;
+    public void setActividadAprendizajeHasResultadoAprendizaje(ActividadAprendizajeHasResultadoAprendizaje actividadAprendizajeHasResultadoAprendizaje) {
+        this.actividadAprendizajeHasResultadoAprendizaje = actividadAprendizajeHasResultadoAprendizaje;
     }
 
     @Override

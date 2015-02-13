@@ -9,6 +9,7 @@ package com.pepe.jpa.entities;
 import java.io.Serializable;
 import java.util.List;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -20,6 +21,7 @@ import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -55,9 +57,9 @@ public class ResultadoAprendizaje implements Serializable {
     @Column(name = "estado")
     private short estado;
     @ManyToMany(mappedBy = "resultadoAprendizajeList")
-    private List<ActividadAprendizaje> actividadAprendizajeList;
-    @ManyToMany(mappedBy = "resultadoAprendizajeList")
     private List<Actividad> actividadList;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "resultadoAprendizaje")
+    private List<ActividadAprendizajeHasResultadoAprendizaje> actividadAprendizajeHasResultadoAprendizajeList;
     @JoinColumn(name = "id_tipo_resultado_aprendizaje", referencedColumnName = "id_tipo_resultado_aprendizaje")
     @ManyToOne(optional = false)
     private TipoResultadoAprendizaje idTipoResultadoAprendizaje;
@@ -103,21 +105,21 @@ public class ResultadoAprendizaje implements Serializable {
     }
 
     @XmlTransient
-    public List<ActividadAprendizaje> getActividadAprendizajeList() {
-        return actividadAprendizajeList;
-    }
-
-    public void setActividadAprendizajeList(List<ActividadAprendizaje> actividadAprendizajeList) {
-        this.actividadAprendizajeList = actividadAprendizajeList;
-    }
-
-    @XmlTransient
     public List<Actividad> getActividadList() {
         return actividadList;
     }
 
     public void setActividadList(List<Actividad> actividadList) {
         this.actividadList = actividadList;
+    }
+
+    @XmlTransient
+    public List<ActividadAprendizajeHasResultadoAprendizaje> getActividadAprendizajeHasResultadoAprendizajeList() {
+        return actividadAprendizajeHasResultadoAprendizajeList;
+    }
+
+    public void setActividadAprendizajeHasResultadoAprendizajeList(List<ActividadAprendizajeHasResultadoAprendizaje> actividadAprendizajeHasResultadoAprendizajeList) {
+        this.actividadAprendizajeHasResultadoAprendizajeList = actividadAprendizajeHasResultadoAprendizajeList;
     }
 
     public TipoResultadoAprendizaje getIdTipoResultadoAprendizaje() {

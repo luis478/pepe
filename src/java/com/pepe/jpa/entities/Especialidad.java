@@ -9,7 +9,6 @@ package com.pepe.jpa.entities;
 import java.io.Serializable;
 import java.util.List;
 import javax.persistence.Basic;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -47,7 +46,7 @@ public class Especialidad implements Serializable {
     @Size(min = 1, max = 45)
     @Column(name = "nombre_especialidad")
     private String nombreEspecialidad;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idEspecialidad")
+    @OneToMany(mappedBy = "idEspecialidad")
     private List<Usuario> usuarioList;
 
     public Especialidad() {
