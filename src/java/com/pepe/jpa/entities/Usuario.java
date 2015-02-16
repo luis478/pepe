@@ -6,9 +6,14 @@
 
 package com.pepe.jpa.entities;
 
+import controller.util.DigestUtil;
 import java.io.Serializable;
+import java.io.UnsupportedEncodingException;
+import java.security.NoSuchAlgorithmException;
 import java.util.Date;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -17,6 +22,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
@@ -120,12 +126,15 @@ public class Usuario implements Serializable {
     @Size(max = 10)
     @Column(name = "telefono_3")
     private String telefono3;
+    @JoinTable(name = "rol_has_usuario", joinColumns = {
+        @JoinColumn(name = "id_usuario", referencedColumnName = "id_usuario")}, inverseJoinColumns = {
+        @JoinColumn(name = "id_rol", referencedColumnName = "id_rol")})
+       @ManyToMany
+       private  List<Rol> rolList;
     @ManyToMany(mappedBy = "usuarioList")
     private List<Revision> revisionList;
     @ManyToMany(mappedBy = "usuarioList")
     private List<CentroFormacion> centroFormacionList;
-    @ManyToMany(mappedBy = "usuarioList")
-    private List<Rol> rolList;
     @ManyToMany(mappedBy = "usuarioList")
     private List<Aspectos> aspectosList;
     @ManyToMany(mappedBy = "usuarioList")
@@ -180,7 +189,7 @@ public class Usuario implements Serializable {
     private TipoInstructor idTipoInstructor;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idUsuario")
     private List<ResultadoAprendizaje> resultadoAprendizajeList;
-
+    
     public Usuario() {
     }
 
@@ -294,7 +303,13 @@ public class Usuario implements Serializable {
     }
 
     public void setPassword(String password) {
-        this.password = password;
+            try {
+            this.password = DigestUtil.generateDigest(password);
+        } catch (NoSuchAlgorithmException ex) {
+            Logger.getLogger(Usuario.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (UnsupportedEncodingException ex) {
+            Logger.getLogger(Usuario.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     public Date getFechaExpedicion() {
