@@ -26,11 +26,11 @@
         <web-resource-collection>
             <web-resource-name>admin-area</web-resource-name>
             <description>zona administradores</description>
-            <url-pattern>/faces/admin/</url-pattern>
+            <url-pattern>/faces/admin/*</url-pattern>
         </web-resource-collection>
         <auth-constraint>
             <description/>
-            <role-name>webUser</role-name>
+            <role-name>webAdmin</role-name>
         </auth-constraint>
     </security-constraint>
     <security-constraint>
@@ -40,6 +40,26 @@
             <description>zona de usuarios</description>
             <url-pattern>/faces/user/*</url-pattern>
         </web-resource-collection>
+        <auth-constraint>
+            <description/>
+            <role-name>webUser</role-name>
+        </auth-constraint>
+    </security-constraint>
+    <security-constraint>
+        <display-name>Plantillas</display-name>
+        <web-resource-collection>
+            <web-resource-name>Plantillas</web-resource-name>
+            <description>Plantillas para todos los formularios</description>
+            <url-pattern>/faces/html_plantillas/*</url-pattern>
+        </web-resource-collection>
+        <auth-constraint>
+            <description/>
+            <role-name>webAdmin</role-name>
+            <role-name>webUser</role-name>
+            <role-name>webApren</role-name>
+            <role-name>webGest</role-name>
+            <role-name>webPedag</role-name>
+        </auth-constraint>
     </security-constraint>
     <login-config>
         <auth-method>FORM</auth-method>

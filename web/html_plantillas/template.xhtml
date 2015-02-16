@@ -8,7 +8,7 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core">
 
     <head jsf:id="head">
-        <title>PEPE</title>
+        <title><ui:insert name="title">PEPE</ui:insert></title>
         <meta charset="UTF-8"/>
         <link rel="stylesheet" jsf:library="css" jsf:name="estilo.css"/>
         <link rel="stylesheet" jsf:library="css" jsf:name="normalize.css"/>
@@ -18,33 +18,16 @@
 
     <body jsf:id="body" class="Body" >
        <section class="Pepe-inicio">
-        
-            <figure class="Pepe-inicioContenedor">
-            <img src="resources/images/Pepelogo1.png" class="Pepe-inicioLogo" height="240"/> 
-            </figure>
-        
-        
+          
     
         <p class="Pepe-inicioDescripcion">
             Programador Estrategico de
             <br></br>
             Proyectos educativos
         </p>
-            
-       <h:panelGroup rendered="true">
-            <form jsf:id="LoginForm" >
-                
-                <h:panelGroup id="messagePanel" layout="block">
-                    <p:messages/>
-                </h:panelGroup>
-                <input jsf:id="user" type="text" placeholder="Usuario" jsf:value="#{loginController.username}" required="true" />
-                <input jsf:id="password" type="password" placeholder="Contraseña" jsf:value="#{loginController.password}" required="true" />
-                <br/>
-                <input type="submit" value="Ingresar" jsf:action="#{loginController.login}">
-                    <f:ajax execute="@this @form" render="messagePanel"/>
-                </input>                         
-            </form>
-       </h:panelGroup>
+           <section>
+            <ui:insert name="body">Default Body</ui:insert> 
+        </section>
     </section>  
 
 

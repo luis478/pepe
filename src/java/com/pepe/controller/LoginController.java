@@ -113,14 +113,14 @@ public class LoginController implements Serializable {
             }
             //Redirigir a la página de portada
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Bienvenid@ " + usuario.toString(), null));
-            return "/index2";
+            return "/index";
         } catch (ServletException ex) {
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Usuario o Contraseña Invalida", null));
             return "/index";
         }
     }
 
-    public String logout() {
+    public void logout() {
              FacesContext context = FacesContext.getCurrentInstance();
         HttpServletRequest request = (HttpServletRequest) context.getExternalContext().getRequest();
 
@@ -129,10 +129,10 @@ public class LoginController implements Serializable {
             HttpSession session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
             session.invalidate();
             limpiar();
-            return "/user/close";
+            //return "/user/close";
         } catch (ServletException e) {
             log.log(Level.SEVERE, "Failed to logout user!", e);
-            return "/index";
+            //return "/index";
         }
     }
 
