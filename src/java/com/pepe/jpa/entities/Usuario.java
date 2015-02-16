@@ -142,12 +142,12 @@ public class Usuario implements Serializable {
     private List<ActividadAprendizaje> actividadAprendizajeList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idUsuario")
     private List<Verificacion> verificacionList;
-    @JoinColumn(name = "id_caracterizacion", referencedColumnName = "id_caracterizacion")
-    @ManyToOne
-    private Caracterizacion idCaracterizacion;
     @JoinColumn(name = "id_estilo_aprendizaje", referencedColumnName = "id_estilo_aprendizaje")
     @ManyToOne
     private EstiloAprendizaje idEstiloAprendizaje;
+    @JoinColumn(name = "id_caracterizacion", referencedColumnName = "id_caracterizacion")
+    @ManyToOne
+    private Caracterizacion idCaracterizacion;
     @JoinColumn(name = "id_patrocinio", referencedColumnName = "id_patrocinio")
     @ManyToOne
     private Patrocinio idPatrocinio;
@@ -169,15 +169,15 @@ public class Usuario implements Serializable {
     @JoinColumn(name = "id_libreta_militar", referencedColumnName = "id_libreta_militar")
     @ManyToOne
     private LibretaMilitar idLibretaMilitar;
-    @JoinColumn(name = "id_tipo_instructor", referencedColumnName = "id_tipo_instructor")
-    @ManyToOne
-    private TipoInstructor idTipoInstructor;
     @JoinColumn(name = "id_especialidad", referencedColumnName = "id_especialidad")
     @ManyToOne
     private Especialidad idEspecialidad;
     @JoinColumn(name = "id_eps", referencedColumnName = "id_eps")
     @ManyToOne(optional = false)
     private Eps idEps;
+    @JoinColumn(name = "id_tipo_instructor", referencedColumnName = "id_tipo_instructor")
+    @ManyToOne
+    private TipoInstructor idTipoInstructor;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idUsuario")
     private List<ResultadoAprendizaje> resultadoAprendizajeList;
 
@@ -420,20 +420,20 @@ public class Usuario implements Serializable {
         this.verificacionList = verificacionList;
     }
 
-    public Caracterizacion getIdCaracterizacion() {
-        return idCaracterizacion;
-    }
-
-    public void setIdCaracterizacion(Caracterizacion idCaracterizacion) {
-        this.idCaracterizacion = idCaracterizacion;
-    }
-
     public EstiloAprendizaje getIdEstiloAprendizaje() {
         return idEstiloAprendizaje;
     }
 
     public void setIdEstiloAprendizaje(EstiloAprendizaje idEstiloAprendizaje) {
         this.idEstiloAprendizaje = idEstiloAprendizaje;
+    }
+
+    public Caracterizacion getIdCaracterizacion() {
+        return idCaracterizacion;
+    }
+
+    public void setIdCaracterizacion(Caracterizacion idCaracterizacion) {
+        this.idCaracterizacion = idCaracterizacion;
     }
 
     public Patrocinio getIdPatrocinio() {
@@ -492,14 +492,6 @@ public class Usuario implements Serializable {
         this.idLibretaMilitar = idLibretaMilitar;
     }
 
-    public TipoInstructor getIdTipoInstructor() {
-        return idTipoInstructor;
-    }
-
-    public void setIdTipoInstructor(TipoInstructor idTipoInstructor) {
-        this.idTipoInstructor = idTipoInstructor;
-    }
-
     public Especialidad getIdEspecialidad() {
         return idEspecialidad;
     }
@@ -514,6 +506,14 @@ public class Usuario implements Serializable {
 
     public void setIdEps(Eps idEps) {
         this.idEps = idEps;
+    }
+
+    public TipoInstructor getIdTipoInstructor() {
+        return idTipoInstructor;
+    }
+
+    public void setIdTipoInstructor(TipoInstructor idTipoInstructor) {
+        this.idTipoInstructor = idTipoInstructor;
     }
 
     @XmlTransient

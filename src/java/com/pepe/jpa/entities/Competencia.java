@@ -16,9 +16,9 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.JoinColumns;
+import javax.persistence.JoinTable;
 import javax.persistence.Lob;
-import javax.persistence.ManyToOne;
+import javax.persistence.ManyToMany;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
@@ -67,15 +67,16 @@ public class Competencia implements Serializable {
     @NotNull
     @Column(name = "duracion_estimada_horas")
     private int duracionEstimadaHoras;
+    @JoinTable(name = "programa_has_competencia", joinColumns = {
+        @JoinColumn(name = "id_competencia", referencedColumnName = "id_competencia")}, inverseJoinColumns = {
+        @JoinColumn(name = "programa_codigo", referencedColumnName = "codigo"),
+        @JoinColumn(name = "programa_version", referencedColumnName = "version")})
+    @ManyToMany
+    private List<Programa> programaList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idCompetencia")
     private List<ConocimientoConceptoPrincipios> conocimientoConceptoPrincipiosList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idCompetencia")
     private List<CriteriosEvaluacion> criteriosEvaluacionList;
-    @JoinColumns({
-        @JoinColumn(name = "programa_codigo", referencedColumnName = "codigo"),
-        @JoinColumn(name = "programa_version", referencedColumnName = "version")})
-    @ManyToOne(optional = false)
-    private Programa programa;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idCompetencia")
     private List<ConocimientoProceso> conocimientoProcesoList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idCompetencia")
@@ -137,6 +138,15 @@ public class Competencia implements Serializable {
     }
 
     @XmlTransient
+    public List<Programa> getProgramaList() {
+        return programaList;
+    }
+
+    public void setProgramaList(List<Programa> programaList) {
+        this.programaList = programaList;
+    }
+
+    @XmlTransient
     public List<ConocimientoConceptoPrincipios> getConocimientoConceptoPrincipiosList() {
         return conocimientoConceptoPrincipiosList;
     }
@@ -152,14 +162,6 @@ public class Competencia implements Serializable {
 
     public void setCriteriosEvaluacionList(List<CriteriosEvaluacion> criteriosEvaluacionList) {
         this.criteriosEvaluacionList = criteriosEvaluacionList;
-    }
-
-    public Programa getPrograma() {
-        return programa;
-    }
-
-    public void setPrograma(Programa programa) {
-        this.programa = programa;
     }
 
     @XmlTransient
