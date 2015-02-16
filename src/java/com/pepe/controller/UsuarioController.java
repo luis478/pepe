@@ -266,7 +266,7 @@ public class UsuarioController implements Serializable{
 
     public String addUsuario() {
         try {
-            usuarioActual.setEstado(true);
+            usuarioActual.setEstado((short) 1);
               if (listaRol == null || listaRol.isEmpty()) {
                 listaRol= new ArrayList<>();
                 listaRol.add(new Rol(2));

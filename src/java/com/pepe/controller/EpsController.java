@@ -130,7 +130,7 @@ public class EpsController {
         FacesContext.getCurrentInstance().addMessage("successInfo", facesMsg);
     }
     
-    public Eps getEps(java.lang.Integer id) {
+    public Eps getEps(java.lang.String id) {
         return getEpsFacade().find(id);
     }
     
@@ -147,13 +147,13 @@ public class EpsController {
             return controller.getEps(getKey(value));
         }
 
-        java.lang.Integer getKey(String value) {
-            java.lang.Integer key;
-            key = Integer.valueOf(value);
+        java.lang.String getKey(String value) {
+            java.lang.String key;
+            key = String.valueOf(value);
             return key;
         }
 
-        String getStringKey(java.lang.Integer value) {
+        String getStringKey(java.lang.String value) {
             StringBuilder sb = new StringBuilder();
             sb.append(value);
             return sb.toString();

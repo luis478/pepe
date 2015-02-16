@@ -9,7 +9,6 @@ package com.pepe.jpa.entities;
 import java.io.Serializable;
 import java.util.List;
 import javax.persistence.Basic;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -47,8 +46,8 @@ public class TipoInstructor implements Serializable {
     @Size(min = 1, max = 45)
     @Column(name = "nombre_tipo_instructor")
     private String nombreTipoInstructor;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "tipoInstructor")
-    private List<UsuarioHasFicha> usuarioHasFichaList;
+    @OneToMany(mappedBy = "idTipoInstructor")
+    private List<Usuario> usuarioList;
 
     public TipoInstructor() {
     }
@@ -79,12 +78,12 @@ public class TipoInstructor implements Serializable {
     }
 
     @XmlTransient
-    public List<UsuarioHasFicha> getUsuarioHasFichaList() {
-        return usuarioHasFichaList;
+    public List<Usuario> getUsuarioList() {
+        return usuarioList;
     }
 
-    public void setUsuarioHasFichaList(List<UsuarioHasFicha> usuarioHasFichaList) {
-        this.usuarioHasFichaList = usuarioHasFichaList;
+    public void setUsuarioList(List<Usuario> usuarioList) {
+        this.usuarioList = usuarioList;
     }
 
     @Override

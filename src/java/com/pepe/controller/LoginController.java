@@ -106,14 +106,18 @@ public class LoginController implements Serializable {
             limpiar();
 
 //            //Cancela login para usuarios inactivos
-            if (!usuario.getEstado()) {
+            if (usuario.getEstado()== 0) {
                 logout();
                 FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Usuario Inactivo", null));
                 return "/index";
             }
             //Redirigir a la página de portada
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Bienvenid@ " + usuario.toString(), null));
+<<<<<<< HEAD
+            return "index2";
+=======
             return "/index2";
+>>>>>>> origin/master
 
         } catch (ServletException ex) {
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Usuario o Contraseña Invalida", null));

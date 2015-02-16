@@ -16,6 +16,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinColumns;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
@@ -50,12 +51,12 @@ public class Evento implements Serializable {
     @Basic(optional = false)
     @NotNull
     @Column(name = "fecha_inicio")
-    @Temporal(TemporalType.DATE)
+    @Temporal(TemporalType.TIMESTAMP)
     private Date fechaInicio;
     @Basic(optional = false)
     @NotNull
     @Column(name = "fecha_fin")
-    @Temporal(TemporalType.DATE)
+    @Temporal(TemporalType.TIMESTAMP)
     private Date fechaFin;
     @JoinTable(name = "evento_has_trimestre", joinColumns = {
         @JoinColumn(name = "id_evento", referencedColumnName = "id_evento")}, inverseJoinColumns = {
@@ -67,15 +68,22 @@ public class Evento implements Serializable {
         @JoinColumn(name = "id_usuario", referencedColumnName = "id_usuario")})
     @ManyToMany
     private List<Usuario> usuarioList;
+    @JoinTable(name = "evento_has_resultado_aprendizaje", joinColumns = {
+        @JoinColumn(name = "id_evento", referencedColumnName = "id_evento")}, inverseJoinColumns = {
+        @JoinColumn(name = "id_resultado_aprendizaje", referencedColumnName = "id_resultado_aprendizaje")})
+    @ManyToMany
+    private List<ResultadoAprendizaje> resultadoAprendizajeList;
     @JoinColumn(name = "id_ambiente_formacion", referencedColumnName = "id_ambiente_formacion")
     @ManyToOne(optional = false)
     private AmbienteFormacion idAmbienteFormacion;
     @JoinColumn(name = "id_ficha", referencedColumnName = "id_ficha")
     @ManyToOne(optional = false)
     private Ficha idFicha;
-    @JoinColumn(name = "id_actividad_aprendizaje", referencedColumnName = "id_actividad_aprendizaje")
+    @JoinColumns({
+        @JoinColumn(name = "id_actividad_aprendizaje", referencedColumnName = "id_actividad_aprendizaje"),
+        @JoinColumn(name = "id_resultado_aprendizaje", referencedColumnName = "id_resultado_aprendizaje")})
     @ManyToOne(optional = false)
-    private ActividadAprendizaje idActividadAprendizaje;
+    private ActividadAprendizajeHasResultadoAprendizaje actividadAprendizajeHasResultadoAprendizaje;
 
     public Evento() {
     }
@@ -132,6 +140,15 @@ public class Evento implements Serializable {
         this.usuarioList = usuarioList;
     }
 
+    @XmlTransient
+    public List<ResultadoAprendizaje> getResultadoAprendizajeList() {
+        return resultadoAprendizajeList;
+    }
+
+    public void setResultadoAprendizajeList(List<ResultadoAprendizaje> resultadoAprendizajeList) {
+        this.resultadoAprendizajeList = resultadoAprendizajeList;
+    }
+
     public AmbienteFormacion getIdAmbienteFormacion() {
         return idAmbienteFormacion;
     }
@@ -148,12 +165,12 @@ public class Evento implements Serializable {
         this.idFicha = idFicha;
     }
 
-    public ActividadAprendizaje getIdActividadAprendizaje() {
-        return idActividadAprendizaje;
+    public ActividadAprendizajeHasResultadoAprendizaje getActividadAprendizajeHasResultadoAprendizaje() {
+        return actividadAprendizajeHasResultadoAprendizaje;
     }
 
-    public void setIdActividadAprendizaje(ActividadAprendizaje idActividadAprendizaje) {
-        this.idActividadAprendizaje = idActividadAprendizaje;
+    public void setActividadAprendizajeHasResultadoAprendizaje(ActividadAprendizajeHasResultadoAprendizaje actividadAprendizajeHasResultadoAprendizaje) {
+        this.actividadAprendizajeHasResultadoAprendizaje = actividadAprendizajeHasResultadoAprendizaje;
     }
 
     @Override

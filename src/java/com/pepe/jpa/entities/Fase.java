@@ -47,12 +47,12 @@ public class Fase implements Serializable {
     @Size(min = 1, max = 45)
     @Column(name = "fase")
     private String fase;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idFase")
+    private List<Acompanamiento> acompanamientoList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "fase")
     private List<EvaluacionSeguimiento> evaluacionSeguimientoList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idFase1")
     private List<GuiaAprendizaje> guiaAprendizajeList;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idFase")
-    private List<Acompañamiento> acompañamientoList;
 
     public Fase() {
     }
@@ -83,6 +83,15 @@ public class Fase implements Serializable {
     }
 
     @XmlTransient
+    public List<Acompanamiento> getAcompanamientoList() {
+        return acompanamientoList;
+    }
+
+    public void setAcompanamientoList(List<Acompanamiento> acompanamientoList) {
+        this.acompanamientoList = acompanamientoList;
+    }
+
+    @XmlTransient
     public List<EvaluacionSeguimiento> getEvaluacionSeguimientoList() {
         return evaluacionSeguimientoList;
     }
@@ -98,15 +107,6 @@ public class Fase implements Serializable {
 
     public void setGuiaAprendizajeList(List<GuiaAprendizaje> guiaAprendizajeList) {
         this.guiaAprendizajeList = guiaAprendizajeList;
-    }
-
-    @XmlTransient
-    public List<Acompañamiento> getAcompañamientoList() {
-        return acompañamientoList;
-    }
-
-    public void setAcompañamientoList(List<Acompañamiento> acompañamientoList) {
-        this.acompañamientoList = acompañamientoList;
     }
 
     @Override

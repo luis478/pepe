@@ -15,6 +15,7 @@ import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.Lob;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
@@ -62,6 +63,8 @@ public class Programa implements Serializable {
     @Size(min = 1, max = 2147483647)
     @Column(name = "justificacion")
     private String justificacion;
+    @ManyToMany(mappedBy = "programaList")
+    private List<Competencia> competenciaList;
     @JoinColumn(name = "id_linea_tecnologica", referencedColumnName = "id_linea_tecnologica")
     @ManyToOne(optional = false)
     private LineaTecnologica idLineaTecnologica;
@@ -79,8 +82,6 @@ public class Programa implements Serializable {
     private TipoFormacion idTipoFormacion;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "programa")
     private List<Ficha> fichaList;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "programa")
-    private List<Competencia> competenciaList;
 
     public Programa() {
     }
@@ -141,6 +142,15 @@ public class Programa implements Serializable {
         this.justificacion = justificacion;
     }
 
+    @XmlTransient
+    public List<Competencia> getCompetenciaList() {
+        return competenciaList;
+    }
+
+    public void setCompetenciaList(List<Competencia> competenciaList) {
+        this.competenciaList = competenciaList;
+    }
+
     public LineaTecnologica getIdLineaTecnologica() {
         return idLineaTecnologica;
     }
@@ -188,15 +198,6 @@ public class Programa implements Serializable {
 
     public void setFichaList(List<Ficha> fichaList) {
         this.fichaList = fichaList;
-    }
-
-    @XmlTransient
-    public List<Competencia> getCompetenciaList() {
-        return competenciaList;
-    }
-
-    public void setCompetenciaList(List<Competencia> competenciaList) {
-        this.competenciaList = competenciaList;
     }
 
     @Override
