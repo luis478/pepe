@@ -78,27 +78,27 @@
 
 
              <nav class="seccion4">
-                 <ul class="Pepe-Lista">
-                     <li class="Pepe-botonesLista">
-                     <a href=" " class="Pepe-botones">Cerrar Sesión</a>
-                     </li>
-                     <li class="Pepe-botonesLista">
-                     <a href=" " class="Pepe-botones">Crear Proyecto Basado en Otro</a>
-                     </li>
-                     <li class="Pepe-botonesLista">
-                     <a href=" " class="Pepe-botones">Consultar</a>
-                     </li>
-                     <li class="Pepe-botonesLista">
-                     <a href=" " class="Pepe-botones">Crear Nuevo</a>
-                     </li>
-                 </ul>
+                   <h:form class="Form-opciones-header">
+              
+                     <h:commandButton value="Cerrar sesión" action="#{loginController.logout}" class="Pepe-botones"/>
+              
+                 </h:form>
              </nav>
              
 
          </form>
+<<<<<<< HEAD
         <h:form> 
                 <h:commandButton value="Menu Planeacion pedagogica" type="button" onclick="PF('botonPlaneacionPedagogicaDlg').show();"/>
         </h:form> 
+=======
+          <h:form> 
+                <h:commandButton value="Menu Planeacion pedagogica" type="button" onclick="PF('botonPlaneacionPedagogicaDlg').show();"/>
+                <br></br>
+                <h:commandButton value="Menu crear usuario" type="button" onclick="PF('botonCrearUsuarioDlg').show();" rendered="#{loginController.administrador}"/>
+        </h:form> 
+       
+>>>>>>> origin/master
         <hr width="100%" size="8" align="right"/>
              <footer class="Pepe-footer" >
              <figure class="Footer-imageContainer">
@@ -137,6 +137,10 @@
                   2015</p>
              </section>
          </footer>
+<<<<<<< HEAD
+=======
+         <ui:include src="/admin/dlg_menuCrearUsuario.xhtml"/>
+>>>>>>> origin/master
         <ui:include src="/planeacionpedagogica/dlg_menuPlaneacionPedagogica.xhtml"/>
     </body>
 </html>
