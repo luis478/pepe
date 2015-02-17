@@ -62,6 +62,11 @@ public class ActividadAprendizaje implements Serializable {
     @Size(min = 1, max = 45)
     @Column(name = "observaciones")
     private String observaciones;
+    @JoinTable(name = "actividad_aprendizaje_has_recurso", joinColumns = {
+        @JoinColumn(name = "id_actividad_aprendizaje", referencedColumnName = "id_actividad_aprendizaje")}, inverseJoinColumns = {
+        @JoinColumn(name = "id_recurso", referencedColumnName = "id_recurso")})
+    @ManyToMany
+    private List<Recurso> recursoList;
     @JoinTable(name = "actividad_aprendizaje_has_usuario", joinColumns = {
         @JoinColumn(name = "id_actividad_aprendizaje", referencedColumnName = "id_actividad_aprendizaje")}, inverseJoinColumns = {
         @JoinColumn(name = "id_usuario", referencedColumnName = "id_usuario")})
@@ -76,6 +81,8 @@ public class ActividadAprendizaje implements Serializable {
     @JoinColumn(name = "id_tipo_actividad_aprendizaje", referencedColumnName = "id_tipo_actividad_aprendizaje")
     @ManyToOne(optional = false)
     private TipoActividadAprendizaje idTipoActividadAprendizaje;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "actividadAprendizaje")
+    private List<ActividadAprendizajeHasGuiaAprendizaje> actividadAprendizajeHasGuiaAprendizajeList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idActividadAprendizaje")
     private List<Evidencia> evidenciaList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "actividadAprendizaje")
@@ -128,6 +135,15 @@ public class ActividadAprendizaje implements Serializable {
     }
 
     @XmlTransient
+    public List<Recurso> getRecursoList() {
+        return recursoList;
+    }
+
+    public void setRecursoList(List<Recurso> recursoList) {
+        this.recursoList = recursoList;
+    }
+
+    @XmlTransient
     public List<Usuario> getUsuarioList() {
         return usuarioList;
     }
@@ -158,6 +174,15 @@ public class ActividadAprendizaje implements Serializable {
 
     public void setIdTipoActividadAprendizaje(TipoActividadAprendizaje idTipoActividadAprendizaje) {
         this.idTipoActividadAprendizaje = idTipoActividadAprendizaje;
+    }
+
+    @XmlTransient
+    public List<ActividadAprendizajeHasGuiaAprendizaje> getActividadAprendizajeHasGuiaAprendizajeList() {
+        return actividadAprendizajeHasGuiaAprendizajeList;
+    }
+
+    public void setActividadAprendizajeHasGuiaAprendizajeList(List<ActividadAprendizajeHasGuiaAprendizaje> actividadAprendizajeHasGuiaAprendizajeList) {
+        this.actividadAprendizajeHasGuiaAprendizajeList = actividadAprendizajeHasGuiaAprendizajeList;
     }
 
     @XmlTransient

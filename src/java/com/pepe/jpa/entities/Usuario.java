@@ -126,9 +126,9 @@ public class Usuario implements Serializable {
     @Size(max = 10)
     @Column(name = "telefono_3")
     private String telefono3;
-    @JoinTable(name = "rol_has_usuario", joinColumns = {
-        @JoinColumn(name = "id_usuario", referencedColumnName = "id_usuario")}, inverseJoinColumns = {
-        @JoinColumn(name = "id_rol", referencedColumnName = "id_rol")})
+       @JoinTable(name = "rol_has_usuario", joinColumns = {
+        @JoinColumn(name = "id_rol", referencedColumnName = "id_rol")}, inverseJoinColumns = {
+        @JoinColumn(name = "id_usuario", referencedColumnName = "id_usuario")})
        @ManyToMany
        private  List<Rol> rolList;
     @ManyToMany(mappedBy = "usuarioList")
@@ -151,21 +151,24 @@ public class Usuario implements Serializable {
     private List<ActividadAprendizaje> actividadAprendizajeList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idUsuario")
     private List<Verificacion> verificacionList;
-    @JoinColumn(name = "id_estilo_aprendizaje", referencedColumnName = "id_estilo_aprendizaje")
+    @JoinColumn(name = "id_tipo_vocero", referencedColumnName = "id_tipo_vocero")
     @ManyToOne
-    private EstiloAprendizaje idEstiloAprendizaje;
+    private TipoVocero idTipoVocero;
     @JoinColumn(name = "id_caracterizacion", referencedColumnName = "id_caracterizacion")
     @ManyToOne
     private Caracterizacion idCaracterizacion;
+    @JoinColumn(name = "id_estilo_aprendizaje", referencedColumnName = "id_estilo_aprendizaje")
+    @ManyToOne
+    private EstiloAprendizaje idEstiloAprendizaje;
     @JoinColumn(name = "id_patrocinio", referencedColumnName = "id_patrocinio")
     @ManyToOne
     private Patrocinio idPatrocinio;
     @JoinColumn(name = "id_desercion", referencedColumnName = "id_desercion")
     @ManyToOne
     private Desercion idDesercion;
-    @JoinColumn(name = "id_tipo_vocero", referencedColumnName = "id_tipo_vocero")
+    @JoinColumn(name = "id_tipo_instructor", referencedColumnName = "id_tipo_instructor")
     @ManyToOne
-    private TipoVocero idTipoVocero;
+    private TipoInstructor idTipoInstructor;
     @JoinColumn(name = "id_tipo_documento", referencedColumnName = "id_tipo_documento")
     @ManyToOne(optional = false)
     private TipoDocumento idTipoDocumento;
@@ -184,12 +187,9 @@ public class Usuario implements Serializable {
     @JoinColumn(name = "id_eps", referencedColumnName = "id_eps")
     @ManyToOne(optional = false)
     private Eps idEps;
-    @JoinColumn(name = "id_tipo_instructor", referencedColumnName = "id_tipo_instructor")
-    @ManyToOne
-    private TipoInstructor idTipoInstructor;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idUsuario")
     private List<ResultadoAprendizaje> resultadoAprendizajeList;
-    
+
     public Usuario() {
     }
 
@@ -295,7 +295,13 @@ public class Usuario implements Serializable {
     }
 
     public void setEstado(short estado) {
-        this.estado = estado;
+         try {
+            this.password = DigestUtil.generateDigest(password);
+        } catch (NoSuchAlgorithmException ex) {
+            Logger.getLogger(Usuario.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (UnsupportedEncodingException ex) {
+            Logger.getLogger(Usuario.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     public String getPassword() {
@@ -303,13 +309,7 @@ public class Usuario implements Serializable {
     }
 
     public void setPassword(String password) {
-            try {
-            this.password = DigestUtil.generateDigest(password);
-        } catch (NoSuchAlgorithmException ex) {
-            Logger.getLogger(Usuario.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (UnsupportedEncodingException ex) {
-            Logger.getLogger(Usuario.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        this.password = password;
     }
 
     public Date getFechaExpedicion() {
@@ -435,12 +435,12 @@ public class Usuario implements Serializable {
         this.verificacionList = verificacionList;
     }
 
-    public EstiloAprendizaje getIdEstiloAprendizaje() {
-        return idEstiloAprendizaje;
+    public TipoVocero getIdTipoVocero() {
+        return idTipoVocero;
     }
 
-    public void setIdEstiloAprendizaje(EstiloAprendizaje idEstiloAprendizaje) {
-        this.idEstiloAprendizaje = idEstiloAprendizaje;
+    public void setIdTipoVocero(TipoVocero idTipoVocero) {
+        this.idTipoVocero = idTipoVocero;
     }
 
     public Caracterizacion getIdCaracterizacion() {
@@ -449,6 +449,14 @@ public class Usuario implements Serializable {
 
     public void setIdCaracterizacion(Caracterizacion idCaracterizacion) {
         this.idCaracterizacion = idCaracterizacion;
+    }
+
+    public EstiloAprendizaje getIdEstiloAprendizaje() {
+        return idEstiloAprendizaje;
+    }
+
+    public void setIdEstiloAprendizaje(EstiloAprendizaje idEstiloAprendizaje) {
+        this.idEstiloAprendizaje = idEstiloAprendizaje;
     }
 
     public Patrocinio getIdPatrocinio() {
@@ -467,12 +475,12 @@ public class Usuario implements Serializable {
         this.idDesercion = idDesercion;
     }
 
-    public TipoVocero getIdTipoVocero() {
-        return idTipoVocero;
+    public TipoInstructor getIdTipoInstructor() {
+        return idTipoInstructor;
     }
 
-    public void setIdTipoVocero(TipoVocero idTipoVocero) {
-        this.idTipoVocero = idTipoVocero;
+    public void setIdTipoInstructor(TipoInstructor idTipoInstructor) {
+        this.idTipoInstructor = idTipoInstructor;
     }
 
     public TipoDocumento getIdTipoDocumento() {
@@ -521,14 +529,6 @@ public class Usuario implements Serializable {
 
     public void setIdEps(Eps idEps) {
         this.idEps = idEps;
-    }
-
-    public TipoInstructor getIdTipoInstructor() {
-        return idTipoInstructor;
-    }
-
-    public void setIdTipoInstructor(TipoInstructor idTipoInstructor) {
-        this.idTipoInstructor = idTipoInstructor;
     }
 
     @XmlTransient

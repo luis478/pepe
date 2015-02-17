@@ -38,6 +38,7 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Proyecto.findByIdProyecto", query = "SELECT p FROM Proyecto p WHERE p.idProyecto = :idProyecto"),
     @NamedQuery(name = "Proyecto.findByNombreProyecto", query = "SELECT p FROM Proyecto p WHERE p.nombreProyecto = :nombreProyecto"),
     @NamedQuery(name = "Proyecto.findByCodigoProyecto", query = "SELECT p FROM Proyecto p WHERE p.codigoProyecto = :codigoProyecto"),
+    @NamedQuery(name = "Proyecto.findByInnovacion261", query = "SELECT p FROM Proyecto p WHERE p.innovacion261 = :innovacion261"),
     @NamedQuery(name = "Proyecto.findByInnovacion262", query = "SELECT p FROM Proyecto p WHERE p.innovacion262 = :innovacion262"),
     @NamedQuery(name = "Proyecto.findByInnovacion263", query = "SELECT p FROM Proyecto p WHERE p.innovacion263 = :innovacion263"),
     @NamedQuery(name = "Proyecto.findByInnovacion264", query = "SELECT p FROM Proyecto p WHERE p.innovacion264 = :innovacion264"),
@@ -113,10 +114,8 @@ public class Proyecto implements Serializable {
     private String productosResultados254;
     @Basic(optional = false)
     @NotNull
-    @Lob
-    @Size(min = 1, max = 65535)
     @Column(name = "innovacion_2_6_1")
-    private String innovacion261;
+    private short innovacion261;
     @Basic(optional = false)
     @NotNull
     @Column(name = "innovacion_2_6_2")
@@ -159,6 +158,8 @@ public class Proyecto implements Serializable {
     private List<Empresa> empresaList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idProyecto")
     private List<VisitaTecnica> visitaTecnicaList;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "proyectoIdProyecto")
+    private List<Actividad> actividadList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idProyecto")
     private List<Revision> revisionList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idProyecto")
@@ -175,7 +176,7 @@ public class Proyecto implements Serializable {
         this.idProyecto = idProyecto;
     }
 
-    public Proyecto(Integer idProyecto, String nombreProyecto, String codigoProyecto, String justificacion22, String objetivoGeneral23, String objetivoEspecifico24, String palabrasClave17, String planteamiento21, String impacto252, String restricciones253, String productosResultados254, String innovacion261, short innovacion262, short innovacion263, short innovacion264, short innovacion265, short valoracion271, short valoracion272, int intructoresRequeridos, int aprendicesSugeridos, String descripcionAmbiente) {
+    public Proyecto(Integer idProyecto, String nombreProyecto, String codigoProyecto, String justificacion22, String objetivoGeneral23, String objetivoEspecifico24, String palabrasClave17, String planteamiento21, String impacto252, String restricciones253, String productosResultados254, short innovacion261, short innovacion262, short innovacion263, short innovacion264, short innovacion265, short valoracion271, short valoracion272, int intructoresRequeridos, int aprendicesSugeridos, String descripcionAmbiente) {
         this.idProyecto = idProyecto;
         this.nombreProyecto = nombreProyecto;
         this.codigoProyecto = codigoProyecto;
@@ -287,11 +288,11 @@ public class Proyecto implements Serializable {
         this.productosResultados254 = productosResultados254;
     }
 
-    public String getInnovacion261() {
+    public short getInnovacion261() {
         return innovacion261;
     }
 
-    public void setInnovacion261(String innovacion261) {
+    public void setInnovacion261(short innovacion261) {
         this.innovacion261 = innovacion261;
     }
 
@@ -383,6 +384,15 @@ public class Proyecto implements Serializable {
 
     public void setVisitaTecnicaList(List<VisitaTecnica> visitaTecnicaList) {
         this.visitaTecnicaList = visitaTecnicaList;
+    }
+
+    @XmlTransient
+    public List<Actividad> getActividadList() {
+        return actividadList;
+    }
+
+    public void setActividadList(List<Actividad> actividadList) {
+        this.actividadList = actividadList;
     }
 
     @XmlTransient

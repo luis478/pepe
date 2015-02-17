@@ -43,10 +43,12 @@ public class Recurso implements Serializable {
     @Column(name = "id_recurso")
     private Integer idRecurso;
     @ManyToMany(mappedBy = "recursoList")
+    private List<ActividadAprendizaje> actividadAprendizajeList;
+    @ManyToMany(mappedBy = "recursoList")
     private List<AmbienteFormacion> ambienteFormacionList;
-    @JoinColumn(name = "id_actividad", referencedColumnName = "id_actividad")
+    @JoinColumn(name = "actividad_id_actividad", referencedColumnName = "id_actividad")
     @ManyToOne(optional = false)
-    private Actividad idActividad;
+    private Actividad actividadIdActividad;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "recurso")
     private List<RecursoHasMaterial> recursoHasMaterialList;
 
@@ -66,6 +68,15 @@ public class Recurso implements Serializable {
     }
 
     @XmlTransient
+    public List<ActividadAprendizaje> getActividadAprendizajeList() {
+        return actividadAprendizajeList;
+    }
+
+    public void setActividadAprendizajeList(List<ActividadAprendizaje> actividadAprendizajeList) {
+        this.actividadAprendizajeList = actividadAprendizajeList;
+    }
+
+    @XmlTransient
     public List<AmbienteFormacion> getAmbienteFormacionList() {
         return ambienteFormacionList;
     }
@@ -74,12 +85,12 @@ public class Recurso implements Serializable {
         this.ambienteFormacionList = ambienteFormacionList;
     }
 
-    public Actividad getIdActividad() {
-        return idActividad;
+    public Actividad getActividadIdActividad() {
+        return actividadIdActividad;
     }
 
-    public void setIdActividad(Actividad idActividad) {
-        this.idActividad = idActividad;
+    public void setActividadIdActividad(Actividad actividadIdActividad) {
+        this.actividadIdActividad = actividadIdActividad;
     }
 
     @XmlTransient

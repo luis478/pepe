@@ -58,10 +58,10 @@ public class ResultadoAprendizaje implements Serializable {
     private short estado;
     @ManyToMany(mappedBy = "resultadoAprendizajeList")
     private List<Evento> eventoList;
-    @ManyToMany(mappedBy = "resultadoAprendizajeList")
-    private List<Actividad> actividadList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "resultadoAprendizaje")
     private List<ActividadAprendizajeHasResultadoAprendizaje> actividadAprendizajeHasResultadoAprendizajeList;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "resultadoAprendizaje")
+    private List<ActividadHasResultadoAprendizaje> actividadHasResultadoAprendizajeList;
     @JoinColumn(name = "id_tipo_resultado_aprendizaje", referencedColumnName = "id_tipo_resultado_aprendizaje")
     @ManyToOne(optional = false)
     private TipoResultadoAprendizaje idTipoResultadoAprendizaje;
@@ -119,21 +119,21 @@ public class ResultadoAprendizaje implements Serializable {
     }
 
     @XmlTransient
-    public List<Actividad> getActividadList() {
-        return actividadList;
-    }
-
-    public void setActividadList(List<Actividad> actividadList) {
-        this.actividadList = actividadList;
-    }
-
-    @XmlTransient
     public List<ActividadAprendizajeHasResultadoAprendizaje> getActividadAprendizajeHasResultadoAprendizajeList() {
         return actividadAprendizajeHasResultadoAprendizajeList;
     }
 
     public void setActividadAprendizajeHasResultadoAprendizajeList(List<ActividadAprendizajeHasResultadoAprendizaje> actividadAprendizajeHasResultadoAprendizajeList) {
         this.actividadAprendizajeHasResultadoAprendizajeList = actividadAprendizajeHasResultadoAprendizajeList;
+    }
+
+    @XmlTransient
+    public List<ActividadHasResultadoAprendizaje> getActividadHasResultadoAprendizajeList() {
+        return actividadHasResultadoAprendizajeList;
+    }
+
+    public void setActividadHasResultadoAprendizajeList(List<ActividadHasResultadoAprendizaje> actividadHasResultadoAprendizajeList) {
+        this.actividadHasResultadoAprendizajeList = actividadHasResultadoAprendizajeList;
     }
 
     public TipoResultadoAprendizaje getIdTipoResultadoAprendizaje() {
