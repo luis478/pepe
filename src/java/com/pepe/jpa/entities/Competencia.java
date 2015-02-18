@@ -206,5 +206,5 @@ public class Competencia implements Serializable {
     public String toString() {
         return "com.pepe.jpa.entities.Competencia[ idCompetencia=" + idCompetencia + " ]";
     }
-    
+ 
 }

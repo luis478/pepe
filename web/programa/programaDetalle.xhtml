@@ -1,16 +1,19 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:jsf="http://xmlns.jcp.org/jsf"
-      xmlns:f="http://xmlns.jcp.org/jsf/core"
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:p="http://primefaces.org/ui">
     <p:dialog widgetVar="programaVentana" 
               resizable="false"
               modal="true"
               draggable="false"
               styleClass="Dialogo">
-        <h1>hola</h1>
+        <h1>#{programaController.programaActual.programaPK}</h1>
+        <h2>#{programaController.programaActual.nombrePrograma}</h2>
+        <p>#{programaController.programaActual.justificacion}</p>
+        <p>#{programaController.programaActual.idLineaTecnologica}</p>
+        <p>#{programaController.programaActual.idModalidadFormacion}</p>
+        <p>#{programaController.programaActual.idNivelFormacion}</p>
+        <p>#{programaController.programaActual.idPerfilEntrada}</p>
+        <p>#{programaController.programaActual.idTipoFormacion}</p>
     </p:dialog>
 </html>

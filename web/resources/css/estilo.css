@@ -207,7 +207,7 @@
     display: inline-block;
 }
 .Pepe-figureContainer{
-    float: inherit;
+    float: none;
     display: inline-block;
     padding-left: 12em;
     text-align: center;
@@ -255,7 +255,9 @@
     font-weight: normal !important;
 }
 
-.ui-state-highlight, .ui-widget-content .ui-state-highlight, .ui-widget-header .ui-state-highlight{
+.ui-state-highlight, 
+.ui-widget-content .ui-state-highlight, 
+.ui-widget-header .ui-state-highlight{
     border: none !important;
     text-shadow: 0 0 0 #333333 !important;
     background: #A4A4A4 !important;
@@ -285,30 +287,6 @@
     border: 1px solid blue !important;
 }
 
-.ui-state-default, 
-.ui-widget-content .ui-state-default{
-    border: none !important;
-}
-
-.ui-state-default,
-.ui-widget-content .ui-state-default, 
-.ui-widget-header .ui-state-default{
-    background: #FFFFFF !important;
-    color: #000 !important;
-    font-weight: inherit !important;
-    font-size: 1em !important;
-    text-shadow: none !important;
-}
-
-.ui-state-hover,
-.ui-widget-content .ui-state-hover,
-.ui-widget-header .ui-state-hover{
-    border: 1px solid rgb(182,194,0) !important;
-    background: #FFFFFF !important;
-    color: #F58634 !important;
-    background-image: none !important;
-}
-
 .ui-state-highlight, 
 .ui-widget-content .ui-state-highlight,
 .ui-widget-header .ui-state-highlight{
@@ -332,7 +310,7 @@
 }
 
 .ui-widget-overlay{
-    background: rgba(255,255,255,0.7) !important;
+    background: rgba(0,0,0,0.7) !important;
     width: auto !important; 
     position: absolute !important;
     top: 0 !important;
@@ -341,7 +319,7 @@
     right: 0 !important;
     opacity: 1  !important;
     transition: all ease 5s !important;
-    pointer-events:all !important;
+    pointer-events: none !important;
     .ui-dialog{
         height: 80% !important;
         overflow: scroll !important;
@@ -363,13 +341,6 @@
     overflow: scroll !important;
 }
 
-#DialogoAdmin{
-    margin-top: 0;
-    margin-bottom: 0;
-    margin-left: 20%;
-    margin-right: 1em;
-}
-
 .ui-dialog .ui-dialog-titlebar{
     padding: 0 !important;
     margin: 0 !important;
@@ -382,11 +353,4 @@
     height: 100%;
     padding: 0 !important;
     overflow: visible !important;
-}
-
-.ui-datatable .ui-datatable-footer{
-    border: none !important;
-    text-align: left !important;
-    margin-top: 1em !important;
-    padding: 0px !important;
 }

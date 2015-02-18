@@ -37,6 +37,7 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Programa.findAll", query = "SELECT p FROM Programa p"),
     @NamedQuery(name = "Programa.encontrarNombrePrograma", query = "SELECT p FROM Programa p WHERE p.nombrePrograma LIKE :nombrePrograma"),
     @NamedQuery(name = "Programa.findByCodigo", query = "SELECT p FROM Programa p WHERE p.programaPK.codigo = :codigo"),
+    @NamedQuery(name = "Programa.encontrarCodigoVersion", query = "SELECT p FROM Programa p WHERE p.programaPK.codigo = :codigo AND p.programaPK.version = :version"),
     @NamedQuery(name = "Programa.findByVersion", query = "SELECT p FROM Programa p WHERE p.programaPK.version = :version"),
     @NamedQuery(name = "Programa.findByDuracionTrimestres", query = "SELECT p FROM Programa p WHERE p.duracionTrimestres = :duracionTrimestres"),
     @NamedQuery(name = "Programa.findByEstado", query = "SELECT p FROM Programa p WHERE p.estado = :estado")})
@@ -223,7 +224,7 @@ public class Programa implements Serializable {
 
     @Override
     public String toString() {
-        return getNombrePrograma() + " : " + getProgramaPK().getCodigo() + " - " + getProgramaPK().getVersion();
+        return getNombrePrograma();// + " : " + getProgramaPK().getCodigo() + " - " + getProgramaPK().getVersion();
     }
     
 }

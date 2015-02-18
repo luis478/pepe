@@ -1,5 +1,6 @@
 package com.pepe.controller;
 
+import com.pepe.jpa.entities.Competencia;
 import com.pepe.jpa.entities.Programa;
 import com.pepe.jpa.entities.ProgramaPK;
 import com.pepe.jpa.sesions.ProgramaFacade;
@@ -26,16 +27,34 @@ public class ProgramaController implements Serializable {
     @EJB
     private ProgramaFacade programaFacade;
     private Programa programaActual = null;
-    private Programa programaSeleccionado;
+
+    private String codigo = "";
+    private String version = "";
 
     public ProgramaController() {
     }
 
     public Programa getProgramaActual() {
-        if(programaActual == null){
+        if (programaActual == null) {
             programaActual = new Programa();
         }
         return programaActual;
+    }
+
+    public String getCodigo() {
+        return codigo;
+    }
+
+    public void setCodigo(String codigo) {
+        this.codigo = codigo;
+    }
+
+    public String getVersion() {
+        return version;
+    }
+
+    public void setVersion(String version) {
+        this.version = version;
     }
 
     public void setProgramaActual(Programa programaActual) {
@@ -49,13 +68,14 @@ public class ProgramaController implements Serializable {
     public void setProgramaFacade(ProgramaFacade programaFacade) {
         this.programaFacade = programaFacade;
     }
-
-    public Programa getProgramaSeleccionado() {
-        return programaSeleccionado;
+    
+    public void programaConsulta(){
+        programaActual =  getProgramaFacade().consultaCodigoVersion(codigo, version);
+        getProgramaActual();
     }
-
-    public void setProgramaSeleccionado(Programa programaSeleccionado) {
-        this.programaSeleccionado = programaSeleccionado;
+    
+    public List<Programa> getListaPrograma(){
+        return getProgramaFacade().findAll();
     }
 
     public List<Programa> autoCompletarNombre(String query) {
@@ -66,18 +86,17 @@ public class ProgramaController implements Serializable {
             return null;
         }
     }
-    
-    public void anular(){
+
+    public void anular() {
         programaActual = null;
-        programaSeleccionado = null;
     }
     
-    public boolean programaSeleccionadoNull(){
-        if(programaSeleccionado != null){
-            return true;
-        }else {
-            return false;
-        }
+    public boolean codigoBoolean(){
+        return codigo.trim().equals("") || codigo == null;
+    }
+
+    public List<Competencia> getListaCompetencia() {
+        return getProgramaActual().getCompetenciaList();
     }
 
     /*   CONVERTER   */

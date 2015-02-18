@@ -6,57 +6,44 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core"
       xmlns:jsf="http://xmlns.jcp.org/jsf"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
-    <h:head>
-        <title>Facelet Title</title>
-        <link rel="stylesheet" type="text/css" href="resources/css/estilo.css" media="screen" />
-    </h:head>
-    <h:body>
-        <h:form id="formulario">
-            <h:form rendered="#{!programaController.programaSeleccionadoNull()}">
-                <p:autoComplete id="programa" 
-                                styleClass="autoComplete"
-                                forceSelection="true"
-                                required="true"
-                                placeholder="programa"
-                                requiredMessage="Ingresa el no bre del programa"
-                                completeMethod="#{programaController.autoCompletarNombre}"
-                                value="#{programaController.programaSeleccionado}"
-                                var="programa" 
-                                itemLabel="#{programa}" 
-                                itemValue="#{programa}"
-                                converter="programaConverter"
-                                maxResults="5">
-                    <f:ajax execute="programa" 
-                            render="msgprograma"
+    <ui:composition template="templatePrograma.xhtml">
+        <ui:define name="Contenido">
+            <h:form>
+                <input type="text"
+                       jsf:id="idCodigo"
+                       jsf:value="#{programaController.codigo}"
+                       pattern="[0-9]{6}" 
+                       maxlength="6"
+                       jsf:validatorMessage="esta mal">
+                    <f:validateRegex pattern="[0-9]{6}"/>
+                    <f:ajax execute="idCodigo"
+                            render="msgIdCodigo idVersion"
                             event="blur"/>
-                </p:autoComplete>
-                <h:message id="msgprograma" 
-                           for="programa"
+                </input>
+                <h:message id="msgIdCodigo"
+                           for="idCodigo"
                            styleClass="error"/>
-
+                <input type="text"
+                       jsf:id="idVersion"
+                       jsf:value="#{programaController.version}"
+                       pattern="[0-9]{3}"
+                       jsf:disabled="#{programaController.codigoBoolean()}"
+                       maxlength="3"
+                       jsf:validatorMessage="esta mal">
+                    <f:validateRegex pattern="[0-9]{3}"/>
+                    <f:ajax execute="idVersion"
+                            render="msgIdVersion"
+                            event="blur"/>
+                </input>
+                <h:message id="msgIdVersion"
+                           for="idVersion"
+                           styleClass="error"/>
                 <input type="submit"
-                       jsf:id="botonConsulta"
-                       class="Boton"
-                       jsf:update=":formulario"
-                       jsf:value="consultar"/>
+                       jsf:action="#{programaController.programaConsulta()}">
+                </input>
             </h:form>
-            <h:form rendered="#{programaController.programaSeleccionadoNull()}">
-                <input type="submit"
-                       jsf:id="botonCancelar"
-                       class="Boton"
-                       jsf:update=":formulario"
-                       jsf:action="#{programaController.anular()}"
-                       jsf:value="cancelar"/>
-                <h1>#{programaController.programaSeleccionado.programaPK}</h1>
-                <h2>#{programaController.programaSeleccionado.nombrePrograma}</h2>
-                <p:commandButton styleClass="Boton"
-                                 value="detalles"
-                                 onclick="programaVentana.show()">
-                </p:commandButton>
-            </h:form>
-        </h:form>
-
-        <ui:include src="programaDetalle.xhtml"/>
-    </h:body>
+            <ui:include src="programaDetalle.xhtml"/>
+        </ui:define>
+    </ui:composition>
 </html>
 

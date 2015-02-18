@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package com.pepe.jpa.sesions;
 
 import com.pepe.jpa.entities.Programa;
@@ -19,6 +18,7 @@ import javax.persistence.Query;
  */
 @Stateless
 public class ProgramaFacade extends AbstractFacade<Programa> {
+
     @PersistenceContext(unitName = "pepeAplicacionPU")
     private EntityManager em;
 
@@ -30,13 +30,25 @@ public class ProgramaFacade extends AbstractFacade<Programa> {
     public ProgramaFacade() {
         super(Programa.class);
     }
-    
-    public List<Programa> autoCompletarNombre(String query){
+
+    public List<Programa> autoCompletarNombre(String query) {
         Query q = getEntityManager().createNamedQuery("Programa.encontrarNombrePrograma");
         q.setParameter("nombrePrograma", query + "%");
-        try{
+        try {
             return (List<Programa>) q.getResultList();
-        }catch(Exception e){
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            return null;
+        }
+    }
+
+    public Programa consultaCodigoVersion(String c, String v) {
+        Query q = getEntityManager().createNamedQuery("Programa.encontrarCodigoVersion");
+        q.setParameter("codigo", c);
+        q.setParameter("version", v);
+        try {
+            return (Programa) q.getSingleResult();
+        } catch (Exception e) {
             System.out.println(e.getMessage());
             return null;
         }

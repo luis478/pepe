@@ -120,7 +120,7 @@ public class TipoFormacion implements Serializable {
 
     @Override
     public String toString() {
-        return "com.pepe.jpa.entities.TipoFormacion[ idTipoFormacion=" + idTipoFormacion + " ]";
+        return getTipoFormacion();
     }
     
 }
