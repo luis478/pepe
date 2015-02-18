@@ -10,15 +10,15 @@ import javax.persistence.metamodel.ListAttribute;
 import javax.persistence.metamodel.SingularAttribute;
 import javax.persistence.metamodel.StaticMetamodel;
 
-@Generated(value="EclipseLink-2.5.1.v20130918-rNA", date="2015-02-16T16:18:42")
+@Generated(value="EclipseLink-2.5.1.v20130918-rNA", date="2015-02-17T17:50:58")
 @StaticMetamodel(Ciudad.class)
 public class Ciudad_ { 
 
     public static volatile ListAttribute<Ciudad, CentroFormacion> centroFormacionList;
-    public static volatile ListAttribute<Ciudad, Usuario> usuarioList;
-    public static volatile SingularAttribute<Ciudad, String> nombreCiudad;
-    public static volatile SingularAttribute<Ciudad, Departamento> departamento;
     public static volatile SingularAttribute<Ciudad, CiudadPK> ciudadPK;
+    public static volatile SingularAttribute<Ciudad, Departamento> departamento;
+    public static volatile ListAttribute<Ciudad, Usuario> usuarioList;
     public static volatile ListAttribute<Ciudad, VisitaTecnica> visitaTecnicaList;
+    public static volatile SingularAttribute<Ciudad, String> nombreCiudad;
 
 }

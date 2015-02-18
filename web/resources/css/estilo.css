@@ -34,23 +34,23 @@
     font-size: 2em;
     font-weight: lighter;    
 
-   
-   
+
+
 }
 .icon-facebook:before {
     color:#00BFFF; 
     content: "\e601";
     font-size: 2em;
     font-weight: lighter;    
-  
- 
+
+
 }
 .icon-twitter:before {
     color:#00BFFF;
     content: "\e602";
     font-size: 2em;
     font-weight: lighter;    
- 
+
 
 }
 .icon-pinterest:after {
@@ -59,115 +59,115 @@
     font-size: 2em;
     font-weight: lighter;    
 
-   
+
 }
 
 
 
 
 .Body{
-	background-image: url("../images/Pepebackground.png");
-	background-size: cover;
+    background-image: url("../images/Pepebackground.png");
+    background-size: cover;
 
 }
 
 
 .Header{
-	background-image: url("../images/Pepeheader.png");
-	background-size: cover;
-	text-align: center;
+    background-image: url("../images/Pepeheader.png");
+    background-size: cover;
+    text-align: center;
 }
 .Header-left{
-	text-align: center;
-	display: inline-block;
+    text-align: center;
+    display: inline-block;
 }
 
 .Pepe-body{
-	margin: 4em;
-	text-align: center;
+    margin: 4em;
+    text-align: center;
 }
 .Titulo-pepe{
-	text-align: center;
-	margin: 0em;
+    text-align: center;
+    margin: 0em;
 }
 .form-botonDlg{
     width: 100px;
 }
 
 .seccion1{
-	margin-top: 2em;
+    margin-top: 2em;
 }
 .seccion2{
-	margin-top: 3.5em;
+    margin-top: 3.5em;
 }
 .seccion3{
-	margin-top: 3.5em;
+    margin-top: 3.5em;
 }
 .seccion4{
-	margin-top: 4em;
+    margin-top: 4em;
 }
 
 .Pepe-Lista{
-	margin-bottom: 1em;
-	margin-top: 0;
+    margin-bottom: 1em;
+    margin-top: 0;
 }
 
 
 .articulo1{
-	margin: 0;
-	display: inline-block;
+    margin: 0;
+    display: inline-block;
 }
 .articulo2{
-	margin: 0;
-	display: inline-block;
+    margin: 0;
+    display: inline-block;
 }
 
 .Pepe-articuloLabel{
-	display: block;
-	text-align: left;
-	font-size: 1.5em;
-	color: #0B4C5F;
+    display: block;
+    text-align: left;
+    font-size: 1.5em;
+    color: #0B4C5F;
     font-weight: lighter;
 }
 
 
 .Pepe-formInput1{
-	width: 29em;
-	height: 1.5em;
-	margin-right: .5em;
+    width: 29em;
+    height: 1.5em;
+    margin-right: .5em;
 }
 .Pepe-formInput2{
-	width: 11em;
-	height: 1.5em;
-	margin-right: .5em;
+    width: 11em;
+    height: 1.5em;
+    margin-right: .5em;
 }
 .Pepe-formInput3{
-	width: 41em;
-	height: 1.5em;
-	margin-right: .5em;
+    width: 41em;
+    height: 1.5em;
+    margin-right: .5em;
 }
 .Pepe-formInput4{
-	width: 65em;
-	height: 1.5em;
-	margin-right: .5em;
+    width: 65em;
+    height: 1.5em;
+    margin-right: .5em;
 }
 
 
 .Pepe-botones{
-	text-decoration: none;
-	color: white;
-	border-color: deepskyblue;
-	background: #00a0b0;
+    text-decoration: none;
+    color: white;
+    border-color: deepskyblue;
+    background: #00a0b0;
 }
 
 .Pepe-botonesLista{
-	text-decoration: none;
-	color: white;
-	border-color: deepskyblue;
-	background: #00a0b0;
-	margin: 0 2em 1em 0;
-	padding: 0.5em;
-	display: inline-block;
+    text-decoration: none;
+    color: white;
+    border-color: deepskyblue;
+    background: #00a0b0;
+    margin: 0 2em 1em 0;
+    padding: 0.5em;
+    display: inline-block;
 }
 
 
@@ -175,55 +175,55 @@
 
 
 .Pepe-inicioContenedor{
-	display: inline-block;
+    display: inline-block;
 }
 
 
 
 .Pepe-inicio{
-	display: inline-block;
-	margin: 3em;
+    display: inline-block;
+    margin: 3em;
 }
 .Pepe-inicioDescripcion{
-	display: block;
-	text-align: center;
+    display: block;
+    text-align: center;
 
 }
 .Pepe-form11{
-	width: 320px;
-	text-align: center;
+    width: 320px;
+    text-align: center;
 }
 .Pepe-inicioLabel1{
-	display: block;
-	text-align: center;
-	margin-top: 1em;
+    display: block;
+    text-align: center;
+    margin-top: 1em;
 }
 
 .Pepe-formInput9{
-	margin: 1em auto 1em auto;
-	display: block;
+    margin: 1em auto 1em auto;
+    display: block;
 }
 .Pepe-formLogo{
-	display: inline-block;
+    display: inline-block;
 }
 .Pepe-figureContainer{
-	float: inherit;
-	display: inline-block;
-	padding-left: 12em;
-	text-align: center;
+    float: inherit;
+    display: inline-block;
+    padding-left: 12em;
+    text-align: center;
 }
 
 
 .Pepe-footer {
-	background-image: url('../images/Pepefooter.png');
-     margin: 0;
-     background-size: cover;
-     font-size: 12px;
+    background-image: url('../images/Pepefooter.png');
+    margin: 0;
+    background-size: cover;
+    font-size: 12px;
 }
 
 .Footer-imageContainer{
-     text-align: center;
-     margin-top: 0;
+    text-align: center;
+    margin-top: 0;
 }
 .Footer-image{
     position: relative;
@@ -237,4 +237,156 @@
     text-align: center;
     padding-bottom: .5em;
     margin: 0;
+}
+
+
+
+/* ESTILOS DE FORMULACION */
+
+.ui-inputfield{
+    text-align: center !important;
+    border: 1px red solid !important;
+    background: #FFFFFF !important;
+    width: 500px !important;
+    box-shadow: 0 !important;
+    -webkit-box-shadow:inset 0 0 0 0!important;
+    border-radius: 0 !important;
+    color: #000000 !important;
+    font-weight: normal !important;
+}
+
+.ui-state-highlight, .ui-widget-content .ui-state-highlight, .ui-widget-header .ui-state-highlight{
+    border: none !important;
+    text-shadow: 0 0 0 #333333 !important;
+    background: #A4A4A4 !important;
+}
+
+.ui-widget-content{
+    color: #000;
+}
+
+.ui-widget-header{
+    background: #FFFFFF !important;
+}
+
+.ui-dialog .ui-dialog-titlebar-close, 
+.ui-dialog .ui-dialog-titlebar-minimize, 
+.ui-dialog .ui-dialog-titlebar-maximize{
+    display: inline !important;
+    top: 0 !important;
+    right: 0 !important;
+    cursor: pointer !important;
+    position: fixed;
+    background: #FFFFFF !important;
+    margin: 1%!important;
+    padding: 0.3em !important;
+    width: 30px;
+    height:30px;
+    border: 1px solid blue !important;
+}
+
+.ui-state-default, 
+.ui-widget-content .ui-state-default{
+    border: none !important;
+}
+
+.ui-state-default,
+.ui-widget-content .ui-state-default, 
+.ui-widget-header .ui-state-default{
+    background: #FFFFFF !important;
+    color: #000 !important;
+    font-weight: inherit !important;
+    font-size: 1em !important;
+    text-shadow: none !important;
+}
+
+.ui-state-hover,
+.ui-widget-content .ui-state-hover,
+.ui-widget-header .ui-state-hover{
+    border: 1px solid rgb(182,194,0) !important;
+    background: #FFFFFF !important;
+    color: #F58634 !important;
+    background-image: none !important;
+}
+
+.ui-state-highlight, 
+.ui-widget-content .ui-state-highlight,
+.ui-widget-header .ui-state-highlight{
+    color: #FFFFFF !important;
+    text-shadow: none !important;
+    background: #F58634 !important;
+    border: 1px solid rgb(182,194,0) !important;
+}
+
+.ui-state-focus,
+.ui-widget-content .ui-state-focus,
+.ui-widget-header .ui-state-focus,
+.ui-corner-all{
+    border-radius: 0 !important;
+    box-shadow: none !important;
+    outline: none !important;
+}
+
+.ui-widget-content {
+    color: #000;
+}
+
+.ui-widget-overlay{
+    background: rgba(255,255,255,0.7) !important;
+    width: auto !important; 
+    position: absolute !important;
+    top: 0 !important;
+    bottom: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    opacity: 1  !important;
+    transition: all ease 5s !important;
+    pointer-events:all !important;
+    .ui-dialog{
+        height: 80% !important;
+        overflow: scroll !important;
+    }
+}
+
+.ui-dialog{
+    position: fixed !important;
+    background: #FFFFFF !important;
+    box-shadow: #000 0 0 5px !important;
+    width: auto !important;
+    margin: auto 20%;
+    padding: 1em !important;
+    left: 0 !important;
+    right: 0 !important;
+    border: none !important;
+    border-radius: 0 !important;
+    height: 80% !important;
+    overflow: scroll !important;
+}
+
+#DialogoAdmin{
+    margin-top: 0;
+    margin-bottom: 0;
+    margin-left: 20%;
+    margin-right: 1em;
+}
+
+.ui-dialog .ui-dialog-titlebar{
+    padding: 0 !important;
+    margin: 0 !important;
+}
+
+.ui-dialog .ui-dialog-title{
+    display: none;
+}
+.ui-dialog .ui-dialog-content{
+    height: 100%;
+    padding: 0 !important;
+    overflow: visible !important;
+}
+
+.ui-datatable .ui-datatable-footer{
+    border: none !important;
+    text-align: left !important;
+    margin-top: 1em !important;
+    padding: 0px !important;
 }

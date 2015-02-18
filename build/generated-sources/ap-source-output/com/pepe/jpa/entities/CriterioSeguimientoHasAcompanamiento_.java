@@ -8,15 +8,15 @@ import javax.annotation.Generated;
 import javax.persistence.metamodel.SingularAttribute;
 import javax.persistence.metamodel.StaticMetamodel;
 
-@Generated(value="EclipseLink-2.5.1.v20130918-rNA", date="2015-02-16T16:18:41")
+@Generated(value="EclipseLink-2.5.1.v20130918-rNA", date="2015-02-17T17:50:58")
 @StaticMetamodel(CriterioSeguimientoHasAcompanamiento.class)
 public class CriterioSeguimientoHasAcompanamiento_ { 
 
-    public static volatile SingularAttribute<CriterioSeguimientoHasAcompanamiento, CriterioSeguimiento> criterioSeguimiento;
-    public static volatile SingularAttribute<CriterioSeguimientoHasAcompanamiento, Acompanamiento> acompanamiento;
     public static volatile SingularAttribute<CriterioSeguimientoHasAcompanamiento, CriterioSeguimientoHasAcompanamientoPK> criterioSeguimientoHasAcompanamientoPK;
+    public static volatile SingularAttribute<CriterioSeguimientoHasAcompanamiento, String> observacion;
     public static volatile SingularAttribute<CriterioSeguimientoHasAcompanamiento, String> valoracion;
     public static volatile SingularAttribute<CriterioSeguimientoHasAcompanamiento, Conclusiones> idConclusiones;
-    public static volatile SingularAttribute<CriterioSeguimientoHasAcompanamiento, String> observacion;
+    public static volatile SingularAttribute<CriterioSeguimientoHasAcompanamiento, CriterioSeguimiento> criterioSeguimiento;
+    public static volatile SingularAttribute<CriterioSeguimientoHasAcompanamiento, Acompanamiento> acompanamiento;
 
 }

@@ -116,7 +116,7 @@
                     <h:form class="Form-opciones-header">
 
                         <p:commandButton value="Cerrar sesión" update="@all" action="#{loginController.logout}" styleClass="Pepe-botones"/>
-                      
+
                     </h:form>
                 </nav>
 
@@ -166,6 +166,14 @@
                     </br>
                     2015</p>
             </section>
+            <h:form>
+                <input type="submit"
+                       class="Boton"
+                       jsf:value="programa"
+                       jsf:action="programa/programaInicio.xhtml"
+                       jsf:actionListener="#{programaController.anular()}">
+                </input>
+            </h:form>
         </footer>
         <ui:include src="/admin/dlg_menuCrearUsuario.xhtml"/>
         <ui:include src="/planeacionpedagogica/dlg_menuPlaneacionPedagogica.xhtml"/>

@@ -11,19 +11,19 @@ import javax.persistence.metamodel.ListAttribute;
 import javax.persistence.metamodel.SingularAttribute;
 import javax.persistence.metamodel.StaticMetamodel;
 
-@Generated(value="EclipseLink-2.5.1.v20130918-rNA", date="2015-02-16T16:18:42")
+@Generated(value="EclipseLink-2.5.1.v20130918-rNA", date="2015-02-17T17:50:58")
 @StaticMetamodel(ActividadAprendizaje.class)
 public class ActividadAprendizaje_ { 
 
-    public static volatile SingularAttribute<ActividadAprendizaje, String> nombreActividadAprendizaje;
     public static volatile ListAttribute<ActividadAprendizaje, Usuario> usuarioList;
-    public static volatile SingularAttribute<ActividadAprendizaje, Actividad> idActividad;
-    public static volatile SingularAttribute<ActividadAprendizaje, Integer> duracionActividadAprendizaje;
-    public static volatile ListAttribute<ActividadAprendizaje, Evidencia> evidenciaList;
     public static volatile SingularAttribute<ActividadAprendizaje, String> observaciones;
+    public static volatile SingularAttribute<ActividadAprendizaje, TecnicaDidactica> idTecnicaDidactica;
     public static volatile SingularAttribute<ActividadAprendizaje, Integer> idActividadAprendizaje;
     public static volatile SingularAttribute<ActividadAprendizaje, TipoActividadAprendizaje> idTipoActividadAprendizaje;
+    public static volatile ListAttribute<ActividadAprendizaje, Evidencia> evidenciaList;
     public static volatile ListAttribute<ActividadAprendizaje, ActividadAprendizajeHasResultadoAprendizaje> actividadAprendizajeHasResultadoAprendizajeList;
-    public static volatile SingularAttribute<ActividadAprendizaje, TecnicaDidactica> idTecnicaDidactica;
+    public static volatile SingularAttribute<ActividadAprendizaje, String> nombreActividadAprendizaje;
+    public static volatile SingularAttribute<ActividadAprendizaje, Actividad> idActividad;
+    public static volatile SingularAttribute<ActividadAprendizaje, Integer> duracionActividadAprendizaje;
 
 }

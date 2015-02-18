@@ -7,9 +7,11 @@
 package com.pepe.jpa.sesions;
 
 import com.pepe.jpa.entities.Programa;
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
 /**
  *
@@ -29,4 +31,14 @@ public class ProgramaFacade extends AbstractFacade<Programa> {
         super(Programa.class);
     }
     
+    public List<Programa> autoCompletarNombre(String query){
+        Query q = getEntityManager().createNamedQuery("Programa.encontrarNombrePrograma");
+        q.setParameter("nombrePrograma", query + "%");
+        try{
+            return (List<Programa>) q.getResultList();
+        }catch(Exception e){
+            System.out.println(e.getMessage());
+            return null;
+        }
+    }
 }

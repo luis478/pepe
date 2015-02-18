@@ -6,12 +6,12 @@ import javax.persistence.metamodel.ListAttribute;
 import javax.persistence.metamodel.SingularAttribute;
 import javax.persistence.metamodel.StaticMetamodel;
 
-@Generated(value="EclipseLink-2.5.1.v20130918-rNA", date="2015-02-16T16:18:41")
+@Generated(value="EclipseLink-2.5.1.v20130918-rNA", date="2015-02-17T17:50:58")
 @StaticMetamodel(TipoResultadoAprendizaje.class)
 public class TipoResultadoAprendizaje_ { 
 
-    public static volatile SingularAttribute<TipoResultadoAprendizaje, Integer> idTipoResultadoAprendizaje;
-    public static volatile ListAttribute<TipoResultadoAprendizaje, ResultadoAprendizaje> resultadoAprendizajeList;
     public static volatile SingularAttribute<TipoResultadoAprendizaje, String> tipoResultadoAprendizaje;
+    public static volatile ListAttribute<TipoResultadoAprendizaje, ResultadoAprendizaje> resultadoAprendizajeList;
+    public static volatile SingularAttribute<TipoResultadoAprendizaje, Integer> idTipoResultadoAprendizaje;
 
 }

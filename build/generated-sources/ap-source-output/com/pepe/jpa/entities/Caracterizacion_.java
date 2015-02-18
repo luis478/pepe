@@ -6,16 +6,16 @@ import javax.persistence.metamodel.ListAttribute;
 import javax.persistence.metamodel.SingularAttribute;
 import javax.persistence.metamodel.StaticMetamodel;
 
-@Generated(value="EclipseLink-2.5.1.v20130918-rNA", date="2015-02-16T16:18:42")
+@Generated(value="EclipseLink-2.5.1.v20130918-rNA", date="2015-02-17T17:50:58")
 @StaticMetamodel(Caracterizacion.class)
 public class Caracterizacion_ { 
 
-    public static volatile SingularAttribute<Caracterizacion, String> apoyoBienestar;
-    public static volatile ListAttribute<Caracterizacion, Usuario> usuarioList;
-    public static volatile SingularAttribute<Caracterizacion, String> acudiente;
-    public static volatile SingularAttribute<Caracterizacion, String> direccion;
     public static volatile SingularAttribute<Caracterizacion, Integer> idCaracterizacion;
+    public static volatile SingularAttribute<Caracterizacion, String> direccion;
     public static volatile SingularAttribute<Caracterizacion, String> sistemaLidereazgo;
+    public static volatile ListAttribute<Caracterizacion, Usuario> usuarioList;
     public static volatile SingularAttribute<Caracterizacion, String> telefono;
+    public static volatile SingularAttribute<Caracterizacion, String> apoyoBienestar;
+    public static volatile SingularAttribute<Caracterizacion, String> acudiente;
 
 }

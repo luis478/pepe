@@ -7,13 +7,13 @@ import javax.annotation.Generated;
 import javax.persistence.metamodel.SingularAttribute;
 import javax.persistence.metamodel.StaticMetamodel;
 
-@Generated(value="EclipseLink-2.5.1.v20130918-rNA", date="2015-02-16T16:18:42")
+@Generated(value="EclipseLink-2.5.1.v20130918-rNA", date="2015-02-17T17:50:58")
 @StaticMetamodel(TipoMaterialHasRubroPresupuestal.class)
 public class TipoMaterialHasRubroPresupuestal_ { 
 
-    public static volatile SingularAttribute<TipoMaterialHasRubroPresupuestal, TipoMaterialHasRubroPresupuestalPK> tipoMaterialHasRubroPresupuestalPK;
-    public static volatile SingularAttribute<TipoMaterialHasRubroPresupuestal, String> valorTotal;
     public static volatile SingularAttribute<TipoMaterialHasRubroPresupuestal, RubroPresupuestal> rubroPresupuestal;
     public static volatile SingularAttribute<TipoMaterialHasRubroPresupuestal, TipoMaterial> tipoMaterial;
+    public static volatile SingularAttribute<TipoMaterialHasRubroPresupuestal, String> valorTotal;
+    public static volatile SingularAttribute<TipoMaterialHasRubroPresupuestal, TipoMaterialHasRubroPresupuestalPK> tipoMaterialHasRubroPresupuestalPK;
 
 }

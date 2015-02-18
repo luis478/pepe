@@ -9,13 +9,13 @@ import javax.persistence.metamodel.ListAttribute;
 import javax.persistence.metamodel.SingularAttribute;
 import javax.persistence.metamodel.StaticMetamodel;
 
-@Generated(value="EclipseLink-2.5.1.v20130918-rNA", date="2015-02-16T16:18:42")
+@Generated(value="EclipseLink-2.5.1.v20130918-rNA", date="2015-02-17T17:50:58")
 @StaticMetamodel(ActividadAprendizajeHasResultadoAprendizaje.class)
 public class ActividadAprendizajeHasResultadoAprendizaje_ { 
 
+    public static volatile SingularAttribute<ActividadAprendizajeHasResultadoAprendizaje, ActividadAprendizaje> actividadAprendizaje;
+    public static volatile SingularAttribute<ActividadAprendizajeHasResultadoAprendizaje, ActividadAprendizajeHasResultadoAprendizajePK> actividadAprendizajeHasResultadoAprendizajePK;
     public static volatile ListAttribute<ActividadAprendizajeHasResultadoAprendizaje, Evento> eventoList;
     public static volatile SingularAttribute<ActividadAprendizajeHasResultadoAprendizaje, ResultadoAprendizaje> resultadoAprendizaje;
-    public static volatile SingularAttribute<ActividadAprendizajeHasResultadoAprendizaje, ActividadAprendizajeHasResultadoAprendizajePK> actividadAprendizajeHasResultadoAprendizajePK;
-    public static volatile SingularAttribute<ActividadAprendizajeHasResultadoAprendizaje, ActividadAprendizaje> actividadAprendizaje;
 
 }

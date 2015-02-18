@@ -10,19 +10,19 @@ import javax.persistence.metamodel.ListAttribute;
 import javax.persistence.metamodel.SingularAttribute;
 import javax.persistence.metamodel.StaticMetamodel;
 
-@Generated(value="EclipseLink-2.5.1.v20130918-rNA", date="2015-02-16T16:18:41")
+@Generated(value="EclipseLink-2.5.1.v20130918-rNA", date="2015-02-17T17:50:58")
 @StaticMetamodel(Competencia.class)
 public class Competencia_ { 
 
-    public static volatile SingularAttribute<Competencia, Integer> duracionEstimadaHoras;
-    public static volatile SingularAttribute<Competencia, Short> estado;
     public static volatile SingularAttribute<Competencia, String> codigo;
-    public static volatile ListAttribute<Competencia, Programa> programaList;
-    public static volatile ListAttribute<Competencia, ConocimientoProceso> conocimientoProcesoList;
+    public static volatile SingularAttribute<Competencia, Short> estado;
     public static volatile SingularAttribute<Competencia, String> nombreCompetencia;
     public static volatile ListAttribute<Competencia, CriteriosEvaluacion> criteriosEvaluacionList;
-    public static volatile ListAttribute<Competencia, ResultadoAprendizaje> resultadoAprendizajeList;
+    public static volatile ListAttribute<Competencia, ConocimientoProceso> conocimientoProcesoList;
+    public static volatile SingularAttribute<Competencia, Integer> duracionEstimadaHoras;
+    public static volatile ListAttribute<Competencia, Programa> programaList;
     public static volatile ListAttribute<Competencia, ConocimientoConceptoPrincipios> conocimientoConceptoPrincipiosList;
+    public static volatile ListAttribute<Competencia, ResultadoAprendizaje> resultadoAprendizajeList;
     public static volatile SingularAttribute<Competencia, Integer> idCompetencia;
 
 }

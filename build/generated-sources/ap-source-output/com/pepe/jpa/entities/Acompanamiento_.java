@@ -10,16 +10,16 @@ import javax.persistence.metamodel.ListAttribute;
 import javax.persistence.metamodel.SingularAttribute;
 import javax.persistence.metamodel.StaticMetamodel;
 
-@Generated(value="EclipseLink-2.5.1.v20130918-rNA", date="2015-02-16T16:18:41")
+@Generated(value="EclipseLink-2.5.1.v20130918-rNA", date="2015-02-17T17:50:58")
 @StaticMetamodel(Acompanamiento.class)
 public class Acompanamiento_ { 
 
+    public static volatile SingularAttribute<Acompanamiento, Fase> idFase;
     public static volatile SingularAttribute<Acompanamiento, Date> fachaFin;
     public static volatile SingularAttribute<Acompanamiento, Ficha> idFicha;
     public static volatile ListAttribute<Acompanamiento, Usuario> usuarioList;
+    public static volatile SingularAttribute<Acompanamiento, Integer> idAcompanamiento;
     public static volatile ListAttribute<Acompanamiento, CriterioSeguimientoHasAcompanamiento> criterioSeguimientoHasAcompanamientoList;
     public static volatile SingularAttribute<Acompanamiento, Date> fechaInicio;
-    public static volatile SingularAttribute<Acompanamiento, Fase> idFase;
-    public static volatile SingularAttribute<Acompanamiento, Integer> idAcompanamiento;
 
 }

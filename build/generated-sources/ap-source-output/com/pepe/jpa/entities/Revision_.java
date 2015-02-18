@@ -8,14 +8,14 @@ import javax.persistence.metamodel.ListAttribute;
 import javax.persistence.metamodel.SingularAttribute;
 import javax.persistence.metamodel.StaticMetamodel;
 
-@Generated(value="EclipseLink-2.5.1.v20130918-rNA", date="2015-02-16T16:18:42")
+@Generated(value="EclipseLink-2.5.1.v20130918-rNA", date="2015-02-17T17:50:58")
 @StaticMetamodel(Revision.class)
 public class Revision_ { 
 
-    public static volatile SingularAttribute<Revision, Proyecto> idProyecto;
-    public static volatile ListAttribute<Revision, Usuario> usuarioList;
     public static volatile SingularAttribute<Revision, String> concepto;
-    public static volatile ListAttribute<Revision, Variable> variableList;
+    public static volatile ListAttribute<Revision, Usuario> usuarioList;
+    public static volatile SingularAttribute<Revision, Proyecto> idProyecto;
     public static volatile SingularAttribute<Revision, Integer> idRevision;
+    public static volatile ListAttribute<Revision, Variable> variableList;
 
 }
