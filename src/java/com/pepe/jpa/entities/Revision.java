@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package com.pepe.jpa.entities;
 
 import java.io.Serializable;
@@ -17,6 +16,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
+import javax.persistence.Lob;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
@@ -30,15 +30,14 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author Windows 8
+ * @author Luis Carlos
  */
 @Entity
 @Table(name = "revision")
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Revision.findAll", query = "SELECT r FROM Revision r"),
-    @NamedQuery(name = "Revision.findByIdRevision", query = "SELECT r FROM Revision r WHERE r.idRevision = :idRevision"),
-    @NamedQuery(name = "Revision.findByConcepto", query = "SELECT r FROM Revision r WHERE r.concepto = :concepto")})
+    @NamedQuery(name = "Revision.findByIdRevision", query = "SELECT r FROM Revision r WHERE r.idRevision = :idRevision")})
 public class Revision implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
@@ -48,7 +47,8 @@ public class Revision implements Serializable {
     private Integer idRevision;
     @Basic(optional = false)
     @NotNull
-    @Size(min = 1, max = 45)
+    @Lob
+    @Size(min = 1, max = 65535)
     @Column(name = "concepto")
     private String concepto;
     @JoinTable(name = "revision_has_usuario", joinColumns = {

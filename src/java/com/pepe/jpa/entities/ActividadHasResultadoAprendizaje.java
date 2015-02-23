@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package com.pepe.jpa.entities;
 
 import java.io.Serializable;
@@ -18,7 +17,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author Windows 8
+ * @author Luis Carlos
  */
 @Entity
 @Table(name = "actividad_has_resultado_aprendizaje")
@@ -37,9 +36,9 @@ public class ActividadHasResultadoAprendizaje implements Serializable {
     @JoinColumn(name = "id_resultado_aprendizaje", referencedColumnName = "id_resultado_aprendizaje", insertable = false, updatable = false)
     @ManyToOne(optional = false)
     private ResultadoAprendizaje resultadoAprendizaje;
-    @JoinColumn(name = "fase_id_fase", referencedColumnName = "id_fase")
+    @JoinColumn(name = "id_fase", referencedColumnName = "id_fase")
     @ManyToOne(optional = false)
-    private Fase faseIdFase;
+    private Fase idFase;
 
     public ActividadHasResultadoAprendizaje() {
     }
@@ -76,12 +75,12 @@ public class ActividadHasResultadoAprendizaje implements Serializable {
         this.resultadoAprendizaje = resultadoAprendizaje;
     }
 
-    public Fase getFaseIdFase() {
-        return faseIdFase;
+    public Fase getIdFase() {
+        return idFase;
     }
 
-    public void setFaseIdFase(Fase faseIdFase) {
-        this.faseIdFase = faseIdFase;
+    public void setIdFase(Fase idFase) {
+        this.idFase = idFase;
     }
 
     @Override

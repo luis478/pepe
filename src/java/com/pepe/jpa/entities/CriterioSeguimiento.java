@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package com.pepe.jpa.entities;
 
 import java.io.Serializable;
@@ -27,15 +26,14 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author Windows 8
+ * @author Luis Carlos
  */
 @Entity
 @Table(name = "criterio_seguimiento")
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "CriterioSeguimiento.findAll", query = "SELECT c FROM CriterioSeguimiento c"),
-    @NamedQuery(name = "CriterioSeguimiento.findByIdCriterioSeguimiento", query = "SELECT c FROM CriterioSeguimiento c WHERE c.idCriterioSeguimiento = :idCriterioSeguimiento"),
-    @NamedQuery(name = "CriterioSeguimiento.findByIdCategoria", query = "SELECT c FROM CriterioSeguimiento c WHERE c.idCategoria = :idCategoria")})
+    @NamedQuery(name = "CriterioSeguimiento.findByIdCriterioSeguimiento", query = "SELECT c FROM CriterioSeguimiento c WHERE c.idCriterioSeguimiento = :idCriterioSeguimiento")})
 public class CriterioSeguimiento implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
@@ -49,10 +47,6 @@ public class CriterioSeguimiento implements Serializable {
     @Size(min = 1, max = 65535)
     @Column(name = "descrpcion")
     private String descrpcion;
-    @Basic(optional = false)
-    @NotNull
-    @Column(name = "id_categoria")
-    private int idCategoria;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "criterioSeguimiento")
     private List<CriterioSeguimientoHasAcompanamiento> criterioSeguimientoHasAcompanamientoList;
 
@@ -63,10 +57,9 @@ public class CriterioSeguimiento implements Serializable {
         this.idCriterioSeguimiento = idCriterioSeguimiento;
     }
 
-    public CriterioSeguimiento(Integer idCriterioSeguimiento, String descrpcion, int idCategoria) {
+    public CriterioSeguimiento(Integer idCriterioSeguimiento, String descrpcion) {
         this.idCriterioSeguimiento = idCriterioSeguimiento;
         this.descrpcion = descrpcion;
-        this.idCategoria = idCategoria;
     }
 
     public Integer getIdCriterioSeguimiento() {
@@ -83,14 +76,6 @@ public class CriterioSeguimiento implements Serializable {
 
     public void setDescrpcion(String descrpcion) {
         this.descrpcion = descrpcion;
-    }
-
-    public int getIdCategoria() {
-        return idCategoria;
-    }
-
-    public void setIdCategoria(int idCategoria) {
-        this.idCategoria = idCategoria;
     }
 
     @XmlTransient

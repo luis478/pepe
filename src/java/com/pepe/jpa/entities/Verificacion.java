@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package com.pepe.jpa.entities;
 
 import java.io.Serializable;
@@ -25,7 +24,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author Windows 8
+ * @author Luis Carlos
  */
 @Entity
 @Table(name = "verificacion")
@@ -57,15 +56,15 @@ public class Verificacion implements Serializable {
     @Size(min = 1, max = 65535)
     @Column(name = "obervaciones")
     private String obervaciones;
-    @JoinColumn(name = "id_usuario", referencedColumnName = "id_usuario")
-    @ManyToOne(optional = false)
-    private Usuario idUsuario;
     @JoinColumn(name = "id_ambiente_formacion", referencedColumnName = "id_ambiente_formacion")
     @ManyToOne(optional = false)
     private AmbienteFormacion idAmbienteFormacion;
     @JoinColumn(name = "id_proyecto", referencedColumnName = "id_proyecto")
     @ManyToOne(optional = false)
     private Proyecto idProyecto;
+    @JoinColumn(name = "id_usuario", referencedColumnName = "id_usuario")
+    @ManyToOne(optional = false)
+    private Usuario idUsuario;
 
     public Verificacion() {
     }
@@ -113,14 +112,6 @@ public class Verificacion implements Serializable {
         this.obervaciones = obervaciones;
     }
 
-    public Usuario getIdUsuario() {
-        return idUsuario;
-    }
-
-    public void setIdUsuario(Usuario idUsuario) {
-        this.idUsuario = idUsuario;
-    }
-
     public AmbienteFormacion getIdAmbienteFormacion() {
         return idAmbienteFormacion;
     }
@@ -135,6 +126,14 @@ public class Verificacion implements Serializable {
 
     public void setIdProyecto(Proyecto idProyecto) {
         this.idProyecto = idProyecto;
+    }
+
+    public Usuario getIdUsuario() {
+        return idUsuario;
+    }
+
+    public void setIdUsuario(Usuario idUsuario) {
+        this.idUsuario = idUsuario;
     }
 
     @Override

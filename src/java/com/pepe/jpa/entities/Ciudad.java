@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package com.pepe.jpa.entities;
 
 import java.io.Serializable;
@@ -28,7 +27,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author Windows 8
+ * @author Luis Carlos
  */
 @Entity
 @Table(name = "ciudad")
@@ -53,7 +52,7 @@ public class Ciudad implements Serializable {
         @JoinColumn(name = "id_usuario", referencedColumnName = "id_usuario")})
     @ManyToMany
     private List<Usuario> usuarioList;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "ciudad1")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "ciudad")
     private List<VisitaTecnica> visitaTecnicaList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "ciudad")
     private List<CentroFormacion> centroFormacionList;

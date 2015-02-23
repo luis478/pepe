@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package com.pepe.jpa.entities;
 
 import java.io.Serializable;
@@ -14,7 +13,7 @@ import javax.validation.constraints.NotNull;
 
 /**
  *
- * @author Windows 8
+ * @author Luis Carlos
  */
 @Embeddable
 public class TipoMaterialHasRubroPresupuestalPK implements Serializable {

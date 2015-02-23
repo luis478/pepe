@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package com.pepe.jpa.entities;
 
 import java.io.Serializable;
@@ -18,7 +17,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author Windows 8
+ * @author Luis Carlos
  */
 @Entity
 @Table(name = "recurso_has_material")
@@ -34,12 +33,12 @@ public class RecursoHasMaterial implements Serializable {
     @JoinColumn(name = "id_recurso", referencedColumnName = "id_recurso", insertable = false, updatable = false)
     @ManyToOne(optional = false)
     private Recurso recurso;
-    @JoinColumn(name = "id_material", referencedColumnName = "id_material", insertable = false, updatable = false)
-    @ManyToOne(optional = false)
-    private Material material;
     @JoinColumn(name = "id_fuente_recursos", referencedColumnName = "id_fuente_recursos")
     @ManyToOne(optional = false)
     private FuenteRecursos idFuenteRecursos;
+    @JoinColumn(name = "id_material", referencedColumnName = "id_material", insertable = false, updatable = false)
+    @ManyToOne(optional = false)
+    private Material material;
 
     public RecursoHasMaterial() {
     }
@@ -68,20 +67,20 @@ public class RecursoHasMaterial implements Serializable {
         this.recurso = recurso;
     }
 
-    public Material getMaterial() {
-        return material;
-    }
-
-    public void setMaterial(Material material) {
-        this.material = material;
-    }
-
     public FuenteRecursos getIdFuenteRecursos() {
         return idFuenteRecursos;
     }
 
     public void setIdFuenteRecursos(FuenteRecursos idFuenteRecursos) {
         this.idFuenteRecursos = idFuenteRecursos;
+    }
+
+    public Material getMaterial() {
+        return material;
+    }
+
+    public void setMaterial(Material material) {
+        this.material = material;
     }
 
     @Override

@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package com.pepe.jpa.entities;
 
 import java.io.Serializable;
@@ -28,7 +27,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author Windows 8
+ * @author Luis Carlos
  */
 @Entity
 @Table(name = "programa")
@@ -68,15 +67,15 @@ public class Programa implements Serializable {
     @JoinColumn(name = "id_linea_tecnologica", referencedColumnName = "id_linea_tecnologica")
     @ManyToOne(optional = false)
     private LineaTecnologica idLineaTecnologica;
-    @JoinColumn(name = "id_perfil_entrada", referencedColumnName = "id_perfil_entrada")
-    @ManyToOne(optional = false)
-    private PerfilEntrada idPerfilEntrada;
     @JoinColumn(name = "id_modalidad_formacion", referencedColumnName = "id_modalidad_formacion")
     @ManyToOne(optional = false)
     private ModalidadFormacion idModalidadFormacion;
     @JoinColumn(name = "id_nivel_formacion", referencedColumnName = "id_nivel_formacion")
     @ManyToOne(optional = false)
     private NivelFormacion idNivelFormacion;
+    @JoinColumn(name = "id_perfil_entrada", referencedColumnName = "id_perfil_entrada")
+    @ManyToOne(optional = false)
+    private PerfilEntrada idPerfilEntrada;
     @JoinColumn(name = "id_tipo_formacion", referencedColumnName = "id_tipo_formacion")
     @ManyToOne(optional = false)
     private TipoFormacion idTipoFormacion;
@@ -159,14 +158,6 @@ public class Programa implements Serializable {
         this.idLineaTecnologica = idLineaTecnologica;
     }
 
-    public PerfilEntrada getIdPerfilEntrada() {
-        return idPerfilEntrada;
-    }
-
-    public void setIdPerfilEntrada(PerfilEntrada idPerfilEntrada) {
-        this.idPerfilEntrada = idPerfilEntrada;
-    }
-
     public ModalidadFormacion getIdModalidadFormacion() {
         return idModalidadFormacion;
     }
@@ -181,6 +172,14 @@ public class Programa implements Serializable {
 
     public void setIdNivelFormacion(NivelFormacion idNivelFormacion) {
         this.idNivelFormacion = idNivelFormacion;
+    }
+
+    public PerfilEntrada getIdPerfilEntrada() {
+        return idPerfilEntrada;
+    }
+
+    public void setIdPerfilEntrada(PerfilEntrada idPerfilEntrada) {
+        this.idPerfilEntrada = idPerfilEntrada;
     }
 
     public TipoFormacion getIdTipoFormacion() {

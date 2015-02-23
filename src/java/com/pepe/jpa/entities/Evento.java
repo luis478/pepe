@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package com.pepe.jpa.entities;
 
 import java.io.Serializable;
@@ -16,7 +15,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.JoinColumns;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
@@ -31,7 +29,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author Windows 8
+ * @author Luis Carlos
  */
 @Entity
 @Table(name = "evento")
@@ -79,11 +77,6 @@ public class Evento implements Serializable {
     @JoinColumn(name = "id_ficha", referencedColumnName = "id_ficha")
     @ManyToOne(optional = false)
     private Ficha idFicha;
-    @JoinColumns({
-        @JoinColumn(name = "id_actividad_aprendizaje", referencedColumnName = "id_actividad_aprendizaje"),
-        @JoinColumn(name = "id_resultado_aprendizaje", referencedColumnName = "id_resultado_aprendizaje")})
-    @ManyToOne(optional = false)
-    private ActividadAprendizajeHasResultadoAprendizaje actividadAprendizajeHasResultadoAprendizaje;
 
     public Evento() {
     }
@@ -163,14 +156,6 @@ public class Evento implements Serializable {
 
     public void setIdFicha(Ficha idFicha) {
         this.idFicha = idFicha;
-    }
-
-    public ActividadAprendizajeHasResultadoAprendizaje getActividadAprendizajeHasResultadoAprendizaje() {
-        return actividadAprendizajeHasResultadoAprendizaje;
-    }
-
-    public void setActividadAprendizajeHasResultadoAprendizaje(ActividadAprendizajeHasResultadoAprendizaje actividadAprendizajeHasResultadoAprendizaje) {
-        this.actividadAprendizajeHasResultadoAprendizaje = actividadAprendizajeHasResultadoAprendizaje;
     }
 
     @Override

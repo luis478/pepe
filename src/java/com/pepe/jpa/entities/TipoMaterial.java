@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package com.pepe.jpa.entities;
 
 import java.io.Serializable;
@@ -15,6 +14,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Lob;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
@@ -26,15 +26,14 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author Windows 8
+ * @author Luis Carlos
  */
 @Entity
 @Table(name = "tipo_material")
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "TipoMaterial.findAll", query = "SELECT t FROM TipoMaterial t"),
-    @NamedQuery(name = "TipoMaterial.findByIdTipoMaterial", query = "SELECT t FROM TipoMaterial t WHERE t.idTipoMaterial = :idTipoMaterial"),
-    @NamedQuery(name = "TipoMaterial.findByNombreTipoMaterial", query = "SELECT t FROM TipoMaterial t WHERE t.nombreTipoMaterial = :nombreTipoMaterial")})
+    @NamedQuery(name = "TipoMaterial.findByIdTipoMaterial", query = "SELECT t FROM TipoMaterial t WHERE t.idTipoMaterial = :idTipoMaterial")})
 public class TipoMaterial implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
@@ -44,7 +43,8 @@ public class TipoMaterial implements Serializable {
     private Integer idTipoMaterial;
     @Basic(optional = false)
     @NotNull
-    @Size(min = 1, max = 45)
+    @Lob
+    @Size(min = 1, max = 65535)
     @Column(name = "nombre_tipo_material")
     private String nombreTipoMaterial;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "tipoMaterial")

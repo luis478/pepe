@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package com.pepe.jpa.entities;
 
 import java.io.Serializable;
@@ -15,6 +14,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Lob;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
@@ -26,25 +26,25 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author Windows 8
+ * @author Luis Carlos
  */
 @Entity
 @Table(name = "rubro_presupuestal")
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "RubroPresupuestal.findAll", query = "SELECT r FROM RubroPresupuestal r"),
-    @NamedQuery(name = "RubroPresupuestal.findByIdrubroPresupuestal", query = "SELECT r FROM RubroPresupuestal r WHERE r.idrubroPresupuestal = :idrubroPresupuestal"),
-    @NamedQuery(name = "RubroPresupuestal.findByNombreRubroPresupuestal", query = "SELECT r FROM RubroPresupuestal r WHERE r.nombreRubroPresupuestal = :nombreRubroPresupuestal")})
+    @NamedQuery(name = "RubroPresupuestal.findByIdRubroPresupuestal", query = "SELECT r FROM RubroPresupuestal r WHERE r.idRubroPresupuestal = :idRubroPresupuestal")})
 public class RubroPresupuestal implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
-    @Column(name = "idrubro_presupuestal")
-    private Integer idrubroPresupuestal;
+    @Column(name = "id_rubro_presupuestal")
+    private Integer idRubroPresupuestal;
     @Basic(optional = false)
     @NotNull
-    @Size(min = 1, max = 45)
+    @Lob
+    @Size(min = 1, max = 65535)
     @Column(name = "nombre_rubro_presupuestal")
     private String nombreRubroPresupuestal;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "rubroPresupuestal")
@@ -53,21 +53,21 @@ public class RubroPresupuestal implements Serializable {
     public RubroPresupuestal() {
     }
 
-    public RubroPresupuestal(Integer idrubroPresupuestal) {
-        this.idrubroPresupuestal = idrubroPresupuestal;
+    public RubroPresupuestal(Integer idRubroPresupuestal) {
+        this.idRubroPresupuestal = idRubroPresupuestal;
     }
 
-    public RubroPresupuestal(Integer idrubroPresupuestal, String nombreRubroPresupuestal) {
-        this.idrubroPresupuestal = idrubroPresupuestal;
+    public RubroPresupuestal(Integer idRubroPresupuestal, String nombreRubroPresupuestal) {
+        this.idRubroPresupuestal = idRubroPresupuestal;
         this.nombreRubroPresupuestal = nombreRubroPresupuestal;
     }
 
-    public Integer getIdrubroPresupuestal() {
-        return idrubroPresupuestal;
+    public Integer getIdRubroPresupuestal() {
+        return idRubroPresupuestal;
     }
 
-    public void setIdrubroPresupuestal(Integer idrubroPresupuestal) {
-        this.idrubroPresupuestal = idrubroPresupuestal;
+    public void setIdRubroPresupuestal(Integer idRubroPresupuestal) {
+        this.idRubroPresupuestal = idRubroPresupuestal;
     }
 
     public String getNombreRubroPresupuestal() {
@@ -90,7 +90,7 @@ public class RubroPresupuestal implements Serializable {
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (idrubroPresupuestal != null ? idrubroPresupuestal.hashCode() : 0);
+        hash += (idRubroPresupuestal != null ? idRubroPresupuestal.hashCode() : 0);
         return hash;
     }
 
@@ -101,7 +101,7 @@ public class RubroPresupuestal implements Serializable {
             return false;
         }
         RubroPresupuestal other = (RubroPresupuestal) object;
-        if ((this.idrubroPresupuestal == null && other.idrubroPresupuestal != null) || (this.idrubroPresupuestal != null && !this.idrubroPresupuestal.equals(other.idrubroPresupuestal))) {
+        if ((this.idRubroPresupuestal == null && other.idRubroPresupuestal != null) || (this.idRubroPresupuestal != null && !this.idRubroPresupuestal.equals(other.idRubroPresupuestal))) {
             return false;
         }
         return true;
@@ -109,7 +109,7 @@ public class RubroPresupuestal implements Serializable {
 
     @Override
     public String toString() {
-        return "com.pepe.jpa.entities.RubroPresupuestal[ idrubroPresupuestal=" + idrubroPresupuestal + " ]";
+        return "com.pepe.jpa.entities.RubroPresupuestal[ idRubroPresupuestal=" + idRubroPresupuestal + " ]";
     }
     
 }

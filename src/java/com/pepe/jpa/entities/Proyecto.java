@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package com.pepe.jpa.entities;
 
 import java.io.Serializable;
@@ -28,7 +27,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author Windows 8
+ * @author Luis Carlos
  */
 @Entity
 @Table(name = "proyecto")
@@ -36,7 +35,6 @@ import javax.xml.bind.annotation.XmlTransient;
 @NamedQueries({
     @NamedQuery(name = "Proyecto.findAll", query = "SELECT p FROM Proyecto p"),
     @NamedQuery(name = "Proyecto.findByIdProyecto", query = "SELECT p FROM Proyecto p WHERE p.idProyecto = :idProyecto"),
-    @NamedQuery(name = "Proyecto.findByNombreProyecto", query = "SELECT p FROM Proyecto p WHERE p.nombreProyecto = :nombreProyecto"),
     @NamedQuery(name = "Proyecto.findByCodigoProyecto", query = "SELECT p FROM Proyecto p WHERE p.codigoProyecto = :codigoProyecto"),
     @NamedQuery(name = "Proyecto.findByInnovacion261", query = "SELECT p FROM Proyecto p WHERE p.innovacion261 = :innovacion261"),
     @NamedQuery(name = "Proyecto.findByInnovacion262", query = "SELECT p FROM Proyecto p WHERE p.innovacion262 = :innovacion262"),
@@ -56,7 +54,8 @@ public class Proyecto implements Serializable {
     private Integer idProyecto;
     @Basic(optional = false)
     @NotNull
-    @Size(min = 1, max = 45)
+    @Lob
+    @Size(min = 1, max = 65535)
     @Column(name = "nombre_proyecto")
     private String nombreProyecto;
     @Basic(optional = false)
@@ -158,7 +157,7 @@ public class Proyecto implements Serializable {
     private List<Empresa> empresaList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idProyecto")
     private List<VisitaTecnica> visitaTecnicaList;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "proyectoIdProyecto")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idProyecto")
     private List<Actividad> actividadList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idProyecto")
     private List<Revision> revisionList;

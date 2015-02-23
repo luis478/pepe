@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package com.pepe.jpa.entities;
 
 import java.io.Serializable;
@@ -27,7 +26,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author Windows 8
+ * @author Luis Carlos
  */
 @Entity
 @Table(name = "recurso")
@@ -46,9 +45,9 @@ public class Recurso implements Serializable {
     private List<ActividadAprendizaje> actividadAprendizajeList;
     @ManyToMany(mappedBy = "recursoList")
     private List<AmbienteFormacion> ambienteFormacionList;
-    @JoinColumn(name = "actividad_id_actividad", referencedColumnName = "id_actividad")
+    @JoinColumn(name = "id_actividad", referencedColumnName = "id_actividad")
     @ManyToOne(optional = false)
-    private Actividad actividadIdActividad;
+    private Actividad idActividad;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "recurso")
     private List<RecursoHasMaterial> recursoHasMaterialList;
 
@@ -85,12 +84,12 @@ public class Recurso implements Serializable {
         this.ambienteFormacionList = ambienteFormacionList;
     }
 
-    public Actividad getActividadIdActividad() {
-        return actividadIdActividad;
+    public Actividad getIdActividad() {
+        return idActividad;
     }
 
-    public void setActividadIdActividad(Actividad actividadIdActividad) {
-        this.actividadIdActividad = actividadIdActividad;
+    public void setIdActividad(Actividad idActividad) {
+        this.idActividad = idActividad;
     }
 
     @XmlTransient

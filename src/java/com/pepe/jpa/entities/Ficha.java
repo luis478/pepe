@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package com.pepe.jpa.entities;
 
 import java.io.Serializable;
@@ -34,7 +33,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author Windows 8
+ * @author Luis Carlos
  */
 @Entity
 @Table(name = "ficha")
@@ -76,37 +75,34 @@ public class Ficha implements Serializable {
         @JoinColumn(name = "id_trimestre", referencedColumnName = "id_trimestre")})
     @ManyToMany
     private List<Trimestre> trimestreList;
-    @JoinTable(name = "usuario_has_ficha", joinColumns = {
-        @JoinColumn(name = "id_ficha", referencedColumnName = "id_ficha")}, inverseJoinColumns = {
-        @JoinColumn(name = "id_usuario", referencedColumnName = "id_usuario")})
-    @ManyToMany
-    private List<Usuario> usuarioList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idFicha")
     private List<Evento> eventoList;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "ficha")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idFicha")
     private List<Aspectos> aspectosList;
     @JoinColumn(name = "id_centro_formacion", referencedColumnName = "id_centro_formacion")
     @ManyToOne(optional = false)
     private CentroFormacion idCentroFormacion;
-    @JoinColumn(name = "id_tipo_oferta", referencedColumnName = "id_tipo_oferta")
-    @ManyToOne(optional = false)
-    private TipoOferta idTipoOferta;
     @JoinColumn(name = "id_jornada", referencedColumnName = "id_jornada")
     @ManyToOne(optional = false)
     private Jornada idJornada;
     @JoinColumns({
-        @JoinColumn(name = "Programa_Codigo", referencedColumnName = "codigo"),
+        @JoinColumn(name = "programa_codigo", referencedColumnName = "codigo"),
         @JoinColumn(name = "programa_version", referencedColumnName = "version")})
     @ManyToOne(optional = false)
     private Programa programa;
     @JoinColumn(name = "id_tipo_formacion", referencedColumnName = "id_tipo_formacion")
     @ManyToOne(optional = false)
     private TipoFormacion idTipoFormacion;
+    @JoinColumn(name = "id_tipo_oferta", referencedColumnName = "id_tipo_oferta")
+    @ManyToOne(optional = false)
+    private TipoOferta idTipoOferta;
     @JoinColumn(name = "id_proyecto", referencedColumnName = "id_proyecto")
     @ManyToOne
     private Proyecto idProyecto;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idFicha")
     private List<Acompanamiento> acompanamientoList;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "ficha")
+    private List<UsuarioHasFicha> usuarioHasFichaList;
 
     public Ficha() {
     }
@@ -173,15 +169,6 @@ public class Ficha implements Serializable {
     }
 
     @XmlTransient
-    public List<Usuario> getUsuarioList() {
-        return usuarioList;
-    }
-
-    public void setUsuarioList(List<Usuario> usuarioList) {
-        this.usuarioList = usuarioList;
-    }
-
-    @XmlTransient
     public List<Evento> getEventoList() {
         return eventoList;
     }
@@ -205,14 +192,6 @@ public class Ficha implements Serializable {
 
     public void setIdCentroFormacion(CentroFormacion idCentroFormacion) {
         this.idCentroFormacion = idCentroFormacion;
-    }
-
-    public TipoOferta getIdTipoOferta() {
-        return idTipoOferta;
-    }
-
-    public void setIdTipoOferta(TipoOferta idTipoOferta) {
-        this.idTipoOferta = idTipoOferta;
     }
 
     public Jornada getIdJornada() {
@@ -239,6 +218,14 @@ public class Ficha implements Serializable {
         this.idTipoFormacion = idTipoFormacion;
     }
 
+    public TipoOferta getIdTipoOferta() {
+        return idTipoOferta;
+    }
+
+    public void setIdTipoOferta(TipoOferta idTipoOferta) {
+        this.idTipoOferta = idTipoOferta;
+    }
+
     public Proyecto getIdProyecto() {
         return idProyecto;
     }
@@ -254,6 +241,15 @@ public class Ficha implements Serializable {
 
     public void setAcompanamientoList(List<Acompanamiento> acompanamientoList) {
         this.acompanamientoList = acompanamientoList;
+    }
+
+    @XmlTransient
+    public List<UsuarioHasFicha> getUsuarioHasFichaList() {
+        return usuarioHasFichaList;
+    }
+
+    public void setUsuarioHasFichaList(List<UsuarioHasFicha> usuarioHasFichaList) {
+        this.usuarioHasFichaList = usuarioHasFichaList;
     }
 
     @Override

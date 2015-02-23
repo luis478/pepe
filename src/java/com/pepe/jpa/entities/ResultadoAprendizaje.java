@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package com.pepe.jpa.entities;
 
 import java.io.Serializable;
@@ -30,7 +29,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author Windows 8
+ * @author Luis Carlos
  */
 @Entity
 @Table(name = "resultado_aprendizaje")
@@ -57,17 +56,17 @@ public class ResultadoAprendizaje implements Serializable {
     @Column(name = "estado")
     private short estado;
     @ManyToMany(mappedBy = "resultadoAprendizajeList")
+    private List<ActividadAprendizaje> actividadAprendizajeList;
+    @ManyToMany(mappedBy = "resultadoAprendizajeList")
     private List<Evento> eventoList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "resultadoAprendizaje")
-    private List<ActividadAprendizajeHasResultadoAprendizaje> actividadAprendizajeHasResultadoAprendizajeList;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "resultadoAprendizaje")
     private List<ActividadHasResultadoAprendizaje> actividadHasResultadoAprendizajeList;
-    @JoinColumn(name = "id_tipo_resultado_aprendizaje", referencedColumnName = "id_tipo_resultado_aprendizaje")
-    @ManyToOne(optional = false)
-    private TipoResultadoAprendizaje idTipoResultadoAprendizaje;
     @JoinColumn(name = "id_competencia", referencedColumnName = "id_competencia")
     @ManyToOne(optional = false)
     private Competencia idCompetencia;
+    @JoinColumn(name = "id_tipo_resultado_aprendizaje", referencedColumnName = "id_tipo_resultado_aprendizaje")
+    @ManyToOne(optional = false)
+    private TipoResultadoAprendizaje idTipoResultadoAprendizaje;
     @JoinColumn(name = "id_usuario", referencedColumnName = "id_usuario")
     @ManyToOne(optional = false)
     private Usuario idUsuario;
@@ -110,21 +109,21 @@ public class ResultadoAprendizaje implements Serializable {
     }
 
     @XmlTransient
+    public List<ActividadAprendizaje> getActividadAprendizajeList() {
+        return actividadAprendizajeList;
+    }
+
+    public void setActividadAprendizajeList(List<ActividadAprendizaje> actividadAprendizajeList) {
+        this.actividadAprendizajeList = actividadAprendizajeList;
+    }
+
+    @XmlTransient
     public List<Evento> getEventoList() {
         return eventoList;
     }
 
     public void setEventoList(List<Evento> eventoList) {
         this.eventoList = eventoList;
-    }
-
-    @XmlTransient
-    public List<ActividadAprendizajeHasResultadoAprendizaje> getActividadAprendizajeHasResultadoAprendizajeList() {
-        return actividadAprendizajeHasResultadoAprendizajeList;
-    }
-
-    public void setActividadAprendizajeHasResultadoAprendizajeList(List<ActividadAprendizajeHasResultadoAprendizaje> actividadAprendizajeHasResultadoAprendizajeList) {
-        this.actividadAprendizajeHasResultadoAprendizajeList = actividadAprendizajeHasResultadoAprendizajeList;
     }
 
     @XmlTransient
@@ -136,20 +135,20 @@ public class ResultadoAprendizaje implements Serializable {
         this.actividadHasResultadoAprendizajeList = actividadHasResultadoAprendizajeList;
     }
 
-    public TipoResultadoAprendizaje getIdTipoResultadoAprendizaje() {
-        return idTipoResultadoAprendizaje;
-    }
-
-    public void setIdTipoResultadoAprendizaje(TipoResultadoAprendizaje idTipoResultadoAprendizaje) {
-        this.idTipoResultadoAprendizaje = idTipoResultadoAprendizaje;
-    }
-
     public Competencia getIdCompetencia() {
         return idCompetencia;
     }
 
     public void setIdCompetencia(Competencia idCompetencia) {
         this.idCompetencia = idCompetencia;
+    }
+
+    public TipoResultadoAprendizaje getIdTipoResultadoAprendizaje() {
+        return idTipoResultadoAprendizaje;
+    }
+
+    public void setIdTipoResultadoAprendizaje(TipoResultadoAprendizaje idTipoResultadoAprendizaje) {
+        this.idTipoResultadoAprendizaje = idTipoResultadoAprendizaje;
     }
 
     public Usuario getIdUsuario() {

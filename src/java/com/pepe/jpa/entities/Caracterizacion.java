@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package com.pepe.jpa.entities;
 
 import java.io.Serializable;
@@ -14,6 +13,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Lob;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
@@ -25,7 +25,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author Windows 8
+ * @author Luis Carlos
  */
 @Entity
 @Table(name = "caracterizacion")
@@ -36,8 +36,7 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Caracterizacion.findByAcudiente", query = "SELECT c FROM Caracterizacion c WHERE c.acudiente = :acudiente"),
     @NamedQuery(name = "Caracterizacion.findByTelefono", query = "SELECT c FROM Caracterizacion c WHERE c.telefono = :telefono"),
     @NamedQuery(name = "Caracterizacion.findByDireccion", query = "SELECT c FROM Caracterizacion c WHERE c.direccion = :direccion"),
-    @NamedQuery(name = "Caracterizacion.findBySistemaLidereazgo", query = "SELECT c FROM Caracterizacion c WHERE c.sistemaLidereazgo = :sistemaLidereazgo"),
-    @NamedQuery(name = "Caracterizacion.findByApoyoBienestar", query = "SELECT c FROM Caracterizacion c WHERE c.apoyoBienestar = :apoyoBienestar")})
+    @NamedQuery(name = "Caracterizacion.findBySistemaLiderazgo", query = "SELECT c FROM Caracterizacion c WHERE c.sistemaLiderazgo = :sistemaLiderazgo")})
 public class Caracterizacion implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
@@ -47,7 +46,7 @@ public class Caracterizacion implements Serializable {
     private Integer idCaracterizacion;
     @Basic(optional = false)
     @NotNull
-    @Size(min = 1, max = 45)
+    @Size(min = 1, max = 80)
     @Column(name = "acudiente")
     private String acudiente;
     @Basic(optional = false)
@@ -60,14 +59,11 @@ public class Caracterizacion implements Serializable {
     @Size(min = 1, max = 45)
     @Column(name = "direccion")
     private String direccion;
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 45)
-    @Column(name = "sistema_lidereazgo")
-    private String sistemaLidereazgo;
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 45)
+    @Size(max = 80)
+    @Column(name = "sistema_liderazgo")
+    private String sistemaLiderazgo;
+    @Lob
+    @Size(max = 65535)
     @Column(name = "apoyo_bienestar")
     private String apoyoBienestar;
     @OneToMany(mappedBy = "idCaracterizacion")
@@ -80,13 +76,11 @@ public class Caracterizacion implements Serializable {
         this.idCaracterizacion = idCaracterizacion;
     }
 
-    public Caracterizacion(Integer idCaracterizacion, String acudiente, String telefono, String direccion, String sistemaLidereazgo, String apoyoBienestar) {
+    public Caracterizacion(Integer idCaracterizacion, String acudiente, String telefono, String direccion) {
         this.idCaracterizacion = idCaracterizacion;
         this.acudiente = acudiente;
         this.telefono = telefono;
         this.direccion = direccion;
-        this.sistemaLidereazgo = sistemaLidereazgo;
-        this.apoyoBienestar = apoyoBienestar;
     }
 
     public Integer getIdCaracterizacion() {
@@ -121,12 +115,12 @@ public class Caracterizacion implements Serializable {
         this.direccion = direccion;
     }
 
-    public String getSistemaLidereazgo() {
-        return sistemaLidereazgo;
+    public String getSistemaLiderazgo() {
+        return sistemaLiderazgo;
     }
 
-    public void setSistemaLidereazgo(String sistemaLidereazgo) {
-        this.sistemaLidereazgo = sistemaLidereazgo;
+    public void setSistemaLiderazgo(String sistemaLiderazgo) {
+        this.sistemaLiderazgo = sistemaLiderazgo;
     }
 
     public String getApoyoBienestar() {
