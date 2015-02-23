@@ -26,7 +26,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author Windows 8
+ * @author ADSI TARDE
  */
 @Entity
 @Table(name = "fase")
@@ -47,12 +47,12 @@ public class Fase implements Serializable {
     @Size(min = 1, max = 45)
     @Column(name = "fase")
     private String fase;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idFase")
-    private List<Acompanamiento> acompanamientoList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "fase")
     private List<EvaluacionSeguimiento> evaluacionSeguimientoList;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "faseIdFase")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idFase")
     private List<ActividadHasResultadoAprendizaje> actividadHasResultadoAprendizajeList;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idFase")
+    private List<Acompanamiento> acompanamientoList;
 
     public Fase() {
     }
@@ -83,15 +83,6 @@ public class Fase implements Serializable {
     }
 
     @XmlTransient
-    public List<Acompanamiento> getAcompanamientoList() {
-        return acompanamientoList;
-    }
-
-    public void setAcompanamientoList(List<Acompanamiento> acompanamientoList) {
-        this.acompanamientoList = acompanamientoList;
-    }
-
-    @XmlTransient
     public List<EvaluacionSeguimiento> getEvaluacionSeguimientoList() {
         return evaluacionSeguimientoList;
     }
@@ -107,6 +98,15 @@ public class Fase implements Serializable {
 
     public void setActividadHasResultadoAprendizajeList(List<ActividadHasResultadoAprendizaje> actividadHasResultadoAprendizajeList) {
         this.actividadHasResultadoAprendizajeList = actividadHasResultadoAprendizajeList;
+    }
+
+    @XmlTransient
+    public List<Acompanamiento> getAcompanamientoList() {
+        return acompanamientoList;
+    }
+
+    public void setAcompanamientoList(List<Acompanamiento> acompanamientoList) {
+        this.acompanamientoList = acompanamientoList;
     }
 
     @Override

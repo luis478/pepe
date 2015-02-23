@@ -7,6 +7,7 @@
 package com.pepe.jpa.entities;
 
 import java.io.Serializable;
+import java.util.Date;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -19,13 +20,15 @@ import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author Windows 8
+ * @author ADSI TARDE
  */
 @Entity
 @Table(name = "visita_tecnica")
@@ -34,8 +37,7 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "VisitaTecnica.findAll", query = "SELECT v FROM VisitaTecnica v"),
     @NamedQuery(name = "VisitaTecnica.findByIdVisitaTecnica", query = "SELECT v FROM VisitaTecnica v WHERE v.idVisitaTecnica = :idVisitaTecnica"),
     @NamedQuery(name = "VisitaTecnica.findByNombre", query = "SELECT v FROM VisitaTecnica v WHERE v.nombre = :nombre"),
-    @NamedQuery(name = "VisitaTecnica.findByFecha", query = "SELECT v FROM VisitaTecnica v WHERE v.fecha = :fecha"),
-    @NamedQuery(name = "VisitaTecnica.findByCiudad", query = "SELECT v FROM VisitaTecnica v WHERE v.ciudad = :ciudad")})
+    @NamedQuery(name = "VisitaTecnica.findByFecha", query = "SELECT v FROM VisitaTecnica v WHERE v.fecha = :fecha")})
 public class VisitaTecnica implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
@@ -45,19 +47,14 @@ public class VisitaTecnica implements Serializable {
     private Integer idVisitaTecnica;
     @Basic(optional = false)
     @NotNull
-    @Size(min = 1, max = 45)
+    @Size(min = 1, max = 80)
     @Column(name = "nombre")
     private String nombre;
     @Basic(optional = false)
     @NotNull
-    @Size(min = 1, max = 45)
     @Column(name = "fecha")
-    private String fecha;
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 45)
-    @Column(name = "ciudad")
-    private String ciudad;
+    @Temporal(TemporalType.DATE)
+    private Date fecha;
     @JoinColumn(name = "id_proyecto", referencedColumnName = "id_proyecto")
     @ManyToOne(optional = false)
     private Proyecto idProyecto;
@@ -65,7 +62,7 @@ public class VisitaTecnica implements Serializable {
         @JoinColumn(name = "id_ciudad", referencedColumnName = "id_ciudad"),
         @JoinColumn(name = "id_departamento", referencedColumnName = "id_departamento")})
     @ManyToOne(optional = false)
-    private Ciudad ciudad1;
+    private Ciudad ciudad;
 
     public VisitaTecnica() {
     }
@@ -74,11 +71,10 @@ public class VisitaTecnica implements Serializable {
         this.idVisitaTecnica = idVisitaTecnica;
     }
 
-    public VisitaTecnica(Integer idVisitaTecnica, String nombre, String fecha, String ciudad) {
+    public VisitaTecnica(Integer idVisitaTecnica, String nombre, Date fecha) {
         this.idVisitaTecnica = idVisitaTecnica;
         this.nombre = nombre;
         this.fecha = fecha;
-        this.ciudad = ciudad;
     }
 
     public Integer getIdVisitaTecnica() {
@@ -97,20 +93,12 @@ public class VisitaTecnica implements Serializable {
         this.nombre = nombre;
     }
 
-    public String getFecha() {
+    public Date getFecha() {
         return fecha;
     }
 
-    public void setFecha(String fecha) {
+    public void setFecha(Date fecha) {
         this.fecha = fecha;
-    }
-
-    public String getCiudad() {
-        return ciudad;
-    }
-
-    public void setCiudad(String ciudad) {
-        this.ciudad = ciudad;
     }
 
     public Proyecto getIdProyecto() {
@@ -121,12 +109,12 @@ public class VisitaTecnica implements Serializable {
         this.idProyecto = idProyecto;
     }
 
-    public Ciudad getCiudad1() {
-        return ciudad1;
+    public Ciudad getCiudad() {
+        return ciudad;
     }
 
-    public void setCiudad1(Ciudad ciudad1) {
-        this.ciudad1 = ciudad1;
+    public void setCiudad(Ciudad ciudad) {
+        this.ciudad = ciudad;
     }
 
     @Override

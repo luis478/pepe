@@ -25,7 +25,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author Windows 8
+ * @author ADSI TARDE
  */
 @Entity
 @Table(name = "especialidad")
@@ -43,7 +43,7 @@ public class Especialidad implements Serializable {
     private Integer idEspecialidad;
     @Basic(optional = false)
     @NotNull
-    @Size(min = 1, max = 45)
+    @Size(min = 1, max = 80)
     @Column(name = "nombre_especialidad")
     private String nombreEspecialidad;
     @OneToMany(mappedBy = "idEspecialidad")

@@ -13,7 +13,7 @@ import javax.persistence.PersistenceContext;
 
 /**
  *
- * @author Windows 8
+ * @author ADSI TARDE
  */
 @Stateless
 public class EpsFacade extends AbstractFacade<Eps> {

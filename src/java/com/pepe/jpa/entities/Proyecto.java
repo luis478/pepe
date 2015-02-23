@@ -28,7 +28,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author Windows 8
+ * @author ADSI TARDE
  */
 @Entity
 @Table(name = "proyecto")
@@ -36,7 +36,6 @@ import javax.xml.bind.annotation.XmlTransient;
 @NamedQueries({
     @NamedQuery(name = "Proyecto.findAll", query = "SELECT p FROM Proyecto p"),
     @NamedQuery(name = "Proyecto.findByIdProyecto", query = "SELECT p FROM Proyecto p WHERE p.idProyecto = :idProyecto"),
-    @NamedQuery(name = "Proyecto.findByNombreProyecto", query = "SELECT p FROM Proyecto p WHERE p.nombreProyecto = :nombreProyecto"),
     @NamedQuery(name = "Proyecto.findByCodigoProyecto", query = "SELECT p FROM Proyecto p WHERE p.codigoProyecto = :codigoProyecto"),
     @NamedQuery(name = "Proyecto.findByInnovacion261", query = "SELECT p FROM Proyecto p WHERE p.innovacion261 = :innovacion261"),
     @NamedQuery(name = "Proyecto.findByInnovacion262", query = "SELECT p FROM Proyecto p WHERE p.innovacion262 = :innovacion262"),
@@ -56,7 +55,8 @@ public class Proyecto implements Serializable {
     private Integer idProyecto;
     @Basic(optional = false)
     @NotNull
-    @Size(min = 1, max = 45)
+    @Lob
+    @Size(min = 1, max = 65535)
     @Column(name = "nombre_proyecto")
     private String nombreProyecto;
     @Basic(optional = false)
@@ -156,18 +156,18 @@ public class Proyecto implements Serializable {
     private String descripcionAmbiente;
     @ManyToMany(mappedBy = "proyectoList")
     private List<Empresa> empresaList;
+    @OneToMany(mappedBy = "idProyecto")
+    private List<Ficha> fichaList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idProyecto")
-    private List<VisitaTecnica> visitaTecnicaList;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "proyectoIdProyecto")
     private List<Actividad> actividadList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idProyecto")
     private List<Revision> revisionList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idProyecto")
-    private List<Verificacion> verificacionList;
-    @OneToMany(mappedBy = "idProyecto")
-    private List<Ficha> fichaList;
+    private List<VisitaTecnica> visitaTecnicaList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idProyecto")
     private List<GuiaAprendizaje> guiaAprendizajeList;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idProyecto")
+    private List<Verificacion> verificacionList;
 
     public Proyecto() {
     }
@@ -378,12 +378,12 @@ public class Proyecto implements Serializable {
     }
 
     @XmlTransient
-    public List<VisitaTecnica> getVisitaTecnicaList() {
-        return visitaTecnicaList;
+    public List<Ficha> getFichaList() {
+        return fichaList;
     }
 
-    public void setVisitaTecnicaList(List<VisitaTecnica> visitaTecnicaList) {
-        this.visitaTecnicaList = visitaTecnicaList;
+    public void setFichaList(List<Ficha> fichaList) {
+        this.fichaList = fichaList;
     }
 
     @XmlTransient
@@ -405,21 +405,12 @@ public class Proyecto implements Serializable {
     }
 
     @XmlTransient
-    public List<Verificacion> getVerificacionList() {
-        return verificacionList;
+    public List<VisitaTecnica> getVisitaTecnicaList() {
+        return visitaTecnicaList;
     }
 
-    public void setVerificacionList(List<Verificacion> verificacionList) {
-        this.verificacionList = verificacionList;
-    }
-
-    @XmlTransient
-    public List<Ficha> getFichaList() {
-        return fichaList;
-    }
-
-    public void setFichaList(List<Ficha> fichaList) {
-        this.fichaList = fichaList;
+    public void setVisitaTecnicaList(List<VisitaTecnica> visitaTecnicaList) {
+        this.visitaTecnicaList = visitaTecnicaList;
     }
 
     @XmlTransient
@@ -429,6 +420,15 @@ public class Proyecto implements Serializable {
 
     public void setGuiaAprendizajeList(List<GuiaAprendizaje> guiaAprendizajeList) {
         this.guiaAprendizajeList = guiaAprendizajeList;
+    }
+
+    @XmlTransient
+    public List<Verificacion> getVerificacionList() {
+        return verificacionList;
+    }
+
+    public void setVerificacionList(List<Verificacion> verificacionList) {
+        this.verificacionList = verificacionList;
     }
 
     @Override

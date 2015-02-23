@@ -22,7 +22,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author Windows 8
+ * @author ADSI TARDE
  */
 @Entity
 @Table(name = "tipo_material_has_rubro_presupuestal")
@@ -44,7 +44,7 @@ public class TipoMaterialHasRubroPresupuestal implements Serializable {
     @JoinColumn(name = "id_tipo_material", referencedColumnName = "id_tipo_material", insertable = false, updatable = false)
     @ManyToOne(optional = false)
     private TipoMaterial tipoMaterial;
-    @JoinColumn(name = "id_rubro_presupuestal", referencedColumnName = "idrubro_presupuestal", insertable = false, updatable = false)
+    @JoinColumn(name = "id_rubro_presupuestal", referencedColumnName = "id_rubro_presupuestal", insertable = false, updatable = false)
     @ManyToOne(optional = false)
     private RubroPresupuestal rubroPresupuestal;
 

@@ -18,7 +18,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author Windows 8
+ * @author ADSI TARDE
  */
 @Entity
 @Table(name = "actividad_has_resultado_aprendizaje")
@@ -31,15 +31,15 @@ public class ActividadHasResultadoAprendizaje implements Serializable {
     private static final long serialVersionUID = 1L;
     @EmbeddedId
     protected ActividadHasResultadoAprendizajePK actividadHasResultadoAprendizajePK;
-    @JoinColumn(name = "id_actividad", referencedColumnName = "id_actividad", insertable = false, updatable = false)
-    @ManyToOne(optional = false)
-    private Actividad actividad;
     @JoinColumn(name = "id_resultado_aprendizaje", referencedColumnName = "id_resultado_aprendizaje", insertable = false, updatable = false)
     @ManyToOne(optional = false)
     private ResultadoAprendizaje resultadoAprendizaje;
-    @JoinColumn(name = "fase_id_fase", referencedColumnName = "id_fase")
+    @JoinColumn(name = "id_fase", referencedColumnName = "id_fase")
     @ManyToOne(optional = false)
-    private Fase faseIdFase;
+    private Fase idFase;
+    @JoinColumn(name = "id_actividad", referencedColumnName = "id_actividad", insertable = false, updatable = false)
+    @ManyToOne(optional = false)
+    private Actividad actividad;
 
     public ActividadHasResultadoAprendizaje() {
     }
@@ -60,14 +60,6 @@ public class ActividadHasResultadoAprendizaje implements Serializable {
         this.actividadHasResultadoAprendizajePK = actividadHasResultadoAprendizajePK;
     }
 
-    public Actividad getActividad() {
-        return actividad;
-    }
-
-    public void setActividad(Actividad actividad) {
-        this.actividad = actividad;
-    }
-
     public ResultadoAprendizaje getResultadoAprendizaje() {
         return resultadoAprendizaje;
     }
@@ -76,12 +68,20 @@ public class ActividadHasResultadoAprendizaje implements Serializable {
         this.resultadoAprendizaje = resultadoAprendizaje;
     }
 
-    public Fase getFaseIdFase() {
-        return faseIdFase;
+    public Fase getIdFase() {
+        return idFase;
     }
 
-    public void setFaseIdFase(Fase faseIdFase) {
-        this.faseIdFase = faseIdFase;
+    public void setIdFase(Fase idFase) {
+        this.idFase = idFase;
+    }
+
+    public Actividad getActividad() {
+        return actividad;
+    }
+
+    public void setActividad(Actividad actividad) {
+        this.actividad = actividad;
     }
 
     @Override

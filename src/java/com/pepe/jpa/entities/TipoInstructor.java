@@ -9,6 +9,7 @@ package com.pepe.jpa.entities;
 import java.io.Serializable;
 import java.util.List;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -25,7 +26,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author Windows 8
+ * @author ADSI TARDE
  */
 @Entity
 @Table(name = "tipo_instructor")
@@ -43,11 +44,11 @@ public class TipoInstructor implements Serializable {
     private Integer idTipoInstructor;
     @Basic(optional = false)
     @NotNull
-    @Size(min = 1, max = 45)
+    @Size(min = 1, max = 60)
     @Column(name = "nombre_tipo_instructor")
     private String nombreTipoInstructor;
-    @OneToMany(mappedBy = "idTipoInstructor")
-    private List<Usuario> usuarioList;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idTipoInstructor")
+    private List<UsuarioHasFicha> usuarioHasFichaList;
 
     public TipoInstructor() {
     }
@@ -78,12 +79,12 @@ public class TipoInstructor implements Serializable {
     }
 
     @XmlTransient
-    public List<Usuario> getUsuarioList() {
-        return usuarioList;
+    public List<UsuarioHasFicha> getUsuarioHasFichaList() {
+        return usuarioHasFichaList;
     }
 
-    public void setUsuarioList(List<Usuario> usuarioList) {
-        this.usuarioList = usuarioList;
+    public void setUsuarioHasFichaList(List<UsuarioHasFicha> usuarioHasFichaList) {
+        this.usuarioHasFichaList = usuarioHasFichaList;
     }
 
     @Override

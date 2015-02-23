@@ -23,7 +23,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author Windows 8
+ * @author ADSI TARDE
  */
 @Entity
 @Table(name = "actividad_aprendizaje_has_guia_aprendizaje")
@@ -42,12 +42,12 @@ public class ActividadAprendizajeHasGuiaAprendizaje implements Serializable {
     @Size(min = 1, max = 65535)
     @Column(name = "observacion")
     private String observacion;
-    @JoinColumn(name = "id_actividad_aprendizaje", referencedColumnName = "id_actividad_aprendizaje", insertable = false, updatable = false)
-    @ManyToOne(optional = false)
-    private ActividadAprendizaje actividadAprendizaje;
     @JoinColumn(name = "id_guia_aprendizaje", referencedColumnName = "id_guia_aprendizaje", insertable = false, updatable = false)
     @ManyToOne(optional = false)
     private GuiaAprendizaje guiaAprendizaje;
+    @JoinColumn(name = "id_actividad_aprendizaje", referencedColumnName = "id_actividad_aprendizaje", insertable = false, updatable = false)
+    @ManyToOne(optional = false)
+    private ActividadAprendizaje actividadAprendizaje;
 
     public ActividadAprendizajeHasGuiaAprendizaje() {
     }
@@ -81,20 +81,20 @@ public class ActividadAprendizajeHasGuiaAprendizaje implements Serializable {
         this.observacion = observacion;
     }
 
-    public ActividadAprendizaje getActividadAprendizaje() {
-        return actividadAprendizaje;
-    }
-
-    public void setActividadAprendizaje(ActividadAprendizaje actividadAprendizaje) {
-        this.actividadAprendizaje = actividadAprendizaje;
-    }
-
     public GuiaAprendizaje getGuiaAprendizaje() {
         return guiaAprendizaje;
     }
 
     public void setGuiaAprendizaje(GuiaAprendizaje guiaAprendizaje) {
         this.guiaAprendizaje = guiaAprendizaje;
+    }
+
+    public ActividadAprendizaje getActividadAprendizaje() {
+        return actividadAprendizaje;
+    }
+
+    public void setActividadAprendizaje(ActividadAprendizaje actividadAprendizaje) {
+        this.actividadAprendizaje = actividadAprendizaje;
     }
 
     @Override

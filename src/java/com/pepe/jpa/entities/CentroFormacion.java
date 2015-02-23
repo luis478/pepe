@@ -18,6 +18,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinColumns;
 import javax.persistence.JoinTable;
+import javax.persistence.Lob;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
@@ -31,7 +32,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author Windows 8
+ * @author ADSI TARDE
  */
 @Entity
 @Table(name = "centro_formacion")
@@ -39,7 +40,6 @@ import javax.xml.bind.annotation.XmlTransient;
 @NamedQueries({
     @NamedQuery(name = "CentroFormacion.findAll", query = "SELECT c FROM CentroFormacion c"),
     @NamedQuery(name = "CentroFormacion.findByIdCentroFormacion", query = "SELECT c FROM CentroFormacion c WHERE c.idCentroFormacion = :idCentroFormacion"),
-    @NamedQuery(name = "CentroFormacion.findByNombreCentroFormacion", query = "SELECT c FROM CentroFormacion c WHERE c.nombreCentroFormacion = :nombreCentroFormacion"),
     @NamedQuery(name = "CentroFormacion.findByCodigoCentroFormacion", query = "SELECT c FROM CentroFormacion c WHERE c.codigoCentroFormacion = :codigoCentroFormacion")})
 public class CentroFormacion implements Serializable {
     private static final long serialVersionUID = 1L;
@@ -50,7 +50,8 @@ public class CentroFormacion implements Serializable {
     private Integer idCentroFormacion;
     @Basic(optional = false)
     @NotNull
-    @Size(min = 1, max = 45)
+    @Lob
+    @Size(min = 1, max = 65535)
     @Column(name = "nombre_centro_formacion")
     private String nombreCentroFormacion;
     @Basic(optional = false)
@@ -63,6 +64,8 @@ public class CentroFormacion implements Serializable {
         @JoinColumn(name = "id_usuario", referencedColumnName = "id_usuario")})
     @ManyToMany
     private List<Usuario> usuarioList;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idCentroFormacion")
+    private List<Ficha> fichaList;
     @JoinColumn(name = "id_regional", referencedColumnName = "id_regional")
     @ManyToOne(optional = false)
     private Regional idRegional;
@@ -71,8 +74,6 @@ public class CentroFormacion implements Serializable {
         @JoinColumn(name = "id_departamento", referencedColumnName = "id_departamento")})
     @ManyToOne(optional = false)
     private Ciudad ciudad;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idCentroFormacion")
-    private List<Ficha> fichaList;
 
     public CentroFormacion() {
     }
@@ -120,6 +121,15 @@ public class CentroFormacion implements Serializable {
         this.usuarioList = usuarioList;
     }
 
+    @XmlTransient
+    public List<Ficha> getFichaList() {
+        return fichaList;
+    }
+
+    public void setFichaList(List<Ficha> fichaList) {
+        this.fichaList = fichaList;
+    }
+
     public Regional getIdRegional() {
         return idRegional;
     }
@@ -134,15 +144,6 @@ public class CentroFormacion implements Serializable {
 
     public void setCiudad(Ciudad ciudad) {
         this.ciudad = ciudad;
-    }
-
-    @XmlTransient
-    public List<Ficha> getFichaList() {
-        return fichaList;
-    }
-
-    public void setFichaList(List<Ficha> fichaList) {
-        this.fichaList = fichaList;
     }
 
     @Override

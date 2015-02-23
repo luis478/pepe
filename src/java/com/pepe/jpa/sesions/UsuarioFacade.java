@@ -16,7 +16,7 @@ import javax.persistence.Query;
 
 /**
  *
- * @author Windows 8
+ * @author ADSI TARDE
  */
 @Stateless
 public class UsuarioFacade extends AbstractFacade<Usuario> {
@@ -32,6 +32,7 @@ public class UsuarioFacade extends AbstractFacade<Usuario> {
         super(Usuario.class);
     }
     
+    
     public Usuario findByDocumento(String numero_documento) {
         Query q = getEntityManager().createNamedQuery("Usuario.findByNumeroDocumento");
         q.setParameter("numeroDocumento", numero_documento);
@@ -43,4 +44,5 @@ public class UsuarioFacade extends AbstractFacade<Usuario> {
             return null;
         }
     }
+    
 }

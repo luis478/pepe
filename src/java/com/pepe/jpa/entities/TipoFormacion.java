@@ -26,7 +26,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author Windows 8
+ * @author ADSI TARDE
  */
 @Entity
 @Table(name = "tipo_formacion")
@@ -48,9 +48,9 @@ public class TipoFormacion implements Serializable {
     @Column(name = "tipo_formacion")
     private String tipoFormacion;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idTipoFormacion")
-    private List<Programa> programaList;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idTipoFormacion")
     private List<Ficha> fichaList;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idTipoFormacion")
+    private List<Programa> programaList;
 
     public TipoFormacion() {
     }
@@ -81,21 +81,21 @@ public class TipoFormacion implements Serializable {
     }
 
     @XmlTransient
-    public List<Programa> getProgramaList() {
-        return programaList;
-    }
-
-    public void setProgramaList(List<Programa> programaList) {
-        this.programaList = programaList;
-    }
-
-    @XmlTransient
     public List<Ficha> getFichaList() {
         return fichaList;
     }
 
     public void setFichaList(List<Ficha> fichaList) {
         this.fichaList = fichaList;
+    }
+
+    @XmlTransient
+    public List<Programa> getProgramaList() {
+        return programaList;
+    }
+
+    public void setProgramaList(List<Programa> programaList) {
+        this.programaList = programaList;
     }
 
     @Override

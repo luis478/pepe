@@ -27,7 +27,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author Windows 8
+ * @author ADSI TARDE
  */
 @Entity
 @Table(name = "recurso")
@@ -43,12 +43,12 @@ public class Recurso implements Serializable {
     @Column(name = "id_recurso")
     private Integer idRecurso;
     @ManyToMany(mappedBy = "recursoList")
-    private List<ActividadAprendizaje> actividadAprendizajeList;
-    @ManyToMany(mappedBy = "recursoList")
     private List<AmbienteFormacion> ambienteFormacionList;
-    @JoinColumn(name = "actividad_id_actividad", referencedColumnName = "id_actividad")
+    @ManyToMany(mappedBy = "recursoList")
+    private List<ActividadAprendizaje> actividadAprendizajeList;
+    @JoinColumn(name = "id_actividad", referencedColumnName = "id_actividad")
     @ManyToOne(optional = false)
-    private Actividad actividadIdActividad;
+    private Actividad idActividad;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "recurso")
     private List<RecursoHasMaterial> recursoHasMaterialList;
 
@@ -68,15 +68,6 @@ public class Recurso implements Serializable {
     }
 
     @XmlTransient
-    public List<ActividadAprendizaje> getActividadAprendizajeList() {
-        return actividadAprendizajeList;
-    }
-
-    public void setActividadAprendizajeList(List<ActividadAprendizaje> actividadAprendizajeList) {
-        this.actividadAprendizajeList = actividadAprendizajeList;
-    }
-
-    @XmlTransient
     public List<AmbienteFormacion> getAmbienteFormacionList() {
         return ambienteFormacionList;
     }
@@ -85,12 +76,21 @@ public class Recurso implements Serializable {
         this.ambienteFormacionList = ambienteFormacionList;
     }
 
-    public Actividad getActividadIdActividad() {
-        return actividadIdActividad;
+    @XmlTransient
+    public List<ActividadAprendizaje> getActividadAprendizajeList() {
+        return actividadAprendizajeList;
     }
 
-    public void setActividadIdActividad(Actividad actividadIdActividad) {
-        this.actividadIdActividad = actividadIdActividad;
+    public void setActividadAprendizajeList(List<ActividadAprendizaje> actividadAprendizajeList) {
+        this.actividadAprendizajeList = actividadAprendizajeList;
+    }
+
+    public Actividad getIdActividad() {
+        return idActividad;
+    }
+
+    public void setIdActividad(Actividad idActividad) {
+        this.idActividad = idActividad;
     }
 
     @XmlTransient

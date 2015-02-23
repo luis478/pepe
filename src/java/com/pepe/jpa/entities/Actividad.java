@@ -16,6 +16,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
@@ -28,7 +29,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author Windows 8
+ * @author ADSI TARDE
  */
 @Entity
 @Table(name = "actividad")
@@ -37,9 +38,7 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Actividad.findAll", query = "SELECT a FROM Actividad a"),
     @NamedQuery(name = "Actividad.findByIdActividad", query = "SELECT a FROM Actividad a WHERE a.idActividad = :idActividad"),
     @NamedQuery(name = "Actividad.findByIdFase", query = "SELECT a FROM Actividad a WHERE a.idFase = :idFase"),
-    @NamedQuery(name = "Actividad.findByNombreActividad", query = "SELECT a FROM Actividad a WHERE a.nombreActividad = :nombreActividad"),
-    @NamedQuery(name = "Actividad.findByDuracion", query = "SELECT a FROM Actividad a WHERE a.duracion = :duracion"),
-    @NamedQuery(name = "Actividad.findByIdProyecto", query = "SELECT a FROM Actividad a WHERE a.idProyecto = :idProyecto")})
+    @NamedQuery(name = "Actividad.findByDuracion", query = "SELECT a FROM Actividad a WHERE a.duracion = :duracion")})
 public class Actividad implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
@@ -53,26 +52,23 @@ public class Actividad implements Serializable {
     private int idFase;
     @Basic(optional = false)
     @NotNull
-    @Size(min = 1, max = 45)
+    @Lob
+    @Size(min = 1, max = 65535)
     @Column(name = "nombre_actividad")
     private String nombreActividad;
     @Basic(optional = false)
     @NotNull
     @Column(name = "duracion")
     private int duracion;
-    @Basic(optional = false)
-    @NotNull
-    @Column(name = "id_proyecto")
-    private int idProyecto;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idActividad")
-    private List<ActividadAprendizaje> actividadAprendizajeList;
-    @JoinColumn(name = "proyecto_id_proyecto", referencedColumnName = "id_proyecto")
+    @JoinColumn(name = "id_proyecto", referencedColumnName = "id_proyecto")
     @ManyToOne(optional = false)
-    private Proyecto proyectoIdProyecto;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "actividadIdActividad")
+    private Proyecto idProyecto;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idActividad")
     private List<Recurso> recursoList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "actividad")
     private List<ActividadHasResultadoAprendizaje> actividadHasResultadoAprendizajeList;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idActividad")
+    private List<ActividadAprendizaje> actividadAprendizajeList;
 
     public Actividad() {
     }
@@ -81,12 +77,11 @@ public class Actividad implements Serializable {
         this.idActividad = idActividad;
     }
 
-    public Actividad(Integer idActividad, int idFase, String nombreActividad, int duracion, int idProyecto) {
+    public Actividad(Integer idActividad, int idFase, String nombreActividad, int duracion) {
         this.idActividad = idActividad;
         this.idFase = idFase;
         this.nombreActividad = nombreActividad;
         this.duracion = duracion;
-        this.idProyecto = idProyecto;
     }
 
     public Integer getIdActividad() {
@@ -121,29 +116,12 @@ public class Actividad implements Serializable {
         this.duracion = duracion;
     }
 
-    public int getIdProyecto() {
+    public Proyecto getIdProyecto() {
         return idProyecto;
     }
 
-    public void setIdProyecto(int idProyecto) {
+    public void setIdProyecto(Proyecto idProyecto) {
         this.idProyecto = idProyecto;
-    }
-
-    @XmlTransient
-    public List<ActividadAprendizaje> getActividadAprendizajeList() {
-        return actividadAprendizajeList;
-    }
-
-    public void setActividadAprendizajeList(List<ActividadAprendizaje> actividadAprendizajeList) {
-        this.actividadAprendizajeList = actividadAprendizajeList;
-    }
-
-    public Proyecto getProyectoIdProyecto() {
-        return proyectoIdProyecto;
-    }
-
-    public void setProyectoIdProyecto(Proyecto proyectoIdProyecto) {
-        this.proyectoIdProyecto = proyectoIdProyecto;
     }
 
     @XmlTransient
@@ -162,6 +140,15 @@ public class Actividad implements Serializable {
 
     public void setActividadHasResultadoAprendizajeList(List<ActividadHasResultadoAprendizaje> actividadHasResultadoAprendizajeList) {
         this.actividadHasResultadoAprendizajeList = actividadHasResultadoAprendizajeList;
+    }
+
+    @XmlTransient
+    public List<ActividadAprendizaje> getActividadAprendizajeList() {
+        return actividadAprendizajeList;
+    }
+
+    public void setActividadAprendizajeList(List<ActividadAprendizaje> actividadAprendizajeList) {
+        this.actividadAprendizajeList = actividadAprendizajeList;
     }
 
     @Override
