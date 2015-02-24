@@ -50,6 +50,7 @@ public class ProgramaController implements Serializable {
     @EJB
     private ProgramaFacade programaFacade;
     private Programa programaActual = null;
+    private Programa programaVersion = null;
     private List<Programa> programas;
     @EJB
     private CompetenciaFacade competenciaFacade;
@@ -93,6 +94,14 @@ public class ProgramaController implements Serializable {
             programaActual.setProgramaPK(new ProgramaPK());
         }
         return programaActual;
+    }
+
+    public Programa getProgramaVersion() {
+        return programaVersion;
+    }
+
+    public void setProgramaVersion(Programa programaVersion) {
+        this.programaVersion = programaVersion;
     }
 
     public List<Programa> getProgramas() {
@@ -381,6 +390,12 @@ public class ProgramaController implements Serializable {
         }
     }
 
+    public void prepareCreate() {
+        programaVersion = getProgramaFacade().consultaCodigoVersion(programaActual.getProgramaPK().getCodigo(), programaActual.getProgramaPK().getVersion());
+        programaVersion.getProgramaPK().setVersion("");
+        programaVersion.getCompetenciaList().clear();
+    }
+
     public void anular() {
         programaActual = null;
         codigo = "";
@@ -439,8 +454,29 @@ public class ProgramaController implements Serializable {
         }
     }
 
+    public void validarVersionPrograma(FacesContext context, UIComponent component, Object v) throws ValidatorException {
+        List<Programa> pro = getProgramaFacade().consultaCodigo(programaActual.getProgramaPK().getCodigo());
+        Pattern pat = Pattern.compile("[0-9]{1,3}");
+        Matcher mat = pat.matcher((String) v);
+        if (mat.matches()) {
+            boolean b = false;
+            for (Programa programa : pro) {
+                if (((String) v).equals(programa.getProgramaPK().getVersion())) {
+                    b = true;
+                }
+            }
+            if (b) {
+                throw new ValidatorException(new FacesMessage(FacesMessage.SEVERITY_ERROR, "", "El numero de version ya fue ingresado"));
+            } else {
+                programaVersion.getProgramaPK().setVersion((String) v);
+            }
+        } else {
+            throw new ValidatorException(new FacesMessage(FacesMessage.SEVERITY_ERROR, "", "la version del programa se compone de 1-3 digitos numericos"));
+        }
+    }
+
     public List<Programa> getListaProgramas() {
-        return programas;
+        return getProgramaFacade().consultaCodigo(codigo);
     }
 
     public void crearPrograma() {
@@ -452,6 +488,26 @@ public class ProgramaController implements Serializable {
             programaActual.setIdTipoFormacion(getTipoFormacionFacade().find(idTipo));
             programaActual.setEstado((short) 1);
             getProgramaFacade().create(programaActual);
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    public void crearVersion() {
+        try {
+            programaVersion.setIdLineaTecnologica(getLineaTecnologicaFacade().find(idLinea));
+            programaVersion.setIdModalidadFormacion(getModalidadFormacionFacade().find(idModalidad));
+            programaVersion.setIdNivelFormacion(getNivelFormacionFacade().find(idNivel));
+            programaVersion.setIdPerfilEntrada(getPerfilEntradaFacade().find(idPerfil));
+            programaVersion.setIdTipoFormacion(getTipoFormacionFacade().find(idTipo));
+            getProgramaFacade().create(programaVersion);
+            for (Competencia c : programaActual.getCompetenciaList()) {
+                programaVersion.getCompetenciaList().add(c);
+            }
+            getProgramaFacade().edit(programaVersion);
+            anular();
+            programaActual = getProgramaFacade().consultaCodigoVersion(programaVersion.getProgramaPK().getCodigo(), programaVersion.getProgramaPK().getVersion());
+            programaVersion = null;
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }

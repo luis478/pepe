@@ -9,7 +9,7 @@
     <ui:composition template="templatePrograma.xhtml">
         <ui:define name="Contenido">
             <h:form id="competenciaForm">
-                <h1>#{programaController.programaActual.nombrePrograma}: Competencias</h1>
+                <h1>#{programaController.programaActual.programaPK.codigo} + #{programaController.programaActual.programaPK.version}: Competencias</h1>
                 <p:commandButton onclick="programaVerVentana.show()"
                                  value="ver programa"
                                  update=":programaVerVentanaForm"/>
@@ -62,9 +62,10 @@
                        jsf:actionListener="#{programaController.anular()}"
                        jsf:action="programaInicio.xhtml"
                        jsf:value="cambiar programa"/>
-                <input type="submit"
-                       jsf:actionListener="#{programaController.anular()}"
-                       jsf:value="nueva version"/>
+                <p:commandButton action="#{programaController.prepareCreate()}"
+                                 value="nueva version"
+                                 update=":programaVersionCrearVentanaForm"
+                                 onclick="programaVersionCrearVentana.show()"/>
             </h:form>
             <ui:include src="programaInfo/CCP/listaCCP.xhtml"/>
             <ui:include src="programaInfo/CCP/crearCCP.xhtml"/>            
@@ -77,6 +78,7 @@
             <ui:include src="programaInfo/CE/deshabilitarCE.xhtml"/>
             <ui:include src="programaInfo/RA/listaRA.xhtml"/>
             <ui:include src="programaVer.xhtml"/>
+            <ui:include src="programaVersion.xhtml"/>
         </ui:define>
     </ui:composition>
 </html>

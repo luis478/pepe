@@ -13,6 +13,7 @@ import javax.persistence.Column;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.Lob;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
@@ -65,7 +66,11 @@ public class Programa implements Serializable {
     @Size(min = 1, max = 2147483647)
     @Column(name = "justificacion")
     private String justificacion;
-    @ManyToMany(mappedBy = "programaList")
+    @JoinTable(name = "programa_has_competencia", joinColumns = {
+        @JoinColumn(name = "codigo", referencedColumnName = "codigo"),
+        @JoinColumn(name = "version", referencedColumnName = "version")}, inverseJoinColumns = {
+        @JoinColumn(name = "id_competencia", referencedColumnName = "id_competencia")})
+    @ManyToMany
     private List<Competencia> competenciaList;
     @JoinColumn(name = "id_linea_tecnologica", referencedColumnName = "id_linea_tecnologica")
     @ManyToOne(optional = false)

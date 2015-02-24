@@ -37,10 +37,10 @@
                    jsf:id="createIdVersion"
                    jsf:value="#{programaController.programaActual.programaPK.version}"
                    placeholder="numero de version"
-                   pattern="[0-9]{3}" 
+                   pattern="[0-9]{1,3}" 
                    maxlength="3"
                    jsf:validatorMessage="esta mal">
-                <f:validateRegex pattern="[0-9]{3}"/>
+                <f:validateRegex pattern="[0-9]{1,3}"/>
                 <f:ajax execute="createIdVersion"
                         render="msgcreateIdVersion"
                         event="blur"/>

@@ -9,36 +9,37 @@
     <ui:composition template="templatePrograma.xhtml">
         <ui:define name="Contenido">
             <h:form id="programaInicioForm">
-                <section id="sectionProgramaConsulta">
-                    <input type="text"
-                           jsf:id="idCodigo"
-                           jsf:value="#{programaController.codigo}"
-                           pattern="[0-9]{6}" 
-                           maxlength="6"
-                           jsf:validator="#{programaController.validarCodigoPrograma}">
-                        <f:validateRegex pattern="[0-9]{6}"/>
-                        <f:ajax execute="idCodigo"
-                                render="msgIdCodigo idVersion"
+                <section id="sectionProgramaConsulta" class="row">
+                    <p:autoComplete id="programa" 
+                                    forceSelection="true"
+                                    required="true"
+                                    placeholder="programa"
+                                    requiredMessage="se requiere un programa"
+                                    completeMethod="#{programaController.autoCompletarNombre}"
+                                    value="#{programaController.programaActual}"
+                                    var="pro" 
+                                    itemLabel="#{pro}" 
+                                    itemValue="#{pro}"
+                                    converter="programaController"
+                                    maxResults="5">
+                        <f:ajax execute="programa" 
+                                render="msgprograma"
                                 event="blur"/>
-                    </input>
-                    <h:message id="msgIdCodigo"
-                               for="idCodigo"
-                               styleClass="error"/>
-                    
-                    <p:selectOneMenu value="#{programaController.version}"
-                                     id="idVersion">
-                        <f:selectItems value="#{programaController.listaProgramas}"
-                                       var="pro"
-                                       itemValue="#{pro.programaPK.version}"/>
-                    </p:selectOneMenu>
-                    
-                    <input type="submit"
-                           jsf:action="#{programaController.programaConsulta()}"
-                           jsf:value="consulta"/>
-                    <p:commandButton onclick="programaCrearVentana.show()"
-                                     value="crear programa"
-                                     action="#{programaController.anular()}"
-                                     update=":programaCrearVentanaForm"/>
+                    </p:autoComplete>
+                    <h:message id="msgprograma" 
+                               for="programa"
+                               styleClass="error"/> 
+                    <section class="row">
+                        <input type="submit"
+                               class="button"
+                               jsf:action="#{programaController.programaConsulta()}"
+                               jsf:value="consulta"/>
+                        <p:commandButton onclick="programaCrearVentana.show()"
+                                         value="crear programa"
+                                         styleClass="button"
+                                         action="#{programaController.anular()}"
+                                         update=":programaCrearVentanaForm"/>
+                    </section>
                 </section>
 
             </h:form>
