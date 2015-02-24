@@ -32,9 +32,9 @@
                         </input>
                         <h:message id="introduccionMessage" for="introduccion" styleClass="error"/>
                         
-                         <h:outputLabel value="gloisario:" for="Glosario" />
+                         <h:outputLabel value="Glosario:" for="Glosario" />
                          <input jsf:id="Glosario" jsf:value="#{guiaAprendizajeController.guiaAprendizajeActual.glosarioTerminos}" 
-                                     type="text" required="true"
+                                     type="textArea" required="true"
                                      jsf:requiredMessage="Por favor ingrese el Glosario"
                                      jsf:validatorMessage="Use letras"> 
                               <f:validateRegex pattern="[a-zA-Z áéíóúÁÉÍÓÚÑñ]*"/>
@@ -44,7 +44,7 @@
                         
                         <h:outputLabel value="referentesBibliograficos:" for="Referentes" />
                         <input jsf:id="Referentes" jsf:value="#{guiaAprendizajeController.guiaAprendizajeActual.referentesBibliograficos}" 
-                                     type="text" required="true"
+                                     type="textArea" required="true"
                                      jsf:requiredMessage="Por favor ingrese los referentes "
                                      jsf:validatorMessage="Use letras"> 
                               <f:validateRegex pattern="[a-zA-Z áéíóúÁÉÍÓÚÑñ]*"/>
@@ -54,7 +54,7 @@
                         
                         <h:outputLabel value="Control Documentos:" for="control" />
                         <input jsf:id="control" jsf:value="#{guiaAprendizajeController.guiaAprendizajeActual.controlDocumento}" 
-                                     type="text" required="true"
+                                     type="textArea" required="true"
                                      jsf:requiredMessage="Por favor ingrese el control de documentos "
                                      jsf:validatorMessage="Use letras"> 
                               <f:validateRegex pattern="[a-zA-Z áéíóúÁÉÍÓÚÑñ]*"/>
