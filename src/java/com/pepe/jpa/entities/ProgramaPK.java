@@ -14,7 +14,7 @@ import javax.validation.constraints.Size;
 
 /**
  *
- * @author Windows 8
+ * @author ADSI TARDE
  */
 @Embeddable
 public class ProgramaPK implements Serializable {

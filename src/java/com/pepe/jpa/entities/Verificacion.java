@@ -25,7 +25,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author Windows 8
+ * @author ADSI TARDE
  */
 @Entity
 @Table(name = "verificacion")
@@ -60,12 +60,12 @@ public class Verificacion implements Serializable {
     @JoinColumn(name = "id_usuario", referencedColumnName = "id_usuario")
     @ManyToOne(optional = false)
     private Usuario idUsuario;
-    @JoinColumn(name = "id_ambiente_formacion", referencedColumnName = "id_ambiente_formacion")
-    @ManyToOne(optional = false)
-    private AmbienteFormacion idAmbienteFormacion;
     @JoinColumn(name = "id_proyecto", referencedColumnName = "id_proyecto")
     @ManyToOne(optional = false)
     private Proyecto idProyecto;
+    @JoinColumn(name = "id_ambiente_formacion", referencedColumnName = "id_ambiente_formacion")
+    @ManyToOne(optional = false)
+    private AmbienteFormacion idAmbienteFormacion;
 
     public Verificacion() {
     }
@@ -121,20 +121,20 @@ public class Verificacion implements Serializable {
         this.idUsuario = idUsuario;
     }
 
-    public AmbienteFormacion getIdAmbienteFormacion() {
-        return idAmbienteFormacion;
-    }
-
-    public void setIdAmbienteFormacion(AmbienteFormacion idAmbienteFormacion) {
-        this.idAmbienteFormacion = idAmbienteFormacion;
-    }
-
     public Proyecto getIdProyecto() {
         return idProyecto;
     }
 
     public void setIdProyecto(Proyecto idProyecto) {
         this.idProyecto = idProyecto;
+    }
+
+    public AmbienteFormacion getIdAmbienteFormacion() {
+        return idAmbienteFormacion;
+    }
+
+    public void setIdAmbienteFormacion(AmbienteFormacion idAmbienteFormacion) {
+        this.idAmbienteFormacion = idAmbienteFormacion;
     }
 
     @Override

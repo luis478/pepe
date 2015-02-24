@@ -16,6 +16,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
@@ -23,14 +24,13 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author Windows 8
+ * @author ADSI TARDE
  */
 @Entity
 @Table(name = "desercion")
@@ -38,7 +38,6 @@ import javax.xml.bind.annotation.XmlTransient;
 @NamedQueries({
     @NamedQuery(name = "Desercion.findAll", query = "SELECT d FROM Desercion d"),
     @NamedQuery(name = "Desercion.findByIdDesercion", query = "SELECT d FROM Desercion d WHERE d.idDesercion = :idDesercion"),
-    @NamedQuery(name = "Desercion.findByDesercion", query = "SELECT d FROM Desercion d WHERE d.desercion = :desercion"),
     @NamedQuery(name = "Desercion.findByFecha", query = "SELECT d FROM Desercion d WHERE d.fecha = :fecha")})
 public class Desercion implements Serializable {
     private static final long serialVersionUID = 1L;
@@ -47,36 +46,27 @@ public class Desercion implements Serializable {
     @Basic(optional = false)
     @Column(name = "id_desercion")
     private Integer idDesercion;
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 45)
-    @Column(name = "desercion")
-    private String desercion;
-    @Basic(optional = false)
-    @NotNull
+    @Lob
+    @Size(max = 65535)
+    @Column(name = "observacion")
+    private String observacion;
     @Column(name = "fecha")
     @Temporal(TemporalType.DATE)
     private Date fecha;
-    @OneToMany(mappedBy = "idDesercion")
-    private List<Usuario> usuarioList;
-    @JoinColumn(name = "id_estado", referencedColumnName = "id_estado")
-    @ManyToOne(optional = false)
-    private Estado idEstado;
     @JoinColumn(name = "id_motivo", referencedColumnName = "id_motivo")
     @ManyToOne(optional = false)
     private Motivo idMotivo;
+    @JoinColumn(name = "id_estado", referencedColumnName = "id_estado")
+    @ManyToOne(optional = false)
+    private Estado idEstado;
+    @OneToMany(mappedBy = "idDesercion")
+    private List<Usuario> usuarioList;
 
     public Desercion() {
     }
 
     public Desercion(Integer idDesercion) {
         this.idDesercion = idDesercion;
-    }
-
-    public Desercion(Integer idDesercion, String desercion, Date fecha) {
-        this.idDesercion = idDesercion;
-        this.desercion = desercion;
-        this.fecha = fecha;
     }
 
     public Integer getIdDesercion() {
@@ -87,12 +77,12 @@ public class Desercion implements Serializable {
         this.idDesercion = idDesercion;
     }
 
-    public String getDesercion() {
-        return desercion;
+    public String getObservacion() {
+        return observacion;
     }
 
-    public void setDesercion(String desercion) {
-        this.desercion = desercion;
+    public void setObservacion(String observacion) {
+        this.observacion = observacion;
     }
 
     public Date getFecha() {
@@ -103,13 +93,12 @@ public class Desercion implements Serializable {
         this.fecha = fecha;
     }
 
-    @XmlTransient
-    public List<Usuario> getUsuarioList() {
-        return usuarioList;
+    public Motivo getIdMotivo() {
+        return idMotivo;
     }
 
-    public void setUsuarioList(List<Usuario> usuarioList) {
-        this.usuarioList = usuarioList;
+    public void setIdMotivo(Motivo idMotivo) {
+        this.idMotivo = idMotivo;
     }
 
     public Estado getIdEstado() {
@@ -120,12 +109,13 @@ public class Desercion implements Serializable {
         this.idEstado = idEstado;
     }
 
-    public Motivo getIdMotivo() {
-        return idMotivo;
+    @XmlTransient
+    public List<Usuario> getUsuarioList() {
+        return usuarioList;
     }
 
-    public void setIdMotivo(Motivo idMotivo) {
-        this.idMotivo = idMotivo;
+    public void setUsuarioList(List<Usuario> usuarioList) {
+        this.usuarioList = usuarioList;
     }
 
     @Override

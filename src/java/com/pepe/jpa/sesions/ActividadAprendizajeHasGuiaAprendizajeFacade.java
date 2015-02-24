@@ -6,17 +6,17 @@
 
 package com.pepe.jpa.sesions;
 
-import com.pepe.jpa.entities.Participacion;
+import com.pepe.jpa.entities.ActividadAprendizajeHasGuiaAprendizaje;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
 /**
  *
- * @author Windows 8
+ * @author ADSI TARDE
  */
 @Stateless
-public class ParticipacionFacade extends AbstractFacade<Participacion> {
+public class ActividadAprendizajeHasGuiaAprendizajeFacade extends AbstractFacade<ActividadAprendizajeHasGuiaAprendizaje> {
     @PersistenceContext(unitName = "pepeAplicacionPU")
     private EntityManager em;
 
@@ -25,8 +25,8 @@ public class ParticipacionFacade extends AbstractFacade<Participacion> {
         return em;
     }
 
-    public ParticipacionFacade() {
-        super(Participacion.class);
+    public ActividadAprendizajeHasGuiaAprendizajeFacade() {
+        super(ActividadAprendizajeHasGuiaAprendizaje.class);
     }
     
 }

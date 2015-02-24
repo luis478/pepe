@@ -14,7 +14,7 @@ import javax.persistence.Query;
 
 /**
  *
- * @author Windows 8
+ * @author ADSI TARDE
  */
 @Stateless
 public class ProgramaFacade extends AbstractFacade<Programa> {
@@ -63,5 +63,12 @@ public class ProgramaFacade extends AbstractFacade<Programa> {
             System.out.println(e.getMessage());
             return null;
         }
+    }
+    
+
+    public List<Programa> finByNombre(String nombrePrograma) {
+        Query q = getEntityManager().createNamedQuery("Programa.findByNombrePrograma");
+        q.setParameter("nombrePrograma", nombrePrograma + "%");
+        return q.getResultList();
     }
 }

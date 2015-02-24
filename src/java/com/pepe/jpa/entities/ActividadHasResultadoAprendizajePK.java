@@ -14,33 +14,33 @@ import javax.validation.constraints.NotNull;
 
 /**
  *
- * @author Windows 8
+ * @author ADSI TARDE
  */
 @Embeddable
-public class ActividadAprendizajeHasResultadoAprendizajePK implements Serializable {
+public class ActividadHasResultadoAprendizajePK implements Serializable {
     @Basic(optional = false)
     @NotNull
-    @Column(name = "id_actividad_aprendizaje")
-    private int idActividadAprendizaje;
+    @Column(name = "id_actividad")
+    private int idActividad;
     @Basic(optional = false)
     @NotNull
     @Column(name = "id_resultado_aprendizaje")
     private int idResultadoAprendizaje;
 
-    public ActividadAprendizajeHasResultadoAprendizajePK() {
+    public ActividadHasResultadoAprendizajePK() {
     }
 
-    public ActividadAprendizajeHasResultadoAprendizajePK(int idActividadAprendizaje, int idResultadoAprendizaje) {
-        this.idActividadAprendizaje = idActividadAprendizaje;
+    public ActividadHasResultadoAprendizajePK(int idActividad, int idResultadoAprendizaje) {
+        this.idActividad = idActividad;
         this.idResultadoAprendizaje = idResultadoAprendizaje;
     }
 
-    public int getIdActividadAprendizaje() {
-        return idActividadAprendizaje;
+    public int getIdActividad() {
+        return idActividad;
     }
 
-    public void setIdActividadAprendizaje(int idActividadAprendizaje) {
-        this.idActividadAprendizaje = idActividadAprendizaje;
+    public void setIdActividad(int idActividad) {
+        this.idActividad = idActividad;
     }
 
     public int getIdResultadoAprendizaje() {
@@ -54,7 +54,7 @@ public class ActividadAprendizajeHasResultadoAprendizajePK implements Serializab
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (int) idActividadAprendizaje;
+        hash += (int) idActividad;
         hash += (int) idResultadoAprendizaje;
         return hash;
     }
@@ -62,11 +62,11 @@ public class ActividadAprendizajeHasResultadoAprendizajePK implements Serializab
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof ActividadAprendizajeHasResultadoAprendizajePK)) {
+        if (!(object instanceof ActividadHasResultadoAprendizajePK)) {
             return false;
         }
-        ActividadAprendizajeHasResultadoAprendizajePK other = (ActividadAprendizajeHasResultadoAprendizajePK) object;
-        if (this.idActividadAprendizaje != other.idActividadAprendizaje) {
+        ActividadHasResultadoAprendizajePK other = (ActividadHasResultadoAprendizajePK) object;
+        if (this.idActividad != other.idActividad) {
             return false;
         }
         if (this.idResultadoAprendizaje != other.idResultadoAprendizaje) {
@@ -77,7 +77,7 @@ public class ActividadAprendizajeHasResultadoAprendizajePK implements Serializab
 
     @Override
     public String toString() {
-        return "com.pepe.jpa.entities.ActividadAprendizajeHasResultadoAprendizajePK[ idActividadAprendizaje=" + idActividadAprendizaje + ", idResultadoAprendizaje=" + idResultadoAprendizaje + " ]";
+        return "com.pepe.jpa.entities.ActividadHasResultadoAprendizajePK[ idActividad=" + idActividad + ", idResultadoAprendizaje=" + idResultadoAprendizaje + " ]";
     }
     
 }

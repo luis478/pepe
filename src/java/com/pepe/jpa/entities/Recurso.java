@@ -27,7 +27,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author Windows 8
+ * @author ADSI TARDE
  */
 @Entity
 @Table(name = "recurso")
@@ -44,6 +44,8 @@ public class Recurso implements Serializable {
     private Integer idRecurso;
     @ManyToMany(mappedBy = "recursoList")
     private List<AmbienteFormacion> ambienteFormacionList;
+    @ManyToMany(mappedBy = "recursoList")
+    private List<ActividadAprendizaje> actividadAprendizajeList;
     @JoinColumn(name = "id_actividad", referencedColumnName = "id_actividad")
     @ManyToOne(optional = false)
     private Actividad idActividad;
@@ -72,6 +74,15 @@ public class Recurso implements Serializable {
 
     public void setAmbienteFormacionList(List<AmbienteFormacion> ambienteFormacionList) {
         this.ambienteFormacionList = ambienteFormacionList;
+    }
+
+    @XmlTransient
+    public List<ActividadAprendizaje> getActividadAprendizajeList() {
+        return actividadAprendizajeList;
+    }
+
+    public void setActividadAprendizajeList(List<ActividadAprendizaje> actividadAprendizajeList) {
+        this.actividadAprendizajeList = actividadAprendizajeList;
     }
 
     public Actividad getIdActividad() {

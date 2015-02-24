@@ -34,7 +34,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author Windows 8
+ * @author ADSI TARDE
  */
 @Entity
 @Table(name = "ficha")
@@ -76,35 +76,32 @@ public class Ficha implements Serializable {
         @JoinColumn(name = "id_trimestre", referencedColumnName = "id_trimestre")})
     @ManyToMany
     private List<Trimestre> trimestreList;
-    @JoinTable(name = "usuario_has_ficha", joinColumns = {
-        @JoinColumn(name = "id_ficha", referencedColumnName = "id_ficha")}, inverseJoinColumns = {
-        @JoinColumn(name = "id_usuario", referencedColumnName = "id_usuario")})
-    @ManyToMany
-    private List<Usuario> usuarioList;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idFicha")
-    private List<Evento> eventoList;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "ficha")
-    private List<Aspectos> aspectosList;
-    @JoinColumn(name = "id_centro_formacion", referencedColumnName = "id_centro_formacion")
-    @ManyToOne(optional = false)
-    private CentroFormacion idCentroFormacion;
     @JoinColumn(name = "id_tipo_oferta", referencedColumnName = "id_tipo_oferta")
     @ManyToOne(optional = false)
     private TipoOferta idTipoOferta;
-    @JoinColumn(name = "id_jornada", referencedColumnName = "id_jornada")
-    @ManyToOne(optional = false)
-    private Jornada idJornada;
-    @JoinColumns({
-        @JoinColumn(name = "Programa_Codigo", referencedColumnName = "codigo"),
-        @JoinColumn(name = "programa_version", referencedColumnName = "version")})
-    @ManyToOne(optional = false)
-    private Programa programa;
     @JoinColumn(name = "id_tipo_formacion", referencedColumnName = "id_tipo_formacion")
     @ManyToOne(optional = false)
     private TipoFormacion idTipoFormacion;
     @JoinColumn(name = "id_proyecto", referencedColumnName = "id_proyecto")
     @ManyToOne
     private Proyecto idProyecto;
+    @JoinColumns({
+        @JoinColumn(name = "programa_codigo", referencedColumnName = "codigo"),
+        @JoinColumn(name = "programa_version", referencedColumnName = "version")})
+    @ManyToOne(optional = false)
+    private Programa programa;
+    @JoinColumn(name = "id_jornada", referencedColumnName = "id_jornada")
+    @ManyToOne(optional = false)
+    private Jornada idJornada;
+    @JoinColumn(name = "id_centro_formacion", referencedColumnName = "id_centro_formacion")
+    @ManyToOne(optional = false)
+    private CentroFormacion idCentroFormacion;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "ficha")
+    private List<Aspectos> aspectosList;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "ficha")
+    private List<UsuarioHasFicha> usuarioHasFichaList;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idFicha")
+    private List<Evento> eventoList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idFicha")
     private List<Acompanamiento> acompanamientoList;
 
@@ -172,63 +169,12 @@ public class Ficha implements Serializable {
         this.trimestreList = trimestreList;
     }
 
-    @XmlTransient
-    public List<Usuario> getUsuarioList() {
-        return usuarioList;
-    }
-
-    public void setUsuarioList(List<Usuario> usuarioList) {
-        this.usuarioList = usuarioList;
-    }
-
-    @XmlTransient
-    public List<Evento> getEventoList() {
-        return eventoList;
-    }
-
-    public void setEventoList(List<Evento> eventoList) {
-        this.eventoList = eventoList;
-    }
-
-    @XmlTransient
-    public List<Aspectos> getAspectosList() {
-        return aspectosList;
-    }
-
-    public void setAspectosList(List<Aspectos> aspectosList) {
-        this.aspectosList = aspectosList;
-    }
-
-    public CentroFormacion getIdCentroFormacion() {
-        return idCentroFormacion;
-    }
-
-    public void setIdCentroFormacion(CentroFormacion idCentroFormacion) {
-        this.idCentroFormacion = idCentroFormacion;
-    }
-
     public TipoOferta getIdTipoOferta() {
         return idTipoOferta;
     }
 
     public void setIdTipoOferta(TipoOferta idTipoOferta) {
         this.idTipoOferta = idTipoOferta;
-    }
-
-    public Jornada getIdJornada() {
-        return idJornada;
-    }
-
-    public void setIdJornada(Jornada idJornada) {
-        this.idJornada = idJornada;
-    }
-
-    public Programa getPrograma() {
-        return programa;
-    }
-
-    public void setPrograma(Programa programa) {
-        this.programa = programa;
     }
 
     public TipoFormacion getIdTipoFormacion() {
@@ -245,6 +191,57 @@ public class Ficha implements Serializable {
 
     public void setIdProyecto(Proyecto idProyecto) {
         this.idProyecto = idProyecto;
+    }
+
+    public Programa getPrograma() {
+        return programa;
+    }
+
+    public void setPrograma(Programa programa) {
+        this.programa = programa;
+    }
+
+    public Jornada getIdJornada() {
+        return idJornada;
+    }
+
+    public void setIdJornada(Jornada idJornada) {
+        this.idJornada = idJornada;
+    }
+
+    public CentroFormacion getIdCentroFormacion() {
+        return idCentroFormacion;
+    }
+
+    public void setIdCentroFormacion(CentroFormacion idCentroFormacion) {
+        this.idCentroFormacion = idCentroFormacion;
+    }
+
+    @XmlTransient
+    public List<Aspectos> getAspectosList() {
+        return aspectosList;
+    }
+
+    public void setAspectosList(List<Aspectos> aspectosList) {
+        this.aspectosList = aspectosList;
+    }
+
+    @XmlTransient
+    public List<UsuarioHasFicha> getUsuarioHasFichaList() {
+        return usuarioHasFichaList;
+    }
+
+    public void setUsuarioHasFichaList(List<UsuarioHasFicha> usuarioHasFichaList) {
+        this.usuarioHasFichaList = usuarioHasFichaList;
+    }
+
+    @XmlTransient
+    public List<Evento> getEventoList() {
+        return eventoList;
+    }
+
+    public void setEventoList(List<Evento> eventoList) {
+        this.eventoList = eventoList;
     }
 
     @XmlTransient
@@ -278,7 +275,7 @@ public class Ficha implements Serializable {
 
     @Override
     public String toString() {
-        return "com.pepe.jpa.entities.Ficha[ idFicha=" + idFicha + " ]";
+        return codigoFicha;
     }
     
 }

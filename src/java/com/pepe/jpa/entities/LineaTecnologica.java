@@ -16,6 +16,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
@@ -28,15 +29,14 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author Windows 8
+ * @author ADSI TARDE
  */
 @Entity
 @Table(name = "linea_tecnologica")
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "LineaTecnologica.findAll", query = "SELECT l FROM LineaTecnologica l"),
-    @NamedQuery(name = "LineaTecnologica.findByIdLineaTecnologica", query = "SELECT l FROM LineaTecnologica l WHERE l.idLineaTecnologica = :idLineaTecnologica"),
-    @NamedQuery(name = "LineaTecnologica.findByNombreLineaTecnologica", query = "SELECT l FROM LineaTecnologica l WHERE l.nombreLineaTecnologica = :nombreLineaTecnologica")})
+    @NamedQuery(name = "LineaTecnologica.findByIdLineaTecnologica", query = "SELECT l FROM LineaTecnologica l WHERE l.idLineaTecnologica = :idLineaTecnologica")})
 public class LineaTecnologica implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
@@ -46,7 +46,8 @@ public class LineaTecnologica implements Serializable {
     private Integer idLineaTecnologica;
     @Basic(optional = false)
     @NotNull
-    @Size(min = 1, max = 45)
+    @Lob
+    @Size(min = 1, max = 65535)
     @Column(name = "nombre_linea_tecnologica")
     private String nombreLineaTecnologica;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idLineaTecnologica")

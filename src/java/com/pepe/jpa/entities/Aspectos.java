@@ -27,7 +27,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author Windows 8
+ * @author ADSI TARDE
  */
 @Entity
 @Table(name = "aspectos")
@@ -36,7 +36,7 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Aspectos.findAll", query = "SELECT a FROM Aspectos a"),
     @NamedQuery(name = "Aspectos.findByIdAspectos", query = "SELECT a FROM Aspectos a WHERE a.aspectosPK.idAspectos = :idAspectos"),
     @NamedQuery(name = "Aspectos.findByCumple", query = "SELECT a FROM Aspectos a WHERE a.cumple = :cumple"),
-    @NamedQuery(name = "Aspectos.findByFichaIdFicha", query = "SELECT a FROM Aspectos a WHERE a.aspectosPK.fichaIdFicha = :fichaIdFicha")})
+    @NamedQuery(name = "Aspectos.findByIdFicha", query = "SELECT a FROM Aspectos a WHERE a.aspectosPK.idFicha = :idFicha")})
 public class Aspectos implements Serializable {
     private static final long serialVersionUID = 1L;
     @EmbeddedId
@@ -56,12 +56,12 @@ public class Aspectos implements Serializable {
     @Column(name = "observaciones_aspectos")
     private String observacionesAspectos;
     @JoinTable(name = "usuario_has_aspectos", joinColumns = {
-        @JoinColumn(name = "aspectos_id_aspectos", referencedColumnName = "id_aspectos"),
-        @JoinColumn(name = "aspectos_ficha_id_ficha", referencedColumnName = "ficha_id_ficha")}, inverseJoinColumns = {
-        @JoinColumn(name = "usuario_id_usuario", referencedColumnName = "id_usuario")})
+        @JoinColumn(name = "id_aspectos", referencedColumnName = "id_aspectos"),
+        @JoinColumn(name = "id_ficha", referencedColumnName = "id_ficha")}, inverseJoinColumns = {
+        @JoinColumn(name = "id_usuario", referencedColumnName = "id_usuario")})
     @ManyToMany
     private List<Usuario> usuarioList;
-    @JoinColumn(name = "ficha_id_ficha", referencedColumnName = "id_ficha", insertable = false, updatable = false)
+    @JoinColumn(name = "id_ficha", referencedColumnName = "id_ficha", insertable = false, updatable = false)
     @ManyToOne(optional = false)
     private Ficha ficha;
 
@@ -78,8 +78,8 @@ public class Aspectos implements Serializable {
         this.cumple = cumple;
     }
 
-    public Aspectos(int idAspectos, int fichaIdFicha) {
-        this.aspectosPK = new AspectosPK(idAspectos, fichaIdFicha);
+    public Aspectos(int idAspectos, int idFicha) {
+        this.aspectosPK = new AspectosPK(idAspectos, idFicha);
     }
 
     public AspectosPK getAspectosPK() {

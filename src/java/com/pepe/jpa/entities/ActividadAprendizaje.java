@@ -17,6 +17,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
+import javax.persistence.Lob;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
@@ -30,7 +31,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author Windows 8
+ * @author ADSI TARDE
  */
 @Entity
 @Table(name = "actividad_aprendizaje")
@@ -38,9 +39,7 @@ import javax.xml.bind.annotation.XmlTransient;
 @NamedQueries({
     @NamedQuery(name = "ActividadAprendizaje.findAll", query = "SELECT a FROM ActividadAprendizaje a"),
     @NamedQuery(name = "ActividadAprendizaje.findByIdActividadAprendizaje", query = "SELECT a FROM ActividadAprendizaje a WHERE a.idActividadAprendizaje = :idActividadAprendizaje"),
-    @NamedQuery(name = "ActividadAprendizaje.findByNombreActividadAprendizaje", query = "SELECT a FROM ActividadAprendizaje a WHERE a.nombreActividadAprendizaje = :nombreActividadAprendizaje"),
-    @NamedQuery(name = "ActividadAprendizaje.findByDuracionActividadAprendizaje", query = "SELECT a FROM ActividadAprendizaje a WHERE a.duracionActividadAprendizaje = :duracionActividadAprendizaje"),
-    @NamedQuery(name = "ActividadAprendizaje.findByObservaciones", query = "SELECT a FROM ActividadAprendizaje a WHERE a.observaciones = :observaciones")})
+    @NamedQuery(name = "ActividadAprendizaje.findByDuracionActividadAprendizaje", query = "SELECT a FROM ActividadAprendizaje a WHERE a.duracionActividadAprendizaje = :duracionActividadAprendizaje")})
 public class ActividadAprendizaje implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
@@ -50,7 +49,8 @@ public class ActividadAprendizaje implements Serializable {
     private Integer idActividadAprendizaje;
     @Basic(optional = false)
     @NotNull
-    @Size(min = 1, max = 45)
+    @Lob
+    @Size(min = 1, max = 65535)
     @Column(name = "nombre_actividad_aprendizaje")
     private String nombreActividadAprendizaje;
     @Basic(optional = false)
@@ -59,7 +59,8 @@ public class ActividadAprendizaje implements Serializable {
     private int duracionActividadAprendizaje;
     @Basic(optional = false)
     @NotNull
-    @Size(min = 1, max = 45)
+    @Lob
+    @Size(min = 1, max = 65535)
     @Column(name = "observaciones")
     private String observaciones;
     @JoinTable(name = "actividad_aprendizaje_has_usuario", joinColumns = {
@@ -67,19 +68,29 @@ public class ActividadAprendizaje implements Serializable {
         @JoinColumn(name = "id_usuario", referencedColumnName = "id_usuario")})
     @ManyToMany
     private List<Usuario> usuarioList;
-    @JoinColumn(name = "id_actividad", referencedColumnName = "id_actividad")
-    @ManyToOne(optional = false)
-    private Actividad idActividad;
-    @JoinColumn(name = "id_tecnica_didactica", referencedColumnName = "id_tecnica_didactica")
-    @ManyToOne(optional = false)
-    private TecnicaDidactica idTecnicaDidactica;
+    @JoinTable(name = "actividad_aprendizaje_has_recurso", joinColumns = {
+        @JoinColumn(name = "id_actividad_aprendizaje", referencedColumnName = "id_actividad_aprendizaje")}, inverseJoinColumns = {
+        @JoinColumn(name = "id_recurso", referencedColumnName = "id_recurso")})
+    @ManyToMany
+    private List<Recurso> recursoList;
+    @JoinTable(name = "actividad_aprendizaje_has_resultado_aprendizaje", joinColumns = {
+        @JoinColumn(name = "id_actividad_aprendizaje", referencedColumnName = "id_actividad_aprendizaje")}, inverseJoinColumns = {
+        @JoinColumn(name = "id_resultado_aprendizaje", referencedColumnName = "id_resultado_aprendizaje")})
+    @ManyToMany
+    private List<ResultadoAprendizaje> resultadoAprendizajeList;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idActividadAprendizaje")
+    private List<Evidencia> evidenciaList;
     @JoinColumn(name = "id_tipo_actividad_aprendizaje", referencedColumnName = "id_tipo_actividad_aprendizaje")
     @ManyToOne(optional = false)
     private TipoActividadAprendizaje idTipoActividadAprendizaje;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idActividadAprendizaje")
-    private List<Evidencia> evidenciaList;
+    @JoinColumn(name = "id_tecnica_didactica", referencedColumnName = "id_tecnica_didactica")
+    @ManyToOne(optional = false)
+    private TecnicaDidactica idTecnicaDidactica;
+    @JoinColumn(name = "id_actividad", referencedColumnName = "id_actividad")
+    @ManyToOne(optional = false)
+    private Actividad idActividad;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "actividadAprendizaje")
-    private List<ActividadAprendizajeHasResultadoAprendizaje> actividadAprendizajeHasResultadoAprendizajeList;
+    private List<ActividadAprendizajeHasGuiaAprendizaje> actividadAprendizajeHasGuiaAprendizajeList;
 
     public ActividadAprendizaje() {
     }
@@ -136,28 +147,22 @@ public class ActividadAprendizaje implements Serializable {
         this.usuarioList = usuarioList;
     }
 
-    public Actividad getIdActividad() {
-        return idActividad;
+    @XmlTransient
+    public List<Recurso> getRecursoList() {
+        return recursoList;
     }
 
-    public void setIdActividad(Actividad idActividad) {
-        this.idActividad = idActividad;
+    public void setRecursoList(List<Recurso> recursoList) {
+        this.recursoList = recursoList;
     }
 
-    public TecnicaDidactica getIdTecnicaDidactica() {
-        return idTecnicaDidactica;
+    @XmlTransient
+    public List<ResultadoAprendizaje> getResultadoAprendizajeList() {
+        return resultadoAprendizajeList;
     }
 
-    public void setIdTecnicaDidactica(TecnicaDidactica idTecnicaDidactica) {
-        this.idTecnicaDidactica = idTecnicaDidactica;
-    }
-
-    public TipoActividadAprendizaje getIdTipoActividadAprendizaje() {
-        return idTipoActividadAprendizaje;
-    }
-
-    public void setIdTipoActividadAprendizaje(TipoActividadAprendizaje idTipoActividadAprendizaje) {
-        this.idTipoActividadAprendizaje = idTipoActividadAprendizaje;
+    public void setResultadoAprendizajeList(List<ResultadoAprendizaje> resultadoAprendizajeList) {
+        this.resultadoAprendizajeList = resultadoAprendizajeList;
     }
 
     @XmlTransient
@@ -169,13 +174,37 @@ public class ActividadAprendizaje implements Serializable {
         this.evidenciaList = evidenciaList;
     }
 
-    @XmlTransient
-    public List<ActividadAprendizajeHasResultadoAprendizaje> getActividadAprendizajeHasResultadoAprendizajeList() {
-        return actividadAprendizajeHasResultadoAprendizajeList;
+    public TipoActividadAprendizaje getIdTipoActividadAprendizaje() {
+        return idTipoActividadAprendizaje;
     }
 
-    public void setActividadAprendizajeHasResultadoAprendizajeList(List<ActividadAprendizajeHasResultadoAprendizaje> actividadAprendizajeHasResultadoAprendizajeList) {
-        this.actividadAprendizajeHasResultadoAprendizajeList = actividadAprendizajeHasResultadoAprendizajeList;
+    public void setIdTipoActividadAprendizaje(TipoActividadAprendizaje idTipoActividadAprendizaje) {
+        this.idTipoActividadAprendizaje = idTipoActividadAprendizaje;
+    }
+
+    public TecnicaDidactica getIdTecnicaDidactica() {
+        return idTecnicaDidactica;
+    }
+
+    public void setIdTecnicaDidactica(TecnicaDidactica idTecnicaDidactica) {
+        this.idTecnicaDidactica = idTecnicaDidactica;
+    }
+
+    public Actividad getIdActividad() {
+        return idActividad;
+    }
+
+    public void setIdActividad(Actividad idActividad) {
+        this.idActividad = idActividad;
+    }
+
+    @XmlTransient
+    public List<ActividadAprendizajeHasGuiaAprendizaje> getActividadAprendizajeHasGuiaAprendizajeList() {
+        return actividadAprendizajeHasGuiaAprendizajeList;
+    }
+
+    public void setActividadAprendizajeHasGuiaAprendizajeList(List<ActividadAprendizajeHasGuiaAprendizaje> actividadAprendizajeHasGuiaAprendizajeList) {
+        this.actividadAprendizajeHasGuiaAprendizajeList = actividadAprendizajeHasGuiaAprendizajeList;
     }
 
     @Override

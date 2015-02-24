@@ -11,9 +11,12 @@ import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
-import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
@@ -26,30 +29,47 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author Windows 8
+ * @author ADSI TARDE
  */
 @Entity
 @Table(name = "guia_aprendizaje")
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "GuiaAprendizaje.findAll", query = "SELECT g FROM GuiaAprendizaje g"),
-    @NamedQuery(name = "GuiaAprendizaje.findByIdGuiaAprendizaje", query = "SELECT g FROM GuiaAprendizaje g WHERE g.guiaAprendizajePK.idGuiaAprendizaje = :idGuiaAprendizaje"),
-    @NamedQuery(name = "GuiaAprendizaje.findByIdFase", query = "SELECT g FROM GuiaAprendizaje g WHERE g.guiaAprendizajePK.idFase = :idFase"),
-    @NamedQuery(name = "GuiaAprendizaje.findByGuiaAprendizaje", query = "SELECT g FROM GuiaAprendizaje g WHERE g.guiaAprendizaje = :guiaAprendizaje")})
+    @NamedQuery(name = "GuiaAprendizaje.findByIdGuiaAprendizaje", query = "SELECT g FROM GuiaAprendizaje g WHERE g.idGuiaAprendizaje = :idGuiaAprendizaje")})
 public class GuiaAprendizaje implements Serializable {
     private static final long serialVersionUID = 1L;
-    @EmbeddedId
-    protected GuiaAprendizajePK guiaAprendizajePK;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Basic(optional = false)
+    @Column(name = "id_guia_aprendizaje")
+    private Integer idGuiaAprendizaje;
     @Basic(optional = false)
     @NotNull
-    @Size(min = 1, max = 45)
-    @Column(name = "guia_aprendizaje")
-    private String guiaAprendizaje;
+    @Lob
+    @Size(min = 1, max = 65535)
+    @Column(name = "introduccion")
+    private String introduccion;
+    @Basic(optional = false)
+    @NotNull
+    @Lob
+    @Size(min = 1, max = 65535)
+    @Column(name = "glosario_terminos")
+    private String glosarioTerminos;
+    @Basic(optional = false)
+    @NotNull
+    @Lob
+    @Size(min = 1, max = 65535)
+    @Column(name = "referentes_bibliograficos")
+    private String referentesBibliograficos;
+    @Basic(optional = false)
+    @NotNull
+    @Lob
+    @Size(min = 1, max = 65535)
+    @Column(name = "control_documento")
+    private String controlDocumento;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "guiaAprendizaje")
-    private List<Actividad> actividadList;
-    @JoinColumn(name = "id_fase1", referencedColumnName = "id_fase")
-    @ManyToOne(optional = false)
-    private Fase idFase1;
+    private List<ActividadAprendizajeHasGuiaAprendizaje> actividadAprendizajeHasGuiaAprendizajeList;
     @JoinColumn(name = "id_proyecto", referencedColumnName = "id_proyecto")
     @ManyToOne(optional = false)
     private Proyecto idProyecto;
@@ -57,50 +77,65 @@ public class GuiaAprendizaje implements Serializable {
     public GuiaAprendizaje() {
     }
 
-    public GuiaAprendizaje(GuiaAprendizajePK guiaAprendizajePK) {
-        this.guiaAprendizajePK = guiaAprendizajePK;
+    public GuiaAprendizaje(Integer idGuiaAprendizaje) {
+        this.idGuiaAprendizaje = idGuiaAprendizaje;
     }
 
-    public GuiaAprendizaje(GuiaAprendizajePK guiaAprendizajePK, String guiaAprendizaje) {
-        this.guiaAprendizajePK = guiaAprendizajePK;
-        this.guiaAprendizaje = guiaAprendizaje;
+    public GuiaAprendizaje(Integer idGuiaAprendizaje, String introduccion, String glosarioTerminos, String referentesBibliograficos, String controlDocumento) {
+        this.idGuiaAprendizaje = idGuiaAprendizaje;
+        this.introduccion = introduccion;
+        this.glosarioTerminos = glosarioTerminos;
+        this.referentesBibliograficos = referentesBibliograficos;
+        this.controlDocumento = controlDocumento;
     }
 
-    public GuiaAprendizaje(int idGuiaAprendizaje, int idFase) {
-        this.guiaAprendizajePK = new GuiaAprendizajePK(idGuiaAprendizaje, idFase);
+    public Integer getIdGuiaAprendizaje() {
+        return idGuiaAprendizaje;
     }
 
-    public GuiaAprendizajePK getGuiaAprendizajePK() {
-        return guiaAprendizajePK;
+    public void setIdGuiaAprendizaje(Integer idGuiaAprendizaje) {
+        this.idGuiaAprendizaje = idGuiaAprendizaje;
     }
 
-    public void setGuiaAprendizajePK(GuiaAprendizajePK guiaAprendizajePK) {
-        this.guiaAprendizajePK = guiaAprendizajePK;
+    public String getIntroduccion() {
+        return introduccion;
     }
 
-    public String getGuiaAprendizaje() {
-        return guiaAprendizaje;
+    public void setIntroduccion(String introduccion) {
+        this.introduccion = introduccion;
     }
 
-    public void setGuiaAprendizaje(String guiaAprendizaje) {
-        this.guiaAprendizaje = guiaAprendizaje;
+    public String getGlosarioTerminos() {
+        return glosarioTerminos;
+    }
+
+    public void setGlosarioTerminos(String glosarioTerminos) {
+        this.glosarioTerminos = glosarioTerminos;
+    }
+
+    public String getReferentesBibliograficos() {
+        return referentesBibliograficos;
+    }
+
+    public void setReferentesBibliograficos(String referentesBibliograficos) {
+        this.referentesBibliograficos = referentesBibliograficos;
+    }
+
+    public String getControlDocumento() {
+        return controlDocumento;
+    }
+
+    public void setControlDocumento(String controlDocumento) {
+        this.controlDocumento = controlDocumento;
     }
 
     @XmlTransient
-    public List<Actividad> getActividadList() {
-        return actividadList;
+    public List<ActividadAprendizajeHasGuiaAprendizaje> getActividadAprendizajeHasGuiaAprendizajeList() {
+        return actividadAprendizajeHasGuiaAprendizajeList;
     }
 
-    public void setActividadList(List<Actividad> actividadList) {
-        this.actividadList = actividadList;
-    }
-
-    public Fase getIdFase1() {
-        return idFase1;
-    }
-
-    public void setIdFase1(Fase idFase1) {
-        this.idFase1 = idFase1;
+    public void setActividadAprendizajeHasGuiaAprendizajeList(List<ActividadAprendizajeHasGuiaAprendizaje> actividadAprendizajeHasGuiaAprendizajeList) {
+        this.actividadAprendizajeHasGuiaAprendizajeList = actividadAprendizajeHasGuiaAprendizajeList;
     }
 
     public Proyecto getIdProyecto() {
@@ -114,7 +149,7 @@ public class GuiaAprendizaje implements Serializable {
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (guiaAprendizajePK != null ? guiaAprendizajePK.hashCode() : 0);
+        hash += (idGuiaAprendizaje != null ? idGuiaAprendizaje.hashCode() : 0);
         return hash;
     }
 
@@ -125,7 +160,7 @@ public class GuiaAprendizaje implements Serializable {
             return false;
         }
         GuiaAprendizaje other = (GuiaAprendizaje) object;
-        if ((this.guiaAprendizajePK == null && other.guiaAprendizajePK != null) || (this.guiaAprendizajePK != null && !this.guiaAprendizajePK.equals(other.guiaAprendizajePK))) {
+        if ((this.idGuiaAprendizaje == null && other.idGuiaAprendizaje != null) || (this.idGuiaAprendizaje != null && !this.idGuiaAprendizaje.equals(other.idGuiaAprendizaje))) {
             return false;
         }
         return true;
@@ -133,7 +168,7 @@ public class GuiaAprendizaje implements Serializable {
 
     @Override
     public String toString() {
-        return "com.pepe.jpa.entities.GuiaAprendizaje[ guiaAprendizajePK=" + guiaAprendizajePK + " ]";
+        return "com.pepe.jpa.entities.GuiaAprendizaje[ idGuiaAprendizaje=" + idGuiaAprendizaje + " ]";
     }
     
 }

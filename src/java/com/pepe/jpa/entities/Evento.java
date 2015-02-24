@@ -16,7 +16,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.JoinColumns;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
@@ -31,7 +30,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author Windows 8
+ * @author ADSI TARDE
  */
 @Entity
 @Table(name = "evento")
@@ -58,11 +57,6 @@ public class Evento implements Serializable {
     @Column(name = "fecha_fin")
     @Temporal(TemporalType.TIMESTAMP)
     private Date fechaFin;
-    @JoinTable(name = "evento_has_trimestre", joinColumns = {
-        @JoinColumn(name = "id_evento", referencedColumnName = "id_evento")}, inverseJoinColumns = {
-        @JoinColumn(name = "id_trimestre", referencedColumnName = "id_trimestre")})
-    @ManyToMany
-    private List<Trimestre> trimestreList;
     @JoinTable(name = "evento_has_usuario", joinColumns = {
         @JoinColumn(name = "id_evento", referencedColumnName = "id_evento")}, inverseJoinColumns = {
         @JoinColumn(name = "id_usuario", referencedColumnName = "id_usuario")})
@@ -73,17 +67,17 @@ public class Evento implements Serializable {
         @JoinColumn(name = "id_resultado_aprendizaje", referencedColumnName = "id_resultado_aprendizaje")})
     @ManyToMany
     private List<ResultadoAprendizaje> resultadoAprendizajeList;
-    @JoinColumn(name = "id_ambiente_formacion", referencedColumnName = "id_ambiente_formacion")
-    @ManyToOne(optional = false)
-    private AmbienteFormacion idAmbienteFormacion;
+    @JoinTable(name = "evento_has_trimestre", joinColumns = {
+        @JoinColumn(name = "id_evento", referencedColumnName = "id_evento")}, inverseJoinColumns = {
+        @JoinColumn(name = "id_trimestre", referencedColumnName = "id_trimestre")})
+    @ManyToMany
+    private List<Trimestre> trimestreList;
     @JoinColumn(name = "id_ficha", referencedColumnName = "id_ficha")
     @ManyToOne(optional = false)
     private Ficha idFicha;
-    @JoinColumns({
-        @JoinColumn(name = "id_actividad_aprendizaje", referencedColumnName = "id_actividad_aprendizaje"),
-        @JoinColumn(name = "id_resultado_aprendizaje", referencedColumnName = "id_resultado_aprendizaje")})
+    @JoinColumn(name = "id_ambiente_formacion", referencedColumnName = "id_ambiente_formacion")
     @ManyToOne(optional = false)
-    private ActividadAprendizajeHasResultadoAprendizaje actividadAprendizajeHasResultadoAprendizaje;
+    private AmbienteFormacion idAmbienteFormacion;
 
     public Evento() {
     }
@@ -123,15 +117,6 @@ public class Evento implements Serializable {
     }
 
     @XmlTransient
-    public List<Trimestre> getTrimestreList() {
-        return trimestreList;
-    }
-
-    public void setTrimestreList(List<Trimestre> trimestreList) {
-        this.trimestreList = trimestreList;
-    }
-
-    @XmlTransient
     public List<Usuario> getUsuarioList() {
         return usuarioList;
     }
@@ -149,12 +134,13 @@ public class Evento implements Serializable {
         this.resultadoAprendizajeList = resultadoAprendizajeList;
     }
 
-    public AmbienteFormacion getIdAmbienteFormacion() {
-        return idAmbienteFormacion;
+    @XmlTransient
+    public List<Trimestre> getTrimestreList() {
+        return trimestreList;
     }
 
-    public void setIdAmbienteFormacion(AmbienteFormacion idAmbienteFormacion) {
-        this.idAmbienteFormacion = idAmbienteFormacion;
+    public void setTrimestreList(List<Trimestre> trimestreList) {
+        this.trimestreList = trimestreList;
     }
 
     public Ficha getIdFicha() {
@@ -165,12 +151,12 @@ public class Evento implements Serializable {
         this.idFicha = idFicha;
     }
 
-    public ActividadAprendizajeHasResultadoAprendizaje getActividadAprendizajeHasResultadoAprendizaje() {
-        return actividadAprendizajeHasResultadoAprendizaje;
+    public AmbienteFormacion getIdAmbienteFormacion() {
+        return idAmbienteFormacion;
     }
 
-    public void setActividadAprendizajeHasResultadoAprendizaje(ActividadAprendizajeHasResultadoAprendizaje actividadAprendizajeHasResultadoAprendizaje) {
-        this.actividadAprendizajeHasResultadoAprendizaje = actividadAprendizajeHasResultadoAprendizaje;
+    public void setIdAmbienteFormacion(AmbienteFormacion idAmbienteFormacion) {
+        this.idAmbienteFormacion = idAmbienteFormacion;
     }
 
     @Override

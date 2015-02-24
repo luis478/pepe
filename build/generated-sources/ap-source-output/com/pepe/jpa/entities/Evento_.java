@@ -1,6 +1,5 @@
 package com.pepe.jpa.entities;
 
-import com.pepe.jpa.entities.ActividadAprendizajeHasResultadoAprendizaje;
 import com.pepe.jpa.entities.AmbienteFormacion;
 import com.pepe.jpa.entities.Ficha;
 import com.pepe.jpa.entities.ResultadoAprendizaje;
@@ -12,11 +11,10 @@ import javax.persistence.metamodel.ListAttribute;
 import javax.persistence.metamodel.SingularAttribute;
 import javax.persistence.metamodel.StaticMetamodel;
 
-@Generated(value="EclipseLink-2.5.1.v20130918-rNA", date="2015-02-24T09:01:04")
+@Generated(value="EclipseLink-2.5.1.v20130918-rNA", date="2015-02-24T09:27:48")
 @StaticMetamodel(Evento.class)
 public class Evento_ { 
 
-    public static volatile SingularAttribute<Evento, ActividadAprendizajeHasResultadoAprendizaje> actividadAprendizajeHasResultadoAprendizaje;
     public static volatile SingularAttribute<Evento, Integer> idEvento;
     public static volatile SingularAttribute<Evento, AmbienteFormacion> idAmbienteFormacion;
     public static volatile SingularAttribute<Evento, Ficha> idFicha;

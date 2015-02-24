@@ -23,7 +23,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author Windows 8
+ * @author ADSI TARDE
  */
 @Entity
 @Table(name = "criterio_seguimiento_has_acompanamiento")
@@ -39,7 +39,7 @@ public class CriterioSeguimientoHasAcompanamiento implements Serializable {
     protected CriterioSeguimientoHasAcompanamientoPK criterioSeguimientoHasAcompanamientoPK;
     @Basic(optional = false)
     @NotNull
-    @Size(min = 1, max = 15)
+    @Size(min = 1, max = 40)
     @Column(name = "valoracion")
     private String valoracion;
     @Lob
@@ -49,12 +49,12 @@ public class CriterioSeguimientoHasAcompanamiento implements Serializable {
     @JoinColumn(name = "id_criterio_seguimiento", referencedColumnName = "id_criterio_seguimiento", insertable = false, updatable = false)
     @ManyToOne(optional = false)
     private CriterioSeguimiento criterioSeguimiento;
-    @JoinColumn(name = "id_acompanamiento", referencedColumnName = "id_acompanamiento", insertable = false, updatable = false)
-    @ManyToOne(optional = false)
-    private Acompanamiento acompanamiento;
     @JoinColumn(name = "id_conclusiones", referencedColumnName = "id_conclusiones")
     @ManyToOne(optional = false)
     private Conclusiones idConclusiones;
+    @JoinColumn(name = "id_acompanamiento", referencedColumnName = "id_acompanamiento", insertable = false, updatable = false)
+    @ManyToOne(optional = false)
+    private Acompanamiento acompanamiento;
 
     public CriterioSeguimientoHasAcompanamiento() {
     }
@@ -104,20 +104,20 @@ public class CriterioSeguimientoHasAcompanamiento implements Serializable {
         this.criterioSeguimiento = criterioSeguimiento;
     }
 
-    public Acompanamiento getAcompanamiento() {
-        return acompanamiento;
-    }
-
-    public void setAcompanamiento(Acompanamiento acompanamiento) {
-        this.acompanamiento = acompanamiento;
-    }
-
     public Conclusiones getIdConclusiones() {
         return idConclusiones;
     }
 
     public void setIdConclusiones(Conclusiones idConclusiones) {
         this.idConclusiones = idConclusiones;
+    }
+
+    public Acompanamiento getAcompanamiento() {
+        return acompanamiento;
+    }
+
+    public void setAcompanamiento(Acompanamiento acompanamiento) {
+        this.acompanamiento = acompanamiento;
     }
 
     @Override

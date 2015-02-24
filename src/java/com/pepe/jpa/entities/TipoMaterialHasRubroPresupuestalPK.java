@@ -14,7 +14,7 @@ import javax.validation.constraints.NotNull;
 
 /**
  *
- * @author Windows 8
+ * @author ADSI TARDE
  */
 @Embeddable
 public class TipoMaterialHasRubroPresupuestalPK implements Serializable {

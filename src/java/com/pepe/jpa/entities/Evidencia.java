@@ -14,6 +14,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
@@ -24,17 +25,14 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author Windows 8
+ * @author ADSI TARDE
  */
 @Entity
 @Table(name = "evidencia")
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Evidencia.findAll", query = "SELECT e FROM Evidencia e"),
-    @NamedQuery(name = "Evidencia.findByIdEvidencia", query = "SELECT e FROM Evidencia e WHERE e.idEvidencia = :idEvidencia"),
-    @NamedQuery(name = "Evidencia.findByNombreEvidencia", query = "SELECT e FROM Evidencia e WHERE e.nombreEvidencia = :nombreEvidencia"),
-    @NamedQuery(name = "Evidencia.findByDescripcionEvidencia", query = "SELECT e FROM Evidencia e WHERE e.descripcionEvidencia = :descripcionEvidencia"),
-    @NamedQuery(name = "Evidencia.findByObservacionEvidencia", query = "SELECT e FROM Evidencia e WHERE e.observacionEvidencia = :observacionEvidencia")})
+    @NamedQuery(name = "Evidencia.findByIdEvidencia", query = "SELECT e FROM Evidencia e WHERE e.idEvidencia = :idEvidencia")})
 public class Evidencia implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
@@ -44,19 +42,28 @@ public class Evidencia implements Serializable {
     private Integer idEvidencia;
     @Basic(optional = false)
     @NotNull
-    @Size(min = 1, max = 45)
+    @Lob
+    @Size(min = 1, max = 65535)
     @Column(name = "nombre_evidencia")
     private String nombreEvidencia;
     @Basic(optional = false)
     @NotNull
-    @Size(min = 1, max = 45)
+    @Lob
+    @Size(min = 1, max = 65535)
     @Column(name = "descripcion_evidencia")
     private String descripcionEvidencia;
     @Basic(optional = false)
     @NotNull
-    @Size(min = 1, max = 45)
+    @Lob
+    @Size(min = 1, max = 65535)
     @Column(name = "observacion_evidencia")
     private String observacionEvidencia;
+    @Basic(optional = false)
+    @NotNull
+    @Lob
+    @Size(min = 1, max = 65535)
+    @Column(name = "tecnica_instrumento_evaluacion")
+    private String tecnicaInstrumentoEvaluacion;
     @JoinColumn(name = "id_tipo_evidencia", referencedColumnName = "id_tipo_evidencia")
     @ManyToOne(optional = false)
     private TipoEvidencia idTipoEvidencia;
@@ -71,11 +78,12 @@ public class Evidencia implements Serializable {
         this.idEvidencia = idEvidencia;
     }
 
-    public Evidencia(Integer idEvidencia, String nombreEvidencia, String descripcionEvidencia, String observacionEvidencia) {
+    public Evidencia(Integer idEvidencia, String nombreEvidencia, String descripcionEvidencia, String observacionEvidencia, String tecnicaInstrumentoEvaluacion) {
         this.idEvidencia = idEvidencia;
         this.nombreEvidencia = nombreEvidencia;
         this.descripcionEvidencia = descripcionEvidencia;
         this.observacionEvidencia = observacionEvidencia;
+        this.tecnicaInstrumentoEvaluacion = tecnicaInstrumentoEvaluacion;
     }
 
     public Integer getIdEvidencia() {
@@ -108,6 +116,14 @@ public class Evidencia implements Serializable {
 
     public void setObservacionEvidencia(String observacionEvidencia) {
         this.observacionEvidencia = observacionEvidencia;
+    }
+
+    public String getTecnicaInstrumentoEvaluacion() {
+        return tecnicaInstrumentoEvaluacion;
+    }
+
+    public void setTecnicaInstrumentoEvaluacion(String tecnicaInstrumentoEvaluacion) {
+        this.tecnicaInstrumentoEvaluacion = tecnicaInstrumentoEvaluacion;
     }
 
     public TipoEvidencia getIdTipoEvidencia() {

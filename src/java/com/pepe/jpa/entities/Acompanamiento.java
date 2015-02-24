@@ -32,7 +32,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author Windows 8
+ * @author ADSI TARDE
  */
 @Entity
 @Table(name = "acompanamiento")
@@ -60,18 +60,18 @@ public class Acompanamiento implements Serializable {
     @Temporal(TemporalType.TIMESTAMP)
     private Date fachaFin;
     @JoinTable(name = "usuario_has_acompanamiento", joinColumns = {
-        @JoinColumn(name = "acompanamiento_id_acompanamiento", referencedColumnName = "id_acompanamiento")}, inverseJoinColumns = {
-        @JoinColumn(name = "usuario_id_usuario", referencedColumnName = "id_usuario")})
+        @JoinColumn(name = "id_acompanamiento", referencedColumnName = "id_acompanamiento")}, inverseJoinColumns = {
+        @JoinColumn(name = "id_usuario", referencedColumnName = "id_usuario")})
     @ManyToMany
     private List<Usuario> usuarioList;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "acompanamiento")
+    private List<CriterioSeguimientoHasAcompanamiento> criterioSeguimientoHasAcompanamientoList;
     @JoinColumn(name = "id_ficha", referencedColumnName = "id_ficha")
     @ManyToOne(optional = false)
     private Ficha idFicha;
     @JoinColumn(name = "id_fase", referencedColumnName = "id_fase")
     @ManyToOne(optional = false)
     private Fase idFase;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "acompanamiento")
-    private List<CriterioSeguimientoHasAcompanamiento> criterioSeguimientoHasAcompanamientoList;
 
     public Acompanamiento() {
     }
@@ -119,6 +119,15 @@ public class Acompanamiento implements Serializable {
         this.usuarioList = usuarioList;
     }
 
+    @XmlTransient
+    public List<CriterioSeguimientoHasAcompanamiento> getCriterioSeguimientoHasAcompanamientoList() {
+        return criterioSeguimientoHasAcompanamientoList;
+    }
+
+    public void setCriterioSeguimientoHasAcompanamientoList(List<CriterioSeguimientoHasAcompanamiento> criterioSeguimientoHasAcompanamientoList) {
+        this.criterioSeguimientoHasAcompanamientoList = criterioSeguimientoHasAcompanamientoList;
+    }
+
     public Ficha getIdFicha() {
         return idFicha;
     }
@@ -133,15 +142,6 @@ public class Acompanamiento implements Serializable {
 
     public void setIdFase(Fase idFase) {
         this.idFase = idFase;
-    }
-
-    @XmlTransient
-    public List<CriterioSeguimientoHasAcompanamiento> getCriterioSeguimientoHasAcompanamientoList() {
-        return criterioSeguimientoHasAcompanamientoList;
-    }
-
-    public void setCriterioSeguimientoHasAcompanamientoList(List<CriterioSeguimientoHasAcompanamiento> criterioSeguimientoHasAcompanamientoList) {
-        this.criterioSeguimientoHasAcompanamientoList = criterioSeguimientoHasAcompanamientoList;
     }
 
     @Override

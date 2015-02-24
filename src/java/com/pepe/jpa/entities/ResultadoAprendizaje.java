@@ -7,7 +7,9 @@
 package com.pepe.jpa.entities;
 
 import java.io.Serializable;
+import java.util.List;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -15,17 +17,24 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.Lob;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
+<<<<<<< HEAD
  * @author Adsit
+=======
+ * @author ADSI TARDE
+>>>>>>> origin/master
  */
 @Entity
 @Table(name = "resultado_aprendizaje")
@@ -52,6 +61,15 @@ public class ResultadoAprendizaje implements Serializable {
     @NotNull
     @Column(name = "estado")
     private short estado;
+    @ManyToMany(mappedBy = "resultadoAprendizajeList")
+    private List<ActividadAprendizaje> actividadAprendizajeList;
+    @ManyToMany(mappedBy = "resultadoAprendizajeList")
+    private List<Evento> eventoList;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "resultadoAprendizaje")
+    private List<ActividadHasResultadoAprendizaje> actividadHasResultadoAprendizajeList;
+    @JoinColumn(name = "id_usuario", referencedColumnName = "id_usuario")
+    @ManyToOne(optional = false)
+    private Usuario idUsuario;
     @JoinColumn(name = "id_tipo_resultado_aprendizaje", referencedColumnName = "id_tipo_resultado_aprendizaje")
     @ManyToOne(optional = false)
     private TipoResultadoAprendizaje idTipoResultadoAprendizaje;
@@ -94,6 +112,41 @@ public class ResultadoAprendizaje implements Serializable {
 
     public void setEstado(short estado) {
         this.estado = estado;
+    }
+
+    @XmlTransient
+    public List<ActividadAprendizaje> getActividadAprendizajeList() {
+        return actividadAprendizajeList;
+    }
+
+    public void setActividadAprendizajeList(List<ActividadAprendizaje> actividadAprendizajeList) {
+        this.actividadAprendizajeList = actividadAprendizajeList;
+    }
+
+    @XmlTransient
+    public List<Evento> getEventoList() {
+        return eventoList;
+    }
+
+    public void setEventoList(List<Evento> eventoList) {
+        this.eventoList = eventoList;
+    }
+
+    @XmlTransient
+    public List<ActividadHasResultadoAprendizaje> getActividadHasResultadoAprendizajeList() {
+        return actividadHasResultadoAprendizajeList;
+    }
+
+    public void setActividadHasResultadoAprendizajeList(List<ActividadHasResultadoAprendizaje> actividadHasResultadoAprendizajeList) {
+        this.actividadHasResultadoAprendizajeList = actividadHasResultadoAprendizajeList;
+    }
+
+    public Usuario getIdUsuario() {
+        return idUsuario;
+    }
+
+    public void setIdUsuario(Usuario idUsuario) {
+        this.idUsuario = idUsuario;
     }
 
     public TipoResultadoAprendizaje getIdTipoResultadoAprendizaje() {

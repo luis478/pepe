@@ -8,7 +8,6 @@ import com.pepe.jpa.entities.LineaTecnologica;
 import com.pepe.jpa.entities.ModalidadFormacion;
 import com.pepe.jpa.entities.NivelFormacion;
 import com.pepe.jpa.entities.PerfilEntrada;
-import com.pepe.jpa.entities.Programa;
 import com.pepe.jpa.entities.ProgramaPK;
 import com.pepe.jpa.entities.ResultadoAprendizaje;
 import com.pepe.jpa.entities.TipoFormacion;
@@ -20,18 +19,17 @@ import com.pepe.jpa.sesions.LineaTecnologicaFacade;
 import com.pepe.jpa.sesions.ModalidadFormacionFacade;
 import com.pepe.jpa.sesions.NivelFormacionFacade;
 import com.pepe.jpa.sesions.PerfilEntradaFacade;
-import com.pepe.jpa.sesions.ProgramaFacade;
 import com.pepe.jpa.sesions.ResultadoAprendizajeFacade;
 import com.pepe.jpa.sesions.TipoFormacionFacade;
 import java.io.Serializable;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-import javax.ejb.EJB;
 import javax.enterprise.context.SessionScoped;
 import javax.faces.application.FacesMessage;
+import com.pepe.jpa.entities.Programa;
+import com.pepe.jpa.sesions.ProgramaFacade;
+import javax.ejb.EJB;
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
@@ -588,7 +586,7 @@ public class ProgramaController implements Serializable {
 
     }
 
-    @FacesConverter(forClass = Programa.class, value = "programaConverter")
+    @FacesConverter(forClass = Programa.class, value = "ProgramaConverter")
     public static class ProgramaControllerConverter implements Converter {
 
         private static final String SEPARATOR = "#";
@@ -630,9 +628,10 @@ public class ProgramaController implements Serializable {
                 Programa o = (Programa) object;
                 return getStringKey(o.getProgramaPK());
             } else {
-                Logger.getLogger(this.getClass().getName()).log(Level.SEVERE, "object {0} is of type {1}; expected type: {2}", new Object[]{object, object.getClass().getName(), Programa.class.getName()});
-                return null;
+
+                throw new IllegalArgumentException("object " + object + " is of type " + object.getClass().getName() + "; expected type: " + Programa.class.getName());
             }
         }
+
     }
 }

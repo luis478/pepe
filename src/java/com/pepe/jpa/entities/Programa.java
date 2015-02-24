@@ -28,7 +28,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author Windows 8
+ * @author ADSI TARDE
  */
 @Entity
 @Table(name = "programa")
@@ -39,6 +39,7 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Programa.findByCodigo", query = "SELECT p FROM Programa p WHERE p.programaPK.codigo = :codigo"),
     @NamedQuery(name = "Programa.encontrarCodigoVersion", query = "SELECT p FROM Programa p WHERE p.programaPK.codigo = :codigo AND p.programaPK.version = :version"),
     @NamedQuery(name = "Programa.findByVersion", query = "SELECT p FROM Programa p WHERE p.programaPK.version = :version"),
+    @NamedQuery(name = "Programa.findByNombrePrograma", query = "SELECT p FROM Programa p WHERE p.nombrePrograma like :nombrePrograma"),
     @NamedQuery(name = "Programa.findByDuracionTrimestres", query = "SELECT p FROM Programa p WHERE p.duracionTrimestres = :duracionTrimestres"),
     @NamedQuery(name = "Programa.findByEstado", query = "SELECT p FROM Programa p WHERE p.estado = :estado")})
 public class Programa implements Serializable {
@@ -72,23 +73,23 @@ public class Programa implements Serializable {
         @JoinColumn(name = "id_competencia", referencedColumnName = "id_competencia")})
     @ManyToMany
     private List<Competencia> competenciaList;
-    @JoinColumn(name = "id_linea_tecnologica", referencedColumnName = "id_linea_tecnologica")
-    @ManyToOne(optional = false)
-    private LineaTecnologica idLineaTecnologica;
-    @JoinColumn(name = "id_perfil_entrada", referencedColumnName = "id_perfil_entrada")
-    @ManyToOne(optional = false)
-    private PerfilEntrada idPerfilEntrada;
-    @JoinColumn(name = "id_modalidad_formacion", referencedColumnName = "id_modalidad_formacion")
-    @ManyToOne(optional = false)
-    private ModalidadFormacion idModalidadFormacion;
-    @JoinColumn(name = "id_nivel_formacion", referencedColumnName = "id_nivel_formacion")
-    @ManyToOne(optional = false)
-    private NivelFormacion idNivelFormacion;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "programa")
+    private List<Ficha> fichaList;
     @JoinColumn(name = "id_tipo_formacion", referencedColumnName = "id_tipo_formacion")
     @ManyToOne(optional = false)
     private TipoFormacion idTipoFormacion;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "programa")
-    private List<Ficha> fichaList;
+    @JoinColumn(name = "id_perfil_entrada", referencedColumnName = "id_perfil_entrada")
+    @ManyToOne(optional = false)
+    private PerfilEntrada idPerfilEntrada;
+    @JoinColumn(name = "id_nivel_formacion", referencedColumnName = "id_nivel_formacion")
+    @ManyToOne(optional = false)
+    private NivelFormacion idNivelFormacion;
+    @JoinColumn(name = "id_modalidad_formacion", referencedColumnName = "id_modalidad_formacion")
+    @ManyToOne(optional = false)
+    private ModalidadFormacion idModalidadFormacion;
+    @JoinColumn(name = "id_linea_tecnologica", referencedColumnName = "id_linea_tecnologica")
+    @ManyToOne(optional = false)
+    private LineaTecnologica idLineaTecnologica;
 
     public Programa() {
     }
@@ -158,36 +159,13 @@ public class Programa implements Serializable {
         this.competenciaList = competenciaList;
     }
 
-    public LineaTecnologica getIdLineaTecnologica() {
-        return idLineaTecnologica;
+    @XmlTransient
+    public List<Ficha> getFichaList() {
+        return fichaList;
     }
 
-    public void setIdLineaTecnologica(LineaTecnologica idLineaTecnologica) {
-        this.idLineaTecnologica = idLineaTecnologica;
-    }
-
-    public PerfilEntrada getIdPerfilEntrada() {
-        return idPerfilEntrada;
-    }
-
-    public void setIdPerfilEntrada(PerfilEntrada idPerfilEntrada) {
-        this.idPerfilEntrada = idPerfilEntrada;
-    }
-
-    public ModalidadFormacion getIdModalidadFormacion() {
-        return idModalidadFormacion;
-    }
-
-    public void setIdModalidadFormacion(ModalidadFormacion idModalidadFormacion) {
-        this.idModalidadFormacion = idModalidadFormacion;
-    }
-
-    public NivelFormacion getIdNivelFormacion() {
-        return idNivelFormacion;
-    }
-
-    public void setIdNivelFormacion(NivelFormacion idNivelFormacion) {
-        this.idNivelFormacion = idNivelFormacion;
+    public void setFichaList(List<Ficha> fichaList) {
+        this.fichaList = fichaList;
     }
 
     public TipoFormacion getIdTipoFormacion() {
@@ -198,13 +176,36 @@ public class Programa implements Serializable {
         this.idTipoFormacion = idTipoFormacion;
     }
 
-    @XmlTransient
-    public List<Ficha> getFichaList() {
-        return fichaList;
+    public PerfilEntrada getIdPerfilEntrada() {
+        return idPerfilEntrada;
     }
 
-    public void setFichaList(List<Ficha> fichaList) {
-        this.fichaList = fichaList;
+    public void setIdPerfilEntrada(PerfilEntrada idPerfilEntrada) {
+        this.idPerfilEntrada = idPerfilEntrada;
+    }
+
+    public NivelFormacion getIdNivelFormacion() {
+        return idNivelFormacion;
+    }
+
+    public void setIdNivelFormacion(NivelFormacion idNivelFormacion) {
+        this.idNivelFormacion = idNivelFormacion;
+    }
+
+    public ModalidadFormacion getIdModalidadFormacion() {
+        return idModalidadFormacion;
+    }
+
+    public void setIdModalidadFormacion(ModalidadFormacion idModalidadFormacion) {
+        this.idModalidadFormacion = idModalidadFormacion;
+    }
+
+    public LineaTecnologica getIdLineaTecnologica() {
+        return idLineaTecnologica;
+    }
+
+    public void setIdLineaTecnologica(LineaTecnologica idLineaTecnologica) {
+        this.idLineaTecnologica = idLineaTecnologica;
     }
 
     @Override

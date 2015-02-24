@@ -1,5 +1,6 @@
 package com.pepe.jpa.entities;
 
+import com.pepe.jpa.entities.Actividad;
 import com.pepe.jpa.entities.Empresa;
 import com.pepe.jpa.entities.Ficha;
 import com.pepe.jpa.entities.GuiaAprendizaje;
@@ -11,7 +12,7 @@ import javax.persistence.metamodel.ListAttribute;
 import javax.persistence.metamodel.SingularAttribute;
 import javax.persistence.metamodel.StaticMetamodel;
 
-@Generated(value="EclipseLink-2.5.1.v20130918-rNA", date="2015-02-24T09:01:04")
+@Generated(value="EclipseLink-2.5.1.v20130918-rNA", date="2015-02-24T09:27:48")
 @StaticMetamodel(Proyecto.class)
 public class Proyecto_ { 
 
@@ -21,12 +22,13 @@ public class Proyecto_ {
     public static volatile SingularAttribute<Proyecto, Short> innovacion265;
     public static volatile SingularAttribute<Proyecto, Integer> idProyecto;
     public static volatile SingularAttribute<Proyecto, String> productosResultados254;
-    public static volatile SingularAttribute<Proyecto, String> innovacion261;
-    public static volatile SingularAttribute<Proyecto, String> justificacion22;
+    public static volatile SingularAttribute<Proyecto, Short> innovacion261;
     public static volatile ListAttribute<Proyecto, Ficha> fichaList;
+    public static volatile SingularAttribute<Proyecto, String> justificacion22;
     public static volatile SingularAttribute<Proyecto, String> restricciones253;
     public static volatile SingularAttribute<Proyecto, Short> valoracion271;
     public static volatile SingularAttribute<Proyecto, Short> valoracion272;
+    public static volatile ListAttribute<Proyecto, Actividad> actividadList;
     public static volatile SingularAttribute<Proyecto, Integer> intructoresRequeridos;
     public static volatile ListAttribute<Proyecto, Revision> revisionList;
     public static volatile SingularAttribute<Proyecto, String> palabrasClave17;

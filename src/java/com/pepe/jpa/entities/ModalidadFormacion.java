@@ -26,7 +26,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author Windows 8
+ * @author ADSI TARDE
  */
 @Entity
 @Table(name = "modalidad_formacion")
@@ -44,7 +44,7 @@ public class ModalidadFormacion implements Serializable {
     private Integer idModalidadFormacion;
     @Basic(optional = false)
     @NotNull
-    @Size(min = 1, max = 45)
+    @Size(min = 1, max = 60)
     @Column(name = "modalidad_formacion")
     private String modalidadFormacion;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idModalidadFormacion")

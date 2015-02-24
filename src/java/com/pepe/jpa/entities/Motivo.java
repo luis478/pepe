@@ -15,6 +15,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Lob;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
@@ -26,15 +27,14 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author Windows 8
+ * @author ADSI TARDE
  */
 @Entity
 @Table(name = "motivo")
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Motivo.findAll", query = "SELECT m FROM Motivo m"),
-    @NamedQuery(name = "Motivo.findByIdMotivo", query = "SELECT m FROM Motivo m WHERE m.idMotivo = :idMotivo"),
-    @NamedQuery(name = "Motivo.findByMotivo", query = "SELECT m FROM Motivo m WHERE m.motivo = :motivo")})
+    @NamedQuery(name = "Motivo.findByIdMotivo", query = "SELECT m FROM Motivo m WHERE m.idMotivo = :idMotivo")})
 public class Motivo implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
@@ -44,7 +44,8 @@ public class Motivo implements Serializable {
     private Integer idMotivo;
     @Basic(optional = false)
     @NotNull
-    @Size(min = 1, max = 45)
+    @Lob
+    @Size(min = 1, max = 65535)
     @Column(name = "motivo")
     private String motivo;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idMotivo")

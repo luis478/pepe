@@ -14,7 +14,7 @@ import javax.validation.constraints.NotNull;
 
 /**
  *
- * @author Windows 8
+ * @author ADSI TARDE
  */
 @Embeddable
 public class AspectosPK implements Serializable {
@@ -24,15 +24,15 @@ public class AspectosPK implements Serializable {
     private int idAspectos;
     @Basic(optional = false)
     @NotNull
-    @Column(name = "ficha_id_ficha")
-    private int fichaIdFicha;
+    @Column(name = "id_ficha")
+    private int idFicha;
 
     public AspectosPK() {
     }
 
-    public AspectosPK(int idAspectos, int fichaIdFicha) {
+    public AspectosPK(int idAspectos, int idFicha) {
         this.idAspectos = idAspectos;
-        this.fichaIdFicha = fichaIdFicha;
+        this.idFicha = idFicha;
     }
 
     public int getIdAspectos() {
@@ -43,19 +43,19 @@ public class AspectosPK implements Serializable {
         this.idAspectos = idAspectos;
     }
 
-    public int getFichaIdFicha() {
-        return fichaIdFicha;
+    public int getIdFicha() {
+        return idFicha;
     }
 
-    public void setFichaIdFicha(int fichaIdFicha) {
-        this.fichaIdFicha = fichaIdFicha;
+    public void setIdFicha(int idFicha) {
+        this.idFicha = idFicha;
     }
 
     @Override
     public int hashCode() {
         int hash = 0;
         hash += (int) idAspectos;
-        hash += (int) fichaIdFicha;
+        hash += (int) idFicha;
         return hash;
     }
 
@@ -69,7 +69,7 @@ public class AspectosPK implements Serializable {
         if (this.idAspectos != other.idAspectos) {
             return false;
         }
-        if (this.fichaIdFicha != other.fichaIdFicha) {
+        if (this.idFicha != other.idFicha) {
             return false;
         }
         return true;
@@ -77,7 +77,7 @@ public class AspectosPK implements Serializable {
 
     @Override
     public String toString() {
-        return "com.pepe.jpa.entities.AspectosPK[ idAspectos=" + idAspectos + ", fichaIdFicha=" + fichaIdFicha + " ]";
+        return "com.pepe.jpa.entities.AspectosPK[ idAspectos=" + idAspectos + ", idFicha=" + idFicha + " ]";
     }
     
 }

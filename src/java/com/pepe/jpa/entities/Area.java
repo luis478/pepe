@@ -27,7 +27,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author Windows 8
+ * @author ADSI TARDE
  */
 @Entity
 @Table(name = "area")
@@ -45,7 +45,7 @@ public class Area implements Serializable {
     private Integer idArea;
     @Basic(optional = false)
     @NotNull
-    @Size(min = 1, max = 45)
+    @Size(min = 1, max = 60)
     @Column(name = "nombre_area")
     private String nombreArea;
     @JoinTable(name = "usuario_has_area", joinColumns = {

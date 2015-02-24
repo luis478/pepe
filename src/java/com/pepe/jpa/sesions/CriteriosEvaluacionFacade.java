@@ -16,7 +16,7 @@ import javax.persistence.Query;
 
 /**
  *
- * @author Windows 8
+ * @author ADSI TARDE
  */
 @Stateless
 public class CriteriosEvaluacionFacade extends AbstractFacade<CriteriosEvaluacion> {

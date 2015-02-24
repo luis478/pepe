@@ -16,6 +16,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
@@ -28,7 +29,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author Windows 8
+ * @author ADSI TARDE
  */
 @Entity
 @Table(name = "material")
@@ -36,7 +37,6 @@ import javax.xml.bind.annotation.XmlTransient;
 @NamedQueries({
     @NamedQuery(name = "Material.findAll", query = "SELECT m FROM Material m"),
     @NamedQuery(name = "Material.findByIdMaterial", query = "SELECT m FROM Material m WHERE m.idMaterial = :idMaterial"),
-    @NamedQuery(name = "Material.findByNombre", query = "SELECT m FROM Material m WHERE m.nombre = :nombre"),
     @NamedQuery(name = "Material.findByCantidad", query = "SELECT m FROM Material m WHERE m.cantidad = :cantidad"),
     @NamedQuery(name = "Material.findByValorUnitario", query = "SELECT m FROM Material m WHERE m.valorUnitario = :valorUnitario"),
     @NamedQuery(name = "Material.findByCodigoOrions", query = "SELECT m FROM Material m WHERE m.codigoOrions = :codigoOrions")})
@@ -47,7 +47,8 @@ public class Material implements Serializable {
     @Basic(optional = false)
     @Column(name = "id_material")
     private Integer idMaterial;
-    @Size(max = 45)
+    @Lob
+    @Size(max = 65535)
     @Column(name = "nombre")
     private String nombre;
     @Basic(optional = false)

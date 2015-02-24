@@ -23,12 +23,13 @@ import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author Windows 8
+ * @author ADSI TARDE
  */
 @Entity
 @Table(name = "ambiente_formacion")
@@ -36,7 +37,7 @@ import javax.xml.bind.annotation.XmlTransient;
 @NamedQueries({
     @NamedQuery(name = "AmbienteFormacion.findAll", query = "SELECT a FROM AmbienteFormacion a"),
     @NamedQuery(name = "AmbienteFormacion.findByIdAmbienteFormacion", query = "SELECT a FROM AmbienteFormacion a WHERE a.idAmbienteFormacion = :idAmbienteFormacion"),
-    @NamedQuery(name = "AmbienteFormacion.findByNumeroAmbienteFormacion", query = "SELECT a FROM AmbienteFormacion a WHERE a.numeroAmbienteFormacion = :numeroAmbienteFormacion")})
+    @NamedQuery(name = "AmbienteFormacion.findByNombreAmbienteFormacion", query = "SELECT a FROM AmbienteFormacion a WHERE a.nombreAmbienteFormacion = :nombreAmbienteFormacion")})
 public class AmbienteFormacion implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
@@ -46,8 +47,9 @@ public class AmbienteFormacion implements Serializable {
     private Integer idAmbienteFormacion;
     @Basic(optional = false)
     @NotNull
-    @Column(name = "numero_ambiente_formacion")
-    private int numeroAmbienteFormacion;
+    @Size(min = 1, max = 60)
+    @Column(name = "nombre_ambiente_formacion")
+    private String nombreAmbienteFormacion;
     @JoinTable(name = "recurso_has_ambiente_formacion", joinColumns = {
         @JoinColumn(name = "id_ambiente_formacion", referencedColumnName = "id_ambiente_formacion")}, inverseJoinColumns = {
         @JoinColumn(name = "id_recurso", referencedColumnName = "id_recurso")})
@@ -65,9 +67,9 @@ public class AmbienteFormacion implements Serializable {
         this.idAmbienteFormacion = idAmbienteFormacion;
     }
 
-    public AmbienteFormacion(Integer idAmbienteFormacion, int numeroAmbienteFormacion) {
+    public AmbienteFormacion(Integer idAmbienteFormacion, String nombreAmbienteFormacion) {
         this.idAmbienteFormacion = idAmbienteFormacion;
-        this.numeroAmbienteFormacion = numeroAmbienteFormacion;
+        this.nombreAmbienteFormacion = nombreAmbienteFormacion;
     }
 
     public Integer getIdAmbienteFormacion() {
@@ -78,12 +80,12 @@ public class AmbienteFormacion implements Serializable {
         this.idAmbienteFormacion = idAmbienteFormacion;
     }
 
-    public int getNumeroAmbienteFormacion() {
-        return numeroAmbienteFormacion;
+    public String getNombreAmbienteFormacion() {
+        return nombreAmbienteFormacion;
     }
 
-    public void setNumeroAmbienteFormacion(int numeroAmbienteFormacion) {
-        this.numeroAmbienteFormacion = numeroAmbienteFormacion;
+    public void setNombreAmbienteFormacion(String nombreAmbienteFormacion) {
+        this.nombreAmbienteFormacion = nombreAmbienteFormacion;
     }
 
     @XmlTransient
