@@ -112,5 +112,5 @@ public class RubroPresupuestal implements Serializable {
     public String toString() {
         return "com.pepe.jpa.entities.RubroPresupuestal[ idRubroPresupuestal=" + idRubroPresupuestal + " ]";
     }
-    
+
 }

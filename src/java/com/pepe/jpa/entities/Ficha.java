@@ -277,5 +277,6 @@ public class Ficha implements Serializable {
     public String toString() {
         return codigoFicha;
     }
+
     
 }

@@ -10,6 +10,7 @@ import controller.util.DigestUtil;
 import java.io.Serializable;
 import java.io.UnsupportedEncodingException;
 import java.security.NoSuchAlgorithmException;
+import java.util.Collection;
 import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
@@ -59,6 +60,12 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Usuario.findByTelefono2", query = "SELECT u FROM Usuario u WHERE u.telefono2 = :telefono2"),
     @NamedQuery(name = "Usuario.findByTelefono3", query = "SELECT u FROM Usuario u WHERE u.telefono3 = :telefono3")})
 public class Usuario implements Serializable {
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "usuario")
+    private List<UsuarioHasAspectos> usuarioHasAspectosList;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "usuario")
+    private List<UsuarioHasAcompanamiento> usuarioHasAcompanamientoList;
+    @ManyToMany(mappedBy = "usuarioCollection")
+    private Collection<Rol> rolCollection;
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)
@@ -188,7 +195,6 @@ public class Usuario implements Serializable {
     private List<ResultadoAprendizaje> resultadoAprendizajeList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idUsuario")
     private List<Verificacion> verificacionList;
-
     public Usuario() {
     }
 
@@ -563,6 +569,33 @@ public class Usuario implements Serializable {
     @Override
     public String toString() {
         return nombre1 + " " + apellido1 ;
+    }
+
+    @XmlTransient
+    public Collection<Rol> getRolCollection() {
+        return rolCollection;
+    }
+
+    public void setRolCollection(Collection<Rol> rolCollection) {
+        this.rolCollection = rolCollection;
+    }
+
+    @XmlTransient
+    public List<UsuarioHasAspectos> getUsuarioHasAspectosList() {
+        return usuarioHasAspectosList;
+    }
+
+    public void setUsuarioHasAspectosList(List<UsuarioHasAspectos> usuarioHasAspectosList) {
+        this.usuarioHasAspectosList = usuarioHasAspectosList;
+    }
+
+    @XmlTransient
+    public List<UsuarioHasAcompanamiento> getUsuarioHasAcompanamientoList() {
+        return usuarioHasAcompanamientoList;
+    }
+
+    public void setUsuarioHasAcompanamientoList(List<UsuarioHasAcompanamiento> usuarioHasAcompanamientoList) {
+        this.usuarioHasAcompanamientoList = usuarioHasAcompanamientoList;
     }
     
 }

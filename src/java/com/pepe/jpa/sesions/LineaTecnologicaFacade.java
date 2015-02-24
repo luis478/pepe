@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package com.pepe.jpa.sesions;
 
 import com.pepe.jpa.entities.LineaTecnologica;
@@ -17,6 +16,7 @@ import javax.persistence.PersistenceContext;
  */
 @Stateless
 public class LineaTecnologicaFacade extends AbstractFacade<LineaTecnologica> {
+
     @PersistenceContext(unitName = "pepeAplicacionPU")
     private EntityManager em;
 
@@ -28,5 +28,4 @@ public class LineaTecnologicaFacade extends AbstractFacade<LineaTecnologica> {
     public LineaTecnologicaFacade() {
         super(LineaTecnologica.class);
     }
-    
 }
