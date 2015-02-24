@@ -453,7 +453,7 @@ public class Proyecto implements Serializable {
 
     @Override
     public String toString() {
-        return "com.pepe.jpa.entities.Proyecto[ idProyecto=" + idProyecto + " ]";
+        return nombreProyecto;
     }
     
 }

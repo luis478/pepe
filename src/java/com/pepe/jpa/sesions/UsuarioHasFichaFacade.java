@@ -8,7 +8,7 @@ package com.pepe.jpa.sesions;
 
 import com.pepe.jpa.entities.Programa;
 import com.pepe.jpa.entities.UsuarioHasFicha;
-import com.pepe.jpa.entities.Usuario_;
+import com.pepe.jpa.entities.Usuario;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;

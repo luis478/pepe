@@ -3,6 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+
 package com.pepe.jpa.entities;
 
 import java.io.Serializable;
@@ -38,17 +39,12 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Actividad.findByIdActividad", query = "SELECT a FROM Actividad a WHERE a.idActividad = :idActividad"),
     @NamedQuery(name = "Actividad.findByDuracion", query = "SELECT a FROM Actividad a WHERE a.duracion = :duracion")})
 public class Actividad implements Serializable {
-
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
     @Column(name = "id_actividad")
     private Integer idActividad;
-    @Basic(optional = false)
-    @NotNull
-    @Column(name = "id_fase")
-    private int idFase;
     @Basic(optional = false)
     @NotNull
     @Lob
@@ -76,9 +72,8 @@ public class Actividad implements Serializable {
         this.idActividad = idActividad;
     }
 
-    public Actividad(Integer idActividad, int idFase, String nombreActividad, int duracion) {
+    public Actividad(Integer idActividad, String nombreActividad, int duracion) {
         this.idActividad = idActividad;
-        this.idFase = idFase;
         this.nombreActividad = nombreActividad;
         this.duracion = duracion;
     }
@@ -91,13 +86,6 @@ public class Actividad implements Serializable {
         this.idActividad = idActividad;
     }
 
-    public int getIdFase() {
-        return idFase;
-    }
-
-    public void setIdFase(int idFase) {
-        this.idFase = idFase;
-    }
 
     public String getNombreActividad() {
         return nombreActividad;
@@ -174,4 +162,5 @@ public class Actividad implements Serializable {
     public String toString() {
         return "com.pepe.jpa.entities.Actividad[ idActividad=" + idActividad + " ]";
     }
+    
 }
