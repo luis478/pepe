@@ -1,0 +1,26 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:jsf="http://xmlns.jcp.org/jsf"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <p:dialog widgetVar="deshabilitarCCPVentana" 
+              resizable="false"
+              modal="true"
+              draggable="false"
+              styleClass="Dialogo">
+        <h:form id="deshabilitarCCPVentanaForm">
+            <h:panelGrid columns="1">
+                <h:outputText value="#{programaController.conocimientoConceptoPrincipiosActual.idConocimientoConceptoPrincipios}" title="IdConocimientoConceptoPrincipios"/>
+                <h:outputText value="#{programaController.conocimientoConceptoPrincipiosActual.nombreConocimientoConceptoPrincipiosl}" title="NombreConocimientoConceptoPrincipiosl"/>
+                <h:outputText value="#{programaController.conocimientoConceptoPrincipiosActual.estado}" title="Estado"/>
+                <h:outputText value="#{programaController.conocimientoConceptoPrincipiosActual.idCompetencia}" title="IdCompetencia"/>
+            </h:panelGrid>
+            <p:commandButton update=":listaCCPVentanaForm"
+                             action="#{programaController.deshabilitarCCP()}"
+                             oncomplete="handleSubmit(args,'deshabilitarCCPVentana','');"/>
+        </h:form>
+    </p:dialog>
+</html>
+

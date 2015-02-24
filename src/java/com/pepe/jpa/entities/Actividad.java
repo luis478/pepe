@@ -85,7 +85,8 @@ public class Actividad implements Serializable {
     public void setIdActividad(Integer idActividad) {
         this.idActividad = idActividad;
     }
-  
+
+
     public String getNombreActividad() {
         return nombreActividad;
     }

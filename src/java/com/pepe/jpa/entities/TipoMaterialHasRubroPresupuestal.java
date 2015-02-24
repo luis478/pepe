@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package com.pepe.jpa.entities;
 
 import java.io.Serializable;
@@ -22,7 +21,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author ADSI TARDE
+ * @author Luis Carlos
  */
 @Entity
 @Table(name = "tipo_material_has_rubro_presupuestal")
@@ -41,12 +40,12 @@ public class TipoMaterialHasRubroPresupuestal implements Serializable {
     @Size(min = 1, max = 45)
     @Column(name = "valor_total")
     private String valorTotal;
-    @JoinColumn(name = "id_tipo_material", referencedColumnName = "id_tipo_material", insertable = false, updatable = false)
-    @ManyToOne(optional = false)
-    private TipoMaterial tipoMaterial;
     @JoinColumn(name = "id_rubro_presupuestal", referencedColumnName = "id_rubro_presupuestal", insertable = false, updatable = false)
     @ManyToOne(optional = false)
     private RubroPresupuestal rubroPresupuestal;
+    @JoinColumn(name = "id_tipo_material", referencedColumnName = "id_tipo_material", insertable = false, updatable = false)
+    @ManyToOne(optional = false)
+    private TipoMaterial tipoMaterial;
 
     public TipoMaterialHasRubroPresupuestal() {
     }
@@ -80,20 +79,20 @@ public class TipoMaterialHasRubroPresupuestal implements Serializable {
         this.valorTotal = valorTotal;
     }
 
-    public TipoMaterial getTipoMaterial() {
-        return tipoMaterial;
-    }
-
-    public void setTipoMaterial(TipoMaterial tipoMaterial) {
-        this.tipoMaterial = tipoMaterial;
-    }
-
     public RubroPresupuestal getRubroPresupuestal() {
         return rubroPresupuestal;
     }
 
     public void setRubroPresupuestal(RubroPresupuestal rubroPresupuestal) {
         this.rubroPresupuestal = rubroPresupuestal;
+    }
+
+    public TipoMaterial getTipoMaterial() {
+        return tipoMaterial;
+    }
+
+    public void setTipoMaterial(TipoMaterial tipoMaterial) {
+        this.tipoMaterial = tipoMaterial;
     }
 
     @Override

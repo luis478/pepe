@@ -64,22 +64,22 @@
 
                     <article class="articulo1">
                         <label for="comments" class="Pepe-articuloLabel">Programa de Formación</label>
-                        <input  type="text" class="Pepe-formInput1"/>
+                        <input  type="text" class="Pepe-formInput1" jsf:value="#{fichaController.fichaSeleccionada.programa.nombrePrograma}" jsf:id="programa"/>
                     </article>
 
                     <article class="articulo2">
                         <label for="comments" class="Pepe-articuloLabel">Codigo</label>
-                        <input  type="text" class="Pepe-formInput2"/>
+                        <input  type="text" class="Pepe-formInput2" jsf:value="#{fichaController.fichaSeleccionada.programa.programaPK.codigo}" jsf:id="codigo"/>
                     </article>
 
                     <article class="articulo2">
                         <label for="comments" class="Pepe-articuloLabel">Version</label>
-                        <input  type="text" class="Pepe-formInput2"/>
+                        <input  type="text" class="Pepe-formInput2" jsf:value="#{fichaController.fichaSeleccionada.programa.programaPK.version}" jsf:id="version"/>
                     </article>
 
                     <article class="articulo2">
                         <label for="comments" class="Pepe-articuloLabel">Duracion</label>
-                        <input type="text" class="Pepe-formInput2"/>
+                        <input type="text" class="Pepe-formInput2" jsf:value="#{fichaController.fichaSeleccionada.trimestresLectiva}" jsf:id="Duracion"/>
                     </article>
                 </section>
 
@@ -88,20 +88,22 @@
 
                     <article class="articulo1">
                         <label for="comments" class="Pepe-articuloLabel">Nombre del proyecto</label>
-                        <input  type="text" class="Pepe-formInput3"/>
+                        <input  type="text" class="Pepe-formInput3" jsf:value="#{fichaController.fichaSeleccionada.idProyecto.nombreProyecto}" jsf:id="proyecto"/>
                     </article>
 
                     <article class="articulo1">
                         <label for="comments" class="Pepe-articuloLabel">Codigo</label>
-                        <input  type="text" class="Pepe-formInput2"/>
+                        <input  type="text" class="Pepe-formInput2" jsf:value="#{fichaController.fichaSeleccionada.idProyecto.codigoProyecto}" jsf:id="codigoProyecto"/>
                     </article>
 
                     <article class="articulo1">
                         <label for="comments" class="Pepe-articuloLabel">N° de ficha</label>
-                        <h:selectOneMenu id="idCentroFormacionSelect" value="#{fichaController.fichaActual}">
+                        <p:selectOneMenu id="fichaselectone" value="#{fichaController.fichaSeleccionada}">
                             <f:selectItem itemLabel="Seleccionar uno.." />
                             <f:selectItems value="#{fichaController.listaFicha}" var="ficha" itemValue="#{ficha}"/>  
-                        </h:selectOneMenu>
+                            <p:ajax process="fichaselectone" update="formInicio fichaselectoneMsg"/>
+                        </p:selectOneMenu>
+                        <p:message id="fichaselectoneMsg" for="fichaselectone"/>
                     </article>
 
                 </section>
@@ -109,7 +111,7 @@
                 <section class="seccion3">
                     <article class="articulo1">
                         <label for="comments" class="Pepe-articuloLabel">Nombre de líder ejecutor</label>
-                        <input  type="text" class="Pepe-formInput4"/>
+                        <input  type="text" class="Pepe-formInput4" jsf:value="#{fichaController.usuarioFicha.usuario}" jsf:id="nombreLider"/>
                     </article>
                 </section>
 
@@ -119,7 +121,7 @@
                     <h:form class="Form-opciones-header">
 
                         <p:commandButton value="Cerrar sesión" update="@all" action="#{loginController.logout}" styleClass="Pepe-botones"/>
-                      
+
                     </h:form>
                 </nav>
 
@@ -173,6 +175,14 @@
                     </br>
                     2015</p>
             </section>
+            <h:form>
+                <input type="submit"
+                       class="Boton"
+                       jsf:value="programa"
+                       jsf:action="programa/programaInicio.xhtml"
+                       jsf:actionListener="#{programaController.anular()}">
+                </input>
+            </h:form>
         </footer>
         <ui:include src="/admin/dlg_menuCrearUsuario.xhtml"/>
         <ui:include src="/planeacionpedagogica/dlg_menuPlaneacionPedagogica.xhtml"/>

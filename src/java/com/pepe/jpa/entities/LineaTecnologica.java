@@ -123,7 +123,7 @@ public class LineaTecnologica implements Serializable {
 
     @Override
     public String toString() {
-        return "com.pepe.jpa.entities.LineaTecnologica[ idLineaTecnologica=" + idLineaTecnologica + " ]";
+        return getIdRedTecnologica().getNombreRedTecnologica() + " : " + getNombreLineaTecnologica();
     }
     
 }

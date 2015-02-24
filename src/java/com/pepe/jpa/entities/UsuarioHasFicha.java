@@ -1,9 +1,9 @@
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package com.pepe.jpa.entities;
 
 import java.io.Serializable;
@@ -18,7 +18,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author ADSI TARDE
+ * @author Luis Carlos
  */
 @Entity
 @Table(name = "usuario_has_ficha")
@@ -31,15 +31,15 @@ public class UsuarioHasFicha implements Serializable {
     private static final long serialVersionUID = 1L;
     @EmbeddedId
     protected UsuarioHasFichaPK usuarioHasFichaPK;
+    @JoinColumn(name = "id_ficha", referencedColumnName = "id_ficha", insertable = false, updatable = false)
+    @ManyToOne(optional = false)
+    private Ficha ficha;
     @JoinColumn(name = "id_usuario", referencedColumnName = "id_usuario", insertable = false, updatable = false)
     @ManyToOne(optional = false)
     private Usuario usuario;
     @JoinColumn(name = "id_tipo_instructor", referencedColumnName = "id_tipo_instructor")
     @ManyToOne(optional = false)
     private TipoInstructor idTipoInstructor;
-    @JoinColumn(name = "id_ficha", referencedColumnName = "id_ficha", insertable = false, updatable = false)
-    @ManyToOne(optional = false)
-    private Ficha ficha;
 
     public UsuarioHasFicha() {
     }
@@ -60,6 +60,14 @@ public class UsuarioHasFicha implements Serializable {
         this.usuarioHasFichaPK = usuarioHasFichaPK;
     }
 
+    public Ficha getFicha() {
+        return ficha;
+    }
+
+    public void setFicha(Ficha ficha) {
+        this.ficha = ficha;
+    }
+
     public Usuario getUsuario() {
         return usuario;
     }
@@ -74,14 +82,6 @@ public class UsuarioHasFicha implements Serializable {
 
     public void setIdTipoInstructor(TipoInstructor idTipoInstructor) {
         this.idTipoInstructor = idTipoInstructor;
-    }
-
-    public Ficha getFicha() {
-        return ficha;
-    }
-
-    public void setFicha(Ficha ficha) {
-        this.ficha = ficha;
     }
 
     @Override

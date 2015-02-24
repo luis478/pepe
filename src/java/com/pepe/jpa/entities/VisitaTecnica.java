@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package com.pepe.jpa.entities;
 
 import java.io.Serializable;
@@ -28,7 +27,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author ADSI TARDE
+ * @author Luis Carlos
  */
 @Entity
 @Table(name = "visita_tecnica")
@@ -55,14 +54,14 @@ public class VisitaTecnica implements Serializable {
     @Column(name = "fecha")
     @Temporal(TemporalType.DATE)
     private Date fecha;
-    @JoinColumn(name = "id_proyecto", referencedColumnName = "id_proyecto")
-    @ManyToOne(optional = false)
-    private Proyecto idProyecto;
     @JoinColumns({
         @JoinColumn(name = "id_ciudad", referencedColumnName = "id_ciudad"),
         @JoinColumn(name = "id_departamento", referencedColumnName = "id_departamento")})
     @ManyToOne(optional = false)
     private Ciudad ciudad;
+    @JoinColumn(name = "id_proyecto", referencedColumnName = "id_proyecto")
+    @ManyToOne(optional = false)
+    private Proyecto idProyecto;
 
     public VisitaTecnica() {
     }
@@ -101,20 +100,20 @@ public class VisitaTecnica implements Serializable {
         this.fecha = fecha;
     }
 
-    public Proyecto getIdProyecto() {
-        return idProyecto;
-    }
-
-    public void setIdProyecto(Proyecto idProyecto) {
-        this.idProyecto = idProyecto;
-    }
-
     public Ciudad getCiudad() {
         return ciudad;
     }
 
     public void setCiudad(Ciudad ciudad) {
         this.ciudad = ciudad;
+    }
+
+    public Proyecto getIdProyecto() {
+        return idProyecto;
+    }
+
+    public void setIdProyecto(Proyecto idProyecto) {
+        this.idProyecto = idProyecto;
     }
 
     @Override

@@ -67,11 +67,7 @@ public class Competencia implements Serializable {
     @NotNull
     @Column(name = "duracion_estimada_horas")
     private int duracionEstimadaHoras;
-    @JoinTable(name = "programa_has_competencia", joinColumns = {
-        @JoinColumn(name = "id_competencia", referencedColumnName = "id_competencia")}, inverseJoinColumns = {
-        @JoinColumn(name = "programa_codigo", referencedColumnName = "codigo"),
-        @JoinColumn(name = "programa_version", referencedColumnName = "version")})
-    @ManyToMany
+    @ManyToMany(mappedBy = "competenciaList")
     private List<Programa> programaList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idCompetencia")
     private List<CriteriosEvaluacion> criteriosEvaluacionList;
@@ -206,5 +202,5 @@ public class Competencia implements Serializable {
     public String toString() {
         return "com.pepe.jpa.entities.Competencia[ idCompetencia=" + idCompetencia + " ]";
     }
-    
+
 }
