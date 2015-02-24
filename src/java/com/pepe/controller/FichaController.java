@@ -7,6 +7,7 @@ import com.pepe.jpa.entities.Programa;
 import com.pepe.jpa.entities.Proyecto;
 import com.pepe.jpa.entities.TipoFormacion;
 import com.pepe.jpa.entities.TipoOferta;
+import com.pepe.jpa.entities.UsuarioHasFicha;
 import com.pepe.jpa.sesions.CentroFormacionFacade;
 import com.pepe.jpa.sesions.FichaFacade;
 import com.pepe.jpa.sesions.JornadaFacade;
@@ -14,6 +15,7 @@ import com.pepe.jpa.sesions.ProgramaFacade;
 import com.pepe.jpa.sesions.ProyectoFacade;
 import com.pepe.jpa.sesions.TipoFormacionFacade;
 import com.pepe.jpa.sesions.TipoOfertaFacade;
+import com.pepe.jpa.sesions.UsuarioHasFichaFacade;
 import java.io.Serializable;
 import java.util.List;
 import java.util.logging.Level;
@@ -21,7 +23,10 @@ import java.util.logging.Logger;
 import javax.ejb.EJB;
 import javax.enterprise.context.SessionScoped;
 import javax.faces.application.FacesMessage;
+import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
+import javax.faces.convert.Converter;
+import javax.faces.convert.FacesConverter;
 import javax.inject.Named;
 
 /**
@@ -46,7 +51,9 @@ public class FichaController implements Serializable {
     private TipoFormacionFacade tipoFormacionFacade;
        @EJB
     private ProgramaFacade programaFacade; 
-     
+       @EJB
+       private UsuarioHasFichaFacade usuarioHasFichaFacade;
+    
     private List<Ficha> listaFicha = null;
     private Ficha fichaActual;
     private int idCentro;
@@ -54,10 +61,52 @@ public class FichaController implements Serializable {
     private int jornada;
     private int idTipoFormacion;
     private int idProyecto;
+    private int fichaSeleccionadaInt;
+    private Ficha fichaSeleccionada;
+    private UsuarioHasFicha usuarioHasFichaSeleccionada;
+
+    public UsuarioHasFichaFacade getUsuarioHasFichaFacade() {
+        return usuarioHasFichaFacade;
+    }
+
+    public void setUsuarioHasFichaFacade(UsuarioHasFichaFacade usuarioHasFichaFacade) {
+        this.usuarioHasFichaFacade = usuarioHasFichaFacade;
+    }
+
+    public UsuarioHasFicha getUsuarioHasFichaSeleccionada() {
+        return usuarioHasFichaSeleccionada;
+    }
+
+    public void setUsuarioHasFichaSeleccionada(UsuarioHasFicha usuarioHasFichaSeleccionada) {
+        this.usuarioHasFichaSeleccionada = usuarioHasFichaSeleccionada;
+    }
+
+    public Ficha getFichaSeleccionada() {
+        if(fichaSeleccionada == null){
+            fichaSeleccionada = new Ficha();
+        }
+        return fichaSeleccionada;
+    }
+
+    public int getFichaSeleccionadaInt() {
+        return fichaSeleccionadaInt;
+    }
+
+    public void setFichaSeleccionadaInt(int fichaSeleccionadaInt) {
+        this.fichaSeleccionadaInt = fichaSeleccionadaInt;
+    }
+
+    
+    public void setFichaSeleccionada(Ficha fichaSeleccionada) {
+        this.fichaSeleccionada = fichaSeleccionada;
+    }
+
+   
+    
 
     public int getIdProyecto() {
         if(fichaActual != null && fichaActual.getIdProyecto() !=null){
-            idCentro = fichaActual.getIdProyecto().getIdProyecto();
+            idProyecto = fichaActual.getIdProyecto().getIdProyecto();
         
     }
         return idProyecto;
@@ -71,7 +120,7 @@ public class FichaController implements Serializable {
     
     public int getIdTipoFormacion() {
         if(fichaActual != null && fichaActual.getIdTipoFormacion() !=null){
-            idCentro = fichaActual.getIdTipoFormacion().getIdTipoFormacion();
+            idTipoFormacion = fichaActual.getIdTipoFormacion().getIdTipoFormacion();
         
     }
         return idTipoFormacion;
@@ -85,7 +134,7 @@ public class FichaController implements Serializable {
 
     public int getJornada() {
          if(fichaActual != null && fichaActual.getIdJornada() !=null){
-            idCentro = fichaActual.getIdJornada().getIdJornada();
+            jornada = fichaActual.getIdJornada().getIdJornada();
         
     }
         return jornada;
@@ -98,7 +147,7 @@ public class FichaController implements Serializable {
     
     public int getIdOferta() {
         if(fichaActual != null && fichaActual.getIdTipoOferta() !=null){
-            idCentro = fichaActual.getIdTipoOferta().getIdTipoOferta();
+            idOferta = fichaActual.getIdTipoOferta().getIdTipoOferta();
         
     }
       return idOferta;  
@@ -288,4 +337,100 @@ public class FichaController implements Serializable {
         FacesContext.getCurrentInstance().addMessage("successInfo", facesMsg);
     }
     
+     public Ficha getFicha(java.lang.Integer id) {
+        return fichaFacade.find(id);
+    }
+    
+    @FacesConverter(forClass = Ficha.class)
+    public static class FichaControllerConverter implements Converter {
+
+        @Override
+        public Object getAsObject(FacesContext facesContext, UIComponent component, String value) {
+            if (value == null || value.length() == 0) {
+                return null;
+            }
+            FichaController controller = (FichaController) facesContext.getApplication().getELResolver().
+                    getValue(facesContext.getELContext(), null, "fichaController");
+            return controller.getFicha(getKey(value));
+        }
+
+        java.lang.Integer getKey(String value) {
+            java.lang.Integer key;
+            key = Integer.valueOf(value);
+            return key;
+        }
+
+        String getStringKey(java.lang.Integer value) {
+            StringBuilder sb = new StringBuilder();
+            sb.append(value);
+            return sb.toString();
+        }
+
+        @Override
+        public String getAsString(FacesContext facesContext, UIComponent component, Object object) {
+            if (object == null) {
+                return null;
+            }
+            if (object instanceof Ficha) {
+                Ficha o = (Ficha) object;
+                return getStringKey(o.getIdFicha());
+            } else {
+                throw new IllegalArgumentException("object " + object + " is of type " + object.getClass().getName() + "; expected type: " + Ficha.class.getName());
+            }
+        }
+        
+
+    }
+    
+       public UsuarioHasFicha getUsuarioHasFicha(com.pepe.jpa.entities.UsuarioHasFichaPK id) {
+        return getUsuarioHasFichaFacade().find(id);
+    }
+
+    @FacesConverter(forClass = UsuarioHasFicha.class)
+    public static class UsuarioHasFichaControllerConverter implements Converter {
+
+        private static final String SEPARATOR = "#";
+        private static final String SEPARATOR_ESCAPED = "\\#";
+
+        @Override
+        public Object getAsObject(FacesContext facesContext, UIComponent component, String value) {
+            if (value == null || value.length() == 0) {
+                return null;
+            }
+            UsuarioHasFichaController controller = (UsuarioHasFichaController) facesContext.getApplication().getELResolver().
+                    getValue(facesContext.getELContext(), null, "usuarioHasFichaController");
+            return controller.getUsuarioHasFicha(getKey(value));
+        }
+
+        com.pepe.jpa.entities.UsuarioHasFichaPK getKey(String value) {
+            com.pepe.jpa.entities.UsuarioHasFichaPK key;
+            String values[] = value.split(SEPARATOR_ESCAPED);
+            key = new com.pepe.jpa.entities.UsuarioHasFichaPK();
+            key.setIdUsuario(Integer.parseInt(values[0]));
+            key.setIdFicha(Integer.parseInt(values[1]));
+            return key;
+        }
+
+        String getStringKey(com.pepe.jpa.entities.UsuarioHasFichaPK value) {
+            StringBuilder sb = new StringBuilder();
+            sb.append(value.getIdUsuario());
+            sb.append(SEPARATOR);
+            sb.append(value.getIdFicha());
+            return sb.toString();
+        }
+
+        @Override
+        public String getAsString(FacesContext facesContext, UIComponent component, Object object) {
+            if (object == null) {
+                return null;
+            }
+            if (object instanceof UsuarioHasFicha) {
+                UsuarioHasFicha o = (UsuarioHasFicha) object;
+                return getStringKey(o.getUsuarioHasFichaPK());
+            } else {
+                throw new IllegalArgumentException("object " + object + " is of type " + object.getClass().getName() + "; expected type: " + UsuarioHasFicha.class.getName());
+            }
+        }
+
+    }
 }

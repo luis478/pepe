@@ -81,21 +81,26 @@ public class ProgramaController implements Serializable {
     private int idModalidad;
     private int idNivel;
     private int idTipo;
+    private String duracion;
     private boolean cod = true;
 
     public ProgramaController() {
     }
 
     public Programa getProgramaActual() {
-        if (programaActual == null) {
-            programaActual = new Programa();
-            programaActual.setProgramaPK(new ProgramaPK());
-        }
         return programaActual;
     }
 
     public Programa getProgramaVersion() {
         return programaVersion;
+    }
+
+    public String getDuracion() {
+        return duracion;
+    }
+
+    public void setDuracion(String duracion) {
+        this.duracion = duracion;
     }
 
     public void setProgramaVersion(Programa programaVersion) {
@@ -226,12 +231,7 @@ public class ProgramaController implements Serializable {
     }
 
     public String programaConsulta() {
-        programaActual = getProgramaFacade().consultaCodigoVersion(codigo, version);
-        if (programaActual != null) {
-            return "programaTabla.xhtml";
-        } else {
-            return "programaInicio.xhtml";
-        }
+        return "programaTabla.xhtml";
     }
 
     public LineaTecnologicaFacade getLineaTecnologicaFacade() {
@@ -275,7 +275,7 @@ public class ProgramaController implements Serializable {
     }
 
     public int getIdLinea() {
-        if (getProgramaActual().getIdLineaTecnologica() != null) {
+        if (getProgramaActual() != null && getProgramaActual().getIdLineaTecnologica() != null) {
             idLinea = getProgramaActual().getIdLineaTecnologica().getIdLineaTecnologica();
         }
         return idLinea;
@@ -286,7 +286,7 @@ public class ProgramaController implements Serializable {
     }
 
     public int getIdPerfil() {
-        if (getProgramaActual().getIdLineaTecnologica() != null) {
+        if (getProgramaActual() != null && getProgramaActual().getIdLineaTecnologica() != null) {
             idPerfil = getProgramaActual().getIdPerfilEntrada().getIdPerfilEntrada();
         }
         return idPerfil;
@@ -298,7 +298,7 @@ public class ProgramaController implements Serializable {
 
     public int getIdModalidad() {
 
-        if (getProgramaActual().getIdModalidadFormacion() != null) {
+        if (getProgramaActual() != null && getProgramaActual().getIdModalidadFormacion() != null) {
             idModalidad = getProgramaActual().getIdModalidadFormacion().getIdModalidadFormacion();
         }
         return idModalidad;
@@ -309,7 +309,7 @@ public class ProgramaController implements Serializable {
     }
 
     public int getIdNivel() {
-        if (getProgramaActual().getIdNivelFormacion() != null) {
+        if (getProgramaActual() != null && getProgramaActual().getIdNivelFormacion() != null) {
             idNivel = getProgramaActual().getIdNivelFormacion().getIdNivelFormacion();
         }
         return idNivel;
@@ -321,7 +321,7 @@ public class ProgramaController implements Serializable {
 
     public int getIdTipo() {
 
-        if (getProgramaActual().getIdTipoFormacion() != null) {
+        if (getProgramaActual() != null && getProgramaActual().getIdTipoFormacion() != null) {
             idTipo = getProgramaActual().getIdTipoFormacion().getIdTipoFormacion();
         }
         return idTipo;
@@ -401,6 +401,10 @@ public class ProgramaController implements Serializable {
         cod = false;
         programas = null;
         idLinea = idModalidad = idNivel = idPerfil = idTipo = 0;
+        competenciaActual = null;
+    }
+
+    public void anularComp() {
         competenciaActual = null;
     }
 
@@ -506,6 +510,18 @@ public class ProgramaController implements Serializable {
             anular();
             programaActual = getProgramaFacade().consultaCodigoVersion(programaVersion.getProgramaPK().getCodigo(), programaVersion.getProgramaPK().getVersion());
             programaVersion = null;
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    public void crearCompetencia() {
+        try {
+            competenciaActual.setEstado((short) 1);
+            competenciaActual.setDuracionEstimadaHoras(Integer.parseInt(duracion));
+            getCompetenciaFacade().create(competenciaActual);
+            programaActual.getCompetenciaList().add(competenciaActual);
+            getProgramaFacade().edit(programaActual);
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }

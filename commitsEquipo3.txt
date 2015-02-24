@@ -1,3 +1,9 @@
+commit 82a5078f945440f55e64463b8373d01cecbdc4dc
+Author: ShikiFuujin <shiki.fuujin@outlook.com>
+Date:   Tue Feb 24 10:06:20 2015 -0500
+
+    Cambios Equipo 3
+
 commit f2175837fbabee72b83996ff63a58a668a9a4727
 Merge: ec56565 1074a9d
 Author: ShikiFuujin <shiki.fuujin@outlook.com>
