@@ -69,8 +69,8 @@ public class Competencia implements Serializable {
     private int duracionEstimadaHoras;
     @JoinTable(name = "programa_has_competencia", joinColumns = {
         @JoinColumn(name = "id_competencia", referencedColumnName = "id_competencia")}, inverseJoinColumns = {
-        @JoinColumn(name = "programa_codigo", referencedColumnName = "codigo"),
-        @JoinColumn(name = "programa_version", referencedColumnName = "version")})
+        @JoinColumn(name = "codigo", referencedColumnName = "codigo"),
+        @JoinColumn(name = "version", referencedColumnName = "version")})
     @ManyToMany
     private List<Programa> programaList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idCompetencia")

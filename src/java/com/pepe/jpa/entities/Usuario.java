@@ -10,6 +10,7 @@ import controller.util.DigestUtil;
 import java.io.Serializable;
 import java.io.UnsupportedEncodingException;
 import java.security.NoSuchAlgorithmException;
+import java.util.Collection;
 import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
@@ -61,6 +62,8 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Usuario.findByTelefono2", query = "SELECT u FROM Usuario u WHERE u.telefono2 = :telefono2"),
     @NamedQuery(name = "Usuario.findByTelefono3", query = "SELECT u FROM Usuario u WHERE u.telefono3 = :telefono3")})
 public class Usuario implements Serializable {
+    @ManyToMany(mappedBy = "usuarioCollection")
+    private Collection<Rol> rolCollection;
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -187,8 +190,6 @@ public class Usuario implements Serializable {
     @JoinColumn(name = "id_tipo_instructor", referencedColumnName = "id_tipo_instructor")
     @ManyToOne
     private TipoInstructor idTipoInstructor;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idUsuario")
-    private List<ResultadoAprendizaje> resultadoAprendizajeList;
     
     public Usuario() {
     }
@@ -531,15 +532,6 @@ public class Usuario implements Serializable {
         this.idTipoInstructor = idTipoInstructor;
     }
 
-    @XmlTransient
-    public List<ResultadoAprendizaje> getResultadoAprendizajeList() {
-        return resultadoAprendizajeList;
-    }
-
-    public void setResultadoAprendizajeList(List<ResultadoAprendizaje> resultadoAprendizajeList) {
-        this.resultadoAprendizajeList = resultadoAprendizajeList;
-    }
-
     @Override
     public int hashCode() {
         int hash = 0;
@@ -563,6 +555,15 @@ public class Usuario implements Serializable {
     @Override
     public String toString() {
         return "com.pepe.jpa.entities.Usuario[ idUsuario=" + idUsuario + " ]";
+    }
+
+    @XmlTransient
+    public Collection<Rol> getRolCollection() {
+        return rolCollection;
+    }
+
+    public void setRolCollection(Collection<Rol> rolCollection) {
+        this.rolCollection = rolCollection;
     }
     
 }

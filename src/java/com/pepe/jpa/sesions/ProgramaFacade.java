@@ -53,4 +53,15 @@ public class ProgramaFacade extends AbstractFacade<Programa> {
             return null;
         }
     }
+
+    public List<Programa> consultaCodigo(String c) {
+        Query q = getEntityManager().createNamedQuery("Programa.findByCodigo");
+        q.setParameter("codigo", c);
+        try {
+            return (List<Programa>) q.getResultList();
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            return null;
+        }
+    }
 }

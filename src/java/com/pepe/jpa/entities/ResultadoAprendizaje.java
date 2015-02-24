@@ -7,9 +7,7 @@
 package com.pepe.jpa.entities;
 
 import java.io.Serializable;
-import java.util.List;
 import javax.persistence.Basic;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -17,20 +15,17 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.Lob;
-import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author Windows 8
+ * @author Adsit
  */
 @Entity
 @Table(name = "resultado_aprendizaje")
@@ -38,6 +33,7 @@ import javax.xml.bind.annotation.XmlTransient;
 @NamedQueries({
     @NamedQuery(name = "ResultadoAprendizaje.findAll", query = "SELECT r FROM ResultadoAprendizaje r"),
     @NamedQuery(name = "ResultadoAprendizaje.findByIdResultadoAprendizaje", query = "SELECT r FROM ResultadoAprendizaje r WHERE r.idResultadoAprendizaje = :idResultadoAprendizaje"),
+    @NamedQuery(name = "ResultadoAprendizaje.consultaRA", query = "SELECT r FROM ResultadoAprendizaje r WHERE r.idCompetencia.idCompetencia = :idCompetencia AND r.estado = 1"),
     @NamedQuery(name = "ResultadoAprendizaje.findByEstado", query = "SELECT r FROM ResultadoAprendizaje r WHERE r.estado = :estado")})
 public class ResultadoAprendizaje implements Serializable {
     private static final long serialVersionUID = 1L;
@@ -56,21 +52,12 @@ public class ResultadoAprendizaje implements Serializable {
     @NotNull
     @Column(name = "estado")
     private short estado;
-    @ManyToMany(mappedBy = "resultadoAprendizajeList")
-    private List<Evento> eventoList;
-    @ManyToMany(mappedBy = "resultadoAprendizajeList")
-    private List<Actividad> actividadList;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "resultadoAprendizaje")
-    private List<ActividadAprendizajeHasResultadoAprendizaje> actividadAprendizajeHasResultadoAprendizajeList;
     @JoinColumn(name = "id_tipo_resultado_aprendizaje", referencedColumnName = "id_tipo_resultado_aprendizaje")
     @ManyToOne(optional = false)
     private TipoResultadoAprendizaje idTipoResultadoAprendizaje;
     @JoinColumn(name = "id_competencia", referencedColumnName = "id_competencia")
     @ManyToOne(optional = false)
     private Competencia idCompetencia;
-    @JoinColumn(name = "id_usuario", referencedColumnName = "id_usuario")
-    @ManyToOne(optional = false)
-    private Usuario idUsuario;
 
     public ResultadoAprendizaje() {
     }
@@ -109,33 +96,6 @@ public class ResultadoAprendizaje implements Serializable {
         this.estado = estado;
     }
 
-    @XmlTransient
-    public List<Evento> getEventoList() {
-        return eventoList;
-    }
-
-    public void setEventoList(List<Evento> eventoList) {
-        this.eventoList = eventoList;
-    }
-
-    @XmlTransient
-    public List<Actividad> getActividadList() {
-        return actividadList;
-    }
-
-    public void setActividadList(List<Actividad> actividadList) {
-        this.actividadList = actividadList;
-    }
-
-    @XmlTransient
-    public List<ActividadAprendizajeHasResultadoAprendizaje> getActividadAprendizajeHasResultadoAprendizajeList() {
-        return actividadAprendizajeHasResultadoAprendizajeList;
-    }
-
-    public void setActividadAprendizajeHasResultadoAprendizajeList(List<ActividadAprendizajeHasResultadoAprendizaje> actividadAprendizajeHasResultadoAprendizajeList) {
-        this.actividadAprendizajeHasResultadoAprendizajeList = actividadAprendizajeHasResultadoAprendizajeList;
-    }
-
     public TipoResultadoAprendizaje getIdTipoResultadoAprendizaje() {
         return idTipoResultadoAprendizaje;
     }
@@ -150,14 +110,6 @@ public class ResultadoAprendizaje implements Serializable {
 
     public void setIdCompetencia(Competencia idCompetencia) {
         this.idCompetencia = idCompetencia;
-    }
-
-    public Usuario getIdUsuario() {
-        return idUsuario;
-    }
-
-    public void setIdUsuario(Usuario idUsuario) {
-        this.idUsuario = idUsuario;
     }
 
     @Override

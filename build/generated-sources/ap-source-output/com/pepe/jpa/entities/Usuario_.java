@@ -16,7 +16,6 @@ import com.pepe.jpa.entities.Ficha;
 import com.pepe.jpa.entities.Genero;
 import com.pepe.jpa.entities.LibretaMilitar;
 import com.pepe.jpa.entities.Patrocinio;
-import com.pepe.jpa.entities.ResultadoAprendizaje;
 import com.pepe.jpa.entities.Revision;
 import com.pepe.jpa.entities.Rol;
 import com.pepe.jpa.entities.TipoDocumento;
@@ -26,11 +25,12 @@ import com.pepe.jpa.entities.TipoVocero;
 import com.pepe.jpa.entities.Verificacion;
 import java.util.Date;
 import javax.annotation.Generated;
+import javax.persistence.metamodel.CollectionAttribute;
 import javax.persistence.metamodel.ListAttribute;
 import javax.persistence.metamodel.SingularAttribute;
 import javax.persistence.metamodel.StaticMetamodel;
 
-@Generated(value="EclipseLink-2.5.1.v20130918-rNA", date="2015-02-18T11:25:43")
+@Generated(value="EclipseLink-2.5.1.v20130918-rNA", date="2015-02-23T14:48:03")
 @StaticMetamodel(Usuario.class)
 public class Usuario_ { 
 
@@ -58,6 +58,7 @@ public class Usuario_ {
     public static volatile ListAttribute<Usuario, Acompanamiento> acompanamientoList;
     public static volatile SingularAttribute<Usuario, Caracterizacion> idCaracterizacion;
     public static volatile SingularAttribute<Usuario, String> apellido2;
+    public static volatile CollectionAttribute<Usuario, Rol> rolCollection;
     public static volatile SingularAttribute<Usuario, String> apellido1;
     public static volatile SingularAttribute<Usuario, String> telefono;
     public static volatile ListAttribute<Usuario, Evento> eventoList;
@@ -67,7 +68,6 @@ public class Usuario_ {
     public static volatile SingularAttribute<Usuario, EstiloAprendizaje> idEstiloAprendizaje;
     public static volatile SingularAttribute<Usuario, TipoDocumento> idTipoDocumento;
     public static volatile SingularAttribute<Usuario, String> correo1;
-    public static volatile ListAttribute<Usuario, ResultadoAprendizaje> resultadoAprendizajeList;
     public static volatile SingularAttribute<Usuario, Desercion> idDesercion;
     public static volatile SingularAttribute<Usuario, Especialidad> idEspecialidad;
     public static volatile SingularAttribute<Usuario, String> correo2;

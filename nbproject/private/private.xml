@@ -3,13 +3,9 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Adsit/Desktop/PEPA/src/java/com/pepe/jpa/entities/Competencia.java</file>
-            <file>file:/C:/Users/Adsit/Desktop/PEPA/web/resources/css/estilo.css</file>
+            <file>file:/C:/Users/Adsit/Desktop/PEPA/web/programa/programaVer.xhtml</file>
             <file>file:/C:/Users/Adsit/Desktop/PEPA/web/programa/programaInicio.xhtml</file>
-            <file>file:/C:/Users/Adsit/Desktop/PEPA/web/programa/templatePrograma.xhtml</file>
-            <file>file:/C:/Users/Adsit/Desktop/PEPA/web/programa/programaDetalle.xhtml</file>
-            <file>file:/C:/Users/Adsit/Desktop/PEPA/src/java/com/pepe/jpa/sesions/ProgramaFacade.java</file>
-            <file>file:/C:/Users/Adsit/Desktop/PEPA/src/java/com/pepe/jpa/entities/Programa.java</file>
+            <file>file:/C:/Users/Adsit/Desktop/PEPA/web/programa/programaTabla.xhtml</file>
             <file>file:/C:/Users/Adsit/Desktop/PEPA/src/java/com/pepe/controller/ProgramaController.java</file>
         </group>
     </open-files>

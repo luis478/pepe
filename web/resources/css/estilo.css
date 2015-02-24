@@ -243,6 +243,11 @@
 
 /* ESTILOS DE FORMULACION */
 
+.error{
+    color: red;
+    font-size: 10px;
+}
+
 .ui-inputfield{
     text-align: center !important;
     border: 1px red solid !important;
@@ -284,13 +289,14 @@
     padding: 0.3em !important;
     width: 30px;
     height:30px;
+    color: #000000 !important;
     border: 1px solid blue !important;
 }
 
 .ui-state-highlight, 
 .ui-widget-content .ui-state-highlight,
 .ui-widget-header .ui-state-highlight{
-    color: #FFFFFF !important;
+    color: #000000 !important;
     text-shadow: none !important;
     background: #F58634 !important;
     border: 1px solid rgb(182,194,0) !important;
@@ -300,13 +306,14 @@
 .ui-widget-content .ui-state-focus,
 .ui-widget-header .ui-state-focus,
 .ui-corner-all{
+    color: #000000 !important;
     border-radius: 0 !important;
     box-shadow: none !important;
     outline: none !important;
 }
 
 .ui-widget-content {
-    color: #000;
+    color: #000000 !important;
 }
 
 .ui-widget-overlay{
@@ -315,6 +322,7 @@
     position: absolute !important;
     top: 0 !important;
     bottom: 0 !important;
+    color: #000000 !important;
     left: 0 !important;
     right: 0 !important;
     opacity: 1  !important;
@@ -337,6 +345,7 @@
     right: 0 !important;
     border: none !important;
     border-radius: 0 !important;
+    color: #000000 !important;
     height: 80% !important;
     overflow: scroll !important;
 }
@@ -353,4 +362,15 @@
     height: 100%;
     padding: 0 !important;
     overflow: visible !important;
+}
+
+.ui-dialog input,
+.ui-dialog textarea,
+.ui-dialog select{
+    display: block;
+    padding: 5px;
+    color: #000000 !important;
+    width: 300px;
+    margin-bottom: 5px;
+    outline: none !important;
 }

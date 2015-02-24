@@ -8,41 +8,41 @@
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
     <ui:composition template="templatePrograma.xhtml">
         <ui:define name="Contenido">
-            <h:form>
-                <input type="text"
-                       jsf:id="idCodigo"
-                       jsf:value="#{programaController.codigo}"
-                       pattern="[0-9]{6}" 
-                       maxlength="6"
-                       jsf:validatorMessage="esta mal">
-                    <f:validateRegex pattern="[0-9]{6}"/>
-                    <f:ajax execute="idCodigo"
-                            render="msgIdCodigo idVersion"
-                            event="blur"/>
-                </input>
-                <h:message id="msgIdCodigo"
-                           for="idCodigo"
-                           styleClass="error"/>
-                <input type="text"
-                       jsf:id="idVersion"
-                       jsf:value="#{programaController.version}"
-                       pattern="[0-9]{3}"
-                       jsf:disabled="#{programaController.codigoBoolean()}"
-                       maxlength="3"
-                       jsf:validatorMessage="esta mal">
-                    <f:validateRegex pattern="[0-9]{3}"/>
-                    <f:ajax execute="idVersion"
-                            render="msgIdVersion"
-                            event="blur"/>
-                </input>
-                <h:message id="msgIdVersion"
-                           for="idVersion"
-                           styleClass="error"/>
-                <input type="submit"
-                       jsf:action="#{programaController.programaConsulta()}">
-                </input>
+            <h:form id="programaInicioForm">
+                <section id="sectionProgramaConsulta">
+                    <input type="text"
+                           jsf:id="idCodigo"
+                           jsf:value="#{programaController.codigo}"
+                           pattern="[0-9]{6}" 
+                           maxlength="6"
+                           jsf:validator="#{programaController.validarCodigoPrograma}">
+                        <f:validateRegex pattern="[0-9]{6}"/>
+                        <f:ajax execute="idCodigo"
+                                render="msgIdCodigo idVersion"
+                                event="blur"/>
+                    </input>
+                    <h:message id="msgIdCodigo"
+                               for="idCodigo"
+                               styleClass="error"/>
+                    
+                    <p:selectOneMenu value="#{programaController.version}"
+                                     id="idVersion">
+                        <f:selectItems value="#{programaController.listaProgramas}"
+                                       var="pro"
+                                       itemValue="#{pro.programaPK.version}"/>
+                    </p:selectOneMenu>
+                    
+                    <input type="submit"
+                           jsf:action="#{programaController.programaConsulta()}"
+                           jsf:value="consulta"/>
+                    <p:commandButton onclick="programaCrearVentana.show()"
+                                     value="crear programa"
+                                     action="#{programaController.anular()}"
+                                     update=":programaCrearVentanaForm"/>
+                </section>
+
             </h:form>
-            <ui:include src="programaDetalle.xhtml"/>
+            <ui:include src="programaCrear.xhtml"/>
         </ui:define>
     </ui:composition>
 </html>

@@ -6,10 +6,13 @@
 
 package com.pepe.jpa.sesions;
 
+import com.pepe.jpa.entities.Competencia;
 import com.pepe.jpa.entities.ConocimientoProceso;
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
 /**
  *
@@ -27,6 +30,17 @@ public class ConocimientoProcesoFacade extends AbstractFacade<ConocimientoProces
 
     public ConocimientoProcesoFacade() {
         super(ConocimientoProceso.class);
+    }
+    
+    public List<ConocimientoProceso> consulta(Competencia c) {
+        Query q = getEntityManager().createNamedQuery("ConocimientoProceso.consultaCP");
+        q.setParameter("idCompetencia", c.getIdCompetencia());
+        try {
+            return q.getResultList();
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            return null;
+        }
     }
     
 }
