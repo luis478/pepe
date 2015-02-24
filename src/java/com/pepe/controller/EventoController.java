@@ -8,10 +8,13 @@ package com.pepe.controller;
 
 import com.pepe.jpa.entities.Evento;
 import com.pepe.jpa.entities.Fase;
+import com.pepe.jpa.entities.Proyecto;
 import com.pepe.jpa.sesions.ActividadAprendizajeFacade;
+import com.pepe.jpa.sesions.ActividadFacade;
 import com.pepe.jpa.sesions.CompetenciaFacade;
 import com.pepe.jpa.sesions.EventoFacade;
 import com.pepe.jpa.sesions.FaseFacade;
+import com.pepe.jpa.sesions.ProyectoFacade;
 import com.pepe.jpa.sesions.ResultadoAprendizajeFacade;
 import com.pepe.jpa.sesions.TrimestreFacade;
 import java.util.List;
@@ -44,22 +47,48 @@ public class EventoController {
     private CompetenciaFacade competenciaFacade;
     @EJB
     private EventoFacade eventoFacade;
+    @EJB
+    private ActividadFacade actividadFacade;
+    @EJB
+    private ProyectoFacade ProyectoFacade;
     
     private Evento eventoActual;
-    private List<EventoController> listaEvento =null;
-    private Fase faseActual;
+    private List<Evento> listaEvento =null;
+    private Proyecto proyectoActual;
 
-    public Fase getFaseActual() {
-        return faseActual;
+    public ActividadFacade getActividadFacade() {
+        return actividadFacade;
     }
 
-    public void setFaseActual(Fase faseActual) {
-        this.faseActual = faseActual;
+    public void setActividadFacade(ActividadFacade actividadFacade) {
+        this.actividadFacade = actividadFacade;
+    }
+
+    public ProyectoFacade getProyectoFacade() {
+        return ProyectoFacade;
+    }
+
+    public void setProyectoFacade(ProyectoFacade ProyectoFacade) {
+        this.ProyectoFacade = ProyectoFacade;
+    }
+
+    public List<Evento> getListaEvento() {
+        return listaEvento;
+    }
+
+    public void setListaEvento(List<Evento> listaEvento) {
+        this.listaEvento = listaEvento;
+    }
+
+    public Proyecto getProyectoActual() {
+        return proyectoActual;
+    }
+
+    public void setProyectoActual(Proyecto proyectoActual) {
+        this.proyectoActual = proyectoActual;
     }
     
-    
-    
-    
+
     public EventoController() {
     }
 
@@ -121,17 +150,6 @@ public class EventoController {
         this.competenciaFacade = competenciaFacade;
     }
 
-    
-
-    public List<EventoController> getListaEvento() {
-        return listaEvento;
-    }
-
-    public void setListaEvento(List<EventoController> listaEvento) {
-        this.listaEvento = listaEvento;
-    }
-
-   
       private void recargarLista() {
         listaEvento = null;
     }
