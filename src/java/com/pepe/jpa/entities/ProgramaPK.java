@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package com.pepe.jpa.entities;
 
 import java.io.Serializable;
@@ -19,6 +18,7 @@ import javax.validation.constraints.Size;
  */
 @Embeddable
 public class ProgramaPK implements Serializable {
+
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 6)
@@ -80,7 +80,7 @@ public class ProgramaPK implements Serializable {
 
     @Override
     public String toString() {
-        return "com.pepe.jpa.entities.ProgramaPK[ codigo=" + codigo + ", version=" + version + " ]";
+        return getCodigo() + " - " + getVersion();
     }
-    
+
 }

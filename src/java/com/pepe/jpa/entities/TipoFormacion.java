@@ -3,6 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+
 package com.pepe.jpa.entities;
 
 import java.io.Serializable;
@@ -25,7 +26,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author Luis Carlos
+ * @author ADSI TARDE
  */
 @Entity
 @Table(name = "tipo_formacion")
@@ -119,7 +120,7 @@ public class TipoFormacion implements Serializable {
 
     @Override
     public String toString() {
-        return "com.pepe.jpa.entities.TipoFormacion[ idTipoFormacion=" + idTipoFormacion + " ]";
+        return getTipoFormacion();
     }
     
 }

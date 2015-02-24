@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package com.pepe.jpa.entities;
 
 import java.io.Serializable;
@@ -14,6 +13,7 @@ import javax.persistence.Column;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.Lob;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
@@ -35,7 +35,9 @@ import javax.xml.bind.annotation.XmlTransient;
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Programa.findAll", query = "SELECT p FROM Programa p"),
+    @NamedQuery(name = "Programa.encontrarNombrePrograma", query = "SELECT p FROM Programa p WHERE p.nombrePrograma LIKE :nombrePrograma"),
     @NamedQuery(name = "Programa.findByCodigo", query = "SELECT p FROM Programa p WHERE p.programaPK.codigo = :codigo"),
+    @NamedQuery(name = "Programa.encontrarCodigoVersion", query = "SELECT p FROM Programa p WHERE p.programaPK.codigo = :codigo AND p.programaPK.version = :version"),
     @NamedQuery(name = "Programa.findByVersion", query = "SELECT p FROM Programa p WHERE p.programaPK.version = :version"),
     @NamedQuery(name = "Programa.findByNombrePrograma", query = "SELECT p FROM Programa p WHERE p.nombrePrograma like :nombrePrograma"),
     @NamedQuery(name = "Programa.findByDuracionTrimestres", query = "SELECT p FROM Programa p WHERE p.duracionTrimestres = :duracionTrimestres"),
@@ -64,7 +66,11 @@ public class Programa implements Serializable {
     @Size(min = 1, max = 2147483647)
     @Column(name = "justificacion")
     private String justificacion;
-    @ManyToMany(mappedBy = "programaList")
+    @JoinTable(name = "programa_has_competencia", joinColumns = {
+        @JoinColumn(name = "codigo", referencedColumnName = "codigo"),
+        @JoinColumn(name = "version", referencedColumnName = "version")}, inverseJoinColumns = {
+        @JoinColumn(name = "id_competencia", referencedColumnName = "id_competencia")})
+    @ManyToMany
     private List<Competencia> competenciaList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "programa")
     private List<Ficha> fichaList;
@@ -223,7 +229,7 @@ public class Programa implements Serializable {
 
     @Override
     public String toString() {
-        return programaPK.getCodigo() + " - " + programaPK.getVersion() + " " + nombrePrograma;
+        return getProgramaPK().getCodigo() + " - " + getProgramaPK().getVersion();
     }
-    
+
 }
