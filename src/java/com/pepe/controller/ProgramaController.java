@@ -96,6 +96,9 @@ public class ProgramaController implements Serializable {
     }
 
     public String getDuracion() {
+        if(competenciaActual != null){
+            duracion = Integer.toString(getCompetenciaActual().getDuracionEstimadaHoras());
+        }
         return duracion;
     }
 
@@ -409,6 +412,7 @@ public class ProgramaController implements Serializable {
     }
 
     public void anularItem() {
+        criteriosEvaluacionActual = null;
         conocimientoConceptoPrincipiosActual = null;
     }
 

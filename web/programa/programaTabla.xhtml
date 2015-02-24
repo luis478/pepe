@@ -28,9 +28,9 @@
                                  rowKey="#{item.codigo}"
                                  rows="10">
                         <p:ajax event="rowSelect"
-                                update="botonRA botonCCP botonCP botonCE"/>
+                                update="botonRA botonCCP botonCP botonCE botonE"/>
                         <p:ajax event="rowUnselect"
-                                update="botonRA botonCCP botonCP botonCE"/>
+                                update="botonRA botonCCP botonCP botonCE botonE"/>
                         <p:column>
                             <f:facet name="header">
                                 <h:outputText value="Codigo"/>
@@ -60,7 +60,8 @@
                                 <p:commandButton id="botonE"
                                                  value="editar"
                                                  onclick="competenciaEditarVentana.show()"
-                                                 update=":competenciaEditarVentanaForm"/>
+                                                 update=":competenciaEditarVentanaForm"
+                                                 disabled="#{programaController.competenciaNull()}"/>
                             </section>
                             <section class="row">
                                 <p:commandButton id="botonRA"

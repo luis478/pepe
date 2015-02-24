@@ -29,6 +29,7 @@
                        for="crearCompetenciaHoras"
                        styleClass="error"/>
             <p:commandButton update=":competenciaForm"
+                             value="Guardar"
                              action="#{programaController.editarCompetencia()}"
                              oncomplete="handleSubmit(args,'competenciaEditarVentana','');"/>
         </h:form>
