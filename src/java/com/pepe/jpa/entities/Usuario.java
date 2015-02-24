@@ -60,6 +60,10 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Usuario.findByTelefono2", query = "SELECT u FROM Usuario u WHERE u.telefono2 = :telefono2"),
     @NamedQuery(name = "Usuario.findByTelefono3", query = "SELECT u FROM Usuario u WHERE u.telefono3 = :telefono3")})
 public class Usuario implements Serializable {
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "usuario")
+    private List<UsuarioHasAspectos> usuarioHasAspectosList;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "usuario")
+    private List<UsuarioHasAcompanamiento> usuarioHasAcompanamientoList;
     @ManyToMany(mappedBy = "usuarioCollection")
     private Collection<Rol> rolCollection;
     private static final long serialVersionUID = 1L;
@@ -574,6 +578,24 @@ public class Usuario implements Serializable {
 
     public void setRolCollection(Collection<Rol> rolCollection) {
         this.rolCollection = rolCollection;
+    }
+
+    @XmlTransient
+    public List<UsuarioHasAspectos> getUsuarioHasAspectosList() {
+        return usuarioHasAspectosList;
+    }
+
+    public void setUsuarioHasAspectosList(List<UsuarioHasAspectos> usuarioHasAspectosList) {
+        this.usuarioHasAspectosList = usuarioHasAspectosList;
+    }
+
+    @XmlTransient
+    public List<UsuarioHasAcompanamiento> getUsuarioHasAcompanamientoList() {
+        return usuarioHasAcompanamientoList;
+    }
+
+    public void setUsuarioHasAcompanamientoList(List<UsuarioHasAcompanamiento> usuarioHasAcompanamientoList) {
+        this.usuarioHasAcompanamientoList = usuarioHasAcompanamientoList;
     }
     
 }

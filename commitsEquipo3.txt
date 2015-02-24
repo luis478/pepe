@@ -1,8 +1,28 @@
+commit 39c96450cf8f595cfb6eefd4a116f8fd6686d28b
+Merge: 82a5078 33367ce
+Author: ShikiFuujin <shiki.fuujin@outlook.com>
+Date:   Tue Feb 24 11:07:54 2015 -0500
+
+    Formulario de creacion de competencia
+
 commit 82a5078f945440f55e64463b8373d01cecbdc4dc
 Author: ShikiFuujin <shiki.fuujin@outlook.com>
 Date:   Tue Feb 24 10:06:20 2015 -0500
 
     Cambios Equipo 3
+
+commit 33367ce71c27b895c410e5e5cd7e660e9e77ef55
+Merge: 1f4a428 f3b7701
+Author: andres <eamartinez15@misena.edu.co>
+Date:   Tue Feb 24 10:04:41 2015 -0500
+
+    Actualizacion ficha seleccionada en el index
+
+commit 1f4a428feac32668bafed20fa6508889304e797b
+Author: andres <eamartinez15@misena.edu.co>
+Date:   Tue Feb 24 09:59:06 2015 -0500
+
+    actualzacio selecciondado de ficha pagina de inicio
 
 commit f2175837fbabee72b83996ff63a58a668a9a4727
 Merge: ec56565 1074a9d
@@ -10,6 +30,12 @@ Author: ShikiFuujin <shiki.fuujin@outlook.com>
 Date:   Tue Feb 24 09:58:28 2015 -0500
 
     Merge de equipo3 y 5
+
+commit f3b7701baea82b250e75cd25c7e25c45d6a0b1f8
+Author: Aura <acvalencia94@misena.edu.co>
+Date:   Tue Feb 24 09:15:50 2015 -0500
+
+    controller Actividad
 
 commit ec56565f5beacea0b96dbff792f40a931462043f
 Author: ShikiFuujin <shiki.fuujin@outlook.com>

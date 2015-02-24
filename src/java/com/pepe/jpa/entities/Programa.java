@@ -43,7 +43,6 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Programa.findByDuracionTrimestres", query = "SELECT p FROM Programa p WHERE p.duracionTrimestres = :duracionTrimestres"),
     @NamedQuery(name = "Programa.findByEstado", query = "SELECT p FROM Programa p WHERE p.estado = :estado")})
 public class Programa implements Serializable {
-
     private static final long serialVersionUID = 1L;
     @EmbeddedId
     protected ProgramaPK programaPK;
