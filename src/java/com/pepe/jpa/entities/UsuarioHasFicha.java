@@ -109,4 +109,6 @@ public class UsuarioHasFicha implements Serializable {
         return "com.pepe.jpa.entities.UsuarioHasFicha[ usuarioHasFichaPK=" + usuarioHasFichaPK + " ]";
     }
     
+
+
 }
