@@ -297,6 +297,7 @@
 .Footer-imageContainer{
      margin-top: 0;
      text-align: center;
+     margin-bottom: 2em;
 }
 .Footer-image{
     position: relative;
