@@ -3,13 +3,12 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/E:/Pepe/src/java/com/pepe/controller/UsuarioController.java</file>
-            <file>file:/E:/Pepe/src/java/com/pepe/controller/ProgramaController.java</file>
-            <file>file:/E:/Pepe/src/java/com/pepe/jpa/entities/Ficha.java</file>
             <file>file:/E:/Pepe/web/ProgramaciondeProyecto/crear_ficha.xhtml</file>
             <file>file:/E:/Pepe/src/java/com/pepe/controller/FichaController.java</file>
-            <file>file:/E:/Pepe/src/java/com/pepe/jpa/sesions/ProgramaFacade.java</file>
-            <file>file:/E:/Pepe/src/java/com/pepe/jpa/entities/Programa.java</file>
+            <file>file:/E:/Pepe/src/java/com/pepe/controller/ProgramaController.java</file>
+            <file>file:/E:/Pepe/src/java/com/pepe/jpa/entities/Ficha.java</file>
+            <file>file:/E:/Pepe/web/index.xhtml</file>
+            <file>file:/E:/Pepe/src/java/com/pepe/jpa/entities/Proyecto.java</file>
         </group>
     </open-files>
 </project-private>

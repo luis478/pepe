@@ -72,7 +72,7 @@ public class Ficha implements Serializable {
     @Column(name = "estado")
     private short estado;
     @JoinTable(name = "trimestre_has_ficha", joinColumns = {
-        @JoinColumn(name = "id_fecha", referencedColumnName = "id_ficha")}, inverseJoinColumns = {
+        @JoinColumn(name = "id_ficha", referencedColumnName = "id_ficha")}, inverseJoinColumns = {
         @JoinColumn(name = "id_trimestre", referencedColumnName = "id_trimestre")})
     @ManyToMany
     private List<Trimestre> trimestreList;
