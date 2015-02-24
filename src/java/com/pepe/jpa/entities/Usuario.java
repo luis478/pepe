@@ -1,16 +1,15 @@
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package com.pepe.jpa.entities;
 
 import controller.util.DigestUtil;
 import java.io.Serializable;
 import java.io.UnsupportedEncodingException;
 import java.security.NoSuchAlgorithmException;
-import java.util.Collection;
 import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
@@ -37,7 +36,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author ADSI TARDE
+ * @author Luis Carlos
  */
 @Entity
 @Table(name = "usuario")
@@ -60,12 +59,6 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Usuario.findByTelefono2", query = "SELECT u FROM Usuario u WHERE u.telefono2 = :telefono2"),
     @NamedQuery(name = "Usuario.findByTelefono3", query = "SELECT u FROM Usuario u WHERE u.telefono3 = :telefono3")})
 public class Usuario implements Serializable {
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "usuario")
-    private List<UsuarioHasAspectos> usuarioHasAspectosList;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "usuario")
-    private List<UsuarioHasAcompanamiento> usuarioHasAcompanamientoList;
-    @ManyToMany(mappedBy = "usuarioCollection")
-    private Collection<Rol> rolCollection;
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)
@@ -132,8 +125,8 @@ public class Usuario implements Serializable {
     @Column(name = "telefono_3")
     private String telefono3;
     @JoinTable(name = "rol_has_usuario", joinColumns = {
-        @JoinColumn(name = "id_rol", referencedColumnName = "id_rol")}, inverseJoinColumns = {
-        @JoinColumn(name = "id_usuario", referencedColumnName = "id_usuario")})
+        @JoinColumn(name = "id_usuario", referencedColumnName = "id_usuario")}, inverseJoinColumns = {
+        @JoinColumn(name = "id_rol", referencedColumnName = "id_rol")})
        @ManyToMany
        private  List<Rol> rolList;
     @ManyToMany(mappedBy = "usuarioList")
@@ -153,48 +146,49 @@ public class Usuario implements Serializable {
     private List<Acompanamiento> acompanamientoList;
     @ManyToMany(mappedBy = "usuarioList")
     private List<Ciudad> ciudadList;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "usuario")
-    private List<UsuarioHasFicha> usuarioHasFichaList;
-    @JoinColumn(name = "id_tipo_vocero", referencedColumnName = "id_tipo_vocero")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idUsuario")
+    private List<Verificacion> verificacionList;
+    @JoinColumn(name = "id_patrocinio", referencedColumnName = "id_patrocinio")
     @ManyToOne
-    private TipoVocero idTipoVocero;
+    private Patrocinio idPatrocinio;
+    @JoinColumn(name = "id_caracterizacion", referencedColumnName = "id_caracterizacion")
+    @ManyToOne
+    private Caracterizacion idCaracterizacion;
+    @JoinColumn(name = "id_desercion", referencedColumnName = "id_desercion")
+    @ManyToOne
+    private Desercion idDesercion;
+    @JoinColumn(name = "id_estilo_aprendizaje", referencedColumnName = "id_estilo_aprendizaje")
+    @ManyToOne
+    private EstiloAprendizaje idEstiloAprendizaje;
+    @JoinColumn(name = "id_genero", referencedColumnName = "id_genero")
+    @ManyToOne(optional = false)
+    private Genero idGenero;
+    @JoinColumn(name = "id_libreta_militar", referencedColumnName = "id_libreta_militar")
+    @ManyToOne
+    private LibretaMilitar idLibretaMilitar;
+    @JoinColumn(name = "id_tipo_documento", referencedColumnName = "id_tipo_documento")
+    @ManyToOne(optional = false)
+    private TipoDocumento idTipoDocumento;
     @JoinColumn(name = "id_tipo_sangre", referencedColumnName = "id_tipo_sangre")
     @ManyToOne(optional = false)
     private TipoSangre idTipoSangre;
     @JoinColumn(name = "id_tipo_contrato", referencedColumnName = "id_tipo_contrato")
     @ManyToOne
     private TipoContrato idTipoContrato;
-    @JoinColumn(name = "id_tipo_documento", referencedColumnName = "id_tipo_documento")
-    @ManyToOne(optional = false)
-    private TipoDocumento idTipoDocumento;
-    @JoinColumn(name = "id_patrocinio", referencedColumnName = "id_patrocinio")
+    @JoinColumn(name = "id_tipo_vocero", referencedColumnName = "id_tipo_vocero")
     @ManyToOne
-    private Patrocinio idPatrocinio;
-    @JoinColumn(name = "id_libreta_militar", referencedColumnName = "id_libreta_militar")
-    @ManyToOne
-    private LibretaMilitar idLibretaMilitar;
-    @JoinColumn(name = "id_genero", referencedColumnName = "id_genero")
-    @ManyToOne(optional = false)
-    private Genero idGenero;
-    @JoinColumn(name = "id_estilo_aprendizaje", referencedColumnName = "id_estilo_aprendizaje")
-    @ManyToOne
-    private EstiloAprendizaje idEstiloAprendizaje;
-    @JoinColumn(name = "id_especialidad", referencedColumnName = "id_especialidad")
-    @ManyToOne
-    private Especialidad idEspecialidad;
+    private TipoVocero idTipoVocero;
     @JoinColumn(name = "id_eps", referencedColumnName = "id_eps")
     @ManyToOne(optional = false)
     private Eps idEps;
-    @JoinColumn(name = "id_desercion", referencedColumnName = "id_desercion")
+    @JoinColumn(name = "id_especialidad", referencedColumnName = "id_especialidad")
     @ManyToOne
-    private Desercion idDesercion;
-    @JoinColumn(name = "id_caracterizacion", referencedColumnName = "id_caracterizacion")
-    @ManyToOne
-    private Caracterizacion idCaracterizacion;
+    private Especialidad idEspecialidad;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "usuario")
+    private List<UsuarioHasFicha> usuarioHasFichaList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idUsuario")
     private List<ResultadoAprendizaje> resultadoAprendizajeList;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idUsuario")
-    private List<Verificacion> verificacionList;
+
     public Usuario() {
     }
 
@@ -423,22 +417,65 @@ public class Usuario implements Serializable {
         this.ciudadList = ciudadList;
     }
 
+
+
     @XmlTransient
-    public List<UsuarioHasFicha> getUsuarioHasFichaList() {
-        return usuarioHasFichaList;
+    public List<Verificacion> getVerificacionList() {
+        return verificacionList;
     }
 
     public void setUsuarioHasFichaList(List<UsuarioHasFicha> usuarioHasFichaList) {
         this.usuarioHasFichaList = usuarioHasFichaList;
     }
 
-    public TipoVocero getIdTipoVocero() {
-        return idTipoVocero;
+    public Patrocinio getIdPatrocinio() {
+        return idPatrocinio;
     }
 
-    public void setIdTipoVocero(TipoVocero idTipoVocero) {
-        this.idTipoVocero = idTipoVocero;
+    public void setIdPatrocinio(Patrocinio idPatrocinio) {
+        this.idPatrocinio = idPatrocinio;
     }
+
+    public Caracterizacion getIdCaracterizacion() {
+        return idCaracterizacion;
+    }
+
+    public void setIdCaracterizacion(Caracterizacion idCaracterizacion) {
+        this.idCaracterizacion = idCaracterizacion;
+    }
+
+    public Desercion getIdDesercion() {
+        return idDesercion;
+    }
+
+    public void setIdDesercion(Desercion idDesercion) {
+        this.idDesercion = idDesercion;
+    }
+
+    public EstiloAprendizaje getIdEstiloAprendizaje() {
+        return idEstiloAprendizaje;
+    }
+
+    public void setIdEstiloAprendizaje(EstiloAprendizaje idEstiloAprendizaje) {
+        this.idEstiloAprendizaje = idEstiloAprendizaje;
+    }
+
+    public Genero getIdGenero() {
+        return idGenero;
+    }
+
+    public void setIdGenero(Genero idGenero) {
+        this.idGenero = idGenero;
+    }
+
+    public LibretaMilitar getIdLibretaMilitar() {
+        return idLibretaMilitar;
+    }
+
+    public void setIdLibretaMilitar(LibretaMilitar idLibretaMilitar) {
+        this.idLibretaMilitar = idLibretaMilitar;
+    }
+
 
     public TipoSangre getIdTipoSangre() {
         return idTipoSangre;
@@ -456,52 +493,12 @@ public class Usuario implements Serializable {
         this.idTipoContrato = idTipoContrato;
     }
 
-    public TipoDocumento getIdTipoDocumento() {
-        return idTipoDocumento;
+    public TipoVocero getIdTipoVocero() {
+        return idTipoVocero;
     }
 
-    public void setIdTipoDocumento(TipoDocumento idTipoDocumento) {
-        this.idTipoDocumento = idTipoDocumento;
-    }
-
-    public Patrocinio getIdPatrocinio() {
-        return idPatrocinio;
-    }
-
-    public void setIdPatrocinio(Patrocinio idPatrocinio) {
-        this.idPatrocinio = idPatrocinio;
-    }
-
-    public LibretaMilitar getIdLibretaMilitar() {
-        return idLibretaMilitar;
-    }
-
-    public void setIdLibretaMilitar(LibretaMilitar idLibretaMilitar) {
-        this.idLibretaMilitar = idLibretaMilitar;
-    }
-
-    public Genero getIdGenero() {
-        return idGenero;
-    }
-
-    public void setIdGenero(Genero idGenero) {
-        this.idGenero = idGenero;
-    }
-
-    public EstiloAprendizaje getIdEstiloAprendizaje() {
-        return idEstiloAprendizaje;
-    }
-
-    public void setIdEstiloAprendizaje(EstiloAprendizaje idEstiloAprendizaje) {
-        this.idEstiloAprendizaje = idEstiloAprendizaje;
-    }
-
-    public Especialidad getIdEspecialidad() {
-        return idEspecialidad;
-    }
-
-    public void setIdEspecialidad(Especialidad idEspecialidad) {
-        this.idEspecialidad = idEspecialidad;
+    public void setIdTipoVocero(TipoVocero idTipoVocero) {
+        this.idTipoVocero = idTipoVocero;
     }
 
     public Eps getIdEps() {
@@ -512,22 +509,20 @@ public class Usuario implements Serializable {
         this.idEps = idEps;
     }
 
-    public Desercion getIdDesercion() {
-        return idDesercion;
+    public Especialidad getIdEspecialidad() {
+        return idEspecialidad;
     }
 
-    public void setIdDesercion(Desercion idDesercion) {
-        this.idDesercion = idDesercion;
+    public void setIdEspecialidad(Especialidad idEspecialidad) {
+        this.idEspecialidad = idEspecialidad;
     }
 
-    public Caracterizacion getIdCaracterizacion() {
-        return idCaracterizacion;
+    @XmlTransient
+    public List<UsuarioHasFicha> getUsuarioHasFichaList() {
+        return usuarioHasFichaList;
     }
 
-    public void setIdCaracterizacion(Caracterizacion idCaracterizacion) {
-        this.idCaracterizacion = idCaracterizacion;
-    }
-
+ 
     @XmlTransient
     public List<ResultadoAprendizaje> getResultadoAprendizajeList() {
         return resultadoAprendizajeList;
@@ -537,11 +532,7 @@ public class Usuario implements Serializable {
         this.resultadoAprendizajeList = resultadoAprendizajeList;
     }
 
-    @XmlTransient
-    public List<Verificacion> getVerificacionList() {
-        return verificacionList;
-    }
-
+  
     public void setVerificacionList(List<Verificacion> verificacionList) {
         this.verificacionList = verificacionList;
     }
@@ -569,33 +560,6 @@ public class Usuario implements Serializable {
     @Override
     public String toString() {
         return "com.pepe.jpa.entities.Usuario[ idUsuario=" + idUsuario + " ]";
-    }
-
-    @XmlTransient
-    public Collection<Rol> getRolCollection() {
-        return rolCollection;
-    }
-
-    public void setRolCollection(Collection<Rol> rolCollection) {
-        this.rolCollection = rolCollection;
-    }
-
-    @XmlTransient
-    public List<UsuarioHasAspectos> getUsuarioHasAspectosList() {
-        return usuarioHasAspectosList;
-    }
-
-    public void setUsuarioHasAspectosList(List<UsuarioHasAspectos> usuarioHasAspectosList) {
-        this.usuarioHasAspectosList = usuarioHasAspectosList;
-    }
-
-    @XmlTransient
-    public List<UsuarioHasAcompanamiento> getUsuarioHasAcompanamientoList() {
-        return usuarioHasAcompanamientoList;
-    }
-
-    public void setUsuarioHasAcompanamientoList(List<UsuarioHasAcompanamiento> usuarioHasAcompanamientoList) {
-        this.usuarioHasAcompanamientoList = usuarioHasAcompanamientoList;
     }
     
 }

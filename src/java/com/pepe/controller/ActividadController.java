@@ -16,12 +16,12 @@ import java.util.logging.Logger;
 import javax.ejb.EJB;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
-
 import javax.faces.bean.SessionScoped;
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
 import javax.faces.convert.FacesConverter;
+
 
 
 
@@ -97,7 +97,7 @@ public class ActividadController implements Serializable {
     
     public String prepareCreate(){
         actividadActual = new Actividad();
-        return "Actividad/crear";
+        return "Actividad/crear_actividad";
 }
     public String prepareEdit (){
     return "";
@@ -158,9 +158,14 @@ public class ActividadController implements Serializable {
      public Actividad getActividad(java.lang.Integer id) {
         return getActividadFacade().find(id);
     }
+     public List<Actividad> getItemsAvailableSelectMany() {
+        return getActividadFacade().findAll();
+    }
 
-
-    @FacesConverter(forClass = Actividad.class)
+    public List<Actividad> getItemsAvailableSelectOne() {
+        return getActividadFacade().findAll();
+    }
+  @FacesConverter(forClass = Actividad.class)
     public static class ActividadControllerConverter implements Converter {
 
         @Override

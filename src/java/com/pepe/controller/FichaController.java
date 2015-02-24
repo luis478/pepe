@@ -190,6 +190,15 @@ public class FichaController implements Serializable {
         }
     }
     
+     public  UsuarioHasFicha getUsuarioFicha() {        
+        try{
+            return getUsuarioHasFichaFacade().finByNombre(fichaSeleccionada.getCodigoFicha());            
+        }catch (Exception ex){
+            Logger.getLogger(FichaController.class.getName()).log(Level.SEVERE,null,ex);
+            return null;            
+        }
+    }
+    
     public FichaFacade getFichaFacade() {
         return fichaFacade;
     }

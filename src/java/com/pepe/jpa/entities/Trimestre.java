@@ -3,14 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package com.pepe.jpa.entities;
 
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 import javax.persistence.Basic;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -19,7 +17,6 @@ import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -29,7 +26,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author ADSI TARDE
+ * @author Luis Carlos
  */
 @Entity
 @Table(name = "trimestre")
@@ -40,8 +37,6 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Trimestre.findByFechaInicio", query = "SELECT t FROM Trimestre t WHERE t.fechaInicio = :fechaInicio"),
     @NamedQuery(name = "Trimestre.findByFechaFin", query = "SELECT t FROM Trimestre t WHERE t.fechaFin = :fechaFin")})
 public class Trimestre implements Serializable {
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "trimestre")
-    private List<TrimestreHasFicha> trimestreHasFichaList;
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -141,15 +136,6 @@ public class Trimestre implements Serializable {
     @Override
     public String toString() {
         return "com.pepe.jpa.entities.Trimestre[ idTrimestre=" + idTrimestre + " ]";
-    }
-
-    @XmlTransient
-    public List<TrimestreHasFicha> getTrimestreHasFichaList() {
-        return trimestreHasFichaList;
-    }
-
-    public void setTrimestreHasFichaList(List<TrimestreHasFicha> trimestreHasFichaList) {
-        this.trimestreHasFichaList = trimestreHasFichaList;
     }
     
 }
