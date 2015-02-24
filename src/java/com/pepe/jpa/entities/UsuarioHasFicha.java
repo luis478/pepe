@@ -112,3 +112,6 @@ public class UsuarioHasFicha implements Serializable {
 
 
 }
+
+
+
