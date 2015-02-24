@@ -28,9 +28,9 @@
                                  rowKey="#{item.codigo}"
                                  rows="10">
                         <p:ajax event="rowSelect"
-                                update="botonRA botonCCP botonCP botonCE"/>
+                                update="botonRA botonCCP botonCP botonCE botonE"/>
                         <p:ajax event="rowUnselect"
-                                update="botonRA botonCCP botonCP botonCE"/>
+                                update="botonRA botonCCP botonCP botonCE botonE"/>
                         <p:column>
                             <f:facet name="header">
                                 <h:outputText value="Codigo"/>
@@ -43,32 +43,48 @@
                             </f:facet>
                             <h:outputText value="#{item.nombreCompetencia}"/>
                         </p:column>
+                        
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="NombreCompetencia"/>
+                            </f:facet>
+                            <h:outputText value="#{item.duracionEstimadaHoras}"/>
+                        </p:column>
                         <f:facet name="footer">
-                            <p:commandButton id="botonC"
-                                             value="crear"
-                                             actionListener="#{programaController.anularComp()}"
-                                             onclick="competenciaCrearVentana.show()"
-                                             update=":competenciaCrearVentanaForm"/>
-                            <p:commandButton id="botonRA"
-                                             value="RA"
-                                             disabled="#{programaController.competenciaNull()}"
-                                             onclick="listaRAVentana.show()"
-                                             update=":listaRAVentanaForm"/>
-                            <p:commandButton id="botonCCP"
-                                             value="CCP"
-                                             disabled="#{programaController.competenciaNull()}"
-                                             onclick="listaCCPVentana.show()"
-                                             update=":listaCCPVentanaForm"/>
-                            <p:commandButton id="botonCP"
-                                             value="CP"
-                                             disabled="#{programaController.competenciaNull()}"
-                                             onclick="listaCPVentana.show()"
-                                             update=":listaCPVentanaForm"/>
-                            <p:commandButton id="botonCE"
-                                             value="CE"
-                                             disabled="#{programaController.competenciaNull()}"
-                                             onclick="listaCEVentana.show()"
-                                             update=":listaCEVentanaForm"/>
+                            <section class="row">
+                                <p:commandButton id="botonC"
+                                                 value="crear"
+                                                 actionListener="#{programaController.anularComp()}"
+                                                 onclick="competenciaCrearVentana.show()"
+                                                 update=":competenciaCrearVentanaForm"/>
+                                <p:commandButton id="botonE"
+                                                 value="editar"
+                                                 onclick="competenciaEditarVentana.show()"
+                                                 update=":competenciaEditarVentanaForm"
+                                                 disabled="#{programaController.competenciaNull()}"/>
+                            </section>
+                            <section class="row">
+                                <p:commandButton id="botonRA"
+                                                 value="RA"
+                                                 disabled="#{programaController.competenciaNull()}"
+                                                 onclick="listaRAVentana.show()"
+                                                 update=":listaRAVentanaForm"/>
+                                <p:commandButton id="botonCCP"
+                                                 value="CCP"
+                                                 disabled="#{programaController.competenciaNull()}"
+                                                 onclick="listaCCPVentana.show()"
+                                                 update=":listaCCPVentanaForm"/>
+                                <p:commandButton id="botonCP"
+                                                 value="CP"
+                                                 disabled="#{programaController.competenciaNull()}"
+                                                 onclick="listaCPVentana.show()"
+                                                 update=":listaCPVentanaForm"/>
+                                <p:commandButton id="botonCE"
+                                                 value="CE"
+                                                 disabled="#{programaController.competenciaNull()}"
+                                                 onclick="listaCEVentana.show()"
+                                                 update=":listaCEVentanaForm"/>
+                            </section>
                         </f:facet>
                     </p:dataTable>
 
@@ -91,6 +107,7 @@
             <ui:include src="programaVer.xhtml"/>
             <ui:include src="programaVersion.xhtml"/>
             <ui:include src="programaInfo/competencia/competenciaCreate.xhtml"/>
+            <ui:include src="programaInfo/competencia/competenciaEditar.xhtml"/>
         </ui:define>
     </ui:composition>
 </html>

@@ -5,29 +5,13 @@
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:jsf="http://xmlns.jcp.org/jsf"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
-    <p:dialog widgetVar="competenciaCrearVentana" 
+    <p:dialog widgetVar="competenciaEditarVentana" 
               resizable="false"
               modal="true"
               draggable="false"
               styleClass="Dialogo">
-        <h:form id="competenciaCrearVentanaForm">
-            <input type="text"
-                   jsf:id="crearCompetencia"
-                   jsf:value="#{programaController.competenciaActual.codigo}"
-                   pattern="[0-9]{9}" 
-                   placeholder="codigo de la competencia"
-                   maxlength="9"
-                   jsf:validatorMessage="esta mal">
-                <f:validateRegex pattern="[0-9]{9}"/>
-                <f:ajax execute="crearCompetencia"
-                        render="msgCrearCompetencia"/>
-                <f:ajax execute="crearCompetencia"
-                        render="msgCrearCompetencia"
-                        event="blur"/>
-            </input>
-            <h:message id="msgCrearCompetencia"
-                       for="crearCompetencia"
-                       styleClass="error"/>
+        <h:form id="competenciaEditarVentanaForm">
+            <h1 class="row">#{programaController.competenciaActual.codigo}</h1>
             <textarea jsf:value="#{programaController.competenciaActual.nombreCompetencia}"
                       required="true"/>
             <input type="number"
@@ -46,8 +30,8 @@
                        styleClass="error"/>
             <p:commandButton update=":competenciaForm"
                              value="Guardar"
-                             action="#{programaController.crearCompetencia()}"
-                             oncomplete="handleSubmit(args,'competenciaCrearVentana','');"/>
+                             action="#{programaController.editarCompetencia()}"
+                             oncomplete="handleSubmit(args,'competenciaEditarVentana','');"/>
         </h:form>
     </p:dialog>
 </html>

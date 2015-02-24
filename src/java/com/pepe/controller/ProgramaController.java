@@ -96,6 +96,9 @@ public class ProgramaController implements Serializable {
     }
 
     public String getDuracion() {
+        if(competenciaActual != null){
+            duracion = Integer.toString(getCompetenciaActual().getDuracionEstimadaHoras());
+        }
         return duracion;
     }
 
@@ -409,6 +412,7 @@ public class ProgramaController implements Serializable {
     }
 
     public void anularItem() {
+        criteriosEvaluacionActual = null;
         conocimientoConceptoPrincipiosActual = null;
     }
 
@@ -522,7 +526,18 @@ public class ProgramaController implements Serializable {
             getCompetenciaFacade().create(competenciaActual);
             programaActual.getCompetenciaList().add(competenciaActual);
             getProgramaFacade().edit(programaActual);
-        } catch (Exception e) {
+            duracion = "";
+        } catch (NumberFormatException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+    
+    public void editarCompetencia() {
+        try {
+            competenciaActual.setDuracionEstimadaHoras(Integer.parseInt(duracion));
+            getCompetenciaFacade().edit(competenciaActual);
+            duracion = "";
+        } catch (NumberFormatException e) {
             System.out.println(e.getMessage());
         }
     }
