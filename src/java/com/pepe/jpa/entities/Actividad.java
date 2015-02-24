@@ -37,7 +37,6 @@ import javax.xml.bind.annotation.XmlTransient;
 @NamedQueries({
     @NamedQuery(name = "Actividad.findAll", query = "SELECT a FROM Actividad a"),
     @NamedQuery(name = "Actividad.findByIdActividad", query = "SELECT a FROM Actividad a WHERE a.idActividad = :idActividad"),
-    @NamedQuery(name = "Actividad.findByIdFase", query = "SELECT a FROM Actividad a WHERE a.idFase = :idFase"),
     @NamedQuery(name = "Actividad.findByDuracion", query = "SELECT a FROM Actividad a WHERE a.duracion = :duracion")})
 public class Actividad implements Serializable {
     private static final long serialVersionUID = 1L;
@@ -46,10 +45,6 @@ public class Actividad implements Serializable {
     @Basic(optional = false)
     @Column(name = "id_actividad")
     private Integer idActividad;
-    @Basic(optional = false)
-    @NotNull
-    @Column(name = "id_fase")
-    private int idFase;
     @Basic(optional = false)
     @NotNull
     @Lob
@@ -77,9 +72,8 @@ public class Actividad implements Serializable {
         this.idActividad = idActividad;
     }
 
-    public Actividad(Integer idActividad, int idFase, String nombreActividad, int duracion) {
+    public Actividad(Integer idActividad, String nombreActividad, int duracion) {
         this.idActividad = idActividad;
-        this.idFase = idFase;
         this.nombreActividad = nombreActividad;
         this.duracion = duracion;
     }
@@ -91,15 +85,7 @@ public class Actividad implements Serializable {
     public void setIdActividad(Integer idActividad) {
         this.idActividad = idActividad;
     }
-
-    public int getIdFase() {
-        return idFase;
-    }
-
-    public void setIdFase(int idFase) {
-        this.idFase = idFase;
-    }
-
+  
     public String getNombreActividad() {
         return nombreActividad;
     }

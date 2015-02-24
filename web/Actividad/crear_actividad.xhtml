@@ -16,30 +16,30 @@
                         
                         
                         <h:outputLabel value="Nombre de la actividad:" for="nomActividad" />
-                        <input jsf:id="nomActividadInput" jsf:value="#{actividadController.actividadActual.nombreActividad}" 
+                        <input jsf:id="nomActividad" jsf:value="#{actividadController.actividadActual.nombreActividad}" 
                                      type="text" required="true"
                                      jsf:requiredMessage="Por favor ingrese el nombre del tipo de actividad"
                                      jsf:validatorMessage="Use solo letras"> 
                                      <f:validateRegex pattern="[a-zA-Z áéíóúÁÉÍÓÚÑñ]*"/>
                                      <f:ajax execute="@this" render="nomActividadMessage"/>
                         </input>
-                        <h:message id="nomActividadMessage" for="nomActividadInput" styleClass="error"/>
+                        <h:message id="nomActividadMessage" for="nomActividad" styleClass="error"/>
                         
                          <h:outputLabel value="Duracion Actividad:" for="duraActividad" />
-                         <input jsf:id="duracion" jsf:value="#{actividadController.actividadActual.duracion}" 
-                                     type="text" required="true"
+                         <input jsf:id="duraActividad" jsf:value="#{actividadController.actividadActual.duracion}" 
+                                     type="number" required="true"
                                      jsf:requiredMessage="Por favor ingrese la duracion de la actividad"
                                      jsf:validatorMessage="Use solo numeros"> 
-                                     <f:validateRegex pattern="[0-9]{1,3}"/>
+                             <f:validateLongRange maximum="800" minimum="0"/>
                                      <f:ajax execute="@this" render="duracionMessage"/>
                         </input>
                         <h:message id="duracionMessage" for="duracion" styleClass="error"/>
                         
                         
-                         <label for="id Proyecto">id Proyecto:</label>
-                         <h:selectOneMenu id="idProyectoSelectSelect" value="#{actividadController.actividadActual.idProyecto.nombreProyecto}">
+                      <h:outputLabel value="proyecto:"  for="nomProyecto"/>
+                      <h:selectOneMenu id="idProyectoSelect" value="#{actividadController.actividadActual.idProyecto}">
                             <f:selectItem itemLabel="Seleccionar uno.." />
-                            <f:selectItems value="#{actividadController.listaProyectoSelectOne}" var="Proyecto" itemValue="#{actividadController.actividadActual.idProyecto.nombreProyecto}"/>  
+                            <f:selectItems value="#{actividadController.listaProyectoSelectOne}" var="proyecto" itemValue="#{proyecto}"/>  
                         </h:selectOneMenu>
                         
 
