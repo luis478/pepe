@@ -12,8 +12,9 @@
         <h:form id="crearCEVentanaForm">
             <textarea jsf:value="#{programaController.criteriosEvaluacionActual.nombreCriteriosEvaluacion}"
                       required="true"/>
-            <p:commandButton update=":listaCEVentanaForm"
+            <p:commandButton update="@this :listaCEVentanaForm"
                              action="#{programaController.crearCE()}"
+                             value="crear"
                              oncomplete="handleSubmit(args,'crearCEVentana','');"/>
         </h:form>
     </p:dialog>
