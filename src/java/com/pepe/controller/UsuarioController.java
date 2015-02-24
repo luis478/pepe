@@ -77,7 +77,6 @@ public class UsuarioController implements Serializable{
     private RolFacade rolFacade;
     private List<Rol> listaRol = null;
     private Usuario usuarioActual;
-    private List<Usuario> listaUsuario = null;
 
     
     
@@ -209,111 +208,5 @@ public class UsuarioController implements Serializable{
         return getEspecialidadFacade().findAll();
     }
     
-    /**
-     * Creates a new instance of CiudadController
-     */
-    public UsuarioController() {
-    }
-
-    public UsuarioFacade getUsuarioFacade() {
-        return usuarioFacade;
-    }
-    public Usuario getUsuarioActual() {
-        if (usuarioActual == null) {
-            usuarioActual = new Usuario();
-        }
-        return usuarioActual;
-    }
-
-    public void setUsuarioActual(Usuario usuarioActual) {
-        this.usuarioActual = usuarioActual;
-    }
-
-  
-    public List<Usuario> getListaUsuario() {
-        if (listaUsuario == null) {
-            try {
-                listaUsuario = getUsuarioFacade().findAll();
-            } catch (Exception e) {
-                addErrorMessage("Error closing resource " + e.getClass().getName(), "Message: " + e.getMessage());
-            }
-        }
-        return listaUsuario;
-    }
-
-    private void recargarLista() {
-        listaUsuario = null;
-    }
-
-    public String prepareCreate() {
-        usuarioActual = new Usuario();
-        listaRol= new ArrayList<>();
-        return "/admin/crear_usuario";
-    }
-
-    public String prepareEdit() {
-        return "";
-    }
-
-    public String prepareView() {
-        return "";
-    }
-
-    public String prepareList() {
-        recargarLista();
-        return "";
-    }
-
-    public String addUsuario() {
-        try {
-            usuarioActual.setEstado((short) 1);
-              if (listaRol == null || listaRol.isEmpty()) {
-                listaRol= new ArrayList<>();
-                listaRol.add(new Rol(2));
-                usuarioActual.setRolList(listaRol); 
-            } else {
-                usuarioActual.setRolList(listaRol);
-            }
-            getUsuarioFacade().create(usuarioActual);
-            recargarLista();
-            return "";
-        } catch (Exception e) {
-            addErrorMessage("Error closing resource " + e.getClass().getName(), "Message: " + e.getMessage());
-            return null;
-        }
-    }
-
-    public String updateUsuario() {
-        try {
-            getUsuarioFacade().edit(usuarioActual);
-            recargarLista();
-            return "";
-        } catch (Exception e) {
-            addErrorMessage("Error closing resource " + e.getClass().getName(), "Message: " + e.getMessage());
-            return null;
-        }
-    }
-
-    public String deleteUsuario() {
-        try {
-            getUsuarioFacade().remove(usuarioActual);
-            recargarLista();
-        } catch (Exception e) {
-            addErrorMessage("Error closing resource " + e.getClass().getName(), "Message: " + e.getMessage());
-        }
-        return "List";
-    }
-    
-       private void addErrorMessage(String title, String msg) {
-        FacesMessage facesMsg
-                = new FacesMessage(FacesMessage.SEVERITY_ERROR, title, msg);
-        FacesContext.getCurrentInstance().addMessage(null, facesMsg);
-    }
-
-    private void addSuccessMessage(String title, String msg) {
-        FacesMessage facesMsg
-                = new FacesMessage(FacesMessage.SEVERITY_INFO, title, msg);
-        FacesContext.getCurrentInstance().addMessage("successInfo", facesMsg);
-    }
     
 }

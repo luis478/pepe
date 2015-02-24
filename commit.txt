@@ -1,14 +1,20 @@
-commit 32aaa08ff20049639c1ecf1380f4cd75b7bfc06b
-Author: Shiki Fuujin <shiki.fuujin@outlook.com>
-Date:   Wed Feb 18 11:29:56 2015 -0500
+commit f3b7701baea82b250e75cd25c7e25c45d6a0b1f8
+Author: Aura <acvalencia94@misena.edu.co>
+Date:   Tue Feb 24 09:15:50 2015 -0500
 
-    Formulacion de proyecto : formularios de programa
+    controller Actividad
 
-commit 45371fbb0ae0bb986fee516cf02e5b86f6d19ef4
-Author: Shiki Fuujin <shiki.fuujin@outlook.com>
-Date:   Wed Feb 18 07:19:58 2015 -0500
+commit 1074a9d9aa855810ca4fecb5e4634b41906966f7
+Author: andres <eamartinez15@misena.edu.co>
+Date:   Mon Feb 23 15:31:44 2015 -0500
 
-    Formulacion: Programa
+    Creacion Formulario de ficha, creacion de controller ficha, progrma, creacion boton programacion y se creo en el index un select menu para la ficha
+
+commit ff564148ed3ba96924b24672d4889f23bfd6ac84
+Author: junior <lccabal@misena.edu.co>
+Date:   Tue Feb 17 17:58:16 2015 -0500
+
+    Actualizado (se quito la relacion entre fase y guia de aprendizaje y se agrego la relacion de fase a actividad_has_resultado, se relaciono recurso con actividad de aprendizaje, la tabla guia_aprendizaje se relaciono con actividades_has_aprendizaje y se agregaron campos nuevos, se agregaron campos a la table evidencias)
 
 commit cda8a4ab1039f236b9d1105da16644d891068386
 Author: junior <lccabal@misena.edu.co>
