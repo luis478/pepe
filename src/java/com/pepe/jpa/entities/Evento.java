@@ -3,6 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+
 package com.pepe.jpa.entities;
 
 import java.io.Serializable;
@@ -29,7 +30,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author Luis Carlos
+ * @author ADSI TARDE
  */
 @Entity
 @Table(name = "evento")
@@ -56,11 +57,6 @@ public class Evento implements Serializable {
     @Column(name = "fecha_fin")
     @Temporal(TemporalType.TIMESTAMP)
     private Date fechaFin;
-    @JoinTable(name = "evento_has_trimestre", joinColumns = {
-        @JoinColumn(name = "id_evento", referencedColumnName = "id_evento")}, inverseJoinColumns = {
-        @JoinColumn(name = "id_trimestre", referencedColumnName = "id_trimestre")})
-    @ManyToMany
-    private List<Trimestre> trimestreList;
     @JoinTable(name = "evento_has_usuario", joinColumns = {
         @JoinColumn(name = "id_evento", referencedColumnName = "id_evento")}, inverseJoinColumns = {
         @JoinColumn(name = "id_usuario", referencedColumnName = "id_usuario")})
@@ -71,12 +67,17 @@ public class Evento implements Serializable {
         @JoinColumn(name = "id_resultado_aprendizaje", referencedColumnName = "id_resultado_aprendizaje")})
     @ManyToMany
     private List<ResultadoAprendizaje> resultadoAprendizajeList;
-    @JoinColumn(name = "id_ambiente_formacion", referencedColumnName = "id_ambiente_formacion")
-    @ManyToOne(optional = false)
-    private AmbienteFormacion idAmbienteFormacion;
+    @JoinTable(name = "evento_has_trimestre", joinColumns = {
+        @JoinColumn(name = "id_evento", referencedColumnName = "id_evento")}, inverseJoinColumns = {
+        @JoinColumn(name = "id_trimestre", referencedColumnName = "id_trimestre")})
+    @ManyToMany
+    private List<Trimestre> trimestreList;
     @JoinColumn(name = "id_ficha", referencedColumnName = "id_ficha")
     @ManyToOne(optional = false)
     private Ficha idFicha;
+    @JoinColumn(name = "id_ambiente_formacion", referencedColumnName = "id_ambiente_formacion")
+    @ManyToOne(optional = false)
+    private AmbienteFormacion idAmbienteFormacion;
 
     public Evento() {
     }
@@ -116,15 +117,6 @@ public class Evento implements Serializable {
     }
 
     @XmlTransient
-    public List<Trimestre> getTrimestreList() {
-        return trimestreList;
-    }
-
-    public void setTrimestreList(List<Trimestre> trimestreList) {
-        this.trimestreList = trimestreList;
-    }
-
-    @XmlTransient
     public List<Usuario> getUsuarioList() {
         return usuarioList;
     }
@@ -142,12 +134,13 @@ public class Evento implements Serializable {
         this.resultadoAprendizajeList = resultadoAprendizajeList;
     }
 
-    public AmbienteFormacion getIdAmbienteFormacion() {
-        return idAmbienteFormacion;
+    @XmlTransient
+    public List<Trimestre> getTrimestreList() {
+        return trimestreList;
     }
 
-    public void setIdAmbienteFormacion(AmbienteFormacion idAmbienteFormacion) {
-        this.idAmbienteFormacion = idAmbienteFormacion;
+    public void setTrimestreList(List<Trimestre> trimestreList) {
+        this.trimestreList = trimestreList;
     }
 
     public Ficha getIdFicha() {
@@ -156,6 +149,14 @@ public class Evento implements Serializable {
 
     public void setIdFicha(Ficha idFicha) {
         this.idFicha = idFicha;
+    }
+
+    public AmbienteFormacion getIdAmbienteFormacion() {
+        return idAmbienteFormacion;
+    }
+
+    public void setIdAmbienteFormacion(AmbienteFormacion idAmbienteFormacion) {
+        this.idAmbienteFormacion = idAmbienteFormacion;
     }
 
     @Override

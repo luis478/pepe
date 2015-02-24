@@ -3,6 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+
 package com.pepe.jpa.entities;
 
 import java.io.Serializable;
@@ -29,7 +30,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author Luis Carlos
+ * @author ADSI TARDE
  */
 @Entity
 @Table(name = "competencia")
@@ -73,13 +74,13 @@ public class Competencia implements Serializable {
     @ManyToMany
     private List<Programa> programaList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idCompetencia")
-    private List<ConocimientoConceptoPrincipios> conocimientoConceptoPrincipiosList;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idCompetencia")
     private List<CriteriosEvaluacion> criteriosEvaluacionList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idCompetencia")
-    private List<ConocimientoProceso> conocimientoProcesoList;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idCompetencia")
     private List<ResultadoAprendizaje> resultadoAprendizajeList;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idCompetencia")
+    private List<ConocimientoConceptoPrincipios> conocimientoConceptoPrincipiosList;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idCompetencia")
+    private List<ConocimientoProceso> conocimientoProcesoList;
 
     public Competencia() {
     }
@@ -146,15 +147,6 @@ public class Competencia implements Serializable {
     }
 
     @XmlTransient
-    public List<ConocimientoConceptoPrincipios> getConocimientoConceptoPrincipiosList() {
-        return conocimientoConceptoPrincipiosList;
-    }
-
-    public void setConocimientoConceptoPrincipiosList(List<ConocimientoConceptoPrincipios> conocimientoConceptoPrincipiosList) {
-        this.conocimientoConceptoPrincipiosList = conocimientoConceptoPrincipiosList;
-    }
-
-    @XmlTransient
     public List<CriteriosEvaluacion> getCriteriosEvaluacionList() {
         return criteriosEvaluacionList;
     }
@@ -164,21 +156,30 @@ public class Competencia implements Serializable {
     }
 
     @XmlTransient
-    public List<ConocimientoProceso> getConocimientoProcesoList() {
-        return conocimientoProcesoList;
-    }
-
-    public void setConocimientoProcesoList(List<ConocimientoProceso> conocimientoProcesoList) {
-        this.conocimientoProcesoList = conocimientoProcesoList;
-    }
-
-    @XmlTransient
     public List<ResultadoAprendizaje> getResultadoAprendizajeList() {
         return resultadoAprendizajeList;
     }
 
     public void setResultadoAprendizajeList(List<ResultadoAprendizaje> resultadoAprendizajeList) {
         this.resultadoAprendizajeList = resultadoAprendizajeList;
+    }
+
+    @XmlTransient
+    public List<ConocimientoConceptoPrincipios> getConocimientoConceptoPrincipiosList() {
+        return conocimientoConceptoPrincipiosList;
+    }
+
+    public void setConocimientoConceptoPrincipiosList(List<ConocimientoConceptoPrincipios> conocimientoConceptoPrincipiosList) {
+        this.conocimientoConceptoPrincipiosList = conocimientoConceptoPrincipiosList;
+    }
+
+    @XmlTransient
+    public List<ConocimientoProceso> getConocimientoProcesoList() {
+        return conocimientoProcesoList;
+    }
+
+    public void setConocimientoProcesoList(List<ConocimientoProceso> conocimientoProcesoList) {
+        this.conocimientoProcesoList = conocimientoProcesoList;
     }
 
     @Override

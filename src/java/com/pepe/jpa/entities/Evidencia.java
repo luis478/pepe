@@ -3,6 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+
 package com.pepe.jpa.entities;
 
 import java.io.Serializable;
@@ -24,7 +25,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author Luis Carlos
+ * @author ADSI TARDE
  */
 @Entity
 @Table(name = "evidencia")
@@ -63,12 +64,12 @@ public class Evidencia implements Serializable {
     @Size(min = 1, max = 65535)
     @Column(name = "tecnica_instrumento_evaluacion")
     private String tecnicaInstrumentoEvaluacion;
-    @JoinColumn(name = "id_actividad_aprendizaje", referencedColumnName = "id_actividad_aprendizaje")
-    @ManyToOne(optional = false)
-    private ActividadAprendizaje idActividadAprendizaje;
     @JoinColumn(name = "id_tipo_evidencia", referencedColumnName = "id_tipo_evidencia")
     @ManyToOne(optional = false)
     private TipoEvidencia idTipoEvidencia;
+    @JoinColumn(name = "id_actividad_aprendizaje", referencedColumnName = "id_actividad_aprendizaje")
+    @ManyToOne(optional = false)
+    private ActividadAprendizaje idActividadAprendizaje;
 
     public Evidencia() {
     }
@@ -125,20 +126,20 @@ public class Evidencia implements Serializable {
         this.tecnicaInstrumentoEvaluacion = tecnicaInstrumentoEvaluacion;
     }
 
-    public ActividadAprendizaje getIdActividadAprendizaje() {
-        return idActividadAprendizaje;
-    }
-
-    public void setIdActividadAprendizaje(ActividadAprendizaje idActividadAprendizaje) {
-        this.idActividadAprendizaje = idActividadAprendizaje;
-    }
-
     public TipoEvidencia getIdTipoEvidencia() {
         return idTipoEvidencia;
     }
 
     public void setIdTipoEvidencia(TipoEvidencia idTipoEvidencia) {
         this.idTipoEvidencia = idTipoEvidencia;
+    }
+
+    public ActividadAprendizaje getIdActividadAprendizaje() {
+        return idActividadAprendizaje;
+    }
+
+    public void setIdActividadAprendizaje(ActividadAprendizaje idActividadAprendizaje) {
+        this.idActividadAprendizaje = idActividadAprendizaje;
     }
 
     @Override

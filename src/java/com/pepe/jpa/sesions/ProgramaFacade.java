@@ -7,13 +7,15 @@
 package com.pepe.jpa.sesions;
 
 import com.pepe.jpa.entities.Programa;
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
 /**
  *
- * @author Windows 8
+ * @author ADSI TARDE
  */
 @Stateless
 public class ProgramaFacade extends AbstractFacade<Programa> {
@@ -29,4 +31,9 @@ public class ProgramaFacade extends AbstractFacade<Programa> {
         super(Programa.class);
     }
     
+    public List<Programa> finByNombre(String nombrePrograma){
+        Query q= getEntityManager().createNamedQuery("Programa.findByNombrePrograma");
+        q.setParameter("nombrePrograma", nombrePrograma+ "%");
+        return q.getResultList();
+    }
 }

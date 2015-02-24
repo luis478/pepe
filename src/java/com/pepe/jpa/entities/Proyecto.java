@@ -3,6 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+
 package com.pepe.jpa.entities;
 
 import java.io.Serializable;
@@ -27,7 +28,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author Luis Carlos
+ * @author ADSI TARDE
  */
 @Entity
 @Table(name = "proyecto")
@@ -155,18 +156,18 @@ public class Proyecto implements Serializable {
     private String descripcionAmbiente;
     @ManyToMany(mappedBy = "proyectoList")
     private List<Empresa> empresaList;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idProyecto")
-    private List<VisitaTecnica> visitaTecnicaList;
+    @OneToMany(mappedBy = "idProyecto")
+    private List<Ficha> fichaList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idProyecto")
     private List<Actividad> actividadList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idProyecto")
     private List<Revision> revisionList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idProyecto")
-    private List<Verificacion> verificacionList;
-    @OneToMany(mappedBy = "idProyecto")
-    private List<Ficha> fichaList;
+    private List<VisitaTecnica> visitaTecnicaList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idProyecto")
     private List<GuiaAprendizaje> guiaAprendizajeList;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idProyecto")
+    private List<Verificacion> verificacionList;
 
     public Proyecto() {
     }
@@ -377,12 +378,12 @@ public class Proyecto implements Serializable {
     }
 
     @XmlTransient
-    public List<VisitaTecnica> getVisitaTecnicaList() {
-        return visitaTecnicaList;
+    public List<Ficha> getFichaList() {
+        return fichaList;
     }
 
-    public void setVisitaTecnicaList(List<VisitaTecnica> visitaTecnicaList) {
-        this.visitaTecnicaList = visitaTecnicaList;
+    public void setFichaList(List<Ficha> fichaList) {
+        this.fichaList = fichaList;
     }
 
     @XmlTransient
@@ -404,21 +405,12 @@ public class Proyecto implements Serializable {
     }
 
     @XmlTransient
-    public List<Verificacion> getVerificacionList() {
-        return verificacionList;
+    public List<VisitaTecnica> getVisitaTecnicaList() {
+        return visitaTecnicaList;
     }
 
-    public void setVerificacionList(List<Verificacion> verificacionList) {
-        this.verificacionList = verificacionList;
-    }
-
-    @XmlTransient
-    public List<Ficha> getFichaList() {
-        return fichaList;
-    }
-
-    public void setFichaList(List<Ficha> fichaList) {
-        this.fichaList = fichaList;
+    public void setVisitaTecnicaList(List<VisitaTecnica> visitaTecnicaList) {
+        this.visitaTecnicaList = visitaTecnicaList;
     }
 
     @XmlTransient
@@ -428,6 +420,15 @@ public class Proyecto implements Serializable {
 
     public void setGuiaAprendizajeList(List<GuiaAprendizaje> guiaAprendizajeList) {
         this.guiaAprendizajeList = guiaAprendizajeList;
+    }
+
+    @XmlTransient
+    public List<Verificacion> getVerificacionList() {
+        return verificacionList;
+    }
+
+    public void setVerificacionList(List<Verificacion> verificacionList) {
+        this.verificacionList = verificacionList;
     }
 
     @Override

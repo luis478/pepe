@@ -3,6 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+
 package com.pepe.jpa.entities;
 
 import java.io.Serializable;
@@ -31,7 +32,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author Luis Carlos
+ * @author ADSI TARDE
  */
 @Entity
 @Table(name = "acompanamiento")
@@ -63,14 +64,14 @@ public class Acompanamiento implements Serializable {
         @JoinColumn(name = "id_usuario", referencedColumnName = "id_usuario")})
     @ManyToMany
     private List<Usuario> usuarioList;
-    @JoinColumn(name = "id_fase", referencedColumnName = "id_fase")
-    @ManyToOne(optional = false)
-    private Fase idFase;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "acompanamiento")
+    private List<CriterioSeguimientoHasAcompanamiento> criterioSeguimientoHasAcompanamientoList;
     @JoinColumn(name = "id_ficha", referencedColumnName = "id_ficha")
     @ManyToOne(optional = false)
     private Ficha idFicha;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "acompanamiento")
-    private List<CriterioSeguimientoHasAcompanamiento> criterioSeguimientoHasAcompanamientoList;
+    @JoinColumn(name = "id_fase", referencedColumnName = "id_fase")
+    @ManyToOne(optional = false)
+    private Fase idFase;
 
     public Acompanamiento() {
     }
@@ -118,12 +119,13 @@ public class Acompanamiento implements Serializable {
         this.usuarioList = usuarioList;
     }
 
-    public Fase getIdFase() {
-        return idFase;
+    @XmlTransient
+    public List<CriterioSeguimientoHasAcompanamiento> getCriterioSeguimientoHasAcompanamientoList() {
+        return criterioSeguimientoHasAcompanamientoList;
     }
 
-    public void setIdFase(Fase idFase) {
-        this.idFase = idFase;
+    public void setCriterioSeguimientoHasAcompanamientoList(List<CriterioSeguimientoHasAcompanamiento> criterioSeguimientoHasAcompanamientoList) {
+        this.criterioSeguimientoHasAcompanamientoList = criterioSeguimientoHasAcompanamientoList;
     }
 
     public Ficha getIdFicha() {
@@ -134,13 +136,12 @@ public class Acompanamiento implements Serializable {
         this.idFicha = idFicha;
     }
 
-    @XmlTransient
-    public List<CriterioSeguimientoHasAcompanamiento> getCriterioSeguimientoHasAcompanamientoList() {
-        return criterioSeguimientoHasAcompanamientoList;
+    public Fase getIdFase() {
+        return idFase;
     }
 
-    public void setCriterioSeguimientoHasAcompanamientoList(List<CriterioSeguimientoHasAcompanamiento> criterioSeguimientoHasAcompanamientoList) {
-        this.criterioSeguimientoHasAcompanamientoList = criterioSeguimientoHasAcompanamientoList;
+    public void setIdFase(Fase idFase) {
+        this.idFase = idFase;
     }
 
     @Override

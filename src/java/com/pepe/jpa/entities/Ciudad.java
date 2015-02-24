@@ -3,6 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+
 package com.pepe.jpa.entities;
 
 import java.io.Serializable;
@@ -27,7 +28,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author Luis Carlos
+ * @author ADSI TARDE
  */
 @Entity
 @Table(name = "ciudad")
@@ -53,9 +54,9 @@ public class Ciudad implements Serializable {
     @ManyToMany
     private List<Usuario> usuarioList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "ciudad")
-    private List<VisitaTecnica> visitaTecnicaList;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "ciudad")
     private List<CentroFormacion> centroFormacionList;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "ciudad")
+    private List<VisitaTecnica> visitaTecnicaList;
     @JoinColumn(name = "id_departamento", referencedColumnName = "id_departamento", insertable = false, updatable = false)
     @ManyToOne(optional = false)
     private Departamento departamento;
@@ -102,21 +103,21 @@ public class Ciudad implements Serializable {
     }
 
     @XmlTransient
-    public List<VisitaTecnica> getVisitaTecnicaList() {
-        return visitaTecnicaList;
-    }
-
-    public void setVisitaTecnicaList(List<VisitaTecnica> visitaTecnicaList) {
-        this.visitaTecnicaList = visitaTecnicaList;
-    }
-
-    @XmlTransient
     public List<CentroFormacion> getCentroFormacionList() {
         return centroFormacionList;
     }
 
     public void setCentroFormacionList(List<CentroFormacion> centroFormacionList) {
         this.centroFormacionList = centroFormacionList;
+    }
+
+    @XmlTransient
+    public List<VisitaTecnica> getVisitaTecnicaList() {
+        return visitaTecnicaList;
+    }
+
+    public void setVisitaTecnicaList(List<VisitaTecnica> visitaTecnicaList) {
+        this.visitaTecnicaList = visitaTecnicaList;
     }
 
     public Departamento getDepartamento() {

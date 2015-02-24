@@ -3,6 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+
 package com.pepe.jpa.entities;
 
 import java.io.Serializable;
@@ -29,7 +30,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author Luis Carlos
+ * @author ADSI TARDE
  */
 @Entity
 @Table(name = "resultado_aprendizaje")
@@ -61,15 +62,15 @@ public class ResultadoAprendizaje implements Serializable {
     private List<Evento> eventoList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "resultadoAprendizaje")
     private List<ActividadHasResultadoAprendizaje> actividadHasResultadoAprendizajeList;
-    @JoinColumn(name = "id_competencia", referencedColumnName = "id_competencia")
-    @ManyToOne(optional = false)
-    private Competencia idCompetencia;
-    @JoinColumn(name = "id_tipo_resultado_aprendizaje", referencedColumnName = "id_tipo_resultado_aprendizaje")
-    @ManyToOne(optional = false)
-    private TipoResultadoAprendizaje idTipoResultadoAprendizaje;
     @JoinColumn(name = "id_usuario", referencedColumnName = "id_usuario")
     @ManyToOne(optional = false)
     private Usuario idUsuario;
+    @JoinColumn(name = "id_tipo_resultado_aprendizaje", referencedColumnName = "id_tipo_resultado_aprendizaje")
+    @ManyToOne(optional = false)
+    private TipoResultadoAprendizaje idTipoResultadoAprendizaje;
+    @JoinColumn(name = "id_competencia", referencedColumnName = "id_competencia")
+    @ManyToOne(optional = false)
+    private Competencia idCompetencia;
 
     public ResultadoAprendizaje() {
     }
@@ -135,12 +136,12 @@ public class ResultadoAprendizaje implements Serializable {
         this.actividadHasResultadoAprendizajeList = actividadHasResultadoAprendizajeList;
     }
 
-    public Competencia getIdCompetencia() {
-        return idCompetencia;
+    public Usuario getIdUsuario() {
+        return idUsuario;
     }
 
-    public void setIdCompetencia(Competencia idCompetencia) {
-        this.idCompetencia = idCompetencia;
+    public void setIdUsuario(Usuario idUsuario) {
+        this.idUsuario = idUsuario;
     }
 
     public TipoResultadoAprendizaje getIdTipoResultadoAprendizaje() {
@@ -151,12 +152,12 @@ public class ResultadoAprendizaje implements Serializable {
         this.idTipoResultadoAprendizaje = idTipoResultadoAprendizaje;
     }
 
-    public Usuario getIdUsuario() {
-        return idUsuario;
+    public Competencia getIdCompetencia() {
+        return idCompetencia;
     }
 
-    public void setIdUsuario(Usuario idUsuario) {
-        this.idUsuario = idUsuario;
+    public void setIdCompetencia(Competencia idCompetencia) {
+        this.idCompetencia = idCompetencia;
     }
 
     @Override

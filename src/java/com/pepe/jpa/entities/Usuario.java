@@ -129,21 +129,22 @@ public class Usuario implements Serializable {
        @ManyToMany
        private  List<Rol> rolList;
     @ManyToMany(mappedBy = "usuarioList")
+    private List<Evento> eventoList;
+    @ManyToMany(mappedBy = "usuarioList")
     private List<Revision> revisionList;
     @ManyToMany(mappedBy = "usuarioList")
-    private List<CentroFormacion> centroFormacionList;
+    private List<ActividadAprendizaje> actividadAprendizajeList;
     @ManyToMany(mappedBy = "usuarioList")
+    private List<Area> areaList;
+    @ManyToMany(mappedBy = "usuarioList")
+    
     private List<Aspectos> aspectosList;
+    @ManyToMany(mappedBy = "usuarioList")
+    private List<CentroFormacion> centroFormacionList;
     @ManyToMany(mappedBy = "usuarioList")
     private List<Acompanamiento> acompanamientoList;
     @ManyToMany(mappedBy = "usuarioList")
     private List<Ciudad> ciudadList;
-    @ManyToMany(mappedBy = "usuarioList")
-    private List<Area> areaList;
-    @ManyToMany(mappedBy = "usuarioList")
-    private List<Evento> eventoList;
-    @ManyToMany(mappedBy = "usuarioList")
-    private List<ActividadAprendizaje> actividadAprendizajeList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idUsuario")
     private List<Verificacion> verificacionList;
     @JoinColumn(name = "id_patrocinio", referencedColumnName = "id_patrocinio")
@@ -335,6 +336,15 @@ public class Usuario implements Serializable {
     }
 
     @XmlTransient
+    public List<Evento> getEventoList() {
+        return eventoList;
+    }
+
+    public void setEventoList(List<Evento> eventoList) {
+        this.eventoList = eventoList;
+    }
+
+    @XmlTransient
     public List<Revision> getRevisionList() {
         return revisionList;
     }
@@ -344,12 +354,21 @@ public class Usuario implements Serializable {
     }
 
     @XmlTransient
-    public List<CentroFormacion> getCentroFormacionList() {
-        return centroFormacionList;
+    public List<ActividadAprendizaje> getActividadAprendizajeList() {
+        return actividadAprendizajeList;
     }
 
-    public void setCentroFormacionList(List<CentroFormacion> centroFormacionList) {
-        this.centroFormacionList = centroFormacionList;
+    public void setActividadAprendizajeList(List<ActividadAprendizaje> actividadAprendizajeList) {
+        this.actividadAprendizajeList = actividadAprendizajeList;
+    }
+
+    @XmlTransient
+    public List<Area> getAreaList() {
+        return areaList;
+    }
+
+    public void setAreaList(List<Area> areaList) {
+        this.areaList = areaList;
     }
 
     @XmlTransient
@@ -371,6 +390,15 @@ public class Usuario implements Serializable {
     }
 
     @XmlTransient
+    public List<CentroFormacion> getCentroFormacionList() {
+        return centroFormacionList;
+    }
+
+    public void setCentroFormacionList(List<CentroFormacion> centroFormacionList) {
+        this.centroFormacionList = centroFormacionList;
+    }
+
+    @XmlTransient
     public List<Acompanamiento> getAcompanamientoList() {
         return acompanamientoList;
     }
@@ -388,40 +416,15 @@ public class Usuario implements Serializable {
         this.ciudadList = ciudadList;
     }
 
-    @XmlTransient
-    public List<Area> getAreaList() {
-        return areaList;
-    }
 
-    public void setAreaList(List<Area> areaList) {
-        this.areaList = areaList;
-    }
-
-    @XmlTransient
-    public List<Evento> getEventoList() {
-        return eventoList;
-    }
-
-    public void setEventoList(List<Evento> eventoList) {
-        this.eventoList = eventoList;
-    }
-
-    @XmlTransient
-    public List<ActividadAprendizaje> getActividadAprendizajeList() {
-        return actividadAprendizajeList;
-    }
-
-    public void setActividadAprendizajeList(List<ActividadAprendizaje> actividadAprendizajeList) {
-        this.actividadAprendizajeList = actividadAprendizajeList;
-    }
 
     @XmlTransient
     public List<Verificacion> getVerificacionList() {
         return verificacionList;
     }
 
-    public void setVerificacionList(List<Verificacion> verificacionList) {
-        this.verificacionList = verificacionList;
+    public void setUsuarioHasFichaList(List<UsuarioHasFicha> usuarioHasFichaList) {
+        this.usuarioHasFichaList = usuarioHasFichaList;
     }
 
     public Patrocinio getIdPatrocinio() {
@@ -472,13 +475,6 @@ public class Usuario implements Serializable {
         this.idLibretaMilitar = idLibretaMilitar;
     }
 
-    public TipoDocumento getIdTipoDocumento() {
-        return idTipoDocumento;
-    }
-
-    public void setIdTipoDocumento(TipoDocumento idTipoDocumento) {
-        this.idTipoDocumento = idTipoDocumento;
-    }
 
     public TipoSangre getIdTipoSangre() {
         return idTipoSangre;
@@ -525,10 +521,7 @@ public class Usuario implements Serializable {
         return usuarioHasFichaList;
     }
 
-    public void setUsuarioHasFichaList(List<UsuarioHasFicha> usuarioHasFichaList) {
-        this.usuarioHasFichaList = usuarioHasFichaList;
-    }
-
+ 
     @XmlTransient
     public List<ResultadoAprendizaje> getResultadoAprendizajeList() {
         return resultadoAprendizajeList;
@@ -536,6 +529,11 @@ public class Usuario implements Serializable {
 
     public void setResultadoAprendizajeList(List<ResultadoAprendizaje> resultadoAprendizajeList) {
         this.resultadoAprendizajeList = resultadoAprendizajeList;
+    }
+
+  
+    public void setVerificacionList(List<Verificacion> verificacionList) {
+        this.verificacionList = verificacionList;
     }
 
     @Override

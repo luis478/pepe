@@ -3,6 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+
 package com.pepe.jpa.entities;
 
 import java.io.Serializable;
@@ -28,7 +29,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author Luis Carlos
+ * @author ADSI TARDE
  */
 @Entity
 @Table(name = "actividad")
@@ -54,8 +55,6 @@ public class Actividad implements Serializable {
     @NotNull
     @Column(name = "duracion")
     private int duracion;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idActividad")
-    private List<ActividadAprendizaje> actividadAprendizajeList;
     @JoinColumn(name = "id_proyecto", referencedColumnName = "id_proyecto")
     @ManyToOne(optional = false)
     private Proyecto idProyecto;
@@ -63,6 +62,8 @@ public class Actividad implements Serializable {
     private List<Recurso> recursoList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "actividad")
     private List<ActividadHasResultadoAprendizaje> actividadHasResultadoAprendizajeList;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idActividad")
+    private List<ActividadAprendizaje> actividadAprendizajeList;
 
     public Actividad() {
     }
@@ -85,6 +86,7 @@ public class Actividad implements Serializable {
         this.idActividad = idActividad;
     }
 
+
     public String getNombreActividad() {
         return nombreActividad;
     }
@@ -99,15 +101,6 @@ public class Actividad implements Serializable {
 
     public void setDuracion(int duracion) {
         this.duracion = duracion;
-    }
-
-    @XmlTransient
-    public List<ActividadAprendizaje> getActividadAprendizajeList() {
-        return actividadAprendizajeList;
-    }
-
-    public void setActividadAprendizajeList(List<ActividadAprendizaje> actividadAprendizajeList) {
-        this.actividadAprendizajeList = actividadAprendizajeList;
     }
 
     public Proyecto getIdProyecto() {
@@ -134,6 +127,15 @@ public class Actividad implements Serializable {
 
     public void setActividadHasResultadoAprendizajeList(List<ActividadHasResultadoAprendizaje> actividadHasResultadoAprendizajeList) {
         this.actividadHasResultadoAprendizajeList = actividadHasResultadoAprendizajeList;
+    }
+
+    @XmlTransient
+    public List<ActividadAprendizaje> getActividadAprendizajeList() {
+        return actividadAprendizajeList;
+    }
+
+    public void setActividadAprendizajeList(List<ActividadAprendizaje> actividadAprendizajeList) {
+        this.actividadAprendizajeList = actividadAprendizajeList;
     }
 
     @Override
