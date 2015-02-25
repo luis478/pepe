@@ -128,6 +128,9 @@
                  <h:button value="¡Crear Ficha!" outcome="/ProgramaciondeProyecto/crear_ficha.xhtml" />
                  <h:button value="¡Crear guiaAprendizaje!" outcome="/GuiaAprendizaje/crear_guiaAprendizaje.xhtml" />
                  <h:button value="Crear Actividad" outcome="/Actividad/crear_actividad"/>
+                 <p:commandButton icon="ui-icon-pencil" action="#{fichaController.prepareView}">
+                     <f:setPropertyActionListener value="#{ficha}" target="#{fichaController.fichaSeleccionada}"/>
+                 </p:commandButton>
             </h:form> 
         </h:panelGroup>
         <hr width="100%" size="8" align="right"/>

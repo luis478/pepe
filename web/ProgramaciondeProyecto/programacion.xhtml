@@ -21,26 +21,45 @@
  <header class="Header">
     <form clss="Header-Form">
         <section class="Header-pepeForm">
-            <label for="comments"><font  class="Label">Programa de Formación</font></label>
-            <input  type="text" placeholder="Nombre programa" class="Form-Input"/>
-            <label for="comments"><font  class="Label">Código de Programa </font></label>
-            <input  type="text" placeholder="Código Programa" class="Form-Input"/>
-            <label for="comments" style="margin-right:11px" > <font   class="Label">Versión</font></label>
-            <input  type="text" placeholder="Número versión" class="Form-Input"/>
-            <label for="comments"><font   class="Label">Duración</font></label>
-            <input  type="text"  placeholder="Trimestres" class="Form-Input"/>      
+             <h:panelGrid columns="1">
+                    <label for="nombreProgramaText">Programa de formacion:</label>
+                    <input type="text" jsf:id="nombreProgramaInputText" disabled="true"
+                           jsf:value="#{fichaController.fichaSeleccionada.programa.nombrePrograma}" maxlength="45" class="Form-inputRegistro">
+                    </input>
+                    <label for="codigoProgramaText">Código de programa:</label>
+                    <input type="text" jsf:id="codigoProgramaInputText" disabled="true"
+                           jsf:value="#{fichaController.fichaSeleccionada.programa.programaPK.codigo}">
+                    </input>
+                    <label for="versionProgramaText">Version de programa:</label>
+                    <input type="text" jsf:id="nombreProgramaInputText" disabled="true"
+                           jsf:value="#{fichaController.fichaSeleccionada.programa.programaPK.version}">
+                    </input>
+                    <label for="duracionProgramaText">Duración de programa:</label>
+                    <input type="text" jsf:id="duracionProgramaInputText" disabled="true"
+                           jsf:value="#{fichaController.fichaSeleccionada.programa.duracionTrimestres}">
+                    </input>
+            </h:panelGrid>
         </section>
         <section class="Header-pepeForm">
-            <label for="comments" style="margin-right:28px" ><font class="Label">Nombre de proyecto</font> </label>
-            <input  type="text" placeholder="Nombre proyecto" class="Form-Input"/>
-            <label for="comments" style="margin-right:6px" ><font class="Label">Código de Proyecto </font></label>
-            <input  type="text" placeholder="Código Proyecto" class="Form-Input"/> 
-            <label for="comments" style="margin-right:4px" ><font class="Label">No. ficha</font></label>
-            <input  style="width:468px " type="text" placeholder="No. ficha" class="Form-Input"/>   
+            <label for="nombreProyectoText">Nombre de proyecto:</label>
+                    <input type="text" jsf:id="nombreProyectoInputText" disabled="true"
+                           jsf:value="#{fichaController.fichaSeleccionada.idProyecto.nombreProyecto}">
+            </input>
+            <label for="codigoProyectoText">Codigo de proyecto:</label>
+                    <input type="text" jsf:id="codigoProyectoInputText" disabled="true"
+                           jsf:value="#{fichaController.fichaSeleccionada.idProyecto.codigoProyecto}">
+            </input>
+             <label for="numeroFichaText">N° de ficha:</label>
+                    <input type="text" jsf:id="numeroFichaInputText" disabled="true"
+                           jsf:value="#{fichaController.fichaSeleccionada.codigoFicha}">
+            </input>
+              
        </section> 
        <section class="Header-pepeForm">
-            <label for="comments" style="margin-right:75px" ><font  class="Label">Lider ejecutor</font></label>
-            <input  type="text" style="width:1103px" placeholder="Gestor" class="Form-Input"/>
+            <label for="liderEjecutorText">Lider ejecutor:</label>
+                    <input type="text" jsf:id="liderEjecutorInputText" disabled="true"
+                           jsf:value="#{fichaController.usuarioFicha.usuario}">
+                    </input>
         </section>
        </form>
     </header>

@@ -304,7 +304,7 @@ public class FichaController implements Serializable {
     }
 
     public String prepareView() {
-        return "";
+        return "ProgramaciondeProyecto/programacion";
     }
 
     public String prepareList() {
@@ -333,6 +333,9 @@ public class FichaController implements Serializable {
     
     public FichaController() {
     }
+    
+    
+    
     
      private void addErrorMessage(String title, String msg) {
         FacesMessage facesMsg
