@@ -7,9 +7,9 @@
       xmlns:p="http://primefaces.org/ui"
       xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
     <ui:composition template="/html_plantillas/template.xhtml">
-         <ui:define name="title">Crear Tecnica</ui:define>        
+         <ui:define name="title">Editar Tecnica</ui:define>        
          <ui:define name="body">
-              <form jsf:id="CreateTecnica">
+              <form jsf:id="EditTecnica">
                    <h1><h:outputText value="Crear Tecnica"/></h1>
                    <h:panelGrid columns="1">
                         <h:outputLabel value="Nombre de la Tecnica:" for="nomTecnica" />
@@ -22,7 +22,7 @@
                         </input>
                         <h:message id="nomTecnicaMessage" for="nomTecnica" styleClass="error"/>
                         
-                        <input type="submit" jsf:action="#{tecnicadidacticaController.addTecnica}" value="Guardar Tecnica"/>
+                        <input type="submit" jsf:action="#{tecnicadidacticaController.updateTecnica}" value="Editar Tecnica"/>
                        
                        
                    </h:panelGrid>

@@ -80,24 +80,24 @@ public class TecnicadidacticaController implements Serializable {
     
      public String prepareCreate(){
       tecnicaActual = new TecnicaDidactica();
-        return "TecnicaDidactica/crear_actividad";
+        return "TecnicaDidactica/crear_Tecnica";
 }
     public String prepareEdit (){
-    return "";
+    return "TecnicaDidactica/editar_TecnicaDidactica";
 }
     public String prepareView (){
-    return "";
+    return "TecnicaDidactica/view_TecnicaDidactica";
 }
     public String prepareList (){
     recargarlista();
-        return "";
+        return "TecnicaDidactica/lista_Tecnica_Didactica";
 }
     
      public String addTecnica(){
         try{
         getTecnicaFacade().create(tecnicaActual);
         recargarlista();
-        return "";
+        return "TecnicaDidactica/lista_Tecnica_Didactica";
         }catch (Exception e){
         addErrorMessage("Error closing resource " + e.getClass().getName(), "Message: " + e.getMessage());
             return null;
@@ -108,7 +108,7 @@ public class TecnicadidacticaController implements Serializable {
         try{
         getTecnicaFacade().edit(tecnicaActual);
         recargarlista();
-        return "";
+        return "view_TecnicaDidactica";
         }catch (Exception e){
         addErrorMessage("Error closing resource " + e.getClass().getName(), "Message: " + e.getMessage());
             return null;
@@ -119,7 +119,7 @@ public class TecnicadidacticaController implements Serializable {
         try{
         getTecnicaFacade().remove(tecnicaActual);
         recargarlista();
-        return "";
+        return "TecnicaDidactica/lista_Tecnica_Didactica";
         }catch (Exception e){
         addErrorMessage("Error closing resource " + e.getClass().getName(), "Message: " + e.getMessage());
             return "";
