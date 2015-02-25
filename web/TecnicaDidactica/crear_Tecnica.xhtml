@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:jsf="http://xmlns.jcp.org/jsf"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
+    <ui:composition template="/html_plantillas/template.xhtml">
+         <ui:define name="title">Crear Tecnica</ui:define>        
+         <ui:define name="body">
+              <form jsf:id="CreateTecnica">
+                   <h1><h:outputText value="Crear Tecnica"/></h1>
+                   <h:panelGrid columns="1">
+                        <h:outputLabel value="Nombre de la Tecnica:" for="nomTecnica" />
+                        <input jsf:id="nomTecnica" jsf:value="#{tecnicadidacticaController.tecnicaActual.tecnicaDidactica}" 
+                                     type="text" required="true"
+                                     jsf:requiredMessage="Por favor ingrese el nombre de la tecnica"
+                                     jsf:validatorMessage="Use solo letras"> 
+                                     <f:validateRegex pattern="[a-zA-Z áéíóúÁÉÍÓÚÑñ]*"/>
+                                     <f:ajax execute="@this" render="nomTecnicaMessage"/>
+                        </input>
+                        <h:message id="nomTecnicaMessage" for="nomTecnica" styleClass="error"/>
+                        
+                        <input type="submit" jsf:action="#{tecnicadidacticaController.addTecnica}" value="Guardar Tecnica"/>
+                       
+                       
+                   </h:panelGrid>
+                  
+              </form> 
+         </ui:define>
+    </ui:composition>
+     
+</html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:jsf="http://xmlns.jcp.org/jsf"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
+    
+    <ui:composition template="/html_plantillas/template.xhtml">
+        <ui:define name="title">Editar Actividad</ui:define>        
+        <ui:define name="body">
+                <form jsf:id="EditActividad">
+                    <h1><h:outputText value="Editar Actividad"/></h1>
+                    <h:panelGrid columns="1">
+                        
+                        
+                        <h:outputLabel value="Nombre de la actividad:" for="nomActividad" />
+                        <input jsf:id="nomActividad" jsf:value="#{actividadController.actividadActual.nombreActividad}" 
+                                     type="text" required="true"
+                                     jsf:requiredMessage="Por favor ingrese el nombre del tipo de actividad"
+                                     jsf:validatorMessage="Use solo letras"> 
+                                     <f:validateRegex pattern="[a-zA-Z áéíóúÁÉÍÓÚÑñ]*"/>
+                                     <f:ajax execute="@this" render="nomActividadMessage"/>
+                        </input>
+                        <h:message id="nomActividadMessage" for="nomActividad" styleClass="error"/>
+                        
+                         <h:outputLabel value="Duracion Actividad:" for="duraActividad" />
+                         <input jsf:id="duraActividad" jsf:value="#{actividadController.actividadActual.duracion}" 
+                                     type="number" required="true"
+                                     jsf:requiredMessage="Por favor ingrese la duracion de la actividad"
+                                     jsf:validatorMessage="Use solo numeros"> 
+                             <f:validateLongRange maximum="800" minimum="0"/>
+                                     <f:ajax execute="@this" render="duracionMessage"/>
+                        </input>
+                        <h:message id="duracionMessage" for="duracion" styleClass="error"/>
+                        
+                        
+                      <h:outputLabel value="proyecto:"  for="nomProyecto"/>
+                      <h:selectOneMenu id="idProyectoSelect" value="#{actividadController.actividadActual.idProyecto}">
+                            <f:selectItem itemLabel="Seleccionar uno.." />
+                            <f:selectItems value="#{actividadController.listaProyectoSelectOne}" var="proyecto" itemValue="#{proyecto}"/>  
+                        </h:selectOneMenu>
+                        
+
+                      <input type="submit" jsf:action="#{actividadController.updateActividad}" value="Editar Actividad">
+                        </input>
+                    </h:panelGrid>
+                </form> 
+        </ui:define>
+    </ui:composition>
+</html>
+
