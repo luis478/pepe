@@ -1,0 +1,47 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    <p:dialog widgetVar="listaCCPVentana" 
+              resizable="false"
+              modal="true"
+              draggable="false"
+              styleClass="Dialogo">
+        <h:form id="listaCCPVentanaForm">
+            <p:dataTable value="#{programaController.listaCCP}" 
+                         var="item"
+                         selectionMode="single"
+                         selection="#{programaController.conocimientoConceptoPrincipiosActual}"
+                         rowKey="#{item.idConocimientoConceptoPrincipios}">
+                <p:ajax event="rowSelect" update="modificarCCP deshabilitarCCP"/>
+                <p:ajax event="rowUnselect" update="modificarCCP deshabilitarCCP"/>
+                <p:column>
+                    <f:facet name="header">
+                        <h:outputText value="Conocimiento de Conceptos y Principios"/>
+                    </f:facet>
+                    <h:outputText value="#{item.nombreConocimientoConceptoPrincipiosl}"/>
+                </p:column>
+                <f:facet name="footer">
+                    <p:commandButton update=":crearCCPVentanaForm"
+                                     value="crear"
+                                     onclick="crearCCPVentana.show()"
+                                     action="#{programaController.anularItem()}"/>
+                    <p:commandButton update=":modificarCCPVentanaForm"
+                                     id="modificarCCP"
+                                     disabled="#{programaController.ccpBoolean()}"
+                                     value="modificar"
+                                     onclick="modificarCCPVentana.show()"/>
+                    <p:commandButton update=":deshabilitarCCPVentanaForm"
+                                     id="deshabilitarCCP"
+                                     disabled="#{programaController.ccpBoolean()}"
+                                     value="deshabilitar"
+                                     onclick="deshabilitarCCPVentana.show()"/>
+                </f:facet>
+            </p:dataTable>
+        </h:form>
+    </p:dialog>
+</html>
+

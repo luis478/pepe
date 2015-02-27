@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:jsf="http://xmlns.jcp.org/jsf">
+    <ui:composition template="/html_plantillas/template.xhtml">
+        <ui:define name="title">Crear Estilo de aprendizaje</ui:define>        
+        <ui:define name="body">
+                <h:form>
+                    <h1><h:outputText value="Crear Estilo de aprendizaje"/></h1>
+                    <h:panelGrid columns="2">
+                        <h:outputLabel value="Estilo de aprendizaje:" for="nomEstiloApre" />
+                        <input jsf:id="nomEstiloApreInputText" jsf:value="#{estiloAprendizajeController.estiloAprendizajeActual.estiloAprendizaje}" 
+                                     type="text" required="true"
+                                     jsf:requiredMessage="Por favor ingrese el estilo de aprendizaje"
+                                     jsf:validatorMessage="Use solo letras, ej: masculino"> 
+                                     <f:validateRegex pattern="[a-zA-Z áéíóúÁÉÍÓÚÑñ]*"/>
+                                     <f:ajax execute="@this" render="nomEstiloApreMessage"/>
+                        </input>
+                        <h:message id="nomEstiloApreMessage" for="nomEstiloApreText" styleClass="error"/>
+                    </h:panelGrid>
+                    <h:commandButton value="Guardar" action="#{estiloAprendizajeController.addEstiloAprendizaje}"/>
+                    <br/>
+                    <h:button value="Volver atras" outcome="/index"/>
+                </h:form> 
+        </ui:define>
+    </ui:composition>
+</html>

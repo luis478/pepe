@@ -1,0 +1,113 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:jsf="http://xmlns.jcp.org/jsf">
+    <ui:composition template="templatePrograma.xhtml">
+        <ui:define name="Contenido">
+            <h:form id="competenciaForm">
+                <section class="row">
+                    <h1 class="columns-5">#{programaController.programaActual.programaPK.codigo} + #{programaController.programaActual.programaPK.version}: Competencias</h1>
+                    <input type="submit"
+                           class="button columns-4"
+                           jsf:actionListener="#{programaController.anular()}"
+                           jsf:action="programaInicio.xhtml"
+                           jsf:value="cambiar programa"/>
+                </section>
+                <p:commandButton onclick="programaVerVentana.show()"
+                                 value="ver programa"
+                                 update=":programaVerVentanaForm"/>
+                <section class="row">
+                    <p:dataTable value="#{programaController.listaCompetencia}" 
+                                 var="item"
+                                 selection="#{programaController.competenciaActual}"
+                                 selectionMode="single"
+                                 rowKey="#{item.codigo}"
+                                 rows="10">
+                        <p:ajax event="rowSelect"
+                                update="botonRA botonCCP botonCP botonCE botonE"/>
+                        <p:ajax event="rowUnselect"
+                                update="botonRA botonCCP botonCP botonCE botonE"/>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="Codigo"/>
+                            </f:facet>
+                            <h:outputText value="#{item.codigo}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="NombreCompetencia"/>
+                            </f:facet>
+                            <h:outputText value="#{item.nombreCompetencia}"/>
+                        </p:column>
+                        
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="NombreCompetencia"/>
+                            </f:facet>
+                            <h:outputText value="#{item.duracionEstimadaHoras}"/>
+                        </p:column>
+                        <f:facet name="footer">
+                            <section class="row">
+                                <p:commandButton id="botonC"
+                                                 value="crear"
+                                                 actionListener="#{programaController.anularComp()}"
+                                                 onclick="competenciaCrearVentana.show()"
+                                                 update=":competenciaCrearVentanaForm"/>
+                                <p:commandButton id="botonE"
+                                                 value="editar"
+                                                 onclick="competenciaEditarVentana.show()"
+                                                 update=":competenciaEditarVentanaForm"
+                                                 disabled="#{programaController.competenciaNull()}"/>
+                            </section>
+                            <section class="row">
+                                <p:commandButton id="botonRA"
+                                                 value="RA"
+                                                 disabled="#{programaController.competenciaNull()}"
+                                                 onclick="listaRAVentana.show()"
+                                                 update=":listaRAVentanaForm"/>
+                                <p:commandButton id="botonCCP"
+                                                 value="CCP"
+                                                 disabled="#{programaController.competenciaNull()}"
+                                                 onclick="listaCCPVentana.show()"
+                                                 update=":listaCCPVentanaForm"/>
+                                <p:commandButton id="botonCP"
+                                                 value="CP"
+                                                 disabled="#{programaController.competenciaNull()}"
+                                                 onclick="listaCPVentana.show()"
+                                                 update=":listaCPVentanaForm"/>
+                                <p:commandButton id="botonCE"
+                                                 value="CE"
+                                                 disabled="#{programaController.competenciaNull()}"
+                                                 onclick="listaCEVentana.show()"
+                                                 update=":listaCEVentanaForm"/>
+                            </section>
+                        </f:facet>
+                    </p:dataTable>
+
+                    <p:commandButton action="#{programaController.prepareCreate()}"
+                                     value="nueva version"
+                                     update=":programaVersionCrearVentanaForm"
+                                     onclick="programaVersionCrearVentana.show()"/>
+                </section>
+            </h:form>
+            <ui:include src="programaInfo/CCP/listaCCP.xhtml"/>
+            <ui:include src="programaInfo/CCP/crearCCP.xhtml"/>            
+            <ui:include src="programaInfo/CCP/modificarCCP.xhtml"/>
+            <ui:include src="programaInfo/CCP/deshabilitarCCP.xhtml"/>
+            <ui:include src="programaInfo/CP/listaCP.xhtml"/>
+            <ui:include src="programaInfo/CE/listaCE.xhtml"/>
+            <ui:include src="programaInfo/CE/crearCE.xhtml"/>            
+            <ui:include src="programaInfo/CE/modificarCE.xhtml"/>
+            <ui:include src="programaInfo/CE/deshabilitarCE.xhtml"/>
+            <ui:include src="programaInfo/RA/listaRA.xhtml"/>
+            <ui:include src="programaVer.xhtml"/>
+            <ui:include src="programaVersion.xhtml"/>
+            <ui:include src="programaInfo/competencia/competenciaCreate.xhtml"/>
+            <ui:include src="programaInfo/competencia/competenciaEditar.xhtml"/>
+        </ui:define>
+    </ui:composition>
+</html>
