@@ -1,9 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package com.pepe.controller;
 
 import com.pepe.jpa.entities.Caracterizacion;
@@ -11,10 +5,12 @@ import com.pepe.jpa.entities.Desercion;
 import com.pepe.jpa.entities.Eps;
 import com.pepe.jpa.entities.Especialidad;
 import com.pepe.jpa.entities.EstiloAprendizaje;
+import com.pepe.jpa.entities.Fase;
 import com.pepe.jpa.entities.Genero;
 import com.pepe.jpa.entities.LibretaMilitar;
 import com.pepe.jpa.entities.Patrocinio;
 import com.pepe.jpa.entities.Rol;
+import com.pepe.jpa.entities.TipoContrato;
 import com.pepe.jpa.entities.TipoDocumento;
 import com.pepe.jpa.entities.TipoSangre;
 import com.pepe.jpa.entities.TipoVocero;
@@ -24,10 +20,13 @@ import com.pepe.jpa.sesions.DesercionFacade;
 import com.pepe.jpa.sesions.EpsFacade;
 import com.pepe.jpa.sesions.EspecialidadFacade;
 import com.pepe.jpa.sesions.EstiloAprendizajeFacade;
+import com.pepe.jpa.sesions.FaseFacade;
+import com.pepe.jpa.sesions.FichaFacade;
 import com.pepe.jpa.sesions.GeneroFacade;
 import com.pepe.jpa.sesions.LibretaMilitarFacade;
 import com.pepe.jpa.sesions.PatrocinioFacade;
 import com.pepe.jpa.sesions.RolFacade;
+import com.pepe.jpa.sesions.TipoContratoFacade;
 import com.pepe.jpa.sesions.TipoDocumentoFacade;
 import com.pepe.jpa.sesions.TipoSangreFacade;
 import com.pepe.jpa.sesions.TipoVoceroFacade;
@@ -74,12 +73,32 @@ public class UsuarioController implements Serializable{
    @EJB
     private EspecialidadFacade especialidadFacade;
    @EJB
+    private TipoContratoFacade tipoContratoFacade;
+   @EJB
     private RolFacade rolFacade;
-    private List<Rol> listaRol = null;
+    private List<Rol> listaRol = null; 
     private Usuario usuarioActual;
+    private List<Usuario> listaUsuario = null;
+    int tipoContratoSelect;
+
+    public RolFacade getRolFacade() {
+        return rolFacade;
+    }
+
+    public void setRolFacade(RolFacade rolFacade) {
+        this.rolFacade = rolFacade;
+    }
+
+    public List<Rol> getListaRol() {
+        return listaRol;
+    }
+
+    public void setListaRol(List<Rol> listaRol) {
+        this.listaRol = listaRol;
+    }
 
     
-    
+      
     // select one menu caracterizacion
     public CaracterizacionFacade getCaracterizacionFacade() {
         return caracterizacionFacade;
@@ -128,6 +147,29 @@ public class UsuarioController implements Serializable{
         return getDesercionFacade().findAll();
     }
     
+    // select one tipo contrato
+   public int getTipoContratoSelect() {
+        if(usuarioActual!=null && usuarioActual.getIdTipoContrato()!= null){
+            tipoContratoSelect=usuarioActual.getIdUsuario();
+        }
+        return tipoContratoSelect;
+    }
+
+    public void setTipoContratoSelect(int tipoContratoSelect) {
+        this.tipoContratoSelect = tipoContratoSelect;
+    }
+
+    public TipoContratoFacade getTipoContratoFacade() {
+        return tipoContratoFacade;
+    }
+
+    public void setTipoContratoFacade(TipoContratoFacade tipoContratoFacade) {
+        this.tipoContratoFacade = tipoContratoFacade;
+    }
+    
+    public List<TipoContrato> getListaTipoContratoSelectOne() {
+        return getTipoContratoFacade().findAll();
+    }
     
     // select one menu Tipo Vocero
     public TipoVoceroFacade getTipoVoceroFacade() {
@@ -208,5 +250,112 @@ public class UsuarioController implements Serializable{
         return getEspecialidadFacade().findAll();
     }
     
+    /**
+     * Creates a new instance of CiudadController
+     */
+    public UsuarioController() {
+        
+        
+    }
+
+    public UsuarioFacade getUsuarioFacade() {
+        return usuarioFacade;
+    }
+    public Usuario getUsuarioActual() {
+        if (usuarioActual == null) {
+            usuarioActual = new Usuario();
+        }
+        return usuarioActual;
+    }
+
+    public void setUsuarioActual(Usuario usuarioActual) {
+        this.usuarioActual = usuarioActual;
+    }
+
+  
+    public List<Usuario> getListaUsuario() {
+        if (listaUsuario == null) {
+            try {
+                listaUsuario = getUsuarioFacade().findAll();
+            } catch (Exception e) {
+                addErrorMessage("Error closing resource " + e.getClass().getName(), "Message: " + e.getMessage());
+            }
+        }
+        return listaUsuario;
+    }
+
+    private void recargarLista() {
+        listaUsuario = null;
+    }
+
+    public void prepareCreate() {
+        usuarioActual = new Usuario();
+        listaRol= new ArrayList<>();
+    }
+
+    public String prepareEdit() {
+        return "";
+    }
+
+    public String prepareView() {
+        return "";
+    }
+
+    public String prepareList() {
+        recargarLista();
+        return "";
+    }
+
+    public String addUsuario() {
+        try {
+            usuarioActual.setEstado(true);
+              if (listaRol == null || listaRol.isEmpty()) {
+                listaRol= new ArrayList<>();
+                listaRol.add(new Rol(2));
+                usuarioActual.setRolList(listaRol); 
+            } else {
+                usuarioActual.setRolList(listaRol);
+            }
+            getUsuarioFacade().create(usuarioActual);
+            recargarLista();
+            return "";
+        } catch (Exception e) {
+            addErrorMessage("Error closing resource " + e.getClass().getName(), "Message: " + e.getMessage());
+            return null;
+        }
+    }
+
+    public String updateUsuario() {
+        try {
+            getUsuarioFacade().edit(usuarioActual);
+            recargarLista();
+            return "";
+        } catch (Exception e) {
+            addErrorMessage("Error closing resource " + e.getClass().getName(), "Message: " + e.getMessage());
+            return null;
+        }
+    }
+
+    public String deleteUsuario() {
+        try {
+            getUsuarioFacade().remove(usuarioActual);
+            recargarLista();
+        } catch (Exception e) {
+            addErrorMessage("Error closing resource " + e.getClass().getName(), "Message: " + e.getMessage());
+        }
+        return "List";
+    }
+    
+       private void addErrorMessage(String title, String msg) {
+        FacesMessage facesMsg
+                = new FacesMessage(FacesMessage.SEVERITY_ERROR, title, msg);
+        FacesContext.getCurrentInstance().addMessage(null, facesMsg);
+    }
+
+    private void addSuccessMessage(String title, String msg) {
+        FacesMessage facesMsg
+                = new FacesMessage(FacesMessage.SEVERITY_INFO, title, msg);
+        FacesContext.getCurrentInstance().addMessage("successInfo", facesMsg);
+    }
     
 }

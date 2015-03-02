@@ -19,6 +19,7 @@
     </head>
   <body jsf:id="body" class='Body'>
        <h:panelGroup rendered="#{!loginController.authenticated}">
+           
           <section class='Pepe-inicio'>
                 <figure class='Pepe-inicioContenedor'>
                     <img src="resources/images/Pepelogo1.png" class='Pepe-inicioLogo' height="240"/> 
@@ -51,6 +52,13 @@
             </section>
         </h:panelGroup>
       <h:panelGroup rendered="#{loginController.authenticated}">
+          <header class="Header">
+            <div class="Header-left">
+                <h1 class="Titulo-pepe">P.E.P.A</h1>
+                Programador Estrategico de Proyectos Academicos
+            </div>
+            <hr size="20"/>
+        </header>
             <form class="Pepe-body" jsf:id="formInicio">
                 <section class="seccion1">
 
@@ -128,7 +136,15 @@
                  <h:button value="¡Crear Ficha!" outcome="/ProgramaciondeProyecto/crear_ficha.xhtml" />
                  
             </h:form> 
-        </h:panelGroup>
+            <h:form>
+                <input type="submit"
+                       class="Boton"
+                       jsf:value="programa"
+                       jsf:action="programa/programaInicio.xhtml"
+                       jsf:actionListener="#{programaController.anular()}">
+                </input>
+            </h:form>
+        
         <hr width="100%" size="8" align="right"/>
         <footer class="Pepe-footer" >
             <figure class="Footer-imageContainer">
@@ -155,26 +171,18 @@
             </section>
             <section>
                 <p class="Footer-description"> 
-                    Servicio Nacional de Aprendizaje SENA – Centro de Bioctecnologia Industrial- carrera 30 #40-25, Palmira-valle 
+                       Servicio Nacional de Aprendizaje SENA – Centro de Bioctecnologia Industrial- carrera 30 #40-25, Palmira-valle 
                     <br></br>
-                        Línea gratuita de atención al ciudadano 275 0978 – Resto del país 018000 910270
+                       Línea gratuita de atención al ciudadano 275 0978 – Resto del país 018000 910270
                     <br></br>
-                    Horario de atención: lunes a viernes de 8:00 am a 5:30 pm
+                       Horario de atención: lunes a viernes de 8:00 am a 5:30 pm
                     <br></br>
-
-                        Todos los derechos reservados ©
+                       Todos los derechos reservados ©
                     <br></br>
                     2015</p>
             </section>
-            <h:form>
-                <input type="submit"
-                       class="Boton"
-                       jsf:value="programa"
-                       jsf:action="programa/programaInicio.xhtml"
-                       jsf:actionListener="#{programaController.anular()}">
-                </input>
-            </h:form>
         </footer>
+        </h:panelGroup>
         <script src="resources/foundation-5.5.1/js/vendor/jquery.js"></script>
         <script src="resources/foundation-5.5.1/js/foundation.min.js"></script>
         <script src="resources/foundation-5.5.1/js/foundation/foundation.js"></script>

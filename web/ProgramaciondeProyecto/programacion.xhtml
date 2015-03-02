@@ -19,52 +19,50 @@
 </head>
 <body class="Bodypepe">
  <header class="Header">
-    <form clss="Header-Form">
+    <form class="Header-Form">
         <section class="Header-pepeForm">
-             <h:panelGrid columns="1">
-                    <label for="nombreProgramaText">Programa de formacion:</label>
-                    <input type="text" jsf:id="nombreProgramaInputText" disabled="true"
-                           jsf:value="#{fichaController.fichaSeleccionada.programa.nombrePrograma}" maxlength="45" class="Form-inputRegistro">
+            <h:panelGrid columns="8">
+                    <label class="Label1" for="nombreProgramaText">Programa de formacion:</label>
+                    <input class="Form-Input1" type="text" jsf:id="nombreProgramaInputText" disabled="true"
+                           jsf:value="#{fichaController.fichaSeleccionada.programa.nombrePrograma}" maxlength="45" >
                     </input>
-                    <label for="codigoProgramaText">Código de programa:</label>
-                    <input type="text" jsf:id="codigoProgramaInputText" disabled="true"
+                    <label class="Label2" for="codigoProgramaText">Código del programa:</label>
+                    <input class="Form-Input2" type="text" jsf:id="codigoProgramaInputText" disabled="true"
                            jsf:value="#{fichaController.fichaSeleccionada.programa.programaPK.codigo}">
                     </input>
-                    <label for="versionProgramaText">Version de programa:</label>
-                    <input type="text" jsf:id="nombreProgramaInputText" disabled="true"
+                    <label class="Label3" for="versionProgramaText">Versión del programa:</label>
+                    <input class="Form-Input3" type="text" jsf:id="nombreProgramaInputText" disabled="true"
                            jsf:value="#{fichaController.fichaSeleccionada.programa.programaPK.version}">
                     </input>
-                    <label for="duracionProgramaText">Duración de programa:</label>
-                    <input type="text" jsf:id="duracionProgramaInputText" disabled="true"
+           </h:panelGrid>
+            <h:panelGrid columns="6">
+                <label class="Label4" for="duracionProgramaText">Duración del programa:</label>
+                    <input class="Form-Input4" type="text" jsf:id="duracionProgramaInputText" disabled="true"
                            jsf:value="#{fichaController.fichaSeleccionada.programa.duracionTrimestres}">
+                    </input>
+            <label class="Label6" for="codigoProyectoText">Codigo del proyecto:</label>
+                    <input class="Form-Input6" type="text" jsf:id="codigoProyectoInputText" disabled="true"
+                           jsf:value="#{fichaController.fichaSeleccionada.idProyecto.codigoProyecto}">
+            </input>
+             <label class="Label7" for="numeroFichaText">Numero de ficha:</label>
+                    <input class="Form-Input7" type="text" jsf:id="numeroFichaInputText" disabled="true"
+                           jsf:value="#{fichaController.fichaSeleccionada.codigoFicha}">
+            </input>
+    </h:panelGrid> 
+            <label class="Label5" for="nombreProyectoText">Nombre del proyecto:</label>
+                    <input class="Form-Input5" type="text" jsf:id="nombreProyectoInputText" disabled="true"
+                           jsf:value="#{fichaController.fichaSeleccionada.idProyecto.nombreProyecto}">
+            </input>
+            <h:panelGrid columns="3">
+            <label class="Label8" for="liderEjecutorText">Lider ejecutor:</label>
+                    <input class="Form-Input8" type="text" jsf:id="liderEjecutorInputText" disabled="true"
+                           jsf:value="#{fichaController.usuarioFicha.usuario}">
                     </input>
             </h:panelGrid>
         </section>
-        <section class="Header-pepeForm">
-            <label for="nombreProyectoText">Nombre de proyecto:</label>
-                    <input type="text" jsf:id="nombreProyectoInputText" disabled="true"
-                           jsf:value="#{fichaController.fichaSeleccionada.idProyecto.nombreProyecto}">
-            </input>
-            <label for="codigoProyectoText">Codigo de proyecto:</label>
-                    <input type="text" jsf:id="codigoProyectoInputText" disabled="true"
-                           jsf:value="#{fichaController.fichaSeleccionada.idProyecto.codigoProyecto}">
-            </input>
-             <label for="numeroFichaText">N° de ficha:</label>
-                    <input type="text" jsf:id="numeroFichaInputText" disabled="true"
-                           jsf:value="#{fichaController.fichaSeleccionada.codigoFicha}">
-            </input>
-              
-       </section> 
-       <section class="Header-pepeForm">
-            <label for="liderEjecutorText">Lider ejecutor:</label>
-                    <input type="text" jsf:id="liderEjecutorInputText" disabled="true"
-                           jsf:value="#{fichaController.usuarioFicha.usuario}">
-                    </input>
-        </section>
        </form>
     </header>
-        
-    <hr WIDTH='100%' SIZE='8' ALIGN='RIGHT'></hr>
+  
         <section class="pepe-color">
         <ul class="Pepe-listColor">
                 <li class="Pepe-listColorItem"><a href='#' class="PepeMenu-link"></a></li>
@@ -93,27 +91,21 @@
             </ul>        
         </nav>    
     </section>
-
     <legend class="Titulo-pepe">Programación</legend>
-       <article class="articulo1">
-                        <label for="titulo" >Fase</label>
-                    
-                    </article>
-    
+            <article class="articulo1">
+                       <label for="titulo" >Fase</label>  
+            </article>
     <section>
-      
+        
     </section>
-
          <article class="Pepe-button">
                 <button type="submit" class="Button">Cerrar sesión</button>
                 <button type="submit" class="Button1"> Guardar y continuar</button>
          </article>
-
     <hr WIDTH='100%' SIZE='8' ALIGN='RIGHT'></hr>
     <footer class="Pepe-footer" >
     <figure class="Footer-imageContainer">
             <img src="../resources/images/logosena.png" heigth="50" width="50" alt="logo sena" class="Footer-image"/>
-
     </figure>
     <section>
     <p class="Footer-description"> 
@@ -123,7 +115,6 @@
          <br></br>
         Horario de atención: lunes a viernes de 8:00 am a 5:30 pm
         <br></br>
-    
         Todos los derechos reservados ©
         <br></br>
          2015</p>
