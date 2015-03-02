@@ -109,7 +109,7 @@ public class ModalidadFormacion implements Serializable {
 
     @Override
     public String toString() {
-        return getModalidadFormacion();
+        return getModalidadFormacion().toUpperCase();
     }
     
 }

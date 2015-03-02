@@ -108,7 +108,7 @@ public class TipoDocumento implements Serializable {
 
     @Override
     public String toString() {
-        return "com.pepe.jpa.entities.TipoDocumento[ idTipoDocumento=" + idTipoDocumento + " ]";
+        return getNombreTipoDocumento().toUpperCase();
     }
     
 }

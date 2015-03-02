@@ -14,10 +14,10 @@ and open the template in the editor.
         <ui:define name="title">Crear Eps</ui:define>        
         <ui:define name="body">
                 <h:form>
-                    <h1><h:outputText value="Crear Eps"/></h1>
+                    <h1 class="Titulo"><h:outputText value="Formulario de registro de Eps"/></h1>
                     <h:panelGrid columns="1">
-                         <h:outputLabel value="Codigo Eps:" for="codEps" />
-                         <input jsf:id="codEpsInputText" jsf:value="#{epsController.epsActual.idEps}" 
+                         <h:outputLabel class="form-1" value="Codigo Eps:" for="codEps" />
+                         <input class="form-1" jsf:id="codEpsInputText" jsf:value="#{epsController.epsActual.idEps}" 
                                      type="text" required="true"
                                      jsf:requiredMessage="Por favor ingrese el nombre de la Eps"
                                      jsf:validatorMessage="Use solo letras, ej: SOS"> 
@@ -26,8 +26,8 @@ and open the template in the editor.
                         </input>
                         <h:message id="codEpsMessage" for="codEpsInputText" styleClass="error"/>
                         
-                        <h:outputLabel value="Nombre Eps:" for="nomEps" />
-                        <input jsf:id="nomEpsInputText" jsf:value="#{epsController.epsActual.nombreEps}" 
+                        <h:outputLabel class="form-1" value="Nombre Eps:" for="nomEps" />
+                        <input class="form-1" jsf:id="nomEpsInputText" jsf:value="#{epsController.epsActual.nombreEps}" 
                                      type="text" required="true"
                                      jsf:requiredMessage="Por favor ingrese el nombre de la Eps"
                                      jsf:validatorMessage="Use solo letras, ej: SOS"> 
@@ -36,9 +36,9 @@ and open the template in the editor.
                         </input>
                         <h:message id="nomEpsMessage" for="nomEpsInputText" styleClass="error"/>
                     </h:panelGrid>
-                    <h:commandButton value="Guardar" action="#{epsController.addEps}"/>
+                    <h:commandButton class="Guardar" value="Guardar" action="#{epsController.addEps}"/>
                     <br/>
-                    <h:button value="Volver atras" outcome="/index"/>
+                    <h:button class="Volver" value="Volver atras" outcome="/index"/>
                 </h:form> 
         </ui:define>
     </ui:composition>

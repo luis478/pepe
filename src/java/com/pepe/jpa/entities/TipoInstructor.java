@@ -108,7 +108,7 @@ public class TipoInstructor implements Serializable {
 
     @Override
     public String toString() {
-        return "com.pepe.jpa.entities.TipoInstructor[ idTipoInstructor=" + idTipoInstructor + " ]";
+        return getNombreTipoInstructor().toUpperCase();
     }
     
 }

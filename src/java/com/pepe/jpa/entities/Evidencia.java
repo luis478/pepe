@@ -164,7 +164,7 @@ public class Evidencia implements Serializable {
 
     @Override
     public String toString() {
-        return "com.pepe.jpa.entities.Evidencia[ idEvidencia=" + idEvidencia + " ]";
+        return getNombreEvidencia().toUpperCase();
     }
     
 }
