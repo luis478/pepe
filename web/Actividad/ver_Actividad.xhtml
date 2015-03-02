@@ -1,0 +1,47 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:jsf="http://xmlns.jcp.org/jsf"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition template="/html_plantillas/template.xhtml">
+        <ui:define name="title">Ver Actividad</ui:define>        
+        <ui:define name="body">
+            <form jsf:id="ver_Actividad">
+                <h1><h:outputText value="Ver guia Aprendizaje"/></h1>
+                <h:panelGrid columns="1">
+
+
+                    <label value="nombre Actividad:" jsf:for="nomActividad" />
+                    <textarea  disabled="true" type="text" jsf:id="nomActividad" jsf:value="#{actividadController.actividadActual.nombreActividad}" title="nombre Actividad" required="true" jsf:requiredMessage="El nombre es necesario">
+                    </textarea>
+
+                    <label value="Duracion Actividad:" jsf:for="DuraciActividad" />
+                    <input  disabled="number" type="text" jsf:id="DuraciActividad" jsf:value="#{actividadController.actividadActual.duracion}" title="Duracion Actividad" jsf:requiredMessage="La Duracion Actividad field is required.">
+                    </input>
+                        
+                        <label value="nombre Proyecto:" jsf:for="nomProyecto" />
+                        <textarea  disabled="true" type="text" jsf:id="nomProyecto" jsf:value="#{actividadController.actividadActual.idProyecto.nombreProyecto}" title="nombre Proyecto" jsf:requiredMessage="El nombre del priyecto field is required.">
+                        </textarea>
+      
+
+                        
+                    </h:panelGrid>
+                    <h:button value="Editar" outcome="/Actividad/editar_Actividad"/>
+                    
+                    <h:commandButton value="eliminar" action="#{actividadController.deleteActividad}"
+                                 onclick="return confirm('¿ Esta seguro que desea eliminar la Actividad ?')"/>
+                                    
+                    <input type="submit" jsf:action="#{actividadController.prepareCreate}" value="Crear Actividad" ></input>
+                
+        <br/>
+        <h:commandButton action="#{actividadController.prepareList}" value="Ir a la lista de Actividad" immediate="true"/>
+              
+                </form> 
+</ui:define>
+    </ui:composition>
+</html>
+

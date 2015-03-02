@@ -97,24 +97,24 @@ public class ActividadController implements Serializable {
     
     public String prepareCreate(){
         actividadActual = new Actividad();
-        return "Actividad/crear_actividad";
+        return "/Actividad/crear_actividad";
 }
     public String prepareEdit (){
-    return "";
+    return "/Actividad/editar_Actividad";
 }
     public String prepareView (){
-    return "";
+    return "/Actividad/ver_Actividad";
 }
     public String prepareList (){
     recargarlista();
-        return "";
+        return "/Actividad/lista_Actividad";
 }
     
     public String addActividad(){
         try{
         getActividadFacade().create(actividadActual);
         recargarlista();
-        return "";
+        return "lista_Actividad";
         }catch (Exception e){
         addErrorMessage("Error closing resource " + e.getClass().getName(), "Message: " + e.getMessage());
             return null;
@@ -125,7 +125,7 @@ public class ActividadController implements Serializable {
         try{
         getActividadFacade().edit(actividadActual);
         recargarlista();
-        return "";
+        return "lista_Actividad";
         }catch (Exception e){
         addErrorMessage("Error closing resource " + e.getClass().getName(), "Message: " + e.getMessage());
             return null;
@@ -134,13 +134,14 @@ public class ActividadController implements Serializable {
     
     public String deleteActividad(){
         try{
-        getActividadFacade().remove(actividadActual);
-        recargarlista();
-        return "";
-        }catch (Exception e){
-        addErrorMessage("Error closing resource " + e.getClass().getName(), "Message: " + e.getMessage());
-            return "";
-        }
+            getActividadFacade().remove(actividadActual);
+            addSuccessMessage("Eliminado Exitosamente", "actividad eliminada");
+            recargarlista();
+            } catch (Exception e){
+                addErrorMessage ("Error closing resource " + e.getClass().getName(), "Message" + e.getMessage());
+                
+            }   
+       return "lista_Actividad";
     }
     
     private void addErrorMessage(String title, String msg) {
