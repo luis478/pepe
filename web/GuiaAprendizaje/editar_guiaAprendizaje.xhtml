@@ -15,59 +15,56 @@
                     <h:panelGrid columns="1">
                         
                         
-                        <h:outputLabel value="proyecto:"  for="nomProyecto"/>
+                        <h:outputLabel value="proyecto:"  for="idProyectoSelect"/>
                         <h:selectOneMenu id="idProyectoSelect" value="#{guiaAprendizajeController.guiaAprendizajeActual.idProyecto}">
                             <f:selectItem itemLabel="Seleccionar uno.." />
-                            <f:selectItems value="#{guiaAprendizajeController.listaProyectoSelectOne}" var="proyecto" itemValue="#{proyecto}"/>  
+                            <f:selectItems value="#{guiaAprendizajeController.listaProyectoSelectOne}" var="idProyectoSelec" itemValue="#{proyecto}"/>  
                         </h:selectOneMenu>
                         
                         
                         <h:outputLabel value="Introduccion:" for="introduccion" />
-                        <input jsf:id="introduccion" jsf:value="#{guiaAprendizajeController.guiaAprendizajeActual.introduccion}" 
+                        <textarea  jsf:id="introduccion" jsf:value="#{guiaAprendizajeController.guiaAprendizajeActual.introduccion}" 
                                      type="text" required="true"
                                      jsf:requiredMessage="Por favor ingrese la introduccion"
                                      jsf:validatorMessage="Use solo letras"> 
-                                     <f:validateRegex pattern="[a-zA-Z áéíóúÁÉÍÓÚÑñ]*"/>
-                                     <f:ajax execute="@this" render="introduccionMessage"/>
-                        </input>
-                        <h:message id="introduccionMessage" for="introduccion" styleClass="error"/>
+                                     
+                        </textarea >
+                       
                         
                          <h:outputLabel value="Glosario:" for="Glosario" />
-                         <input jsf:id="Glosario" jsf:value="#{guiaAprendizajeController.guiaAprendizajeActual.glosarioTerminos}" 
-                                     type="textArea" required="true"
+                         <textarea  jsf:id="Glosario" jsf:value="#{guiaAprendizajeController.guiaAprendizajeActual.glosarioTerminos}" 
+                                     type="text" required="true"
                                      jsf:requiredMessage="Por favor ingrese el Glosario"
                                      jsf:validatorMessage="Use letras"> 
-                              <f:validateRegex pattern="[a-zA-Z áéíóúÁÉÍÓÚÑñ]*"/>
-                                     <f:ajax execute="@this" render="GlosarioMessage"/>
-                        </input>
-                        <h:message id="GlosarioMessage" for="Glosario" styleClass="error"/>
+                              
+                        </textarea >
+                        
                         
                         <h:outputLabel value="referentesBibliograficos:" for="Referentes" />
-                        <input jsf:id="Referentes" jsf:value="#{guiaAprendizajeController.guiaAprendizajeActual.referentesBibliograficos}" 
+                        <textarea jsf:id="Referentes" jsf:value="#{guiaAprendizajeController.guiaAprendizajeActual.referentesBibliograficos}" 
                                      type="textArea" required="true"
                                      jsf:requiredMessage="Por favor ingrese los referentes "
                                      jsf:validatorMessage="Use letras"> 
-                              <f:validateRegex pattern="[a-zA-Z áéíóúÁÉÍÓÚÑñ]*"/>
-                                     <f:ajax execute="@this" render="ReferentesMessage"/>
-                        </input>
-                        <h:message id="ReferentesMessage" for="Referentes" styleClass="error"/>
+                             
+                        </textarea>
+                        
                         
                         <h:outputLabel value="Control Documentos:" for="control" />
-                        <input jsf:id="control" jsf:value="#{guiaAprendizajeController.guiaAprendizajeActual.controlDocumento}" 
-                                     type="textArea" required="true"
+                        <textarea  jsf:id="control" jsf:value="#{guiaAprendizajeController.guiaAprendizajeActual.controlDocumento}" 
+                                     type="text" required="true"
                                      jsf:requiredMessage="Por favor ingrese el control de documentos "
                                      jsf:validatorMessage="Use letras"> 
-                              <f:validateRegex pattern="[a-zA-Z áéíóúÁÉÍÓÚÑñ]*"/>
-                                     <f:ajax execute="@this" render="controlMessage"/>
-                        </input>
-                        <h:message id="controlMessage" for="control" styleClass="error"/>
+                             
+                        </textarea>
+                     
                         
-                      
                         
 
-                        <input type="submit" jsf:action="#{guiaAprendizajeController.updateGuiaAprendizaje}" value="Editar Guia Aprendizaje">
+                        <input type="submit" jsf:action="#{guiaAprendizajeController.updateGuiaAprendizaje}" value="Actualizar Guia Aprendizaje">
                         </input>
                     </h:panelGrid>
+                    <h:button value="Ir al lista guia" outcome="/GuiaAprendizaje/lista_Guia_Aprendizaje"></h:button>
+                
                 </form> 
         </ui:define>
     </ui:composition>
