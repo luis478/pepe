@@ -109,7 +109,7 @@ public class Jornada implements Serializable {
 
     @Override
     public String toString() {
-        return "com.pepe.jpa.entities.Jornada[ idJornada=" + idJornada + " ]";
+        return getNombreJornada().toUpperCase();
     }
     
 }

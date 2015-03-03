@@ -110,7 +110,7 @@ public class Motivo implements Serializable {
 
     @Override
     public String toString() {
-        return "com.pepe.jpa.entities.Motivo[ idMotivo=" + idMotivo + " ]";
+        return getMotivo().toUpperCase();
     }
     
 }

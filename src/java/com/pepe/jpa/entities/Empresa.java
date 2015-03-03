@@ -171,7 +171,7 @@ public class Empresa implements Serializable {
 
     @Override
     public String toString() {
-        return "com.pepe.jpa.entities.Empresa[ idEmpresa=" + idEmpresa + " ]";
+        return getNombreEmpresa().toUpperCase();
     }
     
 }

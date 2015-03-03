@@ -204,7 +204,7 @@ public class Competencia implements Serializable {
 
     @Override
     public String toString() {
-        return "com.pepe.jpa.entities.Competencia[ idCompetencia=" + idCompetencia + " ]";
+        return getNombreCompetencia().toUpperCase();
     }
     
 }

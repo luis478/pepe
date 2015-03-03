@@ -109,7 +109,7 @@ public class PerfilEntrada implements Serializable {
 
     @Override
     public String toString() {
-        return "com.pepe.jpa.entities.PerfilEntrada[ idPerfilEntrada=" + idPerfilEntrada + " ]";
+        return getNombrePerfilEntrada().toUpperCase();
     }
     
 }

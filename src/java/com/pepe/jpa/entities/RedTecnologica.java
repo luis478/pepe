@@ -110,7 +110,7 @@ public class RedTecnologica implements Serializable {
 
     @Override
     public String toString() {
-        return "com.pepe.jpa.entities.RedTecnologica[ idRedTecnologica=" + idRedTecnologica + " ]";
+        return getNombreRedTecnologica().toUpperCase();
     }
     
 }

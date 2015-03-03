@@ -109,7 +109,7 @@ public class TipoResultadoAprendizaje implements Serializable {
 
     @Override
     public String toString() {
-        return "com.pepe.jpa.entities.TipoResultadoAprendizaje[ idTipoResultadoAprendizaje=" + idTipoResultadoAprendizaje + " ]";
+        return getTipoResultadoAprendizaje().toUpperCase();
     }
     
 }

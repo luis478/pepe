@@ -170,7 +170,7 @@ public class Actividad implements Serializable {
 
     @Override
     public String toString() {
-        return "com.pepe.jpa.entities.Actividad[ idActividad=" + idActividad + " ]";
+        return getNombreActividad().toUpperCase();
     }
     
 }

@@ -140,7 +140,7 @@ public class Desercion implements Serializable {
 
     @Override
     public String toString() {
-        return "com.pepe.jpa.entities.Desercion[ idDesercion=" + idDesercion + " ]";
+        return getObservacion().toUpperCase();
     }
     
 }

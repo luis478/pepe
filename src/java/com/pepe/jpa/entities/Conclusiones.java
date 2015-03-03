@@ -110,7 +110,7 @@ public class Conclusiones implements Serializable {
 
     @Override
     public String toString() {
-        return "com.pepe.jpa.entities.Conclusiones[ idConclusiones=" + idConclusiones + " ]";
+        return getDescripcion().toUpperCase();
     }
     
 }

@@ -168,7 +168,7 @@ public class CentroFormacion implements Serializable {
 
     @Override
     public String toString() {
-        return "com.pepe.jpa.entities.CentroFormacion[ idCentroFormacion=" + idCentroFormacion + " ]";
+        return getNombreCentroFormacion().toUpperCase();
     }
     
 }

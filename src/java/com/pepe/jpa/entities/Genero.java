@@ -109,7 +109,7 @@ public class Genero implements Serializable {
 
     @Override
     public String toString() {
-        return "com.pepe.jpa.entities.Genero[ idGenero=" + idGenero + " ]";
+        return getNombreGenero().toUpperCase();
     }
     
 }

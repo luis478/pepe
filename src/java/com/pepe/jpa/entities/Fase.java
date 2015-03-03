@@ -131,7 +131,7 @@ public class Fase implements Serializable {
 
     @Override
     public String toString() {
-        return "com.pepe.jpa.entities.Fase[ idFase=" + idFase + " ]";
+        return getFase().toUpperCase();
     }
     
 }

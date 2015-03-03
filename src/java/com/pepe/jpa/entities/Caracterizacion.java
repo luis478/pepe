@@ -163,7 +163,7 @@ public class Caracterizacion implements Serializable {
 
     @Override
     public String toString() {
-        return "com.pepe.jpa.entities.Caracterizacion[ idCaracterizacion=" + idCaracterizacion + " ]";
+        return getIdCaracterizacion().toString();
     }
     
 }

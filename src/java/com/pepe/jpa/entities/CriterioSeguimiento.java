@@ -110,7 +110,7 @@ public class CriterioSeguimiento implements Serializable {
 
     @Override
     public String toString() {
-        return "com.pepe.jpa.entities.CriterioSeguimiento[ idCriterioSeguimiento=" + idCriterioSeguimiento + " ]";
+        return getDescrpcion().toUpperCase();
     }
     
 }
