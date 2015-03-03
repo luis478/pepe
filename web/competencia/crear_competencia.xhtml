@@ -8,13 +8,11 @@ and open the template in the editor.
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:f="http://xmlns.jcp.org/jsf/core"
-      xmlns:jsf="http://xmlns.jcp.org/jsf">
-    <head>
-        <title>TODO supply a title</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    </head>
-    <body>
-        <h:form>
+      xmlns:jsf="http://xmlns.jcp.org/jsf"
+      xmlns:p="http://primefaces.org/ui">
+
+    <p:dialog header="Basic Dialog" widgetVar="dlg2">
+        <h:form class="form-competencia">
             <h:panelGrid columns="2">
                 <h:outputLabel value="IdCompetencia:" for="idCompetencia" />
                 <h:inputText id="idCompetencia" value="#{competenciaController.competenciaActual.idCompetencia}" title="IdCompetencia" required="true" requiredMessage="The IdCompetencia field is required."/>
@@ -27,8 +25,8 @@ and open the template in the editor.
                 <h:outputLabel value="DuracionEstimadaHoras:" for="duracionEstimadaHoras" />
                 <h:inputText id="duracionEstimadaHoras" value="#{competenciaController.competenciaActual.duracionEstimadaHoras}" title="DuracionEstimadaHoras" required="true" requiredMessage="The DuracionEstimadaHoras field is required."/>
                 <h:outputLabel value="Programa:" for="programa" />
-                <h:selectOneMenu id="programa" converter="ProgramaConverter" value="#{competenciaController.competenciaActual.setProgramaList(competenciaActual)}" title="Programa" required="true" requiredMessage="The Programa field is required.">
 
+                <h:selectOneMenu id="programa" converter="ProgramaConverter" value="#{competenciaController.competenciaActual.setProgramaList(competenciaActual)}" title="Programa" required="true" requiredMessage="The Programa field is required.">
                     <f:selectItems value="#{competenciaController.listaPrograma}" var="program" itemValue="#{program}"/>
                 </h:selectOneMenu>
             </h:panelGrid>
@@ -38,6 +36,5 @@ and open the template in the editor.
             <input type="submit" value="Eliminar" jsf:action="#{competenciaController.deleteCompetencia()}"></input>
 
         </h:form>
-
-    </body>
+    </p:dialog>
 </html>

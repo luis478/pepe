@@ -41,7 +41,7 @@
                     <input type="submit" value="Ingresar" jsf:action="#{loginController.login}">
                             <f:ajax execute="@this @form" render="@all"/>
                     </input>
-                    <a class="Pepe-inicioLabel1" href="#"><font  size="+1">¿Olvidaste tu contraseña?</font></a>     
+                    <a class="Pepe-inicioLabel1" href="#"><font  size="+1">¿Olvidaste tu contraseña?</font></a>       
                 </form>
           </h:panelGroup>
         </section> 
@@ -143,12 +143,12 @@
                        jsf:action="programa/programaInicio.xhtml"
                        jsf:actionListener="#{programaController.anular()}">
                 </input>
+                <p:commandButton value="Competencia" type="button" onclick="dlg2.show()" />
                 <input type="submit"
                        class="Boton"
                        jsf:value="Competencia"
                        jsf:action="competencia/crear_competencia.xhtml">
                 </input>
-                
             </h:form>
         
         <hr width="100%" size="8" align="right"/>
@@ -198,5 +198,6 @@
         </script>
         <ui:include src="/admin/dlg_menuCrearUsuario.xhtml"/>
         <ui:include src="/planeacionpedagogica/dlg_menuPlaneacionPedagogica.xhtml"/>
+        <ui:include src="/competencia/crear_competencia.xhtml"/>
     </body>
 </html>
