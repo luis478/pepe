@@ -14,35 +14,35 @@ and open the template in the editor.
         <ui:define name="title">Crear Usuario</ui:define>        
         <ui:define name="body">
                 <h:form>
-                    <h1><h:outputText value="Crear Usuario"/></h1>
+                    <h1 class="Titulo"><h:outputText value="Formulario de registro de Usuario"/></h1>
                     <h:panelGrid columns="1">
                         
-                        <h:outputLabel value="Caracterizacion:"  for="nomCaracterizacion"/>
-                        <h:selectOneMenu id="idCaracterizacionSelect" value="#{usuarioController.usuarioActual.idCaracterizacion}">
-                            <f:selectItem itemLabel="Seleccionar uno.." />
+                        <h:outputLabel class="form-1" value="Caracterizacion:"  for="nomCaracterizacion"/>
+                        <h:selectOneMenu  class="form-1" id="idCaracterizacionSelect" value="#{usuarioController.usuarioActual.idCaracterizacion}">
+                            <f:selectItem  itemLabel="Seleccionar uno.." />
                             <f:selectItems value="#{usuarioController.listaCaracterizacionSelectOne}" var="caracterizacion" itemValue="#{caracterizacion}"/>  
                         </h:selectOneMenu>
                         
-                        <h:outputLabel value="Estilo de aprendizaje:"  for="nomEstiloApre"/>
-                        <h:selectOneMenu id="idEstiloApreSelect" value="#{usuarioController.usuarioActual.idEstiloAprendizaje}"  >
+                        <h:outputLabel class="form-1" value="Estilo de aprendizaje:"  for="nomEstiloApre"/>
+                        <h:selectOneMenu class="form-1" id="idEstiloApreSelect" value="#{usuarioController.usuarioActual.idEstiloAprendizaje}"  >
                             <f:selectItem itemLabel="Seleccionar uno.." />
                             <f:selectItems value="#{usuarioController.listaEstiloAprendizajeSelectOne}" var="estilo_Aprendizaje" itemValue="#{estilo_Aprendizaje}"/>  
                         </h:selectOneMenu>
                         
-                        <h:outputLabel value="Patrocinio:"  for="nomPatrocinio"/>
-                        <h:selectOneMenu id="idPatrocinioSelect" value="#{usuarioController.usuarioActual.idPatrocinio}">
+                        <h:outputLabel class="form-1" value="Patrocinio:"  for="nomPatrocinio"/>
+                        <h:selectOneMenu class="form-1" id="idPatrocinioSelect" value="#{usuarioController.usuarioActual.idPatrocinio}">
                             <f:selectItem itemLabel="Seleccionar uno.." />
                             <f:selectItems value="#{usuarioController.listaPatrocinioSelectOne}" var="patrocinio" itemValue="#{patrocinio}"/>  
                         </h:selectOneMenu>
                         
-                        <h:outputLabel value="Desercion:"  for="nomDesercion"/>
-                        <h:selectOneMenu id="idDesercionSelect" value="#{usuarioController.usuarioActual.idDesercion}">
+                        <h:outputLabel class="form-1" value="Desercion:"  for="nomDesercion"/>
+                        <h:selectOneMenu class="form-1"  id="idDesercionSelect" value="#{usuarioController.usuarioActual.idDesercion}">
                             <f:selectItem itemLabel="Seleccionar uno.." />
                             <f:selectItems value="#{usuarioController.listaDesercionSelectOne}" var="desercion" itemValue="#{desercion}"/>  
                         </h:selectOneMenu>
                         
-                        <h:outputLabel value="No. Documento:"  for="nomDocumento"/>
-                        <input type="text" jsf:id="numeroDocumento" 
+                        <h:outputLabel class="form-1" value="No. Documento:"  for="nomDocumento"/>
+                        <input class="form-1" type="text" jsf:id="numeroDocumento" 
                                jsf:value="#{usuarioController.usuarioActual.numeroDocumento}" 
                                required="true" maxlength="12">         
                             <f:validateRegex pattern="[0-9]*"/>
@@ -50,8 +50,8 @@ and open the template in the editor.
                         </input>
                         <h:message id="numeroDocumentoMessage" for="numeroDocumento" styleClass="error"/>
                         
-                        <h:outputLabel value="Primer nombre:" for="nom1Usuario" />
-                        <input jsf:id="nom1UsuarioInputText" jsf:value="#{usuarioController.usuarioActual.nombre1}" 
+                        <h:outputLabel class="form-1" value="Primer nombre:" for="nom1Usuario" />
+                        <input class="form-1" jsf:id="nom1UsuarioInputText" jsf:value="#{usuarioController.usuarioActual.nombre1}" 
                                      type="text" required="true"
                                      jsf:requiredMessage="Por favor ingrese el nombre del usuario"
                                      jsf:validatorMessage="Use solo letras, ej: Juan"> 
@@ -61,8 +61,8 @@ and open the template in the editor.
                         <h:message id="nom1UsuarioMessage" for="nom1UsuarioInputText" styleClass="error"/>
                         
                         
-                        <h:outputLabel value="Segundo nombre:" for="nom2Usuario" />
-                        <input jsf:id="nom2UsuarioInputText" jsf:value="#{usuarioController.usuarioActual.nombre2}" 
+                        <h:outputLabel class="form-1" value="Segundo nombre:" for="nom2Usuario" />
+                        <input class="form-1" jsf:id="nom2UsuarioInputText" jsf:value="#{usuarioController.usuarioActual.nombre2}" 
                                      type="text" 
                                      jsf:validatorMessage="Use solo letras, ej: Juan"> 
                                      <f:validateRegex pattern="[a-zA-Z áéíóúÁÉÍÓÚÑñ ]*"/>
@@ -71,8 +71,8 @@ and open the template in the editor.
                         <h:message id="nom2UsuarioMessage" for="nom2UsuarioInputText" styleClass="error"/>
                         
                         
-                       <h:outputLabel value="Primer apellido:" for="ape1Usuario" />
-                       <input jsf:id="ape1UsuarioInputText" jsf:value="#{usuarioController.usuarioActual.apellido1}" 
+                       <h:outputLabel class="form-1" value="Primer apellido:" for="ape1Usuario" />
+                       <input class="form-1" jsf:id="ape1UsuarioInputText" jsf:value="#{usuarioController.usuarioActual.apellido1}" 
                                      type="text" required="true"
                                      jsf:requiredMessage="Por favor ingrese el apellido del usuario"
                                      jsf:validatorMessage="Use solo letras, ej: Vargas"> 
@@ -82,8 +82,8 @@ and open the template in the editor.
                         <h:message id="ape1UsuarioMessage" for="ape1UsuarioInputText" styleClass="error"/> 
                         
                         
-                        <h:outputLabel value="Segundo apellido:" for="ape2Usuario" />
-                        <input jsf:id="ape2UsuarioInputText" jsf:value="#{usuarioController.usuarioActual.apellido2}" 
+                        <h:outputLabel class="form-1" value="Segundo apellido:" for="ape2Usuario" />
+                        <input class="form-1" jsf:id="ape2UsuarioInputText" jsf:value="#{usuarioController.usuarioActual.apellido2}" 
                                      type="text"
                                      jsf:validatorMessage="Use solo letras, ej: Vargas"> 
                                      <f:validateRegex pattern="[a-zA-Z áéíóúÁÉÍÓÚÑñ ]*"/>
@@ -91,8 +91,8 @@ and open the template in the editor.
                         </input>
                         <h:message id="ape2UsuarioMessage" for="ape2UsuarioInputText" styleClass="error"/> 
                         
-                         <h:outputLabel value="Telefono 1 del usuario:" for="nomtel1" />
-                         <input type="tel" jsf:id="telefono1InputText" required="true"
+                         <h:outputLabel class="form-1" value="Telefono 1 del usuario:" for="nomtel1" />
+                         <input class="form-1" type="tel" jsf:id="telefono1InputText" required="true"
                                      jsf:requiredMessage="Por favor ingrese el numero telefonico"
                                      jsf:validatorMessage="Ingrese un telefono valido solo debe contener numeros" 
                                      jsf:value="#{usuarioController.usuarioActual.telefono}"  maxlength="16">
@@ -102,8 +102,8 @@ and open the template in the editor.
                         <h:message id="telefono1Message" for="telefono1InputText" styleClass="error"/>
                         
                         
-                        <h:outputLabel value="Correo 1 del usuario:" for="correo" />
-                        <input type="email" jsf:id="correo1InputText" 
+                        <h:outputLabel class="form-1" value="Correo 1 del usuario:" for="correo" />
+                        <input class="form-1" type="email" jsf:id="correo1InputText" 
                                jsf:value="#{usuarioController.usuarioActual.correo1}" maxlength="30" 
                                  jsf:validatorMessage="Dirección de correo electronico no valido">
                             <f:validateRegex pattern="[\w\.-]*[a-zA-Z0-9_]@[\w\.-]*[a-zA-Z0-9]\.[a-zA-Z][a-zA-Z\.]*[a-zA-Z]*" />
@@ -112,8 +112,8 @@ and open the template in the editor.
                         <h:message id="correo1Message" for="correo1InputText" styleClass="error"/>
                         
                         
-                        <h:outputLabel value="Direccion:" for="nomDireccion" />
-                        <input jsf:id="DireccionInputText" jsf:value="#{usuarioController.usuarioActual.direccion}" 
+                        <h:outputLabel class="form-1" value="Direccion:" for="nomDireccion" />
+                        <input class="form-1" jsf:id="DireccionInputText" jsf:value="#{usuarioController.usuarioActual.direccion}" 
                                      type="text" required="true"
                                      jsf:requiredMessage="Por favor ingrese la Direccion ">
                                      <f:ajax execute="@this" render="DireccionMessage"/>
@@ -121,15 +121,15 @@ and open the template in the editor.
                         <h:message id="DireccionMessage" for="DireccionInputText" styleClass="error"/> 
                         
                         
-                        <h:outputLabel value="Vocero:"  for="nomVocero"/>
-                        <h:selectOneMenu id="idVoceroSelect" value="#{usuarioController.usuarioActual.idTipoVocero}">
+                        <h:outputLabel class="form-1" value="Vocero:"  for="nomVocero"/>
+                        <h:selectOneMenu class="form-1" id="idVoceroSelect" value="#{usuarioController.usuarioActual.idTipoVocero}">
                             <f:selectItem itemLabel="Seleccionar uno.." />
                             <f:selectItems value="#{usuarioController.listaTipoVoceroSelectOne}" var="tipo_vocero" itemValue="#{tipo_vocero}"/>  
                         </h:selectOneMenu>
                         
                         
-                        <h:outputLabel value="Contraseña:"  for="nomContraseña"/>
-                        <input type="password" jsf:id="contraUsuarioInputText" required="true"
+                        <h:outputLabel class="form-1" value="Contraseña:"  for="nomContraseña"/>
+                        <input class="form-1" type="password" jsf:id="contraUsuarioInputText" required="true"
                                      jsf:validatorMessage="Ingrese una contraseña valida debe contener minimo 6 caracteres"
                                      jsf:requiredMessage="Por favor ingrese una contraseña"
                                      jsf:value="#{usuarioController.usuarioActual.password}" maxlength="10" >
@@ -139,40 +139,40 @@ and open the template in the editor.
                         <h:message id="contraUsuarioMessage" for="contraUsuarioInputText" styleClass="error"/>
                         
                         
-                        <h:outputLabel value="Tipo documento:"  for="nomTipoDocumento"/>
-                        <h:selectOneMenu id="idTipoDocumentoSelect" value="#{usuarioController.usuarioActual.idTipoDocumento}">
+                        <h:outputLabel class="form-1" value="Tipo documento:"  for="nomTipoDocumento"/>
+                        <h:selectOneMenu class="form-1" id="idTipoDocumentoSelect" value="#{usuarioController.usuarioActual.idTipoDocumento}">
                             <f:selectItem itemLabel="Seleccionar uno.." />
                             <f:selectItems value="#{usuarioController.listaTipoDocumentoSelectOne}" var="tipo_documento" itemValue="#{tipo_documento}"/>  
                         </h:selectOneMenu>
                         
                         
-                        <h:outputLabel value="Genero:"  for="nomGenero"/>
-                        <h:selectOneMenu id="idGeneroSelect" value="#{usuarioController.usuarioActual.idGenero}">
+                        <h:outputLabel class="form-1" value="Genero:"  for="nomGenero"/>
+                        <h:selectOneMenu class="form-1" id="idGeneroSelect" value="#{usuarioController.usuarioActual.idGenero}">
                             <f:selectItem itemLabel="Seleccionar uno.." />
                             <f:selectItems value="#{usuarioController.listaGeneroSelectOne}" var="genero" itemValue="#{genero}"/>  
                         </h:selectOneMenu>
                         
-                        <h:outputLabel value="Tipo de sangre:"  for="nomTipoSangre"/>
-                        <h:selectOneMenu id="idTipoSangreSelect" value="#{usuarioController.usuarioActual.idTipoSangre}">
+                        <h:outputLabel class="form-1" value="Tipo de sangre:"  for="nomTipoSangre"/>
+                        <h:selectOneMenu class="form-1" id="idTipoSangreSelect" value="#{usuarioController.usuarioActual.idTipoSangre}">
                             <f:selectItem itemLabel="Seleccionar uno.." />
                             <f:selectItems value="#{usuarioController.listaTipoSangreSelectOne}" var="tipo_sangre" itemValue="#{tipo_sangre}"/>  
                         </h:selectOneMenu>
                         
-                        <h:outputLabel value="Libreta militar:"  for="nomLibretaMilitar"/>
-                        <h:selectOneMenu id="idLibretaMilitarSelect" value="#{usuarioController.usuarioActual.idLibretaMilitar}">
+                        <h:outputLabel class="form-1" value="Libreta militar:"  for="nomLibretaMilitar"/>
+                        <h:selectOneMenu class="form-1" id="idLibretaMilitarSelect" value="#{usuarioController.usuarioActual.idLibretaMilitar}">
                             <f:selectItem itemLabel="Seleccionar uno.." />
                             <f:selectItems value="#{usuarioController.listaLibretaMilitarSelectOne}" var="libreta_militar" itemValue="#{libreta_militar}"/>  
                         </h:selectOneMenu>
                          
                         
-                        <h:outputLabel value="Eps:"  for="nomEps"/>
-                        <h:selectOneMenu id="idEpsSelect" value="#{usuarioController.usuarioActual.idEps}">
+                        <h:outputLabel class="form-1" value="Eps:"  for="nomEps"/>
+                        <h:selectOneMenu class="form-1" id="idEpsSelect" value="#{usuarioController.usuarioActual.idEps}">
                             <f:selectItem itemLabel="Seleccionar uno.." />
                             <f:selectItems value="#{usuarioController.listaEpsSelectOne}" var="eps" itemValue="#{eps}"/>  
                         </h:selectOneMenu>
                         
-                        <h:outputLabel value="Fecha de expedicion:"  />
-                        <input  type="date" 
+                        <h:outputLabel class="form-1" value="Fecha de expedicion:"  />
+                        <input class="form-1" type="date" 
                                 jsf:id="fecha" 
                                 required="true" 
                                 min="1914-01-01"
@@ -186,16 +186,22 @@ and open the template in the editor.
                         </input>
                         <h:message id="msgFecha" for="fecha"  styleClass="error"/>
                         
-                        <h:outputLabel value="Especialidad:"  for="nomEspecialidad"/>
-                        <h:selectOneMenu id="idEspecialidadSelect" value="#{usuarioController.usuarioActual.idEspecialidad}">
+                        <h:outputLabel class="form-1" value="Especialidad:"  for="nomEspecialidad"/>
+                        <h:selectOneMenu class="form-1" id="idEspecialidadSelect" value="#{usuarioController.usuarioActual.idEspecialidad}">
                             <f:selectItem itemLabel="Seleccionar uno.." />
                             <f:selectItems value="#{usuarioController.listaEspecialidadSelectOne}" var="especialidad" itemValue="#{especialidad}"/>  
                         </h:selectOneMenu>
                         
+                        <h:outputLabel value="Tipo Contrato:"  for="idContratoSelect"/>
+                        <h:selectOneMenu id="idContratoSelect" value="#{usuarioController.usuarioActual.idTipoContrato}">
+                            <f:selectItem itemLabel="Seleccionar uno.." />
+                            <f:selectItems value="#{usuarioController.listaTipoContratoSelectOne}" var="contrato" itemValue="#{contrato}"/>  
+                        </h:selectOneMenu>
+                        
                     </h:panelGrid>
-                    <h:commandButton value="Guardar" action="#{usuarioController.addUsuario}"/>
+                    <h:commandButton class="Guardar" value="Guardar" action="#{usuarioController.addUsuario}"/>
                    <br/>
-                    <h:button value="Volver atras" outcome="/index"/>
+                    <h:button class="Volver" value="Volver atras" outcome="/index"/>
                 </h:form>
         </ui:define>
     </ui:composition>

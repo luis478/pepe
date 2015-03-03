@@ -68,10 +68,11 @@
 }
 .Header{
 
-    background-image: url('../images/Pepeheader.png');
+    background-image: url('../../resources/images/Pepeheader.png');
     border-bottom: 1px solid #A4A4A4;
     padding: 1em 0;
     text-align: center;
+    
 }
 .Header-pepeForm{
     display: block;
@@ -97,6 +98,7 @@
     text-align: left;
 
 }
+
 
 .Form-input8{
     width: 1094em;

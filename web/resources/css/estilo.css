@@ -66,14 +66,15 @@
 
 
 .Body{
-    background-image: url("../images/Pepebackground.png");
+    background-image: url("../../resources/images/Pepebackground.png");
     background-size: cover;
-
+   
+    
 }
 
 
 .Header{
-    background-image: url("../images/Pepeheader.png");
+    background-image: url("../../resources/images/Pepeheader.png");
     background-size: cover;
     text-align: center;
 }
@@ -90,13 +91,22 @@
     text-align: center;
     margin: 0em;
 }
+.Titulo{
+    font-size: 1.5em;
+    margin-top: 2em;
+    margin-left: 3em;
+}
 .form-botonDlg{
     width: 100px;
 }
-.section-centroTemplate{
-    display: inline-block;
+.form-1{
+    margin-left: 4em;
+    color: #0B4C5F;
+    font-weight: lighter;
+    font-size: 1.2em; 
+    margin-bottom: .5em;
+    width: 15em;
 }
-
 .seccion1{
     margin-top: 2em;
 }
@@ -376,4 +386,18 @@
     width: 300px;
     margin-bottom: 5px;
     outline: none !important;
+}
+
+.Guardar{
+    background-color:#00a0b0;
+    color: white;
+    margin-left: 5em;
+    margin-top: 1em;
+}
+.Volver{
+    background-color:#00a0b0;
+    color: white;
+    margin-left: 5em;
+    margin-top: 0.5em;
+    margin-bottom: 5em;
 }

@@ -14,11 +14,11 @@ and open the template in the editor.
         <ui:define name="title">Crear Tipo vocero</ui:define>        
         <ui:define name="body">
                 <h:form>
-                    <h1><h:outputText value="Crear Tipo vocero"/></h1>
+                    <h1 class="Titulo"><h:outputText value="Formulario de registro de Tipo vocero"/></h1>
                     <h:panelGrid columns="1">
                         
-                        <h:outputLabel value="Id tipo de vocero:" for="nomIdTipoVocero" />
-                        <input jsf:id="nomIdTipoVoceroInputText" jsf:value="#{tipoVoceroController.tipoVoceroActual.idTipoVocero}" 
+                        <h:outputLabel class="form-1" value="Id tipo de vocero:" for="nomIdTipoVocero" />
+                        <input class="form-1" jsf:id="nomIdTipoVoceroInputText" jsf:value="#{tipoVoceroController.tipoVoceroActual.idTipoVocero}" 
                                      type="number" required="true"
                                      jsf:requiredMessage="Por favor ingrese el id del tipo de vocero"
                                      jsf:validatorMessage="Use solo numeros, ej: 1"> 
@@ -27,8 +27,8 @@ and open the template in the editor.
                         </input>
                         <h:message id="nomIdTipoVoceroMessage" for="nomIdTipoVoceroInputText" styleClass="error"/>
                         
-                        <h:outputLabel value="Tipo de vocero:" for="nomTipoVocero" />
-                        <input jsf:id="nomTipoVoceroInputText" jsf:value="#{tipoVoceroController.tipoVoceroActual.nombreTipoVocero}" 
+                        <h:outputLabel class="form-1" value="Tipo de vocero:" for="nomTipoVocero" />
+                        <input class="form-1" jsf:id="nomTipoVoceroInputText" jsf:value="#{tipoVoceroController.tipoVoceroActual.nombreTipoVocero}" 
                                      type="text" required="true"
                                      jsf:requiredMessage="Por favor ingrese el nombre del tipo de vocero"
                                      jsf:validatorMessage="Use solo letras, ej: tecnico"> 
@@ -37,9 +37,9 @@ and open the template in the editor.
                         </input>
                         <h:message id="nomTipoVoceroMessage" for="nomTipoVoceroInputText" styleClass="error"/>
                     </h:panelGrid>
-                    <h:commandButton value="Guardar" action="#{tipoVoceroController.addTipoVocero}"/>
+                    <h:commandButton class="Guardar" value="Guardar" action="#{tipoVoceroController.addTipoVocero}"/>
                     <br/>
-                    <h:button value="Volver atras" outcome="/index"/>
+                    <h:button class="Volver" value="Volver atras" outcome="/index"/>
                 </h:form> 
         </ui:define>
     </ui:composition>
