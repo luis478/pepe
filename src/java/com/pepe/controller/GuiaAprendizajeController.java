@@ -26,7 +26,7 @@ import javax.faces.convert.FacesConverter;
 public class GuiaAprendizajeController implements Serializable {
 
     private GuiaAprendizaje guiaAprendizajeActual;
-    private List<GuiaAprendizaje> listaguiaAprendijaza = null;
+    private List<GuiaAprendizaje> listaguiaAprendizaje = null;
     @EJB
     private GuiaAprendizajeFacade guiaAprendizajeFacade;
     @EJB
@@ -46,19 +46,19 @@ public class GuiaAprendizajeController implements Serializable {
         this.guiaAprendizajeActual = guiaAprendizajeActual;
     }
 
-    public List<GuiaAprendizaje> getListaguiaAprendijaza() {
-        if (listaguiaAprendijaza == null) {
+    public List<GuiaAprendizaje> getListaguiaAprendizaje() {
+        if (listaguiaAprendizaje == null) {
             try {
-                listaguiaAprendijaza = getGuiaAprendizajeFacade().findAll();
+                listaguiaAprendizaje = getGuiaAprendizajeFacade().findAll();
             } catch (Exception e) {
                 addErrorMessage("Error closing resource " + e.getClass().getName(), "Message: " + e.getMessage());
             }
         }
-        return listaguiaAprendijaza;
+        return listaguiaAprendizaje;
     }
 
-    public void setListaguiaAprendijaza(List<GuiaAprendizaje> listaguiaAprendijaza) {
-        this.listaguiaAprendijaza = listaguiaAprendijaza;
+    public void setListaguiaAprendijaza(List<GuiaAprendizaje> listaguiaAprendizaje) {
+        this.listaguiaAprendizaje = listaguiaAprendizaje;
     }
 
     public GuiaAprendizajeFacade getGuiaAprendizajeFacade() {
@@ -82,32 +82,32 @@ public class GuiaAprendizajeController implements Serializable {
     }
 
     private void recargarlista() {
-        listaguiaAprendijaza = null;
+        listaguiaAprendizaje = null;
     }
 
     public String prepareCreate() {
         guiaAprendizajeActual = new GuiaAprendizaje();
-        return "";
+        return "/GuiaAprendizaje/crear_guiaAprendizaje";
     }
 
     public String prepareEdit() {
-        return "";
+        return "/GuiaAprendizaje/editar_guiaAprendizaje";
     }
 
     public String prepareView() {
-        return "";
+        return "/GuiaAprendizaje/ver_guiaAprendizaje";
     }
 
     public String prepareList() {
         recargarlista();
-        return "";
+        return "/GuiaAprendizaje/lista_Guia_Aprendizaje";
     }
 
     public String addGuiaAprendizaje() {
         try {
             getGuiaAprendizajeFacade().create(guiaAprendizajeActual);
             recargarlista();
-            return "";
+            return "lista_Guia_Aprendizaje";
         } catch (Exception e) {
             addErrorMessage("Error closing resource " + e.getClass().getName(), "Message: " + e.getMessage());
             return null;
@@ -118,22 +118,23 @@ public class GuiaAprendizajeController implements Serializable {
         try {
             getGuiaAprendizajeFacade().edit(guiaAprendizajeActual);
             recargarlista();
-            return "";
+            return "lista_Guia_Aprendizaje";
         } catch (Exception e) {
             addErrorMessage("Error closing resource " + e.getClass().getName(), "Message: " + e.getMessage());
             return null;
         }
     }
 
-    public String deleteGuiaAprendizaje() {
-        try {
+        public String deleteGuiaAprendizaje(){
+        try{
             getGuiaAprendizajeFacade().remove(guiaAprendizajeActual);
+            addSuccessMessage("Eliminado Exitosamente", "Guia Aprendizaje eliminada");
             recargarlista();
-            return "";
-        } catch (Exception e) {
-            addErrorMessage("Error closing resource " + e.getClass().getName(), "Message: " + e.getMessage());
-            return "";
-        }
+            } catch (Exception e){
+                addErrorMessage ("Error closing resource " + e.getClass().getName(), "Message" + e.getMessage());
+                
+            }   
+       return "lista_Guia_Aprendizaje";
     }
 
     private void addErrorMessage(String title, String msg) {

@@ -8,11 +8,11 @@
       xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
     
     <ui:composition template="/html_plantillas/template.xhtml">
-        <ui:define name="title">Crear Guia Aprendizaje</ui:define>        
+        <ui:define name="title">Editar Guia Aprendizaje</ui:define>        
         <ui:define name="body">
-                <form jsf:id="CreateGuiaAprendizaje">
-                    <h1><h:outputText value="Crear Guia Aprendizaje"/></h1>
-                    <h:panelGrid columns="2">
+                <form jsf:id="EditGuiaAprendizaje">
+                    <h1><h:outputText value="Editar Guia Aprendizaje"/></h1>
+                    <h:panelGrid columns="1">
                         
                         
                         <h:outputLabel value="proyecto:"  for="idProyectoSelect"/>
@@ -59,13 +59,15 @@
                      
                         
                         
-                        
 
-                        <input type="submit" jsf:action="#{guiaAprendizajeController.addGuiaAprendizaje}" value="Guardar Guia Aprendizaje">
-                            <h:button value="Ir al lista guia" outcome="/GuiaAprendizaje/lista_Guia_Aprendizaje"></h:button>
+                        <input type="submit" jsf:action="#{guiaAprendizajeController.updateGuiaAprendizaje}" value="Actualizar Guia Aprendizaje">
                         </input>
                     </h:panelGrid>
+                    <h:button value="Ir al lista guia" outcome="/GuiaAprendizaje/lista_Guia_Aprendizaje"></h:button>
+                
                 </form> 
         </ui:define>
     </ui:composition>
 </html>
+
+

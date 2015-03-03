@@ -109,7 +109,7 @@ public class PerfilEntrada implements Serializable {
 
     @Override
     public String toString() {
-        return getNombrePerfilEntrada();
+        return getNombrePerfilEntrada().toUpperCase();
     }
     
 }

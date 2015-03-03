@@ -153,7 +153,7 @@ public class Aspectos implements Serializable {
 
     @Override
     public String toString() {
-        return "com.pepe.jpa.entities.Aspectos[ aspectosPK=" + aspectosPK + " ]";
+        return getObservacionesAspectos().toUpperCase();
     }
     
 }

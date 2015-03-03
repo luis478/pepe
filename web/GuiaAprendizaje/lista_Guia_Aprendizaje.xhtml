@@ -1,0 +1,91 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html  xmlns="http://www.w3.org/1999/xhtml"
+       xmlns:h="http://xmlns.jcp.org/jsf/html"
+       xmlns:f="http://xmlns.jcp.org/jsf/core"
+       xmlns:jsf="http://xmlns.jcp.org/jsf"
+       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+       xmlns:p="http://primefaces.org/ui">
+   <!-- <ui:composition template="/html_plantillas/template.xhtml">
+        <ui:define name="title">Lista Guia Aprendizaje</ui:define>
+        <ui:define name="body"> -->
+   
+   <h:head>
+       
+   </h:head>
+   <body>
+       
+            <form jsf:id="ListarGuia">
+
+
+                <h1><h:outputText value="Listar Guia de Aprendizaje"/></h1>
+                <p>
+                    <h:button value="Agregar Guia Aprendizaje" outcome="/GuiaAprendizaje/crear_guiaAprendizaje"></h:button>
+                     <h:button value="Inicio" outcome="/index"/>
+                </p>
+
+                <p:dataTable value="#{guiaAprendizajeController.listaguiaAprendizaje}" var="GuiaAprendizaje"
+                             paginator="true" rows="10" id="GuiaTable"
+                             paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}" 
+                             rowsPerPageTemplate="5,10,15">
+
+                    <p:column filterBy="#{GuiaAprendizaje.idProyecto}" headerText="Id" filterMatchMode="contains">
+                        <h:outputText value="#{GuiaAprendizaje.idProyecto}"/>
+                    </p:column>
+
+                    <p:column filterBy="#{GuiaAprendizaje.introduccion}" headerText="Introduccion" filterMatchMode="contains">
+                        <h:outputText value="#{GuiaAprendizaje.introduccion}"/>
+                    </p:column>
+
+                    <p:column filterBy="#{GuiaAprendizaje.glosarioTerminos}" headerText="Glosario Terminos" filterMatchMode="contains">
+                        <h:outputText value="#{GuiaAprendizaje.glosarioTerminos}"/>
+                    </p:column>
+
+                    <p:column filterBy="#{GuiaAprendizaje.referentesBibliograficos}" headerText="Referentes Bibliograficos" filterMatchMode="contains">
+                        <h:outputText value="#{GuiaAprendizaje.referentesBibliograficos}"/>
+                    </p:column>
+
+                    <p:column filterBy="#{GuiaAprendizaje.controlDocumento}" headerText="Control Documentos" filterMatchMode="contains">
+                        <h:outputText value="#{GuiaAprendizaje.controlDocumento}"/>
+                    </p:column>
+
+
+
+                    <p:column> 
+                        <p:commandButton icon="ui-icon-search" action="#{guiaAprendizajeController.prepareView}">
+                            <f:setPropertyActionListener value="#{GuiaAprendizaje}" target="#{guiaAprendizajeController.guiaAprendizajeActual}"/>
+                        </p:commandButton>
+
+                        <p:commandButton icon="ui-icon-pencil" action="#{guiaAprendizajeController.prepareEdit}">
+                            <f:setPropertyActionListener value="#{GuiaAprendizaje}" target="#{guiaAprendizajeController.guiaAprendizajeActual}"/>
+                        </p:commandButton>
+
+                        <p:commandButton icon="ui-icon-trash" action="#{guiaAprendizajeController.deleteGuiaAprendizaje}"
+
+                                         process="@this" update="GuiaTable">
+
+                            <p:confirm header="Confirmacion" message="Esta seguro de que desea eliminar la guia" icon="ui-icon-alert"/>
+
+                            <f:setPropertyActionListener value="#{GuiaAprendizaje}" target="#{guiaAprendizajeController.guiaAprendizajeActual}"/>
+
+                        </p:commandButton>
+                    </p:column>
+
+
+                </p:dataTable>
+                <form jsf:id="ConfirmForm">
+                <p:confirmDialog global="true" showEffect="fade" hideEffect="explode">
+                    <p:commandButton value="Si" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+                    <p:commandButton value="No" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+                </p:confirmDialog>
+                </form>    
+
+            </form>
+
+       <!-- </ui:define>
+    </ui:composition>  -->
+      
+</body>
+
+</html>
+

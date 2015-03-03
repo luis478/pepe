@@ -113,7 +113,7 @@ public class Area implements Serializable {
 
     @Override
     public String toString() {
-        return "com.pepe.jpa.entities.Area[ idArea=" + idArea + " ]";
+        return getNombreArea().toUpperCase();
     }
     
 }

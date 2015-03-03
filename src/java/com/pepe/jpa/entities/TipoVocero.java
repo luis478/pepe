@@ -107,7 +107,7 @@ public class TipoVocero implements Serializable {
 
     @Override
     public String toString() {
-        return "com.pepe.jpa.entities.TipoVocero[ idTipoVocero=" + idTipoVocero + " ]";
+        return getNombreTipoVocero().toUpperCase();
     }
     
 }

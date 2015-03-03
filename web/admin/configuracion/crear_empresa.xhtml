@@ -14,10 +14,10 @@ and open the template in the editor.
         <ui:define name="title">Crear Empresa</ui:define>        
         <ui:define name="body">
                 <h:form>
-                    <h1><h:outputText value="Crear Empresa"/></h1>
+                    <h1 class="Titulo"><h:outputText value="Formulario de registro de Empresa"/></h1>
                     <h:panelGrid columns="1">
-                        <h:outputLabel value="Nombre Empresa:" for="nomEmpresa" />
-                        <input jsf:id="nomEmpresaInputText" jsf:value="#{empresaController.empresaActual.nombreEmpresa}" 
+                        <h:outputLabel class="form-1" value="Nombre Empresa:" for="nomEmpresa" />
+                        <input class="form-1" jsf:id="nomEmpresaInputText" jsf:value="#{empresaController.empresaActual.nombreEmpresa}" 
                                      type="text" required="true"
                                      jsf:requiredMessage="Por favor ingrese el nombre de la Empresa"
                                      jsf:validatorMessage="Use solo letras, ej: SONY"> 
@@ -25,8 +25,8 @@ and open the template in the editor.
                                      <f:ajax execute="@this" render="nomEmpresaMessage"/>
                         </input>
                         <h:message id="nomEmpresaMessage" for="nomEmpresaInputText" styleClass="error"/>
-                        <h:outputLabel value="Nombre del Representante:" for="nomRepresentante" />
-                        <input jsf:id="nomRepresentanteInputText" jsf:value="#{empresaController.empresaActual.representante}" 
+                        <h:outputLabel class="form-1" value="Nombre del Representante:" for="nomRepresentante" />
+                        <input class="form-1" jsf:id="nomRepresentanteInputText" jsf:value="#{empresaController.empresaActual.representante}" 
                                      type="text" required="true"
                                      jsf:requiredMessage="Por favor ingrese el nombre del Representante de la Empresa"
                                      jsf:validatorMessage="Use solo letras, ej: Carlos Soto"> 
@@ -35,28 +35,28 @@ and open the template in the editor.
                         </input>
                         <h:message id="nomRepresentanteMessage" for="nomRepresentanteInputText" styleClass="error"/>
                         
-                        <h:outputLabel value="Telefono del Representante:" for="tel" />
-                        <input type="tel" jsf:id="telefonoInputText" required="true"
+                        <h:outputLabel class="form-1" value="Telefono del Representante:" for="tel" />
+                        <input class="form-1" type="tel" jsf:id="telefonoInputText" required="true"
                                      jsf:requiredMessage="Por favor ingrese el numero telefonico"
                                      jsf:validatorMessage="Ingrese un telefono valido solo debe contener numeros" 
-                                     jsf:value="#{empresaController.empresaActual.telefono}"  maxlength="16" class="Form-inputRegistro">
+                                     jsf:value="#{empresaController.empresaActual.telefono}"  maxlength="16" >
                             <f:validateRegex pattern="[0-9]*"/>
                             <f:ajax execute="@this" render="telefonoMessage"/>
                         </input>
                         <h:message id="telefonoMessage" for="telefonoInputText" styleClass="error"/>
                         
-                        <h:outputLabel value="Correo del Representante:" for="correo" />
-                        <input type="email" jsf:id="correoInputText" required="true"
-                               jsf:value="#{empresaController.empresaActual.correo}" maxlength="30"  class="Form-inputRegistro"
+                        <h:outputLabel class="form-1" value="Correo del Representante:" for="correo" />
+                        <input class="form-1" type="email" jsf:id="correoInputText" required="true"
+                               jsf:value="#{empresaController.empresaActual.correo}" maxlength="30"  
                                  jsf:validatorMessage="Dirección de correo electronico no valido">
                             <f:validateRegex pattern="[\w\.-]*[a-zA-Z0-9_]@[\w\.-]*[a-zA-Z0-9]\.[a-zA-Z][a-zA-Z\.]*[a-zA-Z]*" />
                             <f:ajax execute="@this" render="correoMessage"/>
                         </input>
                         <h:message id="correoMessage" for="correoInputText" styleClass="error"/>
                         </h:panelGrid>
-                        <h:commandButton value="Guardar" action="#{empresaController.addEmpresa}"/>
+                    <h:commandButton class="Guardar" value="Guardar" action="#{empresaController.addEmpresa}"/>
                     <br/>
-                    <h:button value="Volver atras" outcome="/index"/>
+                    <h:button class="Volver" value="Volver atras" outcome="/index"/>
                 </h:form> 
         </ui:define>
     </ui:composition>

@@ -108,7 +108,7 @@ public class LibretaMilitar implements Serializable {
 
     @Override
     public String toString() {
-        return "com.pepe.jpa.entities.LibretaMilitar[ idLibretaMilitar=" + idLibretaMilitar + " ]";
+        return getNombreLibretaMilitar().toUpperCase();
     }
     
 }

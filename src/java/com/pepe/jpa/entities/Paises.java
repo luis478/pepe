@@ -108,7 +108,7 @@ public class Paises implements Serializable {
 
     @Override
     public String toString() {
-        return "com.pepe.jpa.entities.Paises[ idPaises=" + idPaises + " ]";
+        return getNombrePais().toUpperCase();
     }
     
 }

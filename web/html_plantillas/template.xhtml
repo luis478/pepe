@@ -1,11 +1,8 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:jsf="http://xmlns.jcp.org/jsf"
-      xmlns:p="http://primefaces.org/ui"
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
 
     <head jsf:id="head">
         <title><ui:insert name="title">PEPE</ui:insert></title>
@@ -17,24 +14,56 @@
     </head>
 
     <body jsf:id="body" class="Body" >
-       <section class="Pepe-inicio">         
-    
-        <p class="Pepe-inicioDescripcion">
-            Programador Estrategico de
-            <br></br>
-            Proyectos educativos
-        </p>
+        <header class="Header">
+            <div class="Header-left">
+                <h1 class="Titulo-pepe">P.E.P.A</h1>
+                Programador Estrategico de Proyectos Academicos
+            </div>
+            <hr size="20"/>
+        </header>
+       
            <section>
             <ui:insert name="body">Default Body</ui:insert> 
-        </section>
-    </section>  
+           </section> 
 
 
-<section class="Pepe-figureContainer">
-        <figure class="Pepe-formLogo">
-            <img src="resources/images/logosena.png" height="70" width="100" alt="logo sena" class="Pepe-formImage"/> 
-        </figure>
-</section>
+
+        <hr width="100%" size="8" align="right"/>
+        <footer class="Pepe-footer" >
+            <figure class="Footer-imageContainer">
+                <img src="../../resources/images/logosena.png" heigth="50" width="50" alt="logo sena" class="Footer-image"/>
+            </figure>
+            <section class="Pepe-redes">
+                <article class="ico">
+                    <a href="https://www.facebook.com/sena.general" target="_blank" class="icon-facebook" style="
+                       text-decoration: blink"></a>
+                </article> 
+                <article class="ico">
+                    <a href="https://twitter.com/senacomunica" target="_black" class="icon-twitter" style="
+                       text-decoration: blink"></a>
+                </article> 
+                <article class="ico">
+                    <a href="https://plus.google.com/+senacolombia/posts" target="_black" class="icon-googleplus" style="
+                       text-decoration: blink"> </a>
+                </article> 
+                <article class="ico">
+                    <a href="http://www.pinterest.com/senacomunica/" target="_black" class="icon-pinterest" style="
+                       text-decoration: blink;"> </a>
+                </article> 
+            </section>
+            <section>
+                <p class="Footer-description"> 
+                       Servicio Nacional de Aprendizaje SENA – Centro de Bioctecnologia Industrial- carrera 30 #40-25, Palmira-valle 
+                    <br></br>
+                       Línea gratuita de atención al ciudadano 275 0978 – Resto del país 018000 910270
+                    <br></br>
+                       Horario de atención: lunes a viernes de 8:00 am a 5:30 pm
+                    <br></br>
+                       Todos los derechos reservados ©
+                    <br></br>
+                    2015</p>
+            </section>
+        </footer>
       
     </body>
 </html>

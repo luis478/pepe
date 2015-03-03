@@ -137,7 +137,7 @@ public class AmbienteFormacion implements Serializable {
 
     @Override
     public String toString() {
-        return "com.pepe.jpa.entities.AmbienteFormacion[ idAmbienteFormacion=" + idAmbienteFormacion + " ]";
+        return getNombreAmbienteFormacion().toUpperCase();
     }
     
 }

@@ -80,24 +80,24 @@ public class TecnicadidacticaController implements Serializable {
     
      public String prepareCreate(){
       tecnicaActual = new TecnicaDidactica();
-        return "TecnicaDidactica/crear_actividad";
+        return "/TecnicaDidactica/crear_Tecnica";
 }
     public String prepareEdit (){
-    return "";
+    return "/TecnicaDidactica/editar_TecnicaDidactica";
 }
     public String prepareView (){
-    return "";
+    return "/TecnicaDidactica/ver_tecnicaDidactica";
 }
     public String prepareList (){
     recargarlista();
-        return "";
+        return "/TecnicaDidactica/lista_Tecnica_Didactica";
 }
     
      public String addTecnica(){
         try{
         getTecnicaFacade().create(tecnicaActual);
         recargarlista();
-        return "";
+        return "TecnicaDidactica/lista_Tecnica_Didactica";
         }catch (Exception e){
         addErrorMessage("Error closing resource " + e.getClass().getName(), "Message: " + e.getMessage());
             return null;
@@ -108,22 +108,23 @@ public class TecnicadidacticaController implements Serializable {
         try{
         getTecnicaFacade().edit(tecnicaActual);
         recargarlista();
-        return "";
+        return "ver_tecnicaDidactica";
         }catch (Exception e){
         addErrorMessage("Error closing resource " + e.getClass().getName(), "Message: " + e.getMessage());
             return null;
         }
     }
      
-       public String deleteTecnica(){
+       public String deletetecnica(){
         try{
-        getTecnicaFacade().remove(tecnicaActual);
-        recargarlista();
-        return "";
-        }catch (Exception e){
-        addErrorMessage("Error closing resource " + e.getClass().getName(), "Message: " + e.getMessage());
-            return "";
-        }
+            getTecnicaFacade().remove(tecnicaActual);
+            addSuccessMessage("Eliminado Exitosamente", "Tecnica Didactica eliminada");
+            recargarlista();
+            } catch (Exception e){
+                addErrorMessage ("Error closing resource " + e.getClass().getName(), "Message" + e.getMessage());
+                
+            }   
+       return "lista_Tecnica_Didactica";
     }
         private void addErrorMessage(String title, String msg) {
         FacesMessage facesMsg

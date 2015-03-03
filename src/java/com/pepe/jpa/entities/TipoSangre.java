@@ -108,7 +108,7 @@ public class TipoSangre implements Serializable {
 
     @Override
     public String toString() {
-        return "com.pepe.jpa.entities.TipoSangre[ idTipoSangre=" + idTipoSangre + " ]";
+        return getNombreTipoSangre().toUpperCase();
     }
     
 }

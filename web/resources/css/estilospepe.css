@@ -62,31 +62,17 @@
    
 }
 
-
-
-
 .Titulo{
     display: inline-block;
  
 }
-
-
-
-
-
-.Form-Input{
-    
-    border-color:  #01A9DB;
-    border-radius: .2em;
-    color: black;
-    padding: 0;
-}
 .Header{
 
-    background-image: url('../images/Pepeheader.png');
+    background-image: url('../../resources/images/Pepeheader.png');
     border-bottom: 1px solid #A4A4A4;
     padding: 1em 0;
     text-align: center;
+    
 }
 .Header-pepeForm{
     display: block;
@@ -113,8 +99,74 @@
 
 }
 
-.Form-input{
-    width: 1094px;
+
+.Form-input8{
+    width: 1094em;
+}
+.Form-Input1{
+    border-color: #01A9DB;
+    border-radius: .2em;
+    color: black;
+    margin: 2px;
+    margin-left: 15px;
+    margin-right: 10px;
+}
+.Form-Input2{
+    border-color: #01A9DB;
+    border-radius: .2em;
+    color: black;
+    margin: 2px;
+    margin-left: 15px;
+    margin-right: 10px;
+}
+.Form-Input3{
+    border-color: #01A9DB;
+    border-radius: .2em;
+    color: black;
+    margin: 2px;
+    margin-left: 24px;
+    margin-right: 10px;
+}
+.Form-Input4{
+    border-color: #01A9DB;
+    border-radius: .2em;
+    color: black;
+    margin: 2px;
+    margin-left: 18px;
+    margin-right: 11px;
+}
+.Form-Input5{
+    border-color: #01A9DB;
+    border-radius: .2em;
+    color: black;
+    margin: 2px;
+    margin-left: 33px;
+    width:966px;
+}
+.Form-Input6{
+    border-color: #01A9DB;
+    border-radius: .2em;
+    color: black;
+    margin: 2px;
+    margin-left: 22px;
+    margin-right: 11px;
+}
+.Form-Input7{
+    border-color: #01A9DB;
+    border-radius: .2em;
+    color: black;
+    margin: 2px;
+    margin-left: 59px;
+    margin-right: 3px;
+}
+.Form-Input8{
+    border-color: #01A9DB;
+    border-radius: .2em;
+    color: black;
+    margin: 2px;
+    margin-left: 84px;
+    margin-right: 3px;
+    width:966px;
 }
 
 
@@ -347,7 +399,28 @@
         margin-left: 1em;
     }
 
-    .Label{
+    .Label1{
+        margin: 0;
+    }
+    .Label2{
+        margin: 0;
+    }
+    .Label3{
+        margin: 0;
+    }
+    .Label4{
+        margin: 0;
+    }
+    .Label5{
+        margin: 0;
+    }
+    .Label6{
+        margin: 0;
+    }
+    .Label7{
+        margin: 0;
+    }
+    .Label8{
         margin: 0;
     }
 

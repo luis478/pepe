@@ -106,7 +106,7 @@ public class LoginController implements Serializable {
             limpiar();
 
 //            //Cancela login para usuarios inactivos
-            if (usuario.getEstado()== 0) {
+            if (usuario.getEstado()== false) {
                 logout();
                 FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Usuario Inactivo", null));
                 return "/index";

@@ -229,7 +229,7 @@ public class ActividadAprendizaje implements Serializable {
 
     @Override
     public String toString() {
-        return "com.pepe.jpa.entities.ActividadAprendizaje[ idActividadAprendizaje=" + idActividadAprendizaje + " ]";
+        return getNombreActividadAprendizaje().toUpperCase();
     }
     
 }
