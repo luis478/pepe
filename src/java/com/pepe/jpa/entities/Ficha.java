@@ -34,7 +34,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author ADSI TARDE
+ * @author Junior Cabal
  */
 @Entity
 @Table(name = "ficha")
@@ -70,40 +70,38 @@ public class Ficha implements Serializable {
     @Basic(optional = false)
     @NotNull
     @Column(name = "estado")
-    private short estado;
+    private boolean estado;
     @JoinTable(name = "trimestre_has_ficha", joinColumns = {
-        @JoinColumn(name = "id_fecha", referencedColumnName = "id_ficha")}, inverseJoinColumns = {
+        @JoinColumn(name = "id_ficha", referencedColumnName = "id_ficha")}, inverseJoinColumns = {
         @JoinColumn(name = "id_trimestre", referencedColumnName = "id_trimestre")})
     @ManyToMany
     private List<Trimestre> trimestreList;
-    @JoinColumn(name = "id_tipo_oferta", referencedColumnName = "id_tipo_oferta")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idFicha")
+    private List<Aspectos> aspectosList;
+    @JoinColumn(name = "id_centro_formacion", referencedColumnName = "id_centro_formacion")
     @ManyToOne(optional = false)
-    private TipoOferta idTipoOferta;
-    @JoinColumn(name = "id_tipo_formacion", referencedColumnName = "id_tipo_formacion")
+    private CentroFormacion idCentroFormacion;
+    @JoinColumn(name = "id_jornada", referencedColumnName = "id_jornada")
     @ManyToOne(optional = false)
-    private TipoFormacion idTipoFormacion;
-    @JoinColumn(name = "id_proyecto", referencedColumnName = "id_proyecto")
-    @ManyToOne
-    private Proyecto idProyecto;
+    private Jornada idJornada;
     @JoinColumns({
         @JoinColumn(name = "programa_codigo", referencedColumnName = "codigo"),
         @JoinColumn(name = "programa_version", referencedColumnName = "version")})
     @ManyToOne(optional = false)
     private Programa programa;
-    @JoinColumn(name = "id_jornada", referencedColumnName = "id_jornada")
+    @JoinColumn(name = "id_tipo_formacion", referencedColumnName = "id_tipo_formacion")
     @ManyToOne(optional = false)
-    private Jornada idJornada;
-    @JoinColumn(name = "id_centro_formacion", referencedColumnName = "id_centro_formacion")
+    private TipoFormacion idTipoFormacion;
+    @JoinColumn(name = "id_tipo_oferta", referencedColumnName = "id_tipo_oferta")
     @ManyToOne(optional = false)
-    private CentroFormacion idCentroFormacion;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "ficha")
-    private List<Aspectos> aspectosList;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "ficha")
-    private List<UsuarioHasFicha> usuarioHasFichaList;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idFicha")
-    private List<Evento> eventoList;
+    private TipoOferta idTipoOferta;
+    @JoinColumn(name = "id_proyecto", referencedColumnName = "id_proyecto")
+    @ManyToOne
+    private Proyecto idProyecto;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idFicha")
     private List<Acompanamiento> acompanamientoList;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "ficha")
+    private List<UsuarioHasFicha> usuarioHasFichaList;
 
     public Ficha() {
     }
@@ -112,7 +110,7 @@ public class Ficha implements Serializable {
         this.idFicha = idFicha;
     }
 
-    public Ficha(Integer idFicha, String codigoFicha, Date fechaInicio, short trimestresLectiva, short estado) {
+    public Ficha(Integer idFicha, String codigoFicha, Date fechaInicio, short trimestresLectiva, boolean estado) {
         this.idFicha = idFicha;
         this.codigoFicha = codigoFicha;
         this.fechaInicio = fechaInicio;
@@ -152,11 +150,11 @@ public class Ficha implements Serializable {
         this.trimestresLectiva = trimestresLectiva;
     }
 
-    public short getEstado() {
+    public boolean getEstado() {
         return estado;
     }
 
-    public void setEstado(short estado) {
+    public void setEstado(boolean estado) {
         this.estado = estado;
     }
 
@@ -169,44 +167,13 @@ public class Ficha implements Serializable {
         this.trimestreList = trimestreList;
     }
 
-    public TipoOferta getIdTipoOferta() {
-        return idTipoOferta;
+    @XmlTransient
+    public List<Aspectos> getAspectosList() {
+        return aspectosList;
     }
 
-    public void setIdTipoOferta(TipoOferta idTipoOferta) {
-        this.idTipoOferta = idTipoOferta;
-    }
-
-    public TipoFormacion getIdTipoFormacion() {
-        return idTipoFormacion;
-    }
-
-    public void setIdTipoFormacion(TipoFormacion idTipoFormacion) {
-        this.idTipoFormacion = idTipoFormacion;
-    }
-
-    public Proyecto getIdProyecto() {
-        return idProyecto;
-    }
-
-    public void setIdProyecto(Proyecto idProyecto) {
-        this.idProyecto = idProyecto;
-    }
-
-    public Programa getPrograma() {
-        return programa;
-    }
-
-    public void setPrograma(Programa programa) {
-        this.programa = programa;
-    }
-
-    public Jornada getIdJornada() {
-        return idJornada;
-    }
-
-    public void setIdJornada(Jornada idJornada) {
-        this.idJornada = idJornada;
+    public void setAspectosList(List<Aspectos> aspectosList) {
+        this.aspectosList = aspectosList;
     }
 
     public CentroFormacion getIdCentroFormacion() {
@@ -217,31 +184,44 @@ public class Ficha implements Serializable {
         this.idCentroFormacion = idCentroFormacion;
     }
 
-    @XmlTransient
-    public List<Aspectos> getAspectosList() {
-        return aspectosList;
+    public Jornada getIdJornada() {
+        return idJornada;
     }
 
-    public void setAspectosList(List<Aspectos> aspectosList) {
-        this.aspectosList = aspectosList;
+    public void setIdJornada(Jornada idJornada) {
+        this.idJornada = idJornada;
     }
 
-    @XmlTransient
-    public List<UsuarioHasFicha> getUsuarioHasFichaList() {
-        return usuarioHasFichaList;
+    public Programa getPrograma() {
+        return programa;
     }
 
-    public void setUsuarioHasFichaList(List<UsuarioHasFicha> usuarioHasFichaList) {
-        this.usuarioHasFichaList = usuarioHasFichaList;
+    public void setPrograma(Programa programa) {
+        this.programa = programa;
     }
 
-    @XmlTransient
-    public List<Evento> getEventoList() {
-        return eventoList;
+    public TipoFormacion getIdTipoFormacion() {
+        return idTipoFormacion;
     }
 
-    public void setEventoList(List<Evento> eventoList) {
-        this.eventoList = eventoList;
+    public void setIdTipoFormacion(TipoFormacion idTipoFormacion) {
+        this.idTipoFormacion = idTipoFormacion;
+    }
+
+    public TipoOferta getIdTipoOferta() {
+        return idTipoOferta;
+    }
+
+    public void setIdTipoOferta(TipoOferta idTipoOferta) {
+        this.idTipoOferta = idTipoOferta;
+    }
+
+    public Proyecto getIdProyecto() {
+        return idProyecto;
+    }
+
+    public void setIdProyecto(Proyecto idProyecto) {
+        this.idProyecto = idProyecto;
     }
 
     @XmlTransient
@@ -251,6 +231,15 @@ public class Ficha implements Serializable {
 
     public void setAcompanamientoList(List<Acompanamiento> acompanamientoList) {
         this.acompanamientoList = acompanamientoList;
+    }
+
+    @XmlTransient
+    public List<UsuarioHasFicha> getUsuarioHasFichaList() {
+        return usuarioHasFichaList;
+    }
+
+    public void setUsuarioHasFichaList(List<UsuarioHasFicha> usuarioHasFichaList) {
+        this.usuarioHasFichaList = usuarioHasFichaList;
     }
 
     @Override
@@ -275,7 +264,7 @@ public class Ficha implements Serializable {
 
     @Override
     public String toString() {
-        return codigoFicha;
+        return "com.pepe.jpa.entities.Ficha[ idFicha=" + idFicha + " ]";
     }
     
 }

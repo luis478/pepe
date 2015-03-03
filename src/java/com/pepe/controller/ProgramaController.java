@@ -521,7 +521,7 @@ public class ProgramaController implements Serializable {
 
     public void crearCompetencia() {
         try {
-            competenciaActual.setEstado((short) 1);
+            competenciaActual.setEstado(true);
             competenciaActual.setDuracionEstimadaHoras(Integer.parseInt(duracion));
             getCompetenciaFacade().create(competenciaActual);
             programaActual.getCompetenciaList().add(competenciaActual);
@@ -544,7 +544,7 @@ public class ProgramaController implements Serializable {
 
     public void crearCCP() {
         try {
-            conocimientoConceptoPrincipiosActual.setEstado((short) 1);
+            conocimientoConceptoPrincipiosActual.setEstado(true);
             conocimientoConceptoPrincipiosActual.setIdCompetencia(competenciaActual);
             getConocimientoConceptoPrincipiosFacade().create(conocimientoConceptoPrincipiosActual);
             conocimientoConceptoPrincipiosActual = null;
@@ -566,7 +566,7 @@ public class ProgramaController implements Serializable {
 
     public void deshabilitarCCP() {
         try {
-            conocimientoConceptoPrincipiosActual.setEstado((short) 0);
+            conocimientoConceptoPrincipiosActual.setEstado(false);
             getConocimientoConceptoPrincipiosFacade().edit(conocimientoConceptoPrincipiosActual);
             conocimientoConceptoPrincipiosActual = null;
             getConocimientoConceptoPrincipiosActual();
@@ -578,7 +578,7 @@ public class ProgramaController implements Serializable {
 
     public void crearCE() {
         try {
-            criteriosEvaluacionActual.setEstado((short) 1);
+            criteriosEvaluacionActual.setEstado(true);
             criteriosEvaluacionActual.setIdCompetencia(competenciaActual);
             getCriteriosEvaluacionFacade().create(criteriosEvaluacionActual);
             criteriosEvaluacionActual = null;
@@ -600,7 +600,7 @@ public class ProgramaController implements Serializable {
 
     public void deshabilitarCE() {
         try {
-            criteriosEvaluacionActual.setEstado((short) 0);
+            criteriosEvaluacionActual.setEstado(true);
             getCriteriosEvaluacionFacade().edit(criteriosEvaluacionActual);
             criteriosEvaluacionActual = null;
             getCriteriosEvaluacionActual();

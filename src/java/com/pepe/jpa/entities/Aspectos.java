@@ -10,8 +10,10 @@ import java.io.Serializable;
 import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.Column;
-import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.Lob;
@@ -27,20 +29,22 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author ADSI TARDE
+ * @author Junior Cabal
  */
 @Entity
 @Table(name = "aspectos")
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Aspectos.findAll", query = "SELECT a FROM Aspectos a"),
-    @NamedQuery(name = "Aspectos.findByIdAspectos", query = "SELECT a FROM Aspectos a WHERE a.aspectosPK.idAspectos = :idAspectos"),
-    @NamedQuery(name = "Aspectos.findByCumple", query = "SELECT a FROM Aspectos a WHERE a.cumple = :cumple"),
-    @NamedQuery(name = "Aspectos.findByIdFicha", query = "SELECT a FROM Aspectos a WHERE a.aspectosPK.idFicha = :idFicha")})
+    @NamedQuery(name = "Aspectos.findByIdAspectos", query = "SELECT a FROM Aspectos a WHERE a.idAspectos = :idAspectos"),
+    @NamedQuery(name = "Aspectos.findByCumple", query = "SELECT a FROM Aspectos a WHERE a.cumple = :cumple")})
 public class Aspectos implements Serializable {
     private static final long serialVersionUID = 1L;
-    @EmbeddedId
-    protected AspectosPK aspectosPK;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Basic(optional = false)
+    @Column(name = "id_aspectos")
+    private Integer idAspectos;
     @Basic(optional = false)
     @NotNull
     @Lob
@@ -50,44 +54,39 @@ public class Aspectos implements Serializable {
     @Basic(optional = false)
     @NotNull
     @Column(name = "cumple")
-    private short cumple;
+    private boolean cumple;
     @Lob
     @Size(max = 65535)
     @Column(name = "observaciones_aspectos")
     private String observacionesAspectos;
     @JoinTable(name = "usuario_has_aspectos", joinColumns = {
-        @JoinColumn(name = "id_aspectos", referencedColumnName = "id_aspectos"),
-        @JoinColumn(name = "id_ficha", referencedColumnName = "id_ficha")}, inverseJoinColumns = {
+        @JoinColumn(name = "id_aspectos", referencedColumnName = "id_aspectos")}, inverseJoinColumns = {
         @JoinColumn(name = "id_usuario", referencedColumnName = "id_usuario")})
     @ManyToMany
     private List<Usuario> usuarioList;
-    @JoinColumn(name = "id_ficha", referencedColumnName = "id_ficha", insertable = false, updatable = false)
+    @JoinColumn(name = "id_ficha", referencedColumnName = "id_ficha")
     @ManyToOne(optional = false)
-    private Ficha ficha;
+    private Ficha idFicha;
 
     public Aspectos() {
     }
 
-    public Aspectos(AspectosPK aspectosPK) {
-        this.aspectosPK = aspectosPK;
+    public Aspectos(Integer idAspectos) {
+        this.idAspectos = idAspectos;
     }
 
-    public Aspectos(AspectosPK aspectosPK, String descripcion, short cumple) {
-        this.aspectosPK = aspectosPK;
+    public Aspectos(Integer idAspectos, String descripcion, boolean cumple) {
+        this.idAspectos = idAspectos;
         this.descripcion = descripcion;
         this.cumple = cumple;
     }
 
-    public Aspectos(int idAspectos, int idFicha) {
-        this.aspectosPK = new AspectosPK(idAspectos, idFicha);
+    public Integer getIdAspectos() {
+        return idAspectos;
     }
 
-    public AspectosPK getAspectosPK() {
-        return aspectosPK;
-    }
-
-    public void setAspectosPK(AspectosPK aspectosPK) {
-        this.aspectosPK = aspectosPK;
+    public void setIdAspectos(Integer idAspectos) {
+        this.idAspectos = idAspectos;
     }
 
     public String getDescripcion() {
@@ -98,11 +97,11 @@ public class Aspectos implements Serializable {
         this.descripcion = descripcion;
     }
 
-    public short getCumple() {
+    public boolean getCumple() {
         return cumple;
     }
 
-    public void setCumple(short cumple) {
+    public void setCumple(boolean cumple) {
         this.cumple = cumple;
     }
 
@@ -123,18 +122,18 @@ public class Aspectos implements Serializable {
         this.usuarioList = usuarioList;
     }
 
-    public Ficha getFicha() {
-        return ficha;
+    public Ficha getIdFicha() {
+        return idFicha;
     }
 
-    public void setFicha(Ficha ficha) {
-        this.ficha = ficha;
+    public void setIdFicha(Ficha idFicha) {
+        this.idFicha = idFicha;
     }
 
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (aspectosPK != null ? aspectosPK.hashCode() : 0);
+        hash += (idAspectos != null ? idAspectos.hashCode() : 0);
         return hash;
     }
 
@@ -145,7 +144,7 @@ public class Aspectos implements Serializable {
             return false;
         }
         Aspectos other = (Aspectos) object;
-        if ((this.aspectosPK == null && other.aspectosPK != null) || (this.aspectosPK != null && !this.aspectosPK.equals(other.aspectosPK))) {
+        if ((this.idAspectos == null && other.idAspectos != null) || (this.idAspectos != null && !this.idAspectos.equals(other.idAspectos))) {
             return false;
         }
         return true;

@@ -3,6 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+
 package com.pepe.jpa.entities;
 
 import java.io.Serializable;
@@ -24,7 +25,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author Luis Carlos
+ * @author Junior Cabal
  */
 @Entity
 @Table(name = "variable")
@@ -49,7 +50,7 @@ public class Variable implements Serializable {
     @Basic(optional = false)
     @NotNull
     @Column(name = "cumple")
-    private short cumple;
+    private boolean cumple;
     @Basic(optional = false)
     @NotNull
     @Lob
@@ -67,7 +68,7 @@ public class Variable implements Serializable {
         this.idVariable = idVariable;
     }
 
-    public Variable(Integer idVariable, String descripcion, short cumple, String observacion) {
+    public Variable(Integer idVariable, String descripcion, boolean cumple, String observacion) {
         this.idVariable = idVariable;
         this.descripcion = descripcion;
         this.cumple = cumple;
@@ -90,11 +91,11 @@ public class Variable implements Serializable {
         this.descripcion = descripcion;
     }
 
-    public short getCumple() {
+    public boolean getCumple() {
         return cumple;
     }
 
-    public void setCumple(short cumple) {
+    public void setCumple(boolean cumple) {
         this.cumple = cumple;
     }
 

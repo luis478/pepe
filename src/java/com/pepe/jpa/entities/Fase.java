@@ -26,7 +26,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author ADSI TARDE
+ * @author Junior Cabal
  */
 @Entity
 @Table(name = "fase")
@@ -47,12 +47,12 @@ public class Fase implements Serializable {
     @Size(min = 1, max = 45)
     @Column(name = "fase")
     private String fase;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "fase")
-    private List<EvaluacionSeguimiento> evaluacionSeguimientoList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idFase")
-    private List<ActividadHasResultadoAprendizaje> actividadHasResultadoAprendizajeList;
+    private List<Actividad> actividadList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idFase")
     private List<Acompanamiento> acompanamientoList;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "fase")
+    private List<EvaluacionSeguimiento> evaluacionSeguimientoList;
 
     public Fase() {
     }
@@ -83,21 +83,12 @@ public class Fase implements Serializable {
     }
 
     @XmlTransient
-    public List<EvaluacionSeguimiento> getEvaluacionSeguimientoList() {
-        return evaluacionSeguimientoList;
+    public List<Actividad> getActividadList() {
+        return actividadList;
     }
 
-    public void setEvaluacionSeguimientoList(List<EvaluacionSeguimiento> evaluacionSeguimientoList) {
-        this.evaluacionSeguimientoList = evaluacionSeguimientoList;
-    }
-
-    @XmlTransient
-    public List<ActividadHasResultadoAprendizaje> getActividadHasResultadoAprendizajeList() {
-        return actividadHasResultadoAprendizajeList;
-    }
-
-    public void setActividadHasResultadoAprendizajeList(List<ActividadHasResultadoAprendizaje> actividadHasResultadoAprendizajeList) {
-        this.actividadHasResultadoAprendizajeList = actividadHasResultadoAprendizajeList;
+    public void setActividadList(List<Actividad> actividadList) {
+        this.actividadList = actividadList;
     }
 
     @XmlTransient
@@ -107,6 +98,15 @@ public class Fase implements Serializable {
 
     public void setAcompanamientoList(List<Acompanamiento> acompanamientoList) {
         this.acompanamientoList = acompanamientoList;
+    }
+
+    @XmlTransient
+    public List<EvaluacionSeguimiento> getEvaluacionSeguimientoList() {
+        return evaluacionSeguimientoList;
+    }
+
+    public void setEvaluacionSeguimientoList(List<EvaluacionSeguimiento> evaluacionSeguimientoList) {
+        this.evaluacionSeguimientoList = evaluacionSeguimientoList;
     }
 
     @Override

@@ -319,7 +319,7 @@ public class FichaController implements Serializable {
             fichaActual.setIdJornada(getJornadaFacade().find(jornada));
             fichaActual.setIdTipoFormacion(getTipoFormacionFacade().find(idTipoFormacion));
             fichaActual.setIdProyecto(getProyectoFacade().find(idProyecto));
-            fichaActual.setEstado((short) 1);
+            fichaActual.setEstado(true);
             getFichaFacade().create(fichaActual);
             recargarLista();
             return "";

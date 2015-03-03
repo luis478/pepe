@@ -3,6 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+
 package com.pepe.jpa.entities;
 
 import java.io.Serializable;
@@ -26,7 +27,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author Luis Carlos
+ * @author Junior Cabal
  */
 @Entity
 @Table(name = "trimestre")
@@ -53,8 +54,6 @@ public class Trimestre implements Serializable {
     @Column(name = "fecha_fin")
     @Temporal(TemporalType.DATE)
     private Date fechaFin;
-    @ManyToMany(mappedBy = "trimestreList")
-    private List<Evento> eventoList;
     @ManyToMany(mappedBy = "trimestreList")
     private List<Ficha> fichaList;
 
@@ -93,15 +92,6 @@ public class Trimestre implements Serializable {
 
     public void setFechaFin(Date fechaFin) {
         this.fechaFin = fechaFin;
-    }
-
-    @XmlTransient
-    public List<Evento> getEventoList() {
-        return eventoList;
-    }
-
-    public void setEventoList(List<Evento> eventoList) {
-        this.eventoList = eventoList;
     }
 
     @XmlTransient

@@ -28,7 +28,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author ADSI TARDE
+ * @author Junior Cabal
  */
 @Entity
 @Table(name = "proyecto")
@@ -115,27 +115,27 @@ public class Proyecto implements Serializable {
     @Basic(optional = false)
     @NotNull
     @Column(name = "innovacion_2_6_1")
-    private short innovacion261;
+    private boolean innovacion261;
     @Basic(optional = false)
     @NotNull
     @Column(name = "innovacion_2_6_2")
-    private short innovacion262;
+    private boolean innovacion262;
     @Basic(optional = false)
     @NotNull
     @Column(name = "innovacion_2_6_3")
-    private short innovacion263;
+    private boolean innovacion263;
     @Basic(optional = false)
     @NotNull
     @Column(name = "innovacion_2_6_4")
-    private short innovacion264;
+    private boolean innovacion264;
     @Basic(optional = false)
     @NotNull
     @Column(name = "innovacion_2_6_5")
-    private short innovacion265;
+    private boolean innovacion265;
     @Basic(optional = false)
     @NotNull
     @Column(name = "valoracion_2_7_1")
-    private short valoracion271;
+    private boolean valoracion271;
     @Basic(optional = false)
     @NotNull
     @Column(name = "Valoracion_2_7_2")
@@ -156,18 +156,18 @@ public class Proyecto implements Serializable {
     private String descripcionAmbiente;
     @ManyToMany(mappedBy = "proyectoList")
     private List<Empresa> empresaList;
-    @OneToMany(mappedBy = "idProyecto")
-    private List<Ficha> fichaList;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idProyecto")
+    private List<VisitaTecnica> visitaTecnicaList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idProyecto")
     private List<Actividad> actividadList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idProyecto")
     private List<Revision> revisionList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idProyecto")
-    private List<VisitaTecnica> visitaTecnicaList;
+    private List<Verificacion> verificacionList;
+    @OneToMany(mappedBy = "idProyecto")
+    private List<Ficha> fichaList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idProyecto")
     private List<GuiaAprendizaje> guiaAprendizajeList;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idProyecto")
-    private List<Verificacion> verificacionList;
 
     public Proyecto() {
     }
@@ -176,7 +176,7 @@ public class Proyecto implements Serializable {
         this.idProyecto = idProyecto;
     }
 
-    public Proyecto(Integer idProyecto, String nombreProyecto, String codigoProyecto, String justificacion22, String objetivoGeneral23, String objetivoEspecifico24, String palabrasClave17, String planteamiento21, String impacto252, String restricciones253, String productosResultados254, short innovacion261, short innovacion262, short innovacion263, short innovacion264, short innovacion265, short valoracion271, short valoracion272, int intructoresRequeridos, int aprendicesSugeridos, String descripcionAmbiente) {
+    public Proyecto(Integer idProyecto, String nombreProyecto, String codigoProyecto, String justificacion22, String objetivoGeneral23, String objetivoEspecifico24, String palabrasClave17, String planteamiento21, String impacto252, String restricciones253, String productosResultados254, boolean innovacion261, boolean innovacion262, boolean innovacion263, boolean innovacion264, boolean innovacion265, boolean valoracion271, short valoracion272, int intructoresRequeridos, int aprendicesSugeridos, String descripcionAmbiente) {
         this.idProyecto = idProyecto;
         this.nombreProyecto = nombreProyecto;
         this.codigoProyecto = codigoProyecto;
@@ -288,51 +288,51 @@ public class Proyecto implements Serializable {
         this.productosResultados254 = productosResultados254;
     }
 
-    public short getInnovacion261() {
+    public boolean getInnovacion261() {
         return innovacion261;
     }
 
-    public void setInnovacion261(short innovacion261) {
+    public void setInnovacion261(boolean innovacion261) {
         this.innovacion261 = innovacion261;
     }
 
-    public short getInnovacion262() {
+    public boolean getInnovacion262() {
         return innovacion262;
     }
 
-    public void setInnovacion262(short innovacion262) {
+    public void setInnovacion262(boolean innovacion262) {
         this.innovacion262 = innovacion262;
     }
 
-    public short getInnovacion263() {
+    public boolean getInnovacion263() {
         return innovacion263;
     }
 
-    public void setInnovacion263(short innovacion263) {
+    public void setInnovacion263(boolean innovacion263) {
         this.innovacion263 = innovacion263;
     }
 
-    public short getInnovacion264() {
+    public boolean getInnovacion264() {
         return innovacion264;
     }
 
-    public void setInnovacion264(short innovacion264) {
+    public void setInnovacion264(boolean innovacion264) {
         this.innovacion264 = innovacion264;
     }
 
-    public short getInnovacion265() {
+    public boolean getInnovacion265() {
         return innovacion265;
     }
 
-    public void setInnovacion265(short innovacion265) {
+    public void setInnovacion265(boolean innovacion265) {
         this.innovacion265 = innovacion265;
     }
 
-    public short getValoracion271() {
+    public boolean getValoracion271() {
         return valoracion271;
     }
 
-    public void setValoracion271(short valoracion271) {
+    public void setValoracion271(boolean valoracion271) {
         this.valoracion271 = valoracion271;
     }
 
@@ -378,12 +378,12 @@ public class Proyecto implements Serializable {
     }
 
     @XmlTransient
-    public List<Ficha> getFichaList() {
-        return fichaList;
+    public List<VisitaTecnica> getVisitaTecnicaList() {
+        return visitaTecnicaList;
     }
 
-    public void setFichaList(List<Ficha> fichaList) {
-        this.fichaList = fichaList;
+    public void setVisitaTecnicaList(List<VisitaTecnica> visitaTecnicaList) {
+        this.visitaTecnicaList = visitaTecnicaList;
     }
 
     @XmlTransient
@@ -405,12 +405,21 @@ public class Proyecto implements Serializable {
     }
 
     @XmlTransient
-    public List<VisitaTecnica> getVisitaTecnicaList() {
-        return visitaTecnicaList;
+    public List<Verificacion> getVerificacionList() {
+        return verificacionList;
     }
 
-    public void setVisitaTecnicaList(List<VisitaTecnica> visitaTecnicaList) {
-        this.visitaTecnicaList = visitaTecnicaList;
+    public void setVerificacionList(List<Verificacion> verificacionList) {
+        this.verificacionList = verificacionList;
+    }
+
+    @XmlTransient
+    public List<Ficha> getFichaList() {
+        return fichaList;
+    }
+
+    public void setFichaList(List<Ficha> fichaList) {
+        this.fichaList = fichaList;
     }
 
     @XmlTransient
@@ -420,15 +429,6 @@ public class Proyecto implements Serializable {
 
     public void setGuiaAprendizajeList(List<GuiaAprendizaje> guiaAprendizajeList) {
         this.guiaAprendizajeList = guiaAprendizajeList;
-    }
-
-    @XmlTransient
-    public List<Verificacion> getVerificacionList() {
-        return verificacionList;
-    }
-
-    public void setVerificacionList(List<Verificacion> verificacionList) {
-        this.verificacionList = verificacionList;
     }
 
     @Override
@@ -453,7 +453,7 @@ public class Proyecto implements Serializable {
 
     @Override
     public String toString() {
-        return nombreProyecto;
+        return "com.pepe.jpa.entities.Proyecto[ idProyecto=" + idProyecto + " ]";
     }
     
 }

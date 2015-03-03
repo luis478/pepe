@@ -126,7 +126,7 @@ public class Usuario implements Serializable {
     @Size(max = 10)
     @Column(name = "telefono_3")
     private String telefono3;
-    @JoinTable(name = "rol_has_usuario", joinColumns = {
+        @JoinTable(name = "rol_has_usuario", joinColumns = {
         @JoinColumn(name = "id_usuario", referencedColumnName = "id_usuario")}, inverseJoinColumns = {
         @JoinColumn(name = "id_rol", referencedColumnName = "id_rol")})
        @ManyToMany
@@ -144,9 +144,9 @@ public class Usuario implements Serializable {
     @ManyToMany(mappedBy = "usuarioList")
     private List<Area> areaList;
     @ManyToMany(mappedBy = "usuarioList")
-    private List<Evento> eventoList;
-    @ManyToMany(mappedBy = "usuarioList")
     private List<ActividadAprendizaje> actividadAprendizajeList;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idUsuario")
+    private List<Programador> programadorList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idUsuario")
     private List<Verificacion> verificacionList;
     @JoinColumn(name = "id_caracterizacion", referencedColumnName = "id_caracterizacion")
@@ -170,15 +170,15 @@ public class Usuario implements Serializable {
     @JoinColumn(name = "id_tipo_documento", referencedColumnName = "id_tipo_documento")
     @ManyToOne(optional = false)
     private TipoDocumento idTipoDocumento;
-    @JoinColumn(name = "id_tipo_contrato", referencedColumnName = "id_tipo_contrato")
-    @ManyToOne
-    private TipoContrato idTipoContrato;
     @JoinColumn(name = "id_tipo_sangre", referencedColumnName = "id_tipo_sangre")
     @ManyToOne(optional = false)
     private TipoSangre idTipoSangre;
     @JoinColumn(name = "id_tipo_vocero", referencedColumnName = "id_tipo_vocero")
     @ManyToOne
     private TipoVocero idTipoVocero;
+    @JoinColumn(name = "id_tipo_contrato", referencedColumnName = "id_tipo_contrato")
+    @ManyToOne
+    private TipoContrato idTipoContrato;
     @JoinColumn(name = "id_eps", referencedColumnName = "id_eps")
     @ManyToOne(optional = false)
     private Eps idEps;
@@ -187,8 +187,6 @@ public class Usuario implements Serializable {
     private Especialidad idEspecialidad;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "usuario")
     private List<UsuarioHasFicha> usuarioHasFichaList;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idUsuario")
-    private List<ResultadoAprendizaje> resultadoAprendizajeList;
 
     public Usuario() {
     }
@@ -303,7 +301,7 @@ public class Usuario implements Serializable {
     }
 
     public void setPassword(String password) {
-        try {
+               try {
             this.password = DigestUtil.generateDigest(password);
         } catch (NoSuchAlgorithmException ex) {
             Logger.getLogger(Usuario.class.getName()).log(Level.SEVERE, null, ex);
@@ -401,21 +399,21 @@ public class Usuario implements Serializable {
     }
 
     @XmlTransient
-    public List<Evento> getEventoList() {
-        return eventoList;
-    }
-
-    public void setEventoList(List<Evento> eventoList) {
-        this.eventoList = eventoList;
-    }
-
-    @XmlTransient
     public List<ActividadAprendizaje> getActividadAprendizajeList() {
         return actividadAprendizajeList;
     }
 
     public void setActividadAprendizajeList(List<ActividadAprendizaje> actividadAprendizajeList) {
         this.actividadAprendizajeList = actividadAprendizajeList;
+    }
+
+    @XmlTransient
+    public List<Programador> getProgramadorList() {
+        return programadorList;
+    }
+
+    public void setProgramadorList(List<Programador> programadorList) {
+        this.programadorList = programadorList;
     }
 
     @XmlTransient
@@ -483,14 +481,6 @@ public class Usuario implements Serializable {
         this.idTipoDocumento = idTipoDocumento;
     }
 
-    public TipoContrato getIdTipoContrato() {
-        return idTipoContrato;
-    }
-
-    public void setIdTipoContrato(TipoContrato idTipoContrato) {
-        this.idTipoContrato = idTipoContrato;
-    }
-
     public TipoSangre getIdTipoSangre() {
         return idTipoSangre;
     }
@@ -505,6 +495,14 @@ public class Usuario implements Serializable {
 
     public void setIdTipoVocero(TipoVocero idTipoVocero) {
         this.idTipoVocero = idTipoVocero;
+    }
+
+    public TipoContrato getIdTipoContrato() {
+        return idTipoContrato;
+    }
+
+    public void setIdTipoContrato(TipoContrato idTipoContrato) {
+        this.idTipoContrato = idTipoContrato;
     }
 
     public Eps getIdEps() {
@@ -532,15 +530,6 @@ public class Usuario implements Serializable {
         this.usuarioHasFichaList = usuarioHasFichaList;
     }
 
-    @XmlTransient
-    public List<ResultadoAprendizaje> getResultadoAprendizajeList() {
-        return resultadoAprendizajeList;
-    }
-
-    public void setResultadoAprendizajeList(List<ResultadoAprendizaje> resultadoAprendizajeList) {
-        this.resultadoAprendizajeList = resultadoAprendizajeList;
-    }
-
     @Override
     public int hashCode() {
         int hash = 0;
@@ -563,7 +552,7 @@ public class Usuario implements Serializable {
 
     @Override
     public String toString() {
-        return nombre1 + " "+ apellido1;
+        return nombre1+" "+apellido1;
     }
     
 }

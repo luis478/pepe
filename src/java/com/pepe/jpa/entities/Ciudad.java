@@ -28,7 +28,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author ADSI TARDE
+ * @author Junior Cabal
  */
 @Entity
 @Table(name = "ciudad")
@@ -54,9 +54,9 @@ public class Ciudad implements Serializable {
     @ManyToMany
     private List<Usuario> usuarioList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "ciudad")
-    private List<CentroFormacion> centroFormacionList;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "ciudad")
     private List<VisitaTecnica> visitaTecnicaList;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "ciudad")
+    private List<CentroFormacion> centroFormacionList;
     @JoinColumn(name = "id_departamento", referencedColumnName = "id_departamento", insertable = false, updatable = false)
     @ManyToOne(optional = false)
     private Departamento departamento;
@@ -103,21 +103,21 @@ public class Ciudad implements Serializable {
     }
 
     @XmlTransient
-    public List<CentroFormacion> getCentroFormacionList() {
-        return centroFormacionList;
-    }
-
-    public void setCentroFormacionList(List<CentroFormacion> centroFormacionList) {
-        this.centroFormacionList = centroFormacionList;
-    }
-
-    @XmlTransient
     public List<VisitaTecnica> getVisitaTecnicaList() {
         return visitaTecnicaList;
     }
 
     public void setVisitaTecnicaList(List<VisitaTecnica> visitaTecnicaList) {
         this.visitaTecnicaList = visitaTecnicaList;
+    }
+
+    @XmlTransient
+    public List<CentroFormacion> getCentroFormacionList() {
+        return centroFormacionList;
+    }
+
+    public void setCentroFormacionList(List<CentroFormacion> centroFormacionList) {
+        this.centroFormacionList = centroFormacionList;
     }
 
     public Departamento getDepartamento() {

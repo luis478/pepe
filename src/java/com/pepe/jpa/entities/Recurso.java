@@ -27,7 +27,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author ADSI TARDE
+ * @author Junior Cabal
  */
 @Entity
 @Table(name = "recurso")
@@ -43,9 +43,9 @@ public class Recurso implements Serializable {
     @Column(name = "id_recurso")
     private Integer idRecurso;
     @ManyToMany(mappedBy = "recursoList")
-    private List<AmbienteFormacion> ambienteFormacionList;
-    @ManyToMany(mappedBy = "recursoList")
     private List<ActividadAprendizaje> actividadAprendizajeList;
+    @ManyToMany(mappedBy = "recursoList")
+    private List<AmbienteFormacion> ambienteFormacionList;
     @JoinColumn(name = "id_actividad", referencedColumnName = "id_actividad")
     @ManyToOne(optional = false)
     private Actividad idActividad;
@@ -68,21 +68,21 @@ public class Recurso implements Serializable {
     }
 
     @XmlTransient
-    public List<AmbienteFormacion> getAmbienteFormacionList() {
-        return ambienteFormacionList;
-    }
-
-    public void setAmbienteFormacionList(List<AmbienteFormacion> ambienteFormacionList) {
-        this.ambienteFormacionList = ambienteFormacionList;
-    }
-
-    @XmlTransient
     public List<ActividadAprendizaje> getActividadAprendizajeList() {
         return actividadAprendizajeList;
     }
 
     public void setActividadAprendizajeList(List<ActividadAprendizaje> actividadAprendizajeList) {
         this.actividadAprendizajeList = actividadAprendizajeList;
+    }
+
+    @XmlTransient
+    public List<AmbienteFormacion> getAmbienteFormacionList() {
+        return ambienteFormacionList;
+    }
+
+    public void setAmbienteFormacionList(List<AmbienteFormacion> ambienteFormacionList) {
+        this.ambienteFormacionList = ambienteFormacionList;
     }
 
     public Actividad getIdActividad() {

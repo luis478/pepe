@@ -8,7 +8,6 @@ package com.pepe.jpa.entities;
 
 import java.io.Serializable;
 import java.util.Date;
-import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -16,8 +15,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
@@ -26,11 +23,10 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author ADSI TARDE
+ * @author Junior Cabal
  */
 @Entity
 @Table(name = "evento")
@@ -57,27 +53,12 @@ public class Evento implements Serializable {
     @Column(name = "fecha_fin")
     @Temporal(TemporalType.TIMESTAMP)
     private Date fechaFin;
-    @JoinTable(name = "evento_has_usuario", joinColumns = {
-        @JoinColumn(name = "id_evento", referencedColumnName = "id_evento")}, inverseJoinColumns = {
-        @JoinColumn(name = "id_usuario", referencedColumnName = "id_usuario")})
-    @ManyToMany
-    private List<Usuario> usuarioList;
-    @JoinTable(name = "evento_has_resultado_aprendizaje", joinColumns = {
-        @JoinColumn(name = "id_evento", referencedColumnName = "id_evento")}, inverseJoinColumns = {
-        @JoinColumn(name = "id_resultado_aprendizaje", referencedColumnName = "id_resultado_aprendizaje")})
-    @ManyToMany
-    private List<ResultadoAprendizaje> resultadoAprendizajeList;
-    @JoinTable(name = "evento_has_trimestre", joinColumns = {
-        @JoinColumn(name = "id_evento", referencedColumnName = "id_evento")}, inverseJoinColumns = {
-        @JoinColumn(name = "id_trimestre", referencedColumnName = "id_trimestre")})
-    @ManyToMany
-    private List<Trimestre> trimestreList;
-    @JoinColumn(name = "id_ficha", referencedColumnName = "id_ficha")
-    @ManyToOne(optional = false)
-    private Ficha idFicha;
     @JoinColumn(name = "id_ambiente_formacion", referencedColumnName = "id_ambiente_formacion")
     @ManyToOne(optional = false)
     private AmbienteFormacion idAmbienteFormacion;
+    @JoinColumn(name = "id_programador", referencedColumnName = "id_programador")
+    @ManyToOne(optional = false)
+    private Programador idProgramador;
 
     public Evento() {
     }
@@ -116,47 +97,20 @@ public class Evento implements Serializable {
         this.fechaFin = fechaFin;
     }
 
-    @XmlTransient
-    public List<Usuario> getUsuarioList() {
-        return usuarioList;
-    }
-
-    public void setUsuarioList(List<Usuario> usuarioList) {
-        this.usuarioList = usuarioList;
-    }
-
-    @XmlTransient
-    public List<ResultadoAprendizaje> getResultadoAprendizajeList() {
-        return resultadoAprendizajeList;
-    }
-
-    public void setResultadoAprendizajeList(List<ResultadoAprendizaje> resultadoAprendizajeList) {
-        this.resultadoAprendizajeList = resultadoAprendizajeList;
-    }
-
-    @XmlTransient
-    public List<Trimestre> getTrimestreList() {
-        return trimestreList;
-    }
-
-    public void setTrimestreList(List<Trimestre> trimestreList) {
-        this.trimestreList = trimestreList;
-    }
-
-    public Ficha getIdFicha() {
-        return idFicha;
-    }
-
-    public void setIdFicha(Ficha idFicha) {
-        this.idFicha = idFicha;
-    }
-
     public AmbienteFormacion getIdAmbienteFormacion() {
         return idAmbienteFormacion;
     }
 
     public void setIdAmbienteFormacion(AmbienteFormacion idAmbienteFormacion) {
         this.idAmbienteFormacion = idAmbienteFormacion;
+    }
+
+    public Programador getIdProgramador() {
+        return idProgramador;
+    }
+
+    public void setIdProgramador(Programador idProgramador) {
+        this.idProgramador = idProgramador;
     }
 
     @Override

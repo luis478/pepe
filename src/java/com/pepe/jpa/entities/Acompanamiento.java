@@ -32,7 +32,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author ADSI TARDE
+ * @author Junior Cabal
  */
 @Entity
 @Table(name = "acompanamiento")
@@ -64,14 +64,14 @@ public class Acompanamiento implements Serializable {
         @JoinColumn(name = "id_usuario", referencedColumnName = "id_usuario")})
     @ManyToMany
     private List<Usuario> usuarioList;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "acompanamiento")
-    private List<CriterioSeguimientoHasAcompanamiento> criterioSeguimientoHasAcompanamientoList;
-    @JoinColumn(name = "id_ficha", referencedColumnName = "id_ficha")
-    @ManyToOne(optional = false)
-    private Ficha idFicha;
     @JoinColumn(name = "id_fase", referencedColumnName = "id_fase")
     @ManyToOne(optional = false)
     private Fase idFase;
+    @JoinColumn(name = "id_ficha", referencedColumnName = "id_ficha")
+    @ManyToOne(optional = false)
+    private Ficha idFicha;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "acompanamiento")
+    private List<CriterioSeguimientoHasAcompanamiento> criterioSeguimientoHasAcompanamientoList;
 
     public Acompanamiento() {
     }
@@ -119,13 +119,12 @@ public class Acompanamiento implements Serializable {
         this.usuarioList = usuarioList;
     }
 
-    @XmlTransient
-    public List<CriterioSeguimientoHasAcompanamiento> getCriterioSeguimientoHasAcompanamientoList() {
-        return criterioSeguimientoHasAcompanamientoList;
+    public Fase getIdFase() {
+        return idFase;
     }
 
-    public void setCriterioSeguimientoHasAcompanamientoList(List<CriterioSeguimientoHasAcompanamiento> criterioSeguimientoHasAcompanamientoList) {
-        this.criterioSeguimientoHasAcompanamientoList = criterioSeguimientoHasAcompanamientoList;
+    public void setIdFase(Fase idFase) {
+        this.idFase = idFase;
     }
 
     public Ficha getIdFicha() {
@@ -136,12 +135,13 @@ public class Acompanamiento implements Serializable {
         this.idFicha = idFicha;
     }
 
-    public Fase getIdFase() {
-        return idFase;
+    @XmlTransient
+    public List<CriterioSeguimientoHasAcompanamiento> getCriterioSeguimientoHasAcompanamientoList() {
+        return criterioSeguimientoHasAcompanamientoList;
     }
 
-    public void setIdFase(Fase idFase) {
-        this.idFase = idFase;
+    public void setCriterioSeguimientoHasAcompanamientoList(List<CriterioSeguimientoHasAcompanamiento> criterioSeguimientoHasAcompanamientoList) {
+        this.criterioSeguimientoHasAcompanamientoList = criterioSeguimientoHasAcompanamientoList;
     }
 
     @Override

@@ -9,24 +9,54 @@ and open the template in the editor.
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:f="http://xmlns.jcp.org/jsf/core"
-      xmlns:jsf="http://xmlns.jcp.org/jsf">
-    <ui:composition template="/html_plantillas/template.xhtml">
-        <ui:define name="title">Consultar ficha</ui:define>        
+      xmlns:jsf="http://xmlns.jcp.org/jsf"
+      xmlns:p="http://primefaces.org/ui">
+    <ui:composition template="/html_plantillas/plantilla_paginas.xhtml">
+        <ui:define name="title">Lista Actividad de aprendizaje</ui:define>        
         <ui:define name="body">
-                <h:form>
-                    <h1><h:outputText value="Consultar Ficha"/></h1>
-                    <h:panelGrid columns="1">
-                        <input jsf:id="nomBuscarFichaInputText" jsf:value="#{empresaController.empresaActual.nombreEmpresa}" 
-                                     type="text" required="true"
-                                     jsf:requiredMessage="Por favor ingrese el id de la ficha"> 
-                                     <f:validateRegex pattern="[a-zA-Z áéíóúÁÉÍÓÚÑñ ]*"/>
-                                     <f:ajax execute="@this" render="nomEmpresaMessage"/>
-                        </input>
-                    </h:panelGrid>
-                    <h:commandButton value="Guardar" action="#{actividadAprendizajeController.addActividadAprendizaje}"/>
-                    <br/>
-                    <h:button value="Volver atras" outcome="/index"/>
-                </h:form>
+              
+             <h1>Lista Actividad de Aprendizaje</h1>
+            <h:form id="actividadFormList">
+                <p>
+                    <p:button value="Volver atras" outcome="/index"/>
+                    <p:button value="Crear Actividad aprendizaje" outcome="crear_actividadAprendizaje"/>
+                </p>
+                <p:outputPanel id="actividadAprendizajeTablePanel">
+                    <p:dataTable value="#{actividadAprendizajeController.listaActividadAprendizaje}" var="actividadAprendizaje"
+                                 rows="10" id="actividadAprendizajeTable" 
+                                 paginator="true"
+                                 paginatorTemplate="{FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                                 rowsPerPageTemplate="5,10,15">
+                        <p:column filterBy="#{actividadAprendizaje.nombreActividadAprendizaje}" >
+                            <f:facet name="header">Nombre Actividad Aprendizaje</f:facet>
+                            <h:outputText value="#{actividadAprendizaje.nombreActividadAprendizaje}"/>
+                        </p:column>
+                        <p:column filterBy="#{actividadAprendizaje.duracionActividadAprendizaje}">
+                            <f:facet name="header">duracion actividad aprendizaje</f:facet>
+                            <h:outputText value="#{actividadAprendizaje.duracionActividadAprendizaje}"/>
+                        </p:column>
+                        <p:column filterBy="#{actividadAprendizaje.observaciones}">
+                            <f:facet name="header">Observaciones</f:facet>
+                            <h:outputText value="#{actividadAprendizaje.observaciones}"/>
+                        </p:column>
+                        <p:column filterBy="#{actividadAprendizaje.idActividad}">
+                            <f:facet name="header">Actividad del proyecto</f:facet>
+                            <h:outputText value="#{actividadAprendizaje.idActividad}"/>
+                        </p:column>
+                        <p:column filterBy="#{actividadAprendizaje.idTecnicaDidactica}">
+                            <f:facet name="header">Tecnica didactica</f:facet>
+                            <h:outputText value="#{actividadAprendizaje.idTecnicaDidactica}"/>
+                        </p:column>
+                        
+                        <p:column filterBy="#{actividadAprendizaje.idTipoActividadAprendizaje}">
+                            <f:facet name="header">Tipo Actividad Aprendizaje</f:facet>
+                            <h:outputText value="#{actividadAprendizaje.idTipoActividadAprendizaje}"/>
+                        </p:column>
+                        
+                    </p:dataTable>
+                </p:outputPanel>
+                
+            </h:form>
         </ui:define>
     </ui:composition>
 </html>

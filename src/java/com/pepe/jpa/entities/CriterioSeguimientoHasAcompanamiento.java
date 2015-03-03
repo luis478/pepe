@@ -23,7 +23,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author ADSI TARDE
+ * @author Junior Cabal
  */
 @Entity
 @Table(name = "criterio_seguimiento_has_acompanamiento")
@@ -46,15 +46,18 @@ public class CriterioSeguimientoHasAcompanamiento implements Serializable {
     @Size(max = 65535)
     @Column(name = "observacion")
     private String observacion;
-    @JoinColumn(name = "id_criterio_seguimiento", referencedColumnName = "id_criterio_seguimiento", insertable = false, updatable = false)
-    @ManyToOne(optional = false)
-    private CriterioSeguimiento criterioSeguimiento;
-    @JoinColumn(name = "id_conclusiones", referencedColumnName = "id_conclusiones")
-    @ManyToOne(optional = false)
-    private Conclusiones idConclusiones;
     @JoinColumn(name = "id_acompanamiento", referencedColumnName = "id_acompanamiento", insertable = false, updatable = false)
     @ManyToOne(optional = false)
     private Acompanamiento acompanamiento;
+    @JoinColumn(name = "id_conclusiones", referencedColumnName = "id_conclusiones")
+    @ManyToOne(optional = false)
+    private Conclusiones idConclusiones;
+    @JoinColumn(name = "id_criterio_seguimiento", referencedColumnName = "id_criterio_seguimiento", insertable = false, updatable = false)
+    @ManyToOne(optional = false)
+    private CriterioSeguimiento criterioSeguimiento;
+    @JoinColumn(name = "id_nombre_criterio", referencedColumnName = "id_nombre_criterio")
+    @ManyToOne(optional = false)
+    private NombreCriterio idNombreCriterio;
 
     public CriterioSeguimientoHasAcompanamiento() {
     }
@@ -96,12 +99,12 @@ public class CriterioSeguimientoHasAcompanamiento implements Serializable {
         this.observacion = observacion;
     }
 
-    public CriterioSeguimiento getCriterioSeguimiento() {
-        return criterioSeguimiento;
+    public Acompanamiento getAcompanamiento() {
+        return acompanamiento;
     }
 
-    public void setCriterioSeguimiento(CriterioSeguimiento criterioSeguimiento) {
-        this.criterioSeguimiento = criterioSeguimiento;
+    public void setAcompanamiento(Acompanamiento acompanamiento) {
+        this.acompanamiento = acompanamiento;
     }
 
     public Conclusiones getIdConclusiones() {
@@ -112,12 +115,20 @@ public class CriterioSeguimientoHasAcompanamiento implements Serializable {
         this.idConclusiones = idConclusiones;
     }
 
-    public Acompanamiento getAcompanamiento() {
-        return acompanamiento;
+    public CriterioSeguimiento getCriterioSeguimiento() {
+        return criterioSeguimiento;
     }
 
-    public void setAcompanamiento(Acompanamiento acompanamiento) {
-        this.acompanamiento = acompanamiento;
+    public void setCriterioSeguimiento(CriterioSeguimiento criterioSeguimiento) {
+        this.criterioSeguimiento = criterioSeguimiento;
+    }
+
+    public NombreCriterio getIdNombreCriterio() {
+        return idNombreCriterio;
+    }
+
+    public void setIdNombreCriterio(NombreCriterio idNombreCriterio) {
+        this.idNombreCriterio = idNombreCriterio;
     }
 
     @Override

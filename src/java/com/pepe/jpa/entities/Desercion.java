@@ -30,7 +30,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author ADSI TARDE
+ * @author Junior Cabal
  */
 @Entity
 @Table(name = "desercion")
@@ -53,14 +53,14 @@ public class Desercion implements Serializable {
     @Column(name = "fecha")
     @Temporal(TemporalType.DATE)
     private Date fecha;
-    @JoinColumn(name = "id_motivo", referencedColumnName = "id_motivo")
-    @ManyToOne(optional = false)
-    private Motivo idMotivo;
+    @OneToMany(mappedBy = "idDesercion")
+    private List<Usuario> usuarioList;
     @JoinColumn(name = "id_estado", referencedColumnName = "id_estado")
     @ManyToOne(optional = false)
     private Estado idEstado;
-    @OneToMany(mappedBy = "idDesercion")
-    private List<Usuario> usuarioList;
+    @JoinColumn(name = "id_motivo", referencedColumnName = "id_motivo")
+    @ManyToOne(optional = false)
+    private Motivo idMotivo;
 
     public Desercion() {
     }
@@ -93,12 +93,13 @@ public class Desercion implements Serializable {
         this.fecha = fecha;
     }
 
-    public Motivo getIdMotivo() {
-        return idMotivo;
+    @XmlTransient
+    public List<Usuario> getUsuarioList() {
+        return usuarioList;
     }
 
-    public void setIdMotivo(Motivo idMotivo) {
-        this.idMotivo = idMotivo;
+    public void setUsuarioList(List<Usuario> usuarioList) {
+        this.usuarioList = usuarioList;
     }
 
     public Estado getIdEstado() {
@@ -109,13 +110,12 @@ public class Desercion implements Serializable {
         this.idEstado = idEstado;
     }
 
-    @XmlTransient
-    public List<Usuario> getUsuarioList() {
-        return usuarioList;
+    public Motivo getIdMotivo() {
+        return idMotivo;
     }
 
-    public void setUsuarioList(List<Usuario> usuarioList) {
-        this.usuarioList = usuarioList;
+    public void setIdMotivo(Motivo idMotivo) {
+        this.idMotivo = idMotivo;
     }
 
     @Override

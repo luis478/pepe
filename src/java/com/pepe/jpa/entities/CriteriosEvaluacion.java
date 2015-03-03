@@ -25,7 +25,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author ADSI TARDE
+ * @author Junior Cabal
  */
 @Entity
 @Table(name = "criterios_evaluacion")
@@ -33,7 +33,6 @@ import javax.xml.bind.annotation.XmlRootElement;
 @NamedQueries({
     @NamedQuery(name = "CriteriosEvaluacion.findAll", query = "SELECT c FROM CriteriosEvaluacion c"),
     @NamedQuery(name = "CriteriosEvaluacion.findByIdCriteriosEvaluacion", query = "SELECT c FROM CriteriosEvaluacion c WHERE c.idCriteriosEvaluacion = :idCriteriosEvaluacion"),
-    @NamedQuery(name = "CriteriosEvaluacion.consultaCE", query = "SELECT c FROM CriteriosEvaluacion c WHERE c.idCompetencia.idCompetencia = :idCompetencia AND c.estado = 1"),
     @NamedQuery(name = "CriteriosEvaluacion.findByEstado", query = "SELECT c FROM CriteriosEvaluacion c WHERE c.estado = :estado")})
 public class CriteriosEvaluacion implements Serializable {
     private static final long serialVersionUID = 1L;
@@ -51,7 +50,7 @@ public class CriteriosEvaluacion implements Serializable {
     @Basic(optional = false)
     @NotNull
     @Column(name = "estado")
-    private short estado;
+    private boolean estado;
     @JoinColumn(name = "id_competencia", referencedColumnName = "id_competencia")
     @ManyToOne(optional = false)
     private Competencia idCompetencia;
@@ -63,7 +62,7 @@ public class CriteriosEvaluacion implements Serializable {
         this.idCriteriosEvaluacion = idCriteriosEvaluacion;
     }
 
-    public CriteriosEvaluacion(Integer idCriteriosEvaluacion, String nombreCriteriosEvaluacion, short estado) {
+    public CriteriosEvaluacion(Integer idCriteriosEvaluacion, String nombreCriteriosEvaluacion, boolean estado) {
         this.idCriteriosEvaluacion = idCriteriosEvaluacion;
         this.nombreCriteriosEvaluacion = nombreCriteriosEvaluacion;
         this.estado = estado;
@@ -85,11 +84,11 @@ public class CriteriosEvaluacion implements Serializable {
         this.nombreCriteriosEvaluacion = nombreCriteriosEvaluacion;
     }
 
-    public short getEstado() {
+    public boolean getEstado() {
         return estado;
     }
 
-    public void setEstado(short estado) {
+    public void setEstado(boolean estado) {
         this.estado = estado;
     }
 

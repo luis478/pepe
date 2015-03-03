@@ -25,7 +25,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author ADSI TARDE
+ * @author Junior Cabal
  */
 @Entity
 @Table(name = "conocimiento_concepto_principios")
@@ -33,7 +33,6 @@ import javax.xml.bind.annotation.XmlRootElement;
 @NamedQueries({
     @NamedQuery(name = "ConocimientoConceptoPrincipios.findAll", query = "SELECT c FROM ConocimientoConceptoPrincipios c"),
     @NamedQuery(name = "ConocimientoConceptoPrincipios.findByIdConocimientoConceptoPrincipios", query = "SELECT c FROM ConocimientoConceptoPrincipios c WHERE c.idConocimientoConceptoPrincipios = :idConocimientoConceptoPrincipios"),
-    @NamedQuery(name = "ConocimientoConceptoPrincipios.consultarCCP", query = "SELECT c FROM ConocimientoConceptoPrincipios c WHERE c.idCompetencia.idCompetencia = :idCompetencia AND c.estado = 1"),
     @NamedQuery(name = "ConocimientoConceptoPrincipios.findByEstado", query = "SELECT c FROM ConocimientoConceptoPrincipios c WHERE c.estado = :estado")})
 public class ConocimientoConceptoPrincipios implements Serializable {
     private static final long serialVersionUID = 1L;
@@ -51,7 +50,7 @@ public class ConocimientoConceptoPrincipios implements Serializable {
     @Basic(optional = false)
     @NotNull
     @Column(name = "estado")
-    private short estado;
+    private boolean estado;
     @JoinColumn(name = "id_competencia", referencedColumnName = "id_competencia")
     @ManyToOne(optional = false)
     private Competencia idCompetencia;
@@ -63,7 +62,7 @@ public class ConocimientoConceptoPrincipios implements Serializable {
         this.idConocimientoConceptoPrincipios = idConocimientoConceptoPrincipios;
     }
 
-    public ConocimientoConceptoPrincipios(Integer idConocimientoConceptoPrincipios, String nombreConocimientoConceptoPrincipiosl, short estado) {
+    public ConocimientoConceptoPrincipios(Integer idConocimientoConceptoPrincipios, String nombreConocimientoConceptoPrincipiosl, boolean estado) {
         this.idConocimientoConceptoPrincipios = idConocimientoConceptoPrincipios;
         this.nombreConocimientoConceptoPrincipiosl = nombreConocimientoConceptoPrincipiosl;
         this.estado = estado;
@@ -85,11 +84,11 @@ public class ConocimientoConceptoPrincipios implements Serializable {
         this.nombreConocimientoConceptoPrincipiosl = nombreConocimientoConceptoPrincipiosl;
     }
 
-    public short getEstado() {
+    public boolean getEstado() {
         return estado;
     }
 
-    public void setEstado(short estado) {
+    public void setEstado(boolean estado) {
         this.estado = estado;
     }
 

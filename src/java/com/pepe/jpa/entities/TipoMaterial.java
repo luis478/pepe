@@ -3,6 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+
 package com.pepe.jpa.entities;
 
 import java.io.Serializable;
@@ -26,7 +27,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author Luis Carlos
+ * @author Junior Cabal
  */
 @Entity
 @Table(name = "tipo_material")

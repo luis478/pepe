@@ -32,7 +32,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author ADSI TARDE
+ * @author Junior Cabal
  */
 @Entity
 @Table(name = "centro_formacion")
@@ -64,16 +64,16 @@ public class CentroFormacion implements Serializable {
         @JoinColumn(name = "id_usuario", referencedColumnName = "id_usuario")})
     @ManyToMany
     private List<Usuario> usuarioList;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idCentroFormacion")
-    private List<Ficha> fichaList;
-    @JoinColumn(name = "id_regional", referencedColumnName = "id_regional")
-    @ManyToOne(optional = false)
-    private Regional idRegional;
     @JoinColumns({
         @JoinColumn(name = "id_ciudad", referencedColumnName = "id_ciudad"),
         @JoinColumn(name = "id_departamento", referencedColumnName = "id_departamento")})
     @ManyToOne(optional = false)
     private Ciudad ciudad;
+    @JoinColumn(name = "id_regional", referencedColumnName = "id_regional")
+    @ManyToOne(optional = false)
+    private Regional idRegional;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idCentroFormacion")
+    private List<Ficha> fichaList;
 
     public CentroFormacion() {
     }
@@ -121,13 +121,12 @@ public class CentroFormacion implements Serializable {
         this.usuarioList = usuarioList;
     }
 
-    @XmlTransient
-    public List<Ficha> getFichaList() {
-        return fichaList;
+    public Ciudad getCiudad() {
+        return ciudad;
     }
 
-    public void setFichaList(List<Ficha> fichaList) {
-        this.fichaList = fichaList;
+    public void setCiudad(Ciudad ciudad) {
+        this.ciudad = ciudad;
     }
 
     public Regional getIdRegional() {
@@ -138,12 +137,13 @@ public class CentroFormacion implements Serializable {
         this.idRegional = idRegional;
     }
 
-    public Ciudad getCiudad() {
-        return ciudad;
+    @XmlTransient
+    public List<Ficha> getFichaList() {
+        return fichaList;
     }
 
-    public void setCiudad(Ciudad ciudad) {
-        this.ciudad = ciudad;
+    public void setFichaList(List<Ficha> fichaList) {
+        this.fichaList = fichaList;
     }
 
     @Override

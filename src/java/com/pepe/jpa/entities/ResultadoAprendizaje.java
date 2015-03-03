@@ -30,7 +30,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author ADSI TARDE
+ * @author Junior Cabal
  */
 @Entity
 @Table(name = "resultado_aprendizaje")
@@ -55,22 +55,17 @@ public class ResultadoAprendizaje implements Serializable {
     @Basic(optional = false)
     @NotNull
     @Column(name = "estado")
-    private short estado;
+    private boolean estado;
     @ManyToMany(mappedBy = "resultadoAprendizajeList")
     private List<ActividadAprendizaje> actividadAprendizajeList;
-    @ManyToMany(mappedBy = "resultadoAprendizajeList")
-    private List<Evento> eventoList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "resultadoAprendizaje")
     private List<ActividadHasResultadoAprendizaje> actividadHasResultadoAprendizajeList;
-    @JoinColumn(name = "id_usuario", referencedColumnName = "id_usuario")
-    @ManyToOne(optional = false)
-    private Usuario idUsuario;
-    @JoinColumn(name = "id_tipo_resultado_aprendizaje", referencedColumnName = "id_tipo_resultado_aprendizaje")
-    @ManyToOne(optional = false)
-    private TipoResultadoAprendizaje idTipoResultadoAprendizaje;
     @JoinColumn(name = "id_competencia", referencedColumnName = "id_competencia")
     @ManyToOne(optional = false)
     private Competencia idCompetencia;
+    @JoinColumn(name = "id_tipo_resultado_aprendizaje", referencedColumnName = "id_tipo_resultado_aprendizaje")
+    @ManyToOne(optional = false)
+    private TipoResultadoAprendizaje idTipoResultadoAprendizaje;
 
     public ResultadoAprendizaje() {
     }
@@ -79,7 +74,7 @@ public class ResultadoAprendizaje implements Serializable {
         this.idResultadoAprendizaje = idResultadoAprendizaje;
     }
 
-    public ResultadoAprendizaje(Integer idResultadoAprendizaje, String nombreResultadoAprendizaje, short estado) {
+    public ResultadoAprendizaje(Integer idResultadoAprendizaje, String nombreResultadoAprendizaje, boolean estado) {
         this.idResultadoAprendizaje = idResultadoAprendizaje;
         this.nombreResultadoAprendizaje = nombreResultadoAprendizaje;
         this.estado = estado;
@@ -101,11 +96,11 @@ public class ResultadoAprendizaje implements Serializable {
         this.nombreResultadoAprendizaje = nombreResultadoAprendizaje;
     }
 
-    public short getEstado() {
+    public boolean getEstado() {
         return estado;
     }
 
-    public void setEstado(short estado) {
+    public void setEstado(boolean estado) {
         this.estado = estado;
     }
 
@@ -119,15 +114,6 @@ public class ResultadoAprendizaje implements Serializable {
     }
 
     @XmlTransient
-    public List<Evento> getEventoList() {
-        return eventoList;
-    }
-
-    public void setEventoList(List<Evento> eventoList) {
-        this.eventoList = eventoList;
-    }
-
-    @XmlTransient
     public List<ActividadHasResultadoAprendizaje> getActividadHasResultadoAprendizajeList() {
         return actividadHasResultadoAprendizajeList;
     }
@@ -136,12 +122,12 @@ public class ResultadoAprendizaje implements Serializable {
         this.actividadHasResultadoAprendizajeList = actividadHasResultadoAprendizajeList;
     }
 
-    public Usuario getIdUsuario() {
-        return idUsuario;
+    public Competencia getIdCompetencia() {
+        return idCompetencia;
     }
 
-    public void setIdUsuario(Usuario idUsuario) {
-        this.idUsuario = idUsuario;
+    public void setIdCompetencia(Competencia idCompetencia) {
+        this.idCompetencia = idCompetencia;
     }
 
     public TipoResultadoAprendizaje getIdTipoResultadoAprendizaje() {
@@ -150,14 +136,6 @@ public class ResultadoAprendizaje implements Serializable {
 
     public void setIdTipoResultadoAprendizaje(TipoResultadoAprendizaje idTipoResultadoAprendizaje) {
         this.idTipoResultadoAprendizaje = idTipoResultadoAprendizaje;
-    }
-
-    public Competencia getIdCompetencia() {
-        return idCompetencia;
-    }
-
-    public void setIdCompetencia(Competencia idCompetencia) {
-        this.idCompetencia = idCompetencia;
     }
 
     @Override
@@ -186,4 +164,3 @@ public class ResultadoAprendizaje implements Serializable {
     }
     
 }
-

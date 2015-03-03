@@ -7,18 +7,22 @@
 package com.pepe.jpa.entities;
 
 import java.io.Serializable;
+import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author ADSI TARDE
+ * @author Junior Cabal
  */
 @Entity
 @Table(name = "actividad_has_resultado_aprendizaje")
@@ -31,15 +35,14 @@ public class ActividadHasResultadoAprendizaje implements Serializable {
     private static final long serialVersionUID = 1L;
     @EmbeddedId
     protected ActividadHasResultadoAprendizajePK actividadHasResultadoAprendizajePK;
-    @JoinColumn(name = "id_resultado_aprendizaje", referencedColumnName = "id_resultado_aprendizaje", insertable = false, updatable = false)
-    @ManyToOne(optional = false)
-    private ResultadoAprendizaje resultadoAprendizaje;
-    @JoinColumn(name = "id_fase", referencedColumnName = "id_fase")
-    @ManyToOne(optional = false)
-    private Fase idFase;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "actividadHasResultadoAprendizaje")
+    private List<Programador> programadorList;
     @JoinColumn(name = "id_actividad", referencedColumnName = "id_actividad", insertable = false, updatable = false)
     @ManyToOne(optional = false)
     private Actividad actividad;
+    @JoinColumn(name = "id_resultado_aprendizaje", referencedColumnName = "id_resultado_aprendizaje", insertable = false, updatable = false)
+    @ManyToOne(optional = false)
+    private ResultadoAprendizaje resultadoAprendizaje;
 
     public ActividadHasResultadoAprendizaje() {
     }
@@ -60,20 +63,13 @@ public class ActividadHasResultadoAprendizaje implements Serializable {
         this.actividadHasResultadoAprendizajePK = actividadHasResultadoAprendizajePK;
     }
 
-    public ResultadoAprendizaje getResultadoAprendizaje() {
-        return resultadoAprendizaje;
+    @XmlTransient
+    public List<Programador> getProgramadorList() {
+        return programadorList;
     }
 
-    public void setResultadoAprendizaje(ResultadoAprendizaje resultadoAprendizaje) {
-        this.resultadoAprendizaje = resultadoAprendizaje;
-    }
-
-    public Fase getIdFase() {
-        return idFase;
-    }
-
-    public void setIdFase(Fase idFase) {
-        this.idFase = idFase;
+    public void setProgramadorList(List<Programador> programadorList) {
+        this.programadorList = programadorList;
     }
 
     public Actividad getActividad() {
@@ -82,6 +78,14 @@ public class ActividadHasResultadoAprendizaje implements Serializable {
 
     public void setActividad(Actividad actividad) {
         this.actividad = actividad;
+    }
+
+    public ResultadoAprendizaje getResultadoAprendizaje() {
+        return resultadoAprendizaje;
+    }
+
+    public void setResultadoAprendizaje(ResultadoAprendizaje resultadoAprendizaje) {
+        this.resultadoAprendizaje = resultadoAprendizaje;
     }
 
     @Override

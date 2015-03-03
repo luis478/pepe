@@ -14,7 +14,7 @@ import javax.validation.constraints.NotNull;
 
 /**
  *
- * @author ADSI TARDE
+ * @author Junior Cabal
  */
 @Embeddable
 public class EvaluacionSeguimientoPK implements Serializable {

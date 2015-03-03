@@ -29,7 +29,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author ADSI TARDE
+ * @author Junior Cabal
  */
 @Entity
 @Table(name = "linea_tecnologica")
@@ -123,7 +123,7 @@ public class LineaTecnologica implements Serializable {
 
     @Override
     public String toString() {
-        return getIdRedTecnologica().getNombreRedTecnologica() + " : " + getNombreLineaTecnologica();
+        return "com.pepe.jpa.entities.LineaTecnologica[ idLineaTecnologica=" + idLineaTecnologica + " ]";
     }
     
 }
