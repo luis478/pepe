@@ -93,6 +93,9 @@
 .form-botonDlg{
     width: 100px;
 }
+.section-centroTemplate{
+    display: inline-block;
+}
 
 .seccion1{
     margin-top: 2em;

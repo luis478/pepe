@@ -23,39 +23,39 @@
         <section class="Header-pepeForm">
             <h:panelGrid columns="8">
                     <label class="Label1" for="nombreProgramaText">Programa de formacion:</label>
-                    <input class="Form-Input1" type="text" jsf:id="nombreProgramaInputText" disabled="true"
+                    <input class="Form-Input1" type="text" disabled="true"
                            jsf:value="#{fichaController.fichaSeleccionada.programa.nombrePrograma}" maxlength="45" >
                     </input>
                     <label class="Label2" for="codigoProgramaText">Código del programa:</label>
-                    <input class="Form-Input2" type="text" jsf:id="codigoProgramaInputText" disabled="true"
+                    <input class="Form-Input2" type="text" disabled="true"
                            jsf:value="#{fichaController.fichaSeleccionada.programa.programaPK.codigo}">
                     </input>
                     <label class="Label3" for="versionProgramaText">Versión del programa:</label>
-                    <input class="Form-Input3" type="text" jsf:id="nombreProgramaInputText" disabled="true"
+                    <input class="Form-Input3" type="text" disabled="true"
                            jsf:value="#{fichaController.fichaSeleccionada.programa.programaPK.version}">
                     </input>
-           </h:panelGrid>
+            </h:panelGrid>
             <h:panelGrid columns="6">
-                <label class="Label4" for="duracionProgramaText">Duración del programa:</label>
-                    <input class="Form-Input4" type="text" jsf:id="duracionProgramaInputText" disabled="true"
+                    <label class="Label4" for="duracionProgramaText">Duración del programa:</label>
+                    <input class="Form-Input4" type="text" disabled="true"
                            jsf:value="#{fichaController.fichaSeleccionada.programa.duracionTrimestres}">
                     </input>
-            <label class="Label6" for="codigoProyectoText">Codigo del proyecto:</label>
-                    <input class="Form-Input6" type="text" jsf:id="codigoProyectoInputText" disabled="true"
-                           jsf:value="#{fichaController.fichaSeleccionada.idProyecto.codigoProyecto}">
-            </input>
-             <label class="Label7" for="numeroFichaText">Numero de ficha:</label>
-                    <input class="Form-Input7" type="text" jsf:id="numeroFichaInputText" disabled="true"
-                           jsf:value="#{fichaController.fichaSeleccionada.codigoFicha}">
-            </input>
-    </h:panelGrid> 
-            <label class="Label5" for="nombreProyectoText">Nombre del proyecto:</label>
-                    <input class="Form-Input5" type="text" jsf:id="nombreProyectoInputText" disabled="true"
-                           jsf:value="#{fichaController.fichaSeleccionada.idProyecto.nombreProyecto}">
-            </input>
+                    <label class="Label6" for="codigoProyectoText">Codigo del proyecto:</label>
+                            <input class="Form-Input6" type="text" disabled="true"
+                                   jsf:value="#{fichaController.fichaSeleccionada.idProyecto.codigoProyecto}">
+                    </input>
+                    <label class="Label7" for="numeroFichaText">Numero de ficha:</label>
+                           <input class="Form-Input7" type="text" disabled="true"
+                                  jsf:value="#{fichaController.fichaSeleccionada.codigoFicha}">
+                   </input>
+            </h:panelGrid> 
+                    <label class="Label5" for="nombreProyectoText">Nombre del proyecto:</label>
+                            <input class="Form-Input5" type="text" disabled="true"
+                                   jsf:value="#{fichaController.fichaSeleccionada.idProyecto.nombreProyecto}">
+                    </input>
             <h:panelGrid columns="3">
-            <label class="Label8" for="liderEjecutorText">Lider ejecutor:</label>
-                    <input class="Form-Input8" type="text" jsf:id="liderEjecutorInputText" disabled="true"
+                    <label class="Label8" for="liderEjecutorText">Lider ejecutor:</label>
+                    <input class="Form-Input8" type="text" disabled="true"
                            jsf:value="#{fichaController.usuarioFicha.usuario}">
                     </input>
             </h:panelGrid>

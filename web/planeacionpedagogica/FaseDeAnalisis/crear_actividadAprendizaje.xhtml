@@ -10,10 +10,10 @@ and open the template in the editor.
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:f="http://xmlns.jcp.org/jsf/core"
       xmlns:jsf="http://xmlns.jcp.org/jsf">
-    <ui:composition template="/html_plantillas/template.xhtml">
+    <ui:composition template="/html_plantillas/plantilla_paginas.xhtml">
         <ui:define name="title">Crear Actividad de aprendizaje</ui:define>        
         <ui:define name="body">
-                <h:form>
+                <h:form id="formulario-actividadAprendizaje">
                     <h1><h:outputText value="Crear Actividad de aprendizaje"/></h1>
                     <h:panelGrid columns="1">
                         
@@ -62,9 +62,13 @@ and open the template in the editor.
                         </h:selectOneMenu>
                          
                     </h:panelGrid>
-                    
-                    <h:commandButton value="Guardar" action="#{actividadAprendizajeController.addActividadAprendizaje}"/>
-                   <br/>
+                    <br>
+                    </br>
+                    <h:commandButton value="Guardar" action="#{actividadAprendizajeController.addActividadAprendizaje}" >
+                        <f:ajax execute="@this formulario-actividadAprendizaje" render="formulario-actividadAprendizaje"></f:ajax>
+                    </h:commandButton>
+                    <br>
+                    </br>
                     <h:button value="Volver atras" outcome="/index"/>
                 </h:form>
         </ui:define>

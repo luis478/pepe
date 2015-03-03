@@ -8,8 +8,7 @@
       xmlns:p="http://primefaces.org/ui"
       xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
 <head jsf:id="head-plantilla">
-    <title>PEPA</title>
-    <title><ui:insert name="title">PEPE</ui:insert></title>
+        <title><ui:insert name="title">PEPE</ui:insert></title>
         <meta charset="UTF-8"/>
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <h:outputStylesheet name="estilo.css" library="css"/>
@@ -22,47 +21,46 @@
  <header class="Header">
     <form clss="Header-Form">
         <section class="Header-pepeForm">
-             <h:panelGrid columns="1">
-                    <label for="nombreProgramaText">Programa de formacion:</label>
-                    <input type="text" jsf:id="nombreProgramaInputText" disabled="true"
-                           jsf:value="#{fichaController.fichaSeleccionada.programa.nombrePrograma}" maxlength="45" class="Form-inputRegistro">
+            <h:panelGrid columns="8">
+                    <label class="Label1" for="nombreProgramaText">Programa de formacion:</label>
+                    <input class="Form-Input1" type="text" disabled="true"
+                           jsf:value="#{fichaController.fichaSeleccionada.programa.nombrePrograma}" maxlength="45" >
                     </input>
-                    <label for="codigoProgramaText">Código de programa:</label>
-                    <input type="text" jsf:id="codigoProgramaInputText" disabled="true"
+                    <label class="Label2" for="codigoProgramaText">Código del programa:</label>
+                    <input class="Form-Input2" type="text" disabled="true"
                            jsf:value="#{fichaController.fichaSeleccionada.programa.programaPK.codigo}">
                     </input>
-                    <label for="versionProgramaText">Version de programa:</label>
-                    <input type="text" jsf:id="nombreProgramaInputText" disabled="true"
+                    <label class="Label3" for="versionProgramaText">Versión del programa:</label>
+                    <input class="Form-Input3" type="text" disabled="true"
                            jsf:value="#{fichaController.fichaSeleccionada.programa.programaPK.version}">
                     </input>
-                    <label for="duracionProgramaText">Duración de programa:</label>
-                    <input type="text" jsf:id="duracionProgramaInputText" disabled="true"
+            </h:panelGrid>
+            <h:panelGrid columns="6">
+                    <label class="Label4" for="duracionProgramaText">Duración del programa:</label>
+                    <input class="Form-Input4" type="text" disabled="true"
                            jsf:value="#{fichaController.fichaSeleccionada.programa.duracionTrimestres}">
+                    </input>
+                    <label class="Label6" for="codigoProyectoText">Codigo del proyecto:</label>
+                            <input class="Form-Input6" type="text" disabled="true"
+                                   jsf:value="#{fichaController.fichaSeleccionada.idProyecto.codigoProyecto}">
+                    </input>
+                    <label class="Label7" for="numeroFichaText">Numero de ficha:</label>
+                           <input class="Form-Input7" type="text" disabled="true"
+                                  jsf:value="#{fichaController.fichaSeleccionada.codigoFicha}">
+                   </input>
+            </h:panelGrid> 
+                    <label class="Label5" for="nombreProyectoText">Nombre del proyecto:</label>
+                            <input class="Form-Input5" type="text" disabled="true"
+                                   jsf:value="#{fichaController.fichaSeleccionada.idProyecto.nombreProyecto}">
+                    </input>
+            <h:panelGrid columns="3">
+                    <label class="Label8" for="liderEjecutorText">Lider ejecutor:</label>
+                    <input class="Form-Input8" type="text" disabled="true"
+                           jsf:value="#{fichaController.usuarioFicha.usuario}">
                     </input>
             </h:panelGrid>
         </section>
-        <section class="Header-pepeForm">
-            <label for="nombreProyectoText">Nombre de proyecto:</label>
-                    <input type="text" jsf:id="nombreProyectoInputText" disabled="true"
-                           jsf:value="#{fichaController.fichaSeleccionada.idProyecto.nombreProyecto}">
-            </input>
-            <label for="codigoProyectoText">Codigo de proyecto:</label>
-                    <input type="text" jsf:id="codigoProyectoInputText" disabled="true"
-                           jsf:value="#{fichaController.fichaSeleccionada.idProyecto.codigoProyecto}">
-            </input>
-             <label for="numeroFichaText">N° de ficha:</label>
-                    <input type="text" jsf:id="numeroFichaInputText" disabled="true"
-                           jsf:value="#{fichaController.fichaSeleccionada.codigoFicha}">
-            </input>
-              
-       </section> 
-       <section class="Header-pepeForm">
-            <label for="liderEjecutorText">Lider ejecutor:</label>
-                    <input type="text" jsf:id="liderEjecutorInputText" disabled="true"
-                           jsf:value="#{fichaController.usuarioFicha.usuario}">
-                    </input>
-        </section>
-       </form>
+    </form>
     </header>
         
     <hr WIDTH='100%' SIZE='8' ALIGN='RIGHT'></hr>
@@ -97,14 +95,11 @@
 
     
     
-    <section>
+    <section class="section-centroTemplate">
         <ui:insert name="body">Default Body</ui:insert> 
     </section>
 
-         <article class="Pepe-button">
-                <button type="submit" class="Button">Cerrar sesión</button>
-                <button type="submit" class="Button1"> Guardar y continuar</button>
-         </article>
+         
 
     <hr WIDTH='100%' SIZE='8' ALIGN='RIGHT'></hr>
     <footer class="Pepe-footer">
