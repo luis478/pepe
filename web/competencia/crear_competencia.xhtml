@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:jsf="http://xmlns.jcp.org/jsf">
+    <head>
+        <title>TODO supply a title</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    </head>
+    <body>
+        <h:form>
+            <h:panelGrid columns="2">
+                <h:outputLabel value="IdCompetencia:" for="idCompetencia" />
+                <h:inputText id="idCompetencia" value="#{competenciaController.competenciaActual.idCompetencia}" title="IdCompetencia" required="true" requiredMessage="The IdCompetencia field is required."/>
+                <h:outputLabel value="NombreCompetencia:" for="nombreCompetencia" />
+                <h:inputTextarea rows="4" cols="30" id="nombreCompetencia" value="#{competenciaController.competenciaActual.nombreCompetencia}" title="NombreCompetencia" required="true" requiredMessage="The NombreCompetencia field is required."/>
+                <h:outputLabel value="Estado:" for="estado" />
+                <h:inputText id="estado" value="#{competenciaController.competenciaActual.estado}" title="Estado" required="true" requiredMessage="The Estado field is required."/>
+                <h:outputLabel value="Codigo:" for="codigo" />
+                <h:inputText id="codigo" value="#{competenciaController.competenciaActual.codigo}" title="Codigo" required="true" requiredMessage="The Codigo field is required."/>
+                <h:outputLabel value="DuracionEstimadaHoras:" for="duracionEstimadaHoras" />
+                <h:inputText id="duracionEstimadaHoras" value="#{competenciaController.competenciaActual.duracionEstimadaHoras}" title="DuracionEstimadaHoras" required="true" requiredMessage="The DuracionEstimadaHoras field is required."/>
+                <h:outputLabel value="Programa:" for="programa" />
+                <h:selectOneMenu id="programa" converter="ProgramaConverter" value="#{competenciaController.competenciaActual.setProgramaList(competenciaActual)}" title="Programa" required="true" requiredMessage="The Programa field is required.">
+
+                    <f:selectItems value="#{competenciaController.listaPrograma}" var="program" itemValue="#{program}"/>
+                </h:selectOneMenu>
+            </h:panelGrid>
+
+            <input type="submit" value="Agregar" jsf:action="#{competenciaController.addCompetencia}"></input>
+            <input type="submit" value="Modificar" jsf:action="#{competenciaController.updateCompetencia}"></input>
+            <input type="submit" value="Eliminar" jsf:action="#{competenciaController.deleteCompetencia()}"></input>
+
+        </h:form>
+
+    </body>
+</html>
