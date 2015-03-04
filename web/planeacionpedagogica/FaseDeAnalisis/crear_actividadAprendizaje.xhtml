@@ -14,19 +14,23 @@ and open the template in the editor.
         <ui:define name="title">Crear Actividad de aprendizaje</ui:define>        
         <ui:define name="body">
                 <h:form id="formulario-actividadAprendizaje">
+<<<<<<< HEAD
                     <h1><h:outputText value="Crear Actividad de aprendizaje"/></h1>
+=======
+                    <h1 class="Titulo"><h:outputText value="Crear Actividad de aprendizaje"/></h1>
+>>>>>>> origin/master
                     <h:panelGrid columns="1">
                         
-                        <h:outputLabel value="Nombre Actividad de Aprendizaje:"  for="nomActividadAprendizaje"/>
-                        <input type="text" jsf:id="nombreActividadAprendizaje" 
+                        <h:outputLabel class="form-1" value="Nombre Actividad de Aprendizaje:"  for="nomActividadAprendizaje"/>
+                        <input class="form-1" type="text" jsf:id="nombreActividadAprendizaje" 
                                jsf:value="#{actividadAprendizajeController.actividadAprendizajeActual.nombreActividadAprendizaje}" 
                                required="true" >  
                             <f:ajax execute="@this" render="nombreActividadAprendizajeMessaje"/>
                         </input>
                         <h:message id="nombreActividadAprendizajeMessaje" for="nombreActividadAprendizaje" styleClass="error"/>
                         
-                        <h:outputLabel value="Horas actividad Aprendizaje:" for="nomDuracion" />
-                        <input jsf:id="nomDuracionText" jsf:value="#{actividadAprendizajeController.actividadAprendizajeActual.duracionActividadAprendizaje}" 
+                        <h:outputLabel class="form-1" value="Horas actividad Aprendizaje:" for="nomDuracion" />
+                        <input class="form-1" jsf:id="nomDuracionText" jsf:value="#{actividadAprendizajeController.actividadAprendizajeActual.duracionActividadAprendizaje}" 
                                      type="text" required="true"
                                      jsf:requiredMessage="Por favor ingrese la duracion de la actividad de aprendizaje en horas"> 
                                      <f:ajax execute="@this" render="nomDuracionMessage"/>
@@ -34,8 +38,8 @@ and open the template in the editor.
                         <h:message id="nomDuracionMessage" for="nomDuracionInputText" styleClass="error"/>
                         
                         
-                        <h:outputLabel value="Observaciones:"  for="nomObservaciones"/>
-                        <input type="text" jsf:id="nomObservacionesInputText" 
+                        <h:outputLabel class="form-1" value="Observaciones:"  for="nomObservaciones"/>
+                        <input class="form-1" type="text" jsf:id="nomObservacionesInputText" 
                                jsf:value="#{actividadAprendizajeController.actividadAprendizajeActual.observaciones}" 
                                required="true" >  
                             <f:ajax execute="@this" render="nombreActividadAprendizajeMessaje"/>
@@ -43,20 +47,20 @@ and open the template in the editor.
                         <h:message id="nomObservacionesMessaje" for="nomObservacionesInputText" styleClass="error"/>
                         
                         
-                        <h:outputLabel value="Actividad:"  for="nomActividad"/>
-                        <h:selectOneMenu id="idActividadSelect" value="#{actividadAprendizajeController.actividadSelect}">
+                        <h:outputLabel class="form-1" value="Actividad:"  for="nomActividad"/>
+                        <h:selectOneMenu class="form-1" id="idActividadSelect" value="#{actividadAprendizajeController.actividadSelect}">
                             <f:selectItem itemLabel="Seleccionar uno.." />
                             <f:selectItems value="#{actividadAprendizajeController.listaActividadSelectOne}" var="actividad" itemValue="#{actividad.idActividad}"/>  
                         </h:selectOneMenu>
                         
-                         <h:outputLabel value="Tecnica Didactica:"  for="nomTecnicaDidactica"/>
-                         <h:selectOneMenu id="idTecnicaDidacticaSelect" value="#{actividadAprendizajeController.tecnicaDidacticaSelect}">
+                         <h:outputLabel class="form-1" value="Tecnica Didactica:"  for="nomTecnicaDidactica"/>
+                         <h:selectOneMenu class="form-1" id="idTecnicaDidacticaSelect" value="#{actividadAprendizajeController.tecnicaDidacticaSelect}">
                             <f:selectItem itemLabel="Seleccionar uno.." />
                             <f:selectItems value="#{actividadAprendizajeController.listaTecnicaDidacticaSelectOne}" var="tecnica" itemValue="#{tecnica.idTecnicaDidactica}"/>  
                         </h:selectOneMenu>
                          
-                         <h:outputLabel value="Tipo actividad aprendizaje:"  for="nomActividadAprendizaje"/>
-                         <h:selectOneMenu id="idActividadAprendizajeSelect" value="#{actividadAprendizajeController.tipoActividadAprendizajeSelect}">
+                         <h:outputLabel class="form-1" value="Tipo actividad aprendizaje:"  for="nomActividadAprendizaje"/>
+                         <h:selectOneMenu class="form-1" id="idActividadAprendizajeSelect" value="#{actividadAprendizajeController.tipoActividadAprendizajeSelect}">
                             <f:selectItem itemLabel="Seleccionar uno.." />
                             <f:selectItems value="#{actividadAprendizajeController.listaTipoActividadAprendizajeSelectOne}" var="tipoActividadAprendizaje" itemValue="#{tipoActividadAprendizaje.idTipoActividadAprendizaje}"/>  
                         </h:selectOneMenu>
@@ -64,12 +68,20 @@ and open the template in the editor.
                     </h:panelGrid>
                     <br>
                     </br>
+<<<<<<< HEAD
                     <h:commandButton value="Guardar" action="#{actividadAprendizajeController.addActividadAprendizaje}" >
+=======
+                    <h:commandButton class="Guardar" value="Guardar" action="#{actividadAprendizajeController.addActividadAprendizaje}" >
+>>>>>>> origin/master
                         <f:ajax execute="@this formulario-actividadAprendizaje" render="formulario-actividadAprendizaje"></f:ajax>
                     </h:commandButton>
                     <br>
                     </br>
+<<<<<<< HEAD
                     <h:button value="Volver atras" outcome="/index"/>
+=======
+                    <h:button  class="Volver" value="Volver atras" outcome="/index"/>
+>>>>>>> origin/master
                 </h:form>
         </ui:define>
     </ui:composition>

@@ -75,7 +75,7 @@ public class CompetenciaController {
 
     public String prepareCreate() {
         competenciaActual = new Competencia();
-        return "/competencia/crear_competencia";
+        return "competencia/crear_competencia.xhtml";
     }
 
     public String prepareEdit() {
@@ -93,7 +93,7 @@ public class CompetenciaController {
     }
     
     public String xd(){
-        return "/admin/competencia/crear_competencia.xhtml";
+        return "competencia/crear_competencia.xhtml";
     }
     
     public String addCompetencia() {

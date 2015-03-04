@@ -16,10 +16,10 @@
             <form jsf:id="ListarTecnica">
 
 
-                <h1><h:outputText value="Listar Tecnica Didactica"/></h1>
+                <h1 class="Titulo"><h:outputText value="Listar Tecnica Didactica"/></h1>
                 <p>
-                    <h:button value="Agregar Tecnica Didactica" outcome="/TecnicaDidactica/crear_Tecnica"></h:button>
-                     <h:button value="Inicio" outcome="/index"/>
+                    <h:button class="Guardar" value="Agregar Tecnica Didactica" outcome="/TecnicaDidactica/crear_Tecnica"></h:button>
+                    <h:button class="Guardar" value="Inicio" outcome="/index"/>
                 </p>
 
                 <p:dataTable value="#{tecnicadidacticaController.listaTecnicaDidacticas}" var="TecnicaDidactica"

@@ -97,7 +97,7 @@ public class TecnicadidacticaController implements Serializable {
         try{
         getTecnicaFacade().create(tecnicaActual);
         recargarlista();
-        return "TecnicaDidactica/lista_Tecnica_Didactica";
+        return "/TecnicaDidactica/lista_Tecnica_Didactica";
         }catch (Exception e){
         addErrorMessage("Error closing resource " + e.getClass().getName(), "Message: " + e.getMessage());
             return null;

@@ -6,33 +6,28 @@
        xmlns:jsf="http://xmlns.jcp.org/jsf"
        xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
        xmlns:p="http://primefaces.org/ui">
-   <!-- <ui:composition template="/html_plantillas/template.xhtml">
-        <ui:define name="title">Lista Guia Aprendizaje</ui:define>
-        <ui:define name="body"> -->
+ <ui:composition template="/html_plantillas/template.xhtml">
+        <ui:define name="title">Lista Actividad</ui:define>
+        <ui:define name="body">
    
-   <h:head>
-       
-   </h:head>
-   <body>
+
        
             <form jsf:id="ListaActividad">
 
 
-                <h1><h:outputText value="Listar Actividad"/></h1>
+                <h1 class="Titulo"><h:outputText value="Listar Actividad"/></h1>
                 <p>
-                    <h:commandButton value="Crear Actividad" action="#{actividadController.prepareCreate}">
+                    <h:commandButton class="Guardar" value="Crear Actividad" action="#{actividadController.prepareCreate}">
                     </h:commandButton>
                 </p>
-                <h:button value="Inicio" outcome="/index"/>
+                <h:button class="Guardar" value="Inicio" outcome="/index"/>
 
-                <p:dataTable value="#{actividadController.listaActividad}" var="Actividad"
+                <p:dataTable  value="#{actividadController.listaActividad}" var="Actividad"
                              paginator="true" rows="10" id="Actividadtable"
                              paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}" 
                              rowsPerPageTemplate="5,10,15">
                     
-                    <p:column filterBy="#{Actividad.idActividad}" headerText="Id Actividad" filterMatchMode="contains">
-                        <h:outputText value="#{Actividad.idActividad}"/>
-                    </p:column>
+                   
 
                     <p:column filterBy="#{Actividad.nombreActividad}" headerText="NombreActividad" filterMatchMode="contains">
                         <h:outputText value="#{Actividad.nombreActividad}"/>
@@ -42,8 +37,12 @@
                         <h:outputText value="#{Actividad.duracion}"/>
                     </p:column>
                     
-                    <p:column filterBy="#{Actividad.idProyecto.nombreProyecto}" headerText="Duracion" filterMatchMode="contains">
+                    <p:column filterBy="#{Actividad.idProyecto.nombreProyecto}" headerText="Proyecto" filterMatchMode="contains">
                         <h:outputText value="#{Actividad.idProyecto.nombreProyecto}"/>
+                    </p:column>
+                    
+                    <p:column filterBy="#{Actividad.idFase.fase}" headerText="fase" filterMatchMode="contains">
+                        <h:outputText value="#{Actividad.idFase.fase}"/>
                     </p:column>
 
                     <p:column> 
@@ -77,10 +76,10 @@
 
             </form>
 
-       <!-- </ui:define>
-    </ui:composition>  -->
+      </ui:define>
+    </ui:composition> 
       
-</body>
+
 
 </html>
 

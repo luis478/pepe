@@ -11,29 +11,29 @@
         <ui:define name="title">Ver Tecnica Didactica</ui:define>        
         <ui:define name="body">
                 <form jsf:id="ver_tecnicaDidactica">
-                    <h1><h:outputText value="Ver tecnica Didactica"/></h1>
+                    <h1 class="Titulo"><h:outputText value="Ver tecnica Didactica"/></h1>
                     <h:panelGrid columns="1">
                         
                         
-                        <label value="idTecnica:" jsf:for="idTecnica" />
-                        <input  disabled="true" type="text" jsf:id="idTecnica" jsf:value="#{tecnicadidacticaController.tecnicaActual.idTecnicaDidactica}" title="idTecnica" required="true" jsf:requiredMessage="El id de la tecnica es necesario">
+                        <label class="form-1" value="idTecnica:" jsf:for="idTecnica" />
+                        <input class="form-1"  disabled="true" type="text" jsf:id="idTecnica" jsf:value="#{tecnicadidacticaController.tecnicaActual.idTecnicaDidactica}" title="idTecnica" required="true" jsf:requiredMessage="El id de la tecnica es necesario">
                         </input >
-                        <label value="nomTecnica:" jsf:for="nomTecnica" />
-                        <input disabled="true" type="text" jsf:id="nomTecnica" jsf:value="#{tecnicadidacticaController.tecnicaActual.tecnicaDidactica}" title="nomTecnica" required="true" jsf:requiredMessage="el nombre de la tecnica field is required.">
+                        <label class="form-1" value="nomTecnica:" jsf:for="nomTecnica" />
+                        <input class="form-1" disabled="true" type="text" jsf:id="nomTecnica" jsf:value="#{tecnicadidacticaController.tecnicaActual.tecnicaDidactica}" title="nomTecnica" required="true" jsf:requiredMessage="el nombre de la tecnica field is required.">
                         </input >
 
 
                         
                     </h:panelGrid>
-                    <h:button value="Editar" outcome="/TecnicaDidactica/editar_TecnicaDidactica"/>
+                    <h:button class="Guardar" value="Editar" outcome="/TecnicaDidactica/editar_TecnicaDidactica"/>
                     
-                    <h:commandButton value="eliminar" action="#{tecnicadidacticaController.deletetecnica()}"
+                    <h:commandButton class="Guardar" value="eliminar" action="#{tecnicadidacticaController.deletetecnica()}"
                                  onclick="return confirm ('¿ Esta seguro que desea eliminar la tecnica didactica ?')"/>
                                     
-                    <input type="submit" jsf:action="#{tecnicadidacticaController.prepareCreate()}" value="Crear tecnica didactica" ></input>
+                    <input class="Guardar" type="submit" jsf:action="#{tecnicadidacticaController.prepareCreate()}" value="Crear tecnica didactica" ></input>
                 
         <br/>
-        <h:commandLink action="#{tecnicadidacticaController.prepareList()}" value="Ir a la lista de tecnica didactica" immediate="true"/>
+        <h:commandButton class="Guardar" action="#{tecnicadidacticaController.prepareList()}" value="Ir a la lista de tecnica didactica" immediate="true"/>
               
                 </form> 
         </ui:define>

@@ -27,8 +27,7 @@ import javax.inject.Named;
 @Named(value = "proyectoController")
 @SessionScoped
 public class ProyectoController implements Serializable {
-    
-      @EJB
+
     private ProyectoFacade proyectoFacade;
     private Proyecto proyectoActual;
     private List<Proyecto> listaProyecto = null;
