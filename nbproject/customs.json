@@ -1,0 +1,9 @@
+{
+    "attributes": {},
+    "elements": {
+        "ui:composition": {},
+        "ui:define": {},
+        "h:form": {},
+        "h:panelgrid": {}
+    }
+}

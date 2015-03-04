@@ -8,6 +8,8 @@ package com.pepe.controller;
 
 import com.pepe.jpa.entities.Actividad;
 import com.pepe.jpa.entities.ActividadAprendizaje;
+import com.pepe.jpa.entities.Fase;
+import com.pepe.jpa.entities.Proyecto;
 import com.pepe.jpa.entities.TecnicaDidactica;
 import com.pepe.jpa.entities.TipoActividadAprendizaje;
 import com.pepe.jpa.sesions.ActividadAprendizajeFacade;
@@ -65,16 +67,18 @@ public class ActividadAprendizajeController implements Serializable {
 
   
     public List<ActividadAprendizaje> getListaActividadAprendizaje() {
-        if (listaActividadAprendizaje == null) {
-            try {
-                listaActividadAprendizaje = getActividadAprendizajeFacade().findAll();
-            } catch (Exception e) {
-                addErrorMessage("Error closing resource " + e.getClass().getName(), "Message: " + e.getMessage());
-            }
-        }
-        return listaActividadAprendizaje;
+//        if (listaActividadAprendizaje == null) {
+//            try {
+           return listaActividadAprendizaje = getActividadAprendizajeFacade().consultaPlaneacion(new Fase(1), new Proyecto(2223));
+//            } catch (Exception e) {
+//                addErrorMessage("Error closing resource " + e.getClass().getName(), "Message: " + e.getMessage());
+//            }
+//        }
+//        return listaActividadAprendizaje;
     }
-
+    
+    
+    
     private void recargarLista() {
         listaActividadAprendizaje = null;
     }

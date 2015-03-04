@@ -15,11 +15,19 @@ and open the template in the editor.
         <ui:define name="title">Lista Actividad de aprendizaje</ui:define>        
         <ui:define name="body">
               
+<<<<<<< HEAD
              <h1>Lista Actividad de Aprendizaje</h1>
             <h:form id="actividadFormList">
                 <p>
                     <p:button value="Volver atras" outcome="/index"/>
                     <p:button value="Crear Actividad aprendizaje" outcome="crear_actividadAprendizaje"/>
+=======
+            <h1 class="Titulo">Lista Actividad de Aprendizaje</h1>
+            <h:form id="actividadFormList">
+                <p>
+                    <p:button  value="Volver atras" outcome="/index"/>
+                    <p:button  value="Crear Actividad aprendizaje" outcome="crear_actividadAprendizaje"/>
+>>>>>>> origin/master
                 </p>
                 <p:outputPanel id="actividadAprendizajeTablePanel">
                     <p:dataTable value="#{actividadAprendizajeController.listaActividadAprendizaje}" var="actividadAprendizaje"

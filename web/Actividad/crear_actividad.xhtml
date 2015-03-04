@@ -11,21 +11,21 @@
         <ui:define name="title">Crear Actividad</ui:define>        
         <ui:define name="body">
                 <form jsf:id="CreateActividad">
-                    <h1><h:outputText value="Crear Actividad"/></h1>
+                    <h1 class="Titulo"><h:outputText value="Crear Actividad"/></h1>
                     <h:panelGrid columns="1">
                         
                         
-                        <h:outputLabel value="Nombre de la actividad:" for="nomActividad" />
-                        <textarea jsf:id="nomActividad" jsf:value="#{actividadController.actividadActual.nombreActividad}" 
+                        <h:outputLabel class="form-1" value="Nombre de la actividad:" for="nomActividad" />
+                        <textarea class="form-1" jsf:id="nomActividad" jsf:value="#{actividadController.actividadActual.nombreActividad}" 
                                      type="text" required="true"
                                      jsf:requiredMessage="Por favor ingrese el nombre del tipo de actividad"
                                      jsf:validatorMessage="Use solo letras"> 
                         </textarea>
                         <h:message id="nomActividadMessage" for="nomActividad" styleClass="error"/>
                         
-                         <h:outputLabel value="Duracion Actividad:" for="duraActividad" />
-                         <input jsf:id="duraActividad" jsf:value="#{actividadController.actividadActual.duracion}" 
-                                     type="number" required="true"
+                         <h:outputLabel class="form-1" value="Duracion Actividad:" for="duraActividad" />
+                         <input class="form-1" jsf:id="duraActividad" jsf:value="#{actividadController.actividadActual.duracion}" 
+                                     type="text" required="true"
                                      jsf:requiredMessage="Por favor ingrese la duracion de la actividad"
                                      jsf:validatorMessage="Use solo numeros"> 
                              <f:validateLongRange maximum="800" minimum="0"/>
@@ -34,15 +34,22 @@
                         <h:message id="duracionMessage" for="duraActividad" styleClass="error"/>
                         
                         
-                      <h:outputLabel value="proyecto:"  for="nomProyecto"/>
-                      <h:selectOneMenu id="nomProyecto" value="#{actividadController.actividadActual.idProyecto}">
+                      <h:outputLabel class="form-1" value="proyecto:"  for="nomProyecto"/>
+                      <h:selectOneMenu class="form-1" id="nomProyecto" value="#{actividadController.actividadActual.idProyecto}">
                             <f:selectItem itemLabel="Seleccionar uno.." />
                             <f:selectItems value="#{actividadController.listaProyectoSelectOne}" var="proyecto" itemValue="#{proyecto}"/>  
                         </h:selectOneMenu>
+                      
+                      
+                      <h:outputLabel class="form-1" value="fase:"  for="nomfase"/>
+                      <h:selectOneMenu class="form-1" id="nomfase" value="#{actividadController.actividadActual.idFase}">
+                            <f:selectItem itemLabel="Seleccionar uno.." />
+                            <f:selectItems value="#{actividadController.listaFaseSelectOne}" var="fase" itemValue="#{fase}"/>  
+                        </h:selectOneMenu>
                         
 
-                         <input type="submit" jsf:action="#{actividadController.addActividad}" value="Guardar Actividad">
-                             <h:button value="Ir al lista Actividad" outcome="/Actividad/lista_Actividad"></h:button>
+                         <input class="Guardar" type="submit" jsf:action="#{actividadController.addActividad}" value="Guardar Actividad">
+                             <h:button class="Volver" value="Ir al lista Actividad" outcome="/Actividad/lista_Actividad"></h:button>
                         </input>
                     </h:panelGrid>
                 </form> 
