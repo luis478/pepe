@@ -192,8 +192,8 @@ and open the template in the editor.
                             <f:selectItems value="#{usuarioController.listaEspecialidadSelectOne}" var="especialidad" itemValue="#{especialidad}"/>  
                         </h:selectOneMenu>
                         
-                        <h:outputLabel value="Tipo Contrato:"  for="idContratoSelect"/>
-                        <h:selectOneMenu id="idContratoSelect" value="#{usuarioController.usuarioActual.idTipoContrato}">
+                        <h:outputLabel  class="form-1" value="Tipo Contrato:"  for="idContratoSelect"/>
+                        <h:selectOneMenu class="form-1" id="idContratoSelect" value="#{usuarioController.usuarioActual.idTipoContrato}">
                             <f:selectItem itemLabel="Seleccionar uno.." />
                             <f:selectItems value="#{usuarioController.listaTipoContratoSelectOne}" var="contrato" itemValue="#{contrato}"/>  
                         </h:selectOneMenu>

@@ -11,59 +11,61 @@
         <ui:define name="title">Crear Ficha</ui:define>        
         <ui:define name="body">
                 <form jsf:id="CreateFicha">
-                    <h1><h:outputText value="Crear Ficha"/></h1>
+                    <h1  class="Titulo"><h:outputText value="Crear Ficha"/></h1>
                     <h:panelGrid columns="1">
-                        <Label  for="CentroFormacion">Centro Formacion:</Label>
-                        <h:selectOneMenu id="idCentroFormacionSelect" value="#{fichaController.idCentro}">
+                       
+                        <h:outputLabel class="form-1" value="Centro formacion:"  for="Centro Formacion"/>
+                        <h:selectOneMenu  class="form-1" id="idCentroFormacionSelect" value="#{fichaController.idCentro}">
                             <f:selectItem itemLabel="Seleccionar uno.." />
                             <f:selectItems value="#{fichaController.listaCentroFormacionSelectOne}" var="centroFormacion" itemValue="#{centroFormacion.idCentroFormacion}"/>  
                         </h:selectOneMenu>
                         
                         
-                        <label for="TipoOfertaInputText">Tipo Oferta:</label>
-                        <h:selectOneMenu id="idTipoOfertaSelect" value="#{fichaController.idOferta}">
+                       <h:outputLabel class="form-1" value="Tipo Oferta:"  for="Tipo Oferta"/>
+                        <h:selectOneMenu class="form-1" id="idTipoOfertaSelect" value="#{fichaController.idOferta}">
                             <f:selectItem itemLabel="Seleccionar uno.." />
                             <f:selectItems value="#{fichaController.listaTipoOfertaSelectOne}" var="tipoOferta" itemValue="#{tipoOferta.idTipoOferta}"/>  
                         </h:selectOneMenu>
                         
-                        <label for="JornadaInputText">Jornada:</label>
-                        <h:selectOneMenu id="idJornadaSelect" value="#{fichaController.jornada}">
+                        <h:outputLabel class="form-1" value="Jornada:"  for="Jornada"/>
+                        <h:selectOneMenu  class="form-1" id="idJornadaSelect" value="#{fichaController.jornada}">
                             <f:selectItem itemLabel="Seleccionar uno.." />
                             <f:selectItems value="#{fichaController.listaJornadaSelectOne}" var="Jornada" itemValue="#{Jornada.idJornada}"/>  
                         </h:selectOneMenu>
                         
-                        <label for="CodigoFichaInputText">Codigo Ficha:</label>
-                        <input type="text" jsf:value="#{fichaController.fichaActual.codigoFicha}" jsf:id="codigoFicha"></input>
+                        <h:outputLabel class="form-1" value="Codigo Ficha:"  for="Codigo Ficha"/>
+                        <input class="form-1" type="text" jsf:value="#{fichaController.fichaActual.codigoFicha}" jsf:id="codigoFicha"></input>
                         
-                        <label for="FechaInicioInputText">Fecha Inicio:</label>
-                        <input type="date" jsf:id="FechaInicio"
+                        <h:outputLabel class="form-1" value="Fecha Inicio:"  for="Fecha Inicio"/>
+                        <input class="form-1" type="date" jsf:id="FechaInicio"
                             jsf:value="#{fichaController.fichaActual.fechaInicio}">
                         <f:convertDateTime pattern="yyyy-MM-dd"></f:convertDateTime></input>
                         
-                        <label for="TrimestreLectivaText">Numero de Trimestres:</label>
-                        <input type="text" jsf:value="#{fichaController.fichaActual.trimestresLectiva}" jsf:id="trimestre"></input>
+                        <h:outputLabel class="form-1" value="Numero Trimestre:"  for="Numero Trimestre"/>
+                        <input class="form-1" type="text" jsf:value="#{fichaController.fichaActual.trimestresLectiva}" jsf:id="trimestre"></input>
                         
-                        <label for="ProgrmaText">Programa:</label>
-                        <p:autoComplete id="Programa" value="#{fichaController.fichaActual.programa}"
+                        <h:outputLabel class="form-1" value="Programa:"  for="Programa"/>
+                        <p:autoComplete  id="Programa" value="#{fichaController.fichaActual.programa}"
                                         completeMethod="#{fichaController.getListaProgramaAutocomplete}"
                                         var="Programa" itemLabel="#{Programa}" itemValue="#{Programa}"
                                         converter="ProgramaConverter" pt:required="true"
-                                        forceSelection="true" maxResults="10"/>
+                                        forceSelection="true" maxResults="10" />
                         
-                        <label for="TipoFormacionText">Tipo Formacion:</label>
-                        <h:selectOneMenu id="idTipoFormacionSelect" value="#{fichaController.idTipoFormacion}">
+                        <h:outputLabel class="form-1" value="Tipo Formacion:"  for="Tipo Formacion"/>
+                        <h:selectOneMenu class="form-1" id="idTipoFormacionSelect" value="#{fichaController.idTipoFormacion}">
                             <f:selectItem itemLabel="Seleccionar uno.." />
                             <f:selectItems value="#{fichaController.listaTipoFormacionSelectOne}" var="tipoFormacion" itemValue="#{tipoFormacion.idTipoFormacion}"/>  
                         </h:selectOneMenu>
                         
-                        <label for="ProyectoText">Proyecto:</label>
-                        <h:selectOneMenu id="idProyectoSelect" value="#{fichaController.idProyecto}">
+                        <h:outputLabel class="form-1" value="Proyecto:"  for="Proyecto"/>
+                        <h:selectOneMenu class="form-1" id="idProyectoSelect" value="#{fichaController.idProyecto}">
                             <f:selectItem itemLabel="Seleccionar uno.." />
                             <f:selectItems value="#{fichaController.listaProyectoSelectOne}" var="proyecto" itemValue="#{proyecto.idProyecto}"/>  
                         </h:selectOneMenu>
                         
-                        <input type="submit" jsf:action="#{fichaController.addFicha}" value="Guardar Ficha">
+                        <input type="submit" jsf:action="#{fichaController.addFicha}" value="Guardar Ficha" class="Guardar">
                         </input>
+                        <h:button class="Volver" value="Volver atras" outcome="/index"/>
                     </h:panelGrid>
                 </form> 
         </ui:define>

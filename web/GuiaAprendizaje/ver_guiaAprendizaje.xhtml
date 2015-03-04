@@ -11,39 +11,39 @@
         <ui:define name="title">Ver Guia Aprendizaje</ui:define>        
         <ui:define name="body">
             <form jsf:id="ver_guiaAprendizaje">
-                <h1><h:outputText value="Ver guia Aprendizaje"/></h1>
+                <h1 class="Titulo"><h:outputText value="Ver guia Aprendizaje"/></h1>
                 <h:panelGrid columns="1">
 
 
-                    <label value="Proyecto:" jsf:for="Proyecto" />
-                    <input  disabled="true" type="text" jsf:id="Proyecto" jsf:value="#{guiaAprendizajeController.guiaAprendizajeActual.idProyecto}" title="Proyecto" required="true" jsf:requiredMessage="El Proyecto es necesario">
+                    <label class="form-1" value="Proyecto:" jsf:for="Proyecto" />
+                    <input class="form-1"  disabled="true" type="text" jsf:id="Proyecto" jsf:value="#{guiaAprendizajeController.guiaAprendizajeActual.idProyecto}" title="Proyecto" required="true" jsf:requiredMessage="El Proyecto es necesario">
                     </input >
-                    <label value="Introduccion:" jsf:for="Introduccion" />
-                    <Textarea  disabled="true" type="text" jsf:id="Introduccion" jsf:value="#{guiaAprendizajeController.guiaAprendizajeActual.introduccion}" title="Introduccion" required="true" jsf:requiredMessage="La Introduccion field is required.">
-                        </Textarea>
-                        <label value="Glosario:" jsf:for="Glosario" />
-                        <textarea  disabled="true" type="text" jsf:id="Glosario" jsf:value="#{guiaAprendizajeController.guiaAprendizajeActual.glosarioTerminos}" title="Glosario" jsf:requiredMessage="El Glosario field is required.">
+                    <label class="form-1"  value="Introduccion:" jsf:for="Introduccion" />
+                    <textarea class="form-1"  disabled="true" type="text" jsf:id="Introduccion" jsf:value="#{guiaAprendizajeController.guiaAprendizajeActual.introduccion}" title="Introduccion" required="true" jsf:requiredMessage="La Introduccion field is required.">
+                        </textarea>
+                        <label class="form-1"  value="Glosario:" jsf:for="Glosario" />
+                        <textarea class="form-1"  disabled="true" type="text" jsf:id="Glosario" jsf:value="#{guiaAprendizajeController.guiaAprendizajeActual.glosarioTerminos}" title="Glosario" jsf:requiredMessage="El Glosario field is required.">
                         </textarea>
                         
-                        <label value="referentesBibliograficos:" jsf:for="referentesBibliograficos" />
-                        <textarea  disabled="true" type="text" jsf:id="referentesBibliograficos" jsf:value="#{guiaAprendizajeController.guiaAprendizajeActual.referentesBibliograficos}" title="referentesBibliograficos" jsf:requiredMessage="La referentesBibliograficos field is required.">
+                        <label class="form-1"  value="referentesBibliograficos:" jsf:for="referentesBibliograficos" />
+                        <textarea class="form-1"  disabled="true" type="text" jsf:id="referentesBibliograficos" jsf:value="#{guiaAprendizajeController.guiaAprendizajeActual.referentesBibliograficos}" title="referentesBibliograficos" jsf:requiredMessage="La referentesBibliograficos field is required.">
                         </textarea>
                         
-                        <label value="ControlDocumentos:" jsf:for="ControlDocumentos" />
-                        <textarea  disabled="true" type="text" jsf:id="ControlDocumentos" jsf:value="#{guiaAprendizajeController.guiaAprendizajeActual.controlDocumento}" title="ControlDocumentos" jsf:requiredMessage="El ControlDocumentos field is required.">
+                        <label class="form-1"  value="ControlDocumentos:" jsf:for="ControlDocumentos" />
+                        <textarea class="form-1"  disabled="true" type="text" jsf:id="ControlDocumentos" jsf:value="#{guiaAprendizajeController.guiaAprendizajeActual.controlDocumento}" title="ControlDocumentos" jsf:requiredMessage="El ControlDocumentos field is required.">
                         </textarea>
 
                         
                     </h:panelGrid>
-                    <h:button value="Editar" outcome="/GuiaAprendizaje/editar_guiaAprendizaje"/>
+                <h:button class="Guardar" value="Editar" outcome="/GuiaAprendizaje/editar_guiaAprendizaje"/>
                     
-                    <h:commandButton value="eliminar" action="#{guiaAprendizajeController.deleteGuiaAprendizaje}"
+                <h:commandButton class="Guardar" value="eliminar" action="#{guiaAprendizajeController.deleteGuiaAprendizaje}"
                                  onclick="return confirm('¿ Esta seguro que desea eliminar la guia de aprendizaje ?')"/>
                                     
-                    <input type="submit" jsf:action="#{guiaAprendizajeController.prepareCreate}" value="Crear Guia aprendizaje" ></input>
+                <input class="Guardar" type="submit" jsf:action="#{guiaAprendizajeController.prepareCreate}" value="Crear Guia aprendizaje" ></input>
                 
         <br/>
-        <h:commandLink action="#{guiaAprendizajeController.prepareList()}" value="Ir a la lista de Guia Aprendizaje" immediate="true"/>
+        <h:commandButton class="Guardar" action="#{guiaAprendizajeController.prepareList()}" value="Ir a la lista de Guia Aprendizaje" immediate="true"/>
               
                 </form> 
 </ui:define>

@@ -6,8 +6,10 @@
 package com.pepe.controller;
 
 import com.pepe.jpa.entities.Actividad;
+import com.pepe.jpa.entities.Fase;
 import com.pepe.jpa.entities.Proyecto;
 import com.pepe.jpa.sesions.ActividadFacade;
+import com.pepe.jpa.sesions.FaseFacade;
 import com.pepe.jpa.sesions.ProyectoFacade;
 import java.io.Serializable;
 import java.util.List;
@@ -39,6 +41,8 @@ public class ActividadController implements Serializable {
     private ProyectoFacade proyectoFacade;
     @EJB
     private ActividadFacade actividadFacade;
+    @EJB
+    private FaseFacade faseFacade;
 
     public ActividadController() {
     }
@@ -86,9 +90,21 @@ public class ActividadController implements Serializable {
         this.proyectoFacade = proyectoFacade;
     }
 
+    public FaseFacade getFaseFacade() {
+        return faseFacade;
+    }
+
+    public void setFaseFacade(FaseFacade faseFacade) {
+        this.faseFacade = faseFacade;
+    }
+
     
     public  List<Proyecto> getListaProyectoSelectOne() {
         return getProyectoFacade().findAll();
+    }
+    
+    public  List<Fase> getListaFaseSelectOne() {
+        return getFaseFacade().findAll();
     }
     
     private void recargarlista() {
