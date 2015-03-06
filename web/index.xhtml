@@ -30,11 +30,9 @@
             Proyectos Academicos
             </p>
         <h:panelGroup>
-<<<<<<< HEAD
-                <form jsf:id="LoginForm" class='Pepe-form11'>
-=======
+
                 <form jsf:id="LoginForm" class='Pepe-form1'>
->>>>>>> origin/master
+
                    <h:panelGroup id="messagePanel" layout="block">
                        <p:messages/>
                    </h:panelGroup>
@@ -42,15 +40,13 @@
                     <input jsf:id="user" type="text" class='Pepe-formInput9' placeholder="Usuario" jsf:value="#{loginController.username}" required="true"/>
                     <input jsf:id="password" type="password" class='Pepe-formInput9' placeholder="Contraseña" jsf:value="#{loginController.password}" required="true"/>
                     <br/>
-<<<<<<< HEAD
-                    <input type="submit" value="Ingresar" jsf:action="#{loginController.login}">
-=======
-                    <input class="Guardar" type="submit" value="Ingresar" jsf:action="#{loginController.login}">
->>>>>>> origin/master
-                            <f:ajax execute="@this @form" render="@all"/>
-                    </input>
-                    <a class="Pepe-inicioLabel1" href="#"><font  size="+1">¿Olvidaste tu contraseña?</font></a>     
+
+                        <input class="Guardar" type="submit" value="Ingresar" jsf:action="#{loginController.login}"/>
+
+               
+                        <a class="Pepe-inicioLabel1" href="#"><font  size="+1">¿Olvidaste tu contraseña?</font></a>     
                 </form>
+                    
           </h:panelGroup>
         </section> 
             <section class='Pepe-figureContainer'>
@@ -137,7 +133,7 @@
             </form>
 
             <h:form> 
-<<<<<<< HEAD
+
                 <h:commandButton value="Menu Planeacion pedagogica" type="button" onclick="PF('botonPlaneacionPedagogicaDlg').show();"/>
                 <br></br>
                 <h:commandButton value="Menu crear usuario" type="button" onclick="PF('botonCrearUsuarioDlg').show();"/>
@@ -147,8 +143,8 @@
             </h:form> 
             <h:form>
                 <input type="submit"
-                       class="Boton"
-=======
+                       class="Boton"/>
+
                 <h:commandButton class="Guardar" value="Menu Planeacion pedagogica" type="button" onclick="PF('botonPlaneacionPedagogicaDlg').show();"/>
                 <br></br>
                 <h:commandButton class="Guardar" value="Menu crear usuario" type="button" onclick="PF('botonCrearUsuarioDlg').show();"/>
@@ -159,23 +155,23 @@
             <h:form>
                 <input class="Guardar" type="submit"
                        
->>>>>>> origin/master
+
                        jsf:value="programa"
                        jsf:action="programa/programaInicio.xhtml"
                        jsf:actionListener="#{programaController.anular()}">
                 </input>
-<<<<<<< HEAD
+
                 <input type="submit"
                        class="Boton"
                        jsf:value="Proyecto"
                        jsf:action="proyecto/proyectoCrear.xhtml">
                 </input>
                 <input type="submit"
-                       class="Boton"
-=======
+                       class="Boton"/>
+
                 <input class="Guardar" type="submit"
                        
->>>>>>> origin/master
+
                        jsf:value="Competencia"
                        jsf:action="competencia/crear_competencia.xhtml">
                 </input>
