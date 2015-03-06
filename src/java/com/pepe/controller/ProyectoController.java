@@ -15,7 +15,7 @@ import java.util.logging.Logger;
 import javax.ejb.EJB;
 import javax.enterprise.context.SessionScoped;
 import javax.faces.application.FacesMessage;
-import javax.faces.bean.ManagedBean;
+import javax.inject.Named;
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
@@ -26,8 +26,8 @@ import javax.faces.convert.FacesConverter;
  * @author Adsit
  */
 
-@ManagedBean
 @SessionScoped
+@Named
 public class ProyectoController implements Serializable{
 
     @EJB
@@ -39,8 +39,7 @@ public class ProyectoController implements Serializable{
     public ProyectoController() {
     }
     
-    
-    
+      
     public ProyectoFacade getProyectoFacade() {
         return proyectoFacade;
     }
@@ -153,12 +152,9 @@ public class ProyectoController implements Serializable{
         FacesContext.getCurrentInstance().addMessage("successInfo", facesMsg);
     }
     
-    public Proyecto getCompetencia(java.lang.Integer id) {
-        return getProyectoFacade().find(id);
-    }}
     
        @FacesConverter(forClass = Proyecto.class)
-    public static class ProyectoControllerConverter implements Converter {
+    public class ProyectoControllerConverter implements Converter {
 
         @Override
         public Object getAsObject(FacesContext facesContext, UIComponent component, String value) {
@@ -197,5 +193,6 @@ public class ProyectoController implements Serializable{
         }
 
     }
+}
 
 

@@ -6,12 +6,12 @@ and open the template in the editor.
 -->
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html">
-               
+    <body>       
     <h:form>
                 <h:panelGrid columns="2">
-                    <h:outputLabel value="#{bundle.CreateProyectoLabel_idProyecto}" for="idProyecto" />
+                    <h:outputLabel value="ID Proyecto" for="idProyecto" />
                     <h:inputText id="idProyecto" value="#{proyectoController.proyectoActual.idProyecto}" title="#{bundle.CreateProyectoTitle_idProyecto}" required="true" requiredMessage="#{bundle.CreateProyectoRequiredMessage_idProyecto}"/>
-                    <h:outputLabel value="#{bundle.CreateProyectoLabel_nombreProyecto}" for="nombreProyecto" />
+                    <h:outputLabel value="Nombre Proyecto" for="nombreProyecto" />
                     <h:inputTextarea rows="4" cols="30" id="nombreProyecto" value="#{proyectoController.proyectoActual.nombreProyecto}" title="#{bundle.CreateProyectoTitle_nombreProyecto}" required="true" requiredMessage="#{bundle.CreateProyectoRequiredMessage_nombreProyecto}"/>
                     <h:outputLabel value="#{bundle.CreateProyectoLabel_codigoProyecto}" for="codigoProyecto" />
                     <h:inputText id="codigoProyecto" value="#{proyectoController.proyectoActual.codigoProyecto}" title="#{bundle.CreateProyectoTitle_codigoProyecto}" required="true" requiredMessage="#{bundle.CreateProyectoRequiredMessage_codigoProyecto}"/>
