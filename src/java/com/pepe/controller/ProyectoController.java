@@ -14,25 +14,32 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.ejb.EJB;
 import javax.enterprise.context.SessionScoped;
+import javax.faces.application.FacesMessage;
+import javax.inject.Named;
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
 import javax.faces.convert.FacesConverter;
-import javax.inject.Named;
 
 /**
  *
  * @author Adsit
  */
-@Named(value = "proyectoController")
+
 @SessionScoped
-public class ProyectoController implements Serializable {
-    
-      @EJB
+@Named
+public class ProyectoController implements Serializable{
+
+    @EJB
     private ProyectoFacade proyectoFacade;
     private Proyecto proyectoActual;
     private List<Proyecto> listaProyecto = null;
 
+    
+    public ProyectoController() {
+    }
+    
+      
     public ProyectoFacade getProyectoFacade() {
         return proyectoFacade;
     }
@@ -53,8 +60,17 @@ public class ProyectoController implements Serializable {
     }
 
     public List<Proyecto> getListaProyecto() {
+        if (listaProyecto == null) {
+            try {
+                listaProyecto = getProyectoFacade().findAll();
+            } catch (Exception e) {
+                addErrorMessage("Error closing resource " + e.getClass().getName(), "Message: " + e.getMessage());
+            }
+        }
         return listaProyecto;
     }
+    
+  
 
     public void setListaProyecto(List<Proyecto> listaProyecto) {
         this.listaProyecto = listaProyecto;
@@ -64,12 +80,81 @@ public class ProyectoController implements Serializable {
         return getProyectoFacade().find(id);
     }
     
+    private void recargarLista() {
+        listaProyecto = null;
+    }
+
+    public String prepareCreate() {
+        proyectoActual = new Proyecto();
+        return "proyecto/proyectoCrear.xhtml";
+    }
+
+    public String prepareEdit() {
+        return "";
+    }
+
+    public String prepareView() {
+        return "";
+    }
+
+    public String prepareList() {
+        recargarLista();
+        return "";
     
-    public ProyectoController() {
     }
     
+    public String xd(){
+        return "proyecto/proyectoCrear.xhtml";
+    }
+    
+    public String addProyecto() {
+        try {
+
+            getProyectoFacade().create(proyectoActual);
+            recargarLista();
+            return "";
+        } catch (Exception e) {
+            addErrorMessage("Error closing resource " + e.getClass().getName(), "Message: " + e.getMessage());
+            return null;
+        }
+    }
+
+    public String updateProyecto() {
+        try {
+            getProyectoFacade().edit(proyectoActual);
+            recargarLista();
+            return "";
+        } catch (Exception e) {
+            addErrorMessage("Error closing resource " + e.getClass().getName(), "Message: " + e.getMessage());
+            return null;
+        }
+    }
+    
+      public String deleteProyecto() {
+        try {
+            getProyectoFacade().remove(proyectoActual);
+            recargarLista();
+        } catch (Exception e) {
+            addErrorMessage("Error closing resource " + e.getClass().getName(), "Message: " + e.getMessage());
+        }
+        return "List";
+    }
+    
+   private void addErrorMessage(String title, String msg) {
+        FacesMessage facesMsg
+                = new FacesMessage(FacesMessage.SEVERITY_ERROR, title, msg);
+        FacesContext.getCurrentInstance().addMessage(null, facesMsg);
+    }
+
+    private void addSuccessMessage(String title, String msg) {
+        FacesMessage facesMsg
+                = new FacesMessage(FacesMessage.SEVERITY_INFO, title, msg);
+        FacesContext.getCurrentInstance().addMessage("successInfo", facesMsg);
+    }
+    
+    
        @FacesConverter(forClass = Proyecto.class)
-    public static class ProyectoControllerConverter implements Converter {
+    public class ProyectoControllerConverter implements Converter {
 
         @Override
         public Object getAsObject(FacesContext facesContext, UIComponent component, String value) {
@@ -108,5 +193,6 @@ public class ProyectoController implements Serializable {
         }
 
     }
-
 }
+
+

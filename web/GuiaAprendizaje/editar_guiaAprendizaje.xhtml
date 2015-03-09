@@ -11,19 +11,19 @@
         <ui:define name="title">Editar Guia Aprendizaje</ui:define>        
         <ui:define name="body">
                 <form jsf:id="EditGuiaAprendizaje">
-                    <h1><h:outputText value="Editar Guia Aprendizaje"/></h1>
+                    <h1 class="Titulo"><h:outputText value="Editar Guia Aprendizaje"/></h1>
                     <h:panelGrid columns="1">
                         
                         
-                        <h:outputLabel value="proyecto:"  for="idProyectoSelect"/>
-                        <h:selectOneMenu id="idProyectoSelect" value="#{guiaAprendizajeController.guiaAprendizajeActual.idProyecto}">
+                        <h:outputLabel class="form-1" value="proyecto:"  for="idProyectoSelect"/>
+                        <h:selectOneMenu class="form-1" id="idProyectoSelect" value="#{guiaAprendizajeController.guiaAprendizajeActual.idProyecto}">
                             <f:selectItem itemLabel="Seleccionar uno.." />
                             <f:selectItems value="#{guiaAprendizajeController.listaProyectoSelectOne}" var="idProyectoSelec" itemValue="#{proyecto}"/>  
                         </h:selectOneMenu>
                         
                         
-                        <h:outputLabel value="Introduccion:" for="introduccion" />
-                        <textarea  jsf:id="introduccion" jsf:value="#{guiaAprendizajeController.guiaAprendizajeActual.introduccion}" 
+                        <h:outputLabel class="form-1" value="Introduccion:" for="introduccion" />
+                        <textarea class="form-1" jsf:id="introduccion" jsf:value="#{guiaAprendizajeController.guiaAprendizajeActual.introduccion}" 
                                      type="text" required="true"
                                      jsf:requiredMessage="Por favor ingrese la introduccion"
                                      jsf:validatorMessage="Use solo letras"> 
@@ -31,8 +31,8 @@
                         </textarea >
                        
                         
-                         <h:outputLabel value="Glosario:" for="Glosario" />
-                         <textarea  jsf:id="Glosario" jsf:value="#{guiaAprendizajeController.guiaAprendizajeActual.glosarioTerminos}" 
+                         <h:outputLabel class="form-1" value="Glosario:" for="Glosario" />
+                         <textarea class="form-1" jsf:id="Glosario" jsf:value="#{guiaAprendizajeController.guiaAprendizajeActual.glosarioTerminos}" 
                                      type="text" required="true"
                                      jsf:requiredMessage="Por favor ingrese el Glosario"
                                      jsf:validatorMessage="Use letras"> 
@@ -40,8 +40,8 @@
                         </textarea >
                         
                         
-                        <h:outputLabel value="referentesBibliograficos:" for="Referentes" />
-                        <textarea jsf:id="Referentes" jsf:value="#{guiaAprendizajeController.guiaAprendizajeActual.referentesBibliograficos}" 
+                        <h:outputLabel class="form-1" value="referentesBibliograficos:" for="Referentes" />
+                        <textarea class="form-1" jsf:id="Referentes" jsf:value="#{guiaAprendizajeController.guiaAprendizajeActual.referentesBibliograficos}" 
                                      type="textArea" required="true"
                                      jsf:requiredMessage="Por favor ingrese los referentes "
                                      jsf:validatorMessage="Use letras"> 
@@ -49,8 +49,8 @@
                         </textarea>
                         
                         
-                        <h:outputLabel value="Control Documentos:" for="control" />
-                        <textarea  jsf:id="control" jsf:value="#{guiaAprendizajeController.guiaAprendizajeActual.controlDocumento}" 
+                        <h:outputLabel class="form-1" value="Control Documentos:" for="control" />
+                        <textarea class="form-1" jsf:id="control" jsf:value="#{guiaAprendizajeController.guiaAprendizajeActual.controlDocumento}" 
                                      type="text" required="true"
                                      jsf:requiredMessage="Por favor ingrese el control de documentos "
                                      jsf:validatorMessage="Use letras"> 
@@ -60,10 +60,10 @@
                         
                         
 
-                        <input type="submit" jsf:action="#{guiaAprendizajeController.updateGuiaAprendizaje}" value="Actualizar Guia Aprendizaje">
+                        <input class="Guardar" type="submit" jsf:action="#{guiaAprendizajeController.updateGuiaAprendizaje}" value="Actualizar Guia Aprendizaje">
                         </input>
                     </h:panelGrid>
-                    <h:button value="Ir al lista guia" outcome="/GuiaAprendizaje/lista_Guia_Aprendizaje"></h:button>
+                    <h:button class="Guardar" value="Ir al lista guia" outcome="/GuiaAprendizaje/lista_Guia_Aprendizaje"></h:button>
                 
                 </form> 
         </ui:define>

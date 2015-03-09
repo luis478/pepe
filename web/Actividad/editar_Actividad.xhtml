@@ -11,12 +11,12 @@
         <ui:define name="title">Editar Actividad</ui:define>        
         <ui:define name="body">
                 <form jsf:id="EditActividad">
-                    <h1><h:outputText value="Editar Actividad"/></h1>
+                    <h1 class="Titulo"><h:outputText value="Editar Actividad"/></h1>
                     <h:panelGrid columns="1">
                         
                         
-                        <h:outputLabel value="Nombre de la actividad:" for="nomActividad" />
-                        <input jsf:id="nomActividad" jsf:value="#{actividadController.actividadActual.nombreActividad}" 
+                        <h:outputLabel class="form-1" value="Nombre de la actividad:" for="nomActividad" />
+                        <input class="form-1" jsf:id="nomActividad" jsf:value="#{actividadController.actividadActual.nombreActividad}" 
                                      type="text" required="true"
                                      jsf:requiredMessage="Por favor ingrese el nombre del tipo de actividad"
                                      jsf:validatorMessage="Use solo letras"> 
@@ -25,8 +25,8 @@
                         </input>
                         <h:message id="nomActividadMessage" for="nomActividad" styleClass="error"/>
                         
-                         <h:outputLabel value="Duracion Actividad:" for="duraActividad" />
-                         <input jsf:id="duraActividad" jsf:value="#{actividadController.actividadActual.duracion}" 
+                         <h:outputLabel class="form-1" value="Duracion Actividad:" for="duraActividad" />
+                         <input class="form-1" jsf:id="duraActividad" jsf:value="#{actividadController.actividadActual.duracion}" 
                                      type="number" required="true"
                                      jsf:requiredMessage="Por favor ingrese la duracion de la actividad"
                                      jsf:validatorMessage="Use solo numeros"> 
@@ -36,17 +36,23 @@
                         <h:message id="duracionMessage" for="duracion" styleClass="error"/>
                         
                         
-                      <h:outputLabel value="proyecto:"  for="nomProyecto"/>
-                      <h:selectOneMenu id="idProyectoSelect" value="#{actividadController.actividadActual.idProyecto}">
+                      <h:outputLabel class="form-1" value="proyecto:"  for="nomProyecto"/>
+                      <h:selectOneMenu class="form-1" id="idProyectoSelect" value="#{actividadController.actividadActual.idProyecto}">
                             <f:selectItem itemLabel="Seleccionar uno.." />
                             <f:selectItems value="#{actividadController.listaProyectoSelectOne}" var="proyecto" itemValue="#{proyecto}"/>  
                         </h:selectOneMenu>
+                      
+                      <h:outputLabel class="form-1" value="fase:"  for="nomfase"/>
+                      <h:selectOneMenu class="form-1" id="nomfase" value="#{actividadController.actividadActual.idFase}">
+                            <f:selectItem itemLabel="Seleccionar uno.." />
+                            <f:selectItems value="#{actividadController.listaFaseSelectOne}" var="fase" itemValue="#{fase}"/>  
+                        </h:selectOneMenu>
                         
 
-                      <input type="submit" jsf:action="#{actividadController.updateActividad}" value="Actualizar Actividad">
+                      <input class="Guardar" type="submit" jsf:action="#{actividadController.updateActividad}" value="Actualizar Actividad">
                         </input>
                     </h:panelGrid>
-                     <h:commandButton action="#{actividadController.prepareList}" value="Ir a la lista de Actividad" immediate="true"/>
+                    <h:commandButton class="Volver" action="#{actividadController.prepareList}" value="Ir a la lista de Actividad" immediate="true"/>
                 </form> 
         </ui:define>
     </ui:composition>

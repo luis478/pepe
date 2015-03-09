@@ -10,6 +10,7 @@ import com.pepe.jpa.entities.Fase;
 import com.pepe.jpa.entities.Ficha;
 import com.pepe.jpa.entities.Proyecto;
 import com.pepe.jpa.sesions.ActividadFacade;
+import com.pepe.jpa.sesions.FaseFacade;
 import com.pepe.jpa.sesions.ProyectoFacade;
 import java.io.Serializable;
 import java.util.ArrayList;

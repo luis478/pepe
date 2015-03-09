@@ -6,22 +6,18 @@
        xmlns:jsf="http://xmlns.jcp.org/jsf"
        xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
        xmlns:p="http://primefaces.org/ui">
-   <!-- <ui:composition template="/html_plantillas/template.xhtml">
+    <ui:composition template="/html_plantillas/template.xhtml">
         <ui:define name="title">Lista Guia Aprendizaje</ui:define>
-        <ui:define name="body"> -->
-   
-   <h:head>
-       
-   </h:head>
-   <body>
-       
+        <ui:define name="body">
+
+
             <form jsf:id="ListarGuia">
 
 
-                <h1><h:outputText value="Listar Guia de Aprendizaje"/></h1>
+                <h1 class="Titulo"><h:outputText value="Listar Guia de Aprendizaje"/></h1>
                 <p>
-                    <h:button value="Agregar Guia Aprendizaje" outcome="/GuiaAprendizaje/crear_guiaAprendizaje"></h:button>
-                     <h:button value="Inicio" outcome="/index"/>
+                    <h:button class="Guardar" value="Agregar Guia Aprendizaje" outcome="/GuiaAprendizaje/crear_guiaAprendizaje"></h:button>
+                    <h:button class="Guardar" value="Inicio" outcome="/index"/>
                 </p>
 
                 <p:dataTable value="#{guiaAprendizajeController.listaguiaAprendizaje}" var="GuiaAprendizaje"
@@ -74,18 +70,18 @@
 
                 </p:dataTable>
                 <form jsf:id="ConfirmForm">
-                <p:confirmDialog global="true" showEffect="fade" hideEffect="explode">
-                    <p:commandButton value="Si" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
-                    <p:commandButton value="No" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
-                </p:confirmDialog>
+                    <p:confirmDialog global="true" showEffect="fade" hideEffect="explode">
+                        <p:commandButton value="Si" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+                        <p:commandButton value="No" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+                    </p:confirmDialog>
                 </form>    
 
             </form>
 
-       <!-- </ui:define>
-    </ui:composition>  -->
-      
-</body>
+        </ui:define>
+    </ui:composition>  
+
+
 
 </html>
 

@@ -68,8 +68,6 @@
 .Body{
     background-image: url("../../resources/images/Pepebackground.png");
     background-size: cover;
-   
-    
 }
 
 
@@ -263,7 +261,14 @@
 
 .ui-inputfield{
     text-align: center !important;
+
+    border: 1px red solid !important;
     background: #FFFFFF !important;
+    width: 500px !important;
+
+   
+    background: #FFFFFF !important;
+   
     box-shadow: 0 !important;
     -webkit-box-shadow:inset 0 0 0 0!important;
     border-radius: 0 !important;
@@ -290,18 +295,25 @@
 .ui-dialog .ui-dialog-titlebar-close, 
 .ui-dialog .ui-dialog-titlebar-minimize, 
 .ui-dialog .ui-dialog-titlebar-maximize{
+
+    display: inline-block !important;
+    cursor: pointer !important;
+
     display: inline !important;
     top: 0 !important;
     right: 0 !important;
     cursor: pointer !important;
     position: fixed;
+
     background: #FFFFFF !important;
     margin: 1%!important;
     padding: 0.3em !important;
     width: 30px;
     height:30px;
     color: #000000 !important;
+
     border: 1px solid blue !important;
+
 }
 
 .ui-state-highlight, 
@@ -358,7 +370,11 @@
     border-radius: 0 !important;
     color: #000000 !important;
     height: 80% !important;
+
+    overflow: hidden !important;
+
     overflow: scroll !important;
+
 }
 
 .ui-dialog .ui-dialog-titlebar{
@@ -399,3 +415,18 @@
     margin-top: 0.5em;
     margin-bottom: 5em;
 }
+
+.form-competencia{
+    display: inline-block;
+    margin: 0 3em;
+    text-align: right;
+}
+.form-competencia>input {
+    width: 5em;
+    display: inline-block;
+    margin: 3em 0 0 3em;
+}
+.form-competencia>td{
+    margin-right: 1em;
+}
+
