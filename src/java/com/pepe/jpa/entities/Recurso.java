@@ -9,19 +9,20 @@ package com.pepe.jpa.entities;
 import java.io.Serializable;
 import java.util.List;
 import javax.persistence.Basic;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.Lob;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 
@@ -34,7 +35,10 @@ import javax.xml.bind.annotation.XmlTransient;
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Recurso.findAll", query = "SELECT r FROM Recurso r"),
-    @NamedQuery(name = "Recurso.findByIdRecurso", query = "SELECT r FROM Recurso r WHERE r.idRecurso = :idRecurso")})
+    @NamedQuery(name = "Recurso.findByIdRecurso", query = "SELECT r FROM Recurso r WHERE r.idRecurso = :idRecurso"),
+    @NamedQuery(name = "Recurso.findByCantidad", query = "SELECT r FROM Recurso r WHERE r.cantidad = :cantidad"),
+    @NamedQuery(name = "Recurso.findByValorUnitario", query = "SELECT r FROM Recurso r WHERE r.valorUnitario = :valorUnitario"),
+    @NamedQuery(name = "Recurso.findByCodigoOrions", query = "SELECT r FROM Recurso r WHERE r.codigoOrions = :codigoOrions")})
 public class Recurso implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
@@ -42,15 +46,41 @@ public class Recurso implements Serializable {
     @Basic(optional = false)
     @Column(name = "id_recurso")
     private Integer idRecurso;
+    @Basic(optional = false)
+    @NotNull
+    @Lob
+    @Size(min = 1, max = 65535)
+    @Column(name = "nombre")
+    private String nombre;
+    @Basic(optional = false)
+    @NotNull
+    @Column(name = "cantidad")
+    private int cantidad;
+    @Basic(optional = false)
+    @NotNull
+    @Column(name = "valor_unitario")
+    private double valorUnitario;
+    @Size(max = 45)
+    @Column(name = "codigo_orions")
+    private String codigoOrions;
     @ManyToMany(mappedBy = "recursoList")
     private List<ActividadAprendizaje> actividadAprendizajeList;
     @ManyToMany(mappedBy = "recursoList")
-    private List<AmbienteFormacion> ambienteFormacionList;
-    @JoinColumn(name = "id_actividad", referencedColumnName = "id_actividad")
+    private List<Actividad> actividadList;
+    @ManyToMany(mappedBy = "recursoList")
+    private List<Proyecto> proyectoList;
+    @JoinColumn(name = "id_fuente_recursos", referencedColumnName = "id_fuente_recursos")
     @ManyToOne(optional = false)
-    private Actividad idActividad;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "recurso")
-    private List<RecursoHasMaterial> recursoHasMaterialList;
+    private FuenteRecursos idFuenteRecursos;
+    @JoinColumn(name = "id_rubro_presupuestal", referencedColumnName = "id_tipo_rubro")
+    @ManyToOne
+    private TipoRubro idRubroPresupuestal;
+    @JoinColumn(name = "id_tipo_recurso", referencedColumnName = "id_tipo_recurso")
+    @ManyToOne(optional = false)
+    private TipoRecurso idTipoRecurso;
+    @JoinColumn(name = "id_unidad_medida", referencedColumnName = "id_unidad_medida")
+    @ManyToOne(optional = false)
+    private UnidadMedida idUnidadMedida;
 
     public Recurso() {
     }
@@ -59,12 +89,51 @@ public class Recurso implements Serializable {
         this.idRecurso = idRecurso;
     }
 
+    public Recurso(Integer idRecurso, String nombre, int cantidad, double valorUnitario) {
+        this.idRecurso = idRecurso;
+        this.nombre = nombre;
+        this.cantidad = cantidad;
+        this.valorUnitario = valorUnitario;
+    }
+
     public Integer getIdRecurso() {
         return idRecurso;
     }
 
     public void setIdRecurso(Integer idRecurso) {
         this.idRecurso = idRecurso;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public int getCantidad() {
+        return cantidad;
+    }
+
+    public void setCantidad(int cantidad) {
+        this.cantidad = cantidad;
+    }
+
+    public double getValorUnitario() {
+        return valorUnitario;
+    }
+
+    public void setValorUnitario(double valorUnitario) {
+        this.valorUnitario = valorUnitario;
+    }
+
+    public String getCodigoOrions() {
+        return codigoOrions;
+    }
+
+    public void setCodigoOrions(String codigoOrions) {
+        this.codigoOrions = codigoOrions;
     }
 
     @XmlTransient
@@ -77,29 +146,53 @@ public class Recurso implements Serializable {
     }
 
     @XmlTransient
-    public List<AmbienteFormacion> getAmbienteFormacionList() {
-        return ambienteFormacionList;
+    public List<Actividad> getActividadList() {
+        return actividadList;
     }
 
-    public void setAmbienteFormacionList(List<AmbienteFormacion> ambienteFormacionList) {
-        this.ambienteFormacionList = ambienteFormacionList;
-    }
-
-    public Actividad getIdActividad() {
-        return idActividad;
-    }
-
-    public void setIdActividad(Actividad idActividad) {
-        this.idActividad = idActividad;
+    public void setActividadList(List<Actividad> actividadList) {
+        this.actividadList = actividadList;
     }
 
     @XmlTransient
-    public List<RecursoHasMaterial> getRecursoHasMaterialList() {
-        return recursoHasMaterialList;
+    public List<Proyecto> getProyectoList() {
+        return proyectoList;
     }
 
-    public void setRecursoHasMaterialList(List<RecursoHasMaterial> recursoHasMaterialList) {
-        this.recursoHasMaterialList = recursoHasMaterialList;
+    public void setProyectoList(List<Proyecto> proyectoList) {
+        this.proyectoList = proyectoList;
+    }
+
+    public FuenteRecursos getIdFuenteRecursos() {
+        return idFuenteRecursos;
+    }
+
+    public void setIdFuenteRecursos(FuenteRecursos idFuenteRecursos) {
+        this.idFuenteRecursos = idFuenteRecursos;
+    }
+
+    public TipoRubro getIdRubroPresupuestal() {
+        return idRubroPresupuestal;
+    }
+
+    public void setIdRubroPresupuestal(TipoRubro idRubroPresupuestal) {
+        this.idRubroPresupuestal = idRubroPresupuestal;
+    }
+
+    public TipoRecurso getIdTipoRecurso() {
+        return idTipoRecurso;
+    }
+
+    public void setIdTipoRecurso(TipoRecurso idTipoRecurso) {
+        this.idTipoRecurso = idTipoRecurso;
+    }
+
+    public UnidadMedida getIdUnidadMedida() {
+        return idUnidadMedida;
+    }
+
+    public void setIdUnidadMedida(UnidadMedida idUnidadMedida) {
+        this.idUnidadMedida = idUnidadMedida;
     }
 
     @Override

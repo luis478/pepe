@@ -6,6 +6,7 @@
 
 package com.pepe.jpa.sesions;
 
+import com.pepe.jpa.entities.Actividad;
 import com.pepe.jpa.entities.ActividadAprendizaje;
 import com.pepe.jpa.entities.Fase;
 import com.pepe.jpa.entities.Proyecto;
@@ -39,6 +40,11 @@ public class ActividadAprendizajeFacade extends AbstractFacade<ActividadAprendiz
         Query q= getEntityManager().createNamedQuery("ActividadAprendizaje.findByFase");
         q.setParameter("idFase", idFase);
         q.setParameter("idProyecto", idProyecto);
+        return q.getResultList();
+    }
+     public List<ActividadAprendizaje> consultaActividad(Actividad idActividad){
+        Query q= getEntityManager().createNamedQuery("ActividadAprendizaje.findByConsultaActividad");
+        q.setParameter("idActividad", idActividad);
         return q.getResultList();
     }
 }

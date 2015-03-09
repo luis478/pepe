@@ -9,7 +9,6 @@ package com.pepe.jpa.entities;
 import java.io.Serializable;
 import java.util.List;
 import javax.persistence.Basic;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -47,7 +46,7 @@ public class TipoInstructor implements Serializable {
     @Size(min = 1, max = 60)
     @Column(name = "nombre_tipo_instructor")
     private String nombreTipoInstructor;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idTipoInstructor")
+    @OneToMany(mappedBy = "idTipoInstructor")
     private List<UsuarioHasFicha> usuarioHasFichaList;
 
     public TipoInstructor() {
@@ -109,7 +108,7 @@ public class TipoInstructor implements Serializable {
 
     @Override
     public String toString() {
-        return getNombreTipoInstructor().toUpperCase();
+        return "com.pepe.jpa.entities.TipoInstructor[ idTipoInstructor=" + idTipoInstructor + " ]";
     }
     
 }

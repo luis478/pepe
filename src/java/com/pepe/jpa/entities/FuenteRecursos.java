@@ -48,7 +48,7 @@ public class FuenteRecursos implements Serializable {
     @Column(name = "nombre_recursos")
     private String nombreRecursos;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idFuenteRecursos")
-    private List<RecursoHasMaterial> recursoHasMaterialList;
+    private List<Recurso> recursoList;
 
     public FuenteRecursos() {
     }
@@ -79,12 +79,12 @@ public class FuenteRecursos implements Serializable {
     }
 
     @XmlTransient
-    public List<RecursoHasMaterial> getRecursoHasMaterialList() {
-        return recursoHasMaterialList;
+    public List<Recurso> getRecursoList() {
+        return recursoList;
     }
 
-    public void setRecursoHasMaterialList(List<RecursoHasMaterial> recursoHasMaterialList) {
-        this.recursoHasMaterialList = recursoHasMaterialList;
+    public void setRecursoList(List<Recurso> recursoList) {
+        this.recursoList = recursoList;
     }
 
     @Override
@@ -109,7 +109,7 @@ public class FuenteRecursos implements Serializable {
 
     @Override
     public String toString() {
-        return getNombreRecursos().toUpperCase();
+        return "com.pepe.jpa.entities.FuenteRecursos[ idFuenteRecursos=" + idFuenteRecursos + " ]";
     }
     
 }

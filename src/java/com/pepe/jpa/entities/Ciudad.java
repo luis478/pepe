@@ -150,7 +150,7 @@ public class Ciudad implements Serializable {
 
     @Override
     public String toString() {
-        return getNombreCiudad().toUpperCase();
+        return "com.pepe.jpa.entities.Ciudad[ ciudadPK=" + ciudadPK + " ]";
     }
     
 }

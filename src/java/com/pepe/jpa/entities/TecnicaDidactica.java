@@ -15,6 +15,10 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
@@ -47,8 +51,16 @@ public class TecnicaDidactica implements Serializable {
     @Size(min = 1, max = 60)
     @Column(name = "tecnica_didactica")
     private String tecnicaDidactica;
+    @JoinTable(name = "tipo_evaluacion_has_tecnica_didactica", joinColumns = {
+        @JoinColumn(name = "id_tecnica_didactica", referencedColumnName = "id_tecnica_didactica")}, inverseJoinColumns = {
+        @JoinColumn(name = "id_tipo_evaluacion", referencedColumnName = "id_tipo_evaluacion")})
+    @ManyToMany
+    private List<TipoEvaluacion> tipoEvaluacionList;
+    @JoinColumn(name = "id_instrumento_evaluacion", referencedColumnName = "id_instrumento_evaluacion")
+    @ManyToOne(optional = false)
+    private InstrumentoEvaluacion idInstrumentoEvaluacion;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idTecnicaDidactica")
-    private List<ActividadAprendizaje> actividadAprendizajeList;
+    private List<Evidencia> evidenciaList;
 
     public TecnicaDidactica() {
     }
@@ -79,12 +91,29 @@ public class TecnicaDidactica implements Serializable {
     }
 
     @XmlTransient
-    public List<ActividadAprendizaje> getActividadAprendizajeList() {
-        return actividadAprendizajeList;
+    public List<TipoEvaluacion> getTipoEvaluacionList() {
+        return tipoEvaluacionList;
     }
 
-    public void setActividadAprendizajeList(List<ActividadAprendizaje> actividadAprendizajeList) {
-        this.actividadAprendizajeList = actividadAprendizajeList;
+    public void setTipoEvaluacionList(List<TipoEvaluacion> tipoEvaluacionList) {
+        this.tipoEvaluacionList = tipoEvaluacionList;
+    }
+
+    public InstrumentoEvaluacion getIdInstrumentoEvaluacion() {
+        return idInstrumentoEvaluacion;
+    }
+
+    public void setIdInstrumentoEvaluacion(InstrumentoEvaluacion idInstrumentoEvaluacion) {
+        this.idInstrumentoEvaluacion = idInstrumentoEvaluacion;
+    }
+
+    @XmlTransient
+    public List<Evidencia> getEvidenciaList() {
+        return evidenciaList;
+    }
+
+    public void setEvidenciaList(List<Evidencia> evidenciaList) {
+        this.evidenciaList = evidenciaList;
     }
 
     @Override
@@ -109,7 +138,7 @@ public class TecnicaDidactica implements Serializable {
 
     @Override
     public String toString() {
-        return getTecnicaDidactica().toUpperCase();
+        return "com.pepe.jpa.entities.TecnicaDidactica[ idTecnicaDidactica=" + idTecnicaDidactica + " ]";
     }
     
 }

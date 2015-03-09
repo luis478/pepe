@@ -6,10 +6,13 @@
 package com.pepe.controller;
 
 import com.pepe.jpa.entities.Actividad;
+import com.pepe.jpa.entities.Fase;
+import com.pepe.jpa.entities.Ficha;
 import com.pepe.jpa.entities.Proyecto;
 import com.pepe.jpa.sesions.ActividadFacade;
 import com.pepe.jpa.sesions.ProyectoFacade;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -21,9 +24,7 @@ import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
 import javax.faces.convert.FacesConverter;
-
-
-
+import javax.faces.event.ActionEvent;
 
 /**
  *
@@ -39,8 +40,51 @@ public class ActividadController implements Serializable {
     private ProyectoFacade proyectoFacade;
     @EJB
     private ActividadFacade actividadFacade;
+    private Fase faseActual;
+    private Ficha fichaActual;
+    private int actividadSeleccionadaInt;
+    private Actividad actividadSeleccionada;
+
+    public int getActividadSeleccionadaInt() {
+        return actividadSeleccionadaInt;
+    }
+
+    public void setActividadSeleccionadaInt(int actividadSeleccionadaInt) {
+        this.actividadSeleccionadaInt = actividadSeleccionadaInt;
+    }
+
+    public Actividad getActividadSeleccionada() {
+         if(actividadSeleccionada == null){
+            actividadSeleccionada = new Actividad();
+        }
+        return actividadSeleccionada;
+    }
+
+    public void setActividadSeleccionada(Actividad actividadSeleccionada) {
+        this.actividadSeleccionada = actividadSeleccionada;
+    }
+
+   
+    
+    
 
     public ActividadController() {
+    }
+
+    public Fase getFaseActual() {
+        return faseActual;
+    }
+
+    public void setFaseActual(Fase faseActual) {
+        this.faseActual = faseActual;
+    }
+
+    public Ficha getFichaActual() {
+        return fichaActual;
+    }
+
+    public void setFichaActual(Ficha fichaActual) {
+        this.fichaActual = fichaActual;
     }
 
     public Actividad getActividadActual() {
@@ -55,15 +99,17 @@ public class ActividadController implements Serializable {
     }
 
     public List<Actividad> getListaActividad() {
-        if (listaActividad == null) {
-            try {
-                listaActividad = getActividadFacade().findAll();
-            } catch (Exception e){ 
-                addErrorMessage("Error closing resource " + e.getClass().getName(), "Message: " + e.getMessage());
-            }
+        /*if (listaActividad == null) {
+         try {
+         listaActividad = getActividadFacade().findAll();
+         } catch (Exception e){ 
+         addErrorMessage("Error closing resource " + e.getClass().getName(), "Message: " + e.getMessage());
+         }
+        
 
-        }
-        return listaActividad;
+         }*/
+        return listaActividad = getActividadFacade().consultaPlaneacionActividades(faseActual, fichaActual.getIdProyecto());
+
     }
 
     public ActividadFacade getActividadFacade() {
@@ -86,64 +132,75 @@ public class ActividadController implements Serializable {
         this.proyectoFacade = proyectoFacade;
     }
 
-    
-    public  List<Proyecto> getListaProyectoSelectOne() {
+    public List<Proyecto> getListaProyectoSelectOne() {
         return getProyectoFacade().findAll();
     }
-    
+
     private void recargarlista() {
         listaActividad = null;
     }
-    
-    public String prepareCreate(){
-        actividadActual = new Actividad();
-        return "/Actividad/crear_actividad";
-}
-    public String prepareEdit (){
-    return "/Actividad/editar_Actividad";
-}
-    public String prepareView (){
-    return "/Actividad/ver_Actividad";
-}
-    public String prepareList (){
-    recargarlista();
+
+    public void prepareCreate(ActionEvent event) {
+        fichaActual = new Ficha();
+        fichaActual = (Ficha) event.getComponent().getAttributes().get("ficha");
+        faseActual = new Fase();
+        faseActual = (Fase) event.getComponent().getAttributes().get("fase");
+        listaActividad=null;
+        listaActividad = getActividadFacade().consultaPlaneacionActividades(faseActual, fichaActual.getIdProyecto());
+       
+    }
+
+    public String createActividad() {
         return "/Actividad/lista_Actividad";
-}
-    
-    public String addActividad(){
-        try{
-        getActividadFacade().create(actividadActual);
+    }
+
+    public String prepareEdit() {
+        return "/Actividad/editar_Actividad";
+    }
+
+    public String prepareView() {
+        return "/Actividad/ver_Actividad";
+    }
+
+    public String prepareList() {
         recargarlista();
-        return "lista_Actividad";
-        }catch (Exception e){
-        addErrorMessage("Error closing resource " + e.getClass().getName(), "Message: " + e.getMessage());
+        return "/Actividad/lista_Actividad";
+    }
+
+    public String addActividad() {
+        try {
+            getActividadFacade().create(actividadActual);
+            recargarlista();
+            return "lista_Actividad";
+        } catch (Exception e) {
+            addErrorMessage("Error closing resource " + e.getClass().getName(), "Message: " + e.getMessage());
             return null;
         }
     }
-    
-    public String updateActividad(){
-        try{
-        getActividadFacade().edit(actividadActual);
-        recargarlista();
-        return "lista_Actividad";
-        }catch (Exception e){
-        addErrorMessage("Error closing resource " + e.getClass().getName(), "Message: " + e.getMessage());
+
+    public String updateActividad() {
+        try {
+            getActividadFacade().edit(actividadActual);
+            recargarlista();
+            return "lista_Actividad";
+        } catch (Exception e) {
+            addErrorMessage("Error closing resource " + e.getClass().getName(), "Message: " + e.getMessage());
             return null;
         }
     }
-    
-    public String deleteActividad(){
-        try{
+
+    public String deleteActividad() {
+        try {
             getActividadFacade().remove(actividadActual);
             addSuccessMessage("Eliminado Exitosamente", "actividad eliminada");
             recargarlista();
-            } catch (Exception e){
-                addErrorMessage ("Error closing resource " + e.getClass().getName(), "Message" + e.getMessage());
-                
-            }   
-       return "lista_Actividad";
+        } catch (Exception e) {
+            addErrorMessage("Error closing resource " + e.getClass().getName(), "Message" + e.getMessage());
+
+        }
+        return "lista_Actividad";
     }
-    
+
     private void addErrorMessage(String title, String msg) {
         FacesMessage facesMsg
                 = new FacesMessage(FacesMessage.SEVERITY_ERROR, title, msg);
@@ -155,18 +212,20 @@ public class ActividadController implements Serializable {
                 = new FacesMessage(FacesMessage.SEVERITY_INFO, title, msg);
         FacesContext.getCurrentInstance().addMessage("successInfo", facesMsg);
     }
-    
-     public Actividad getActividad(java.lang.Integer id) {
+
+    public Actividad getActividad(java.lang.Integer id) {
         return getActividadFacade().find(id);
     }
-     public List<Actividad> getItemsAvailableSelectMany() {
+
+    public List<Actividad> getItemsAvailableSelectMany() {
         return getActividadFacade().findAll();
     }
 
     public List<Actividad> getItemsAvailableSelectOne() {
         return getActividadFacade().findAll();
     }
-  @FacesConverter(forClass = Actividad.class)
+
+    @FacesConverter(forClass = Actividad.class)
     public static class ActividadControllerConverter implements Converter {
 
         @Override
@@ -207,5 +266,4 @@ public class ActividadController implements Serializable {
 
     }
 
-    
-    }
+}

@@ -58,18 +58,18 @@ public class Evidencia implements Serializable {
     @Size(min = 1, max = 65535)
     @Column(name = "observacion_evidencia")
     private String observacionEvidencia;
-    @Basic(optional = false)
-    @NotNull
-    @Lob
-    @Size(min = 1, max = 65535)
-    @Column(name = "tecnica_instrumento_evaluacion")
-    private String tecnicaInstrumentoEvaluacion;
     @JoinColumn(name = "id_actividad_aprendizaje", referencedColumnName = "id_actividad_aprendizaje")
     @ManyToOne(optional = false)
     private ActividadAprendizaje idActividadAprendizaje;
     @JoinColumn(name = "id_tipo_evidencia", referencedColumnName = "id_tipo_evidencia")
     @ManyToOne(optional = false)
     private TipoEvidencia idTipoEvidencia;
+    @JoinColumn(name = "id_tecnica_didactica", referencedColumnName = "id_tecnica_didactica")
+    @ManyToOne(optional = false)
+    private TecnicaDidactica idTecnicaDidactica;
+    @JoinColumn(name = "id_tipo_evaluacion", referencedColumnName = "id_tipo_evaluacion")
+    @ManyToOne(optional = false)
+    private TipoEvaluacion idTipoEvaluacion;
 
     public Evidencia() {
     }
@@ -78,12 +78,11 @@ public class Evidencia implements Serializable {
         this.idEvidencia = idEvidencia;
     }
 
-    public Evidencia(Integer idEvidencia, String nombreEvidencia, String descripcionEvidencia, String observacionEvidencia, String tecnicaInstrumentoEvaluacion) {
+    public Evidencia(Integer idEvidencia, String nombreEvidencia, String descripcionEvidencia, String observacionEvidencia) {
         this.idEvidencia = idEvidencia;
         this.nombreEvidencia = nombreEvidencia;
         this.descripcionEvidencia = descripcionEvidencia;
         this.observacionEvidencia = observacionEvidencia;
-        this.tecnicaInstrumentoEvaluacion = tecnicaInstrumentoEvaluacion;
     }
 
     public Integer getIdEvidencia() {
@@ -118,14 +117,6 @@ public class Evidencia implements Serializable {
         this.observacionEvidencia = observacionEvidencia;
     }
 
-    public String getTecnicaInstrumentoEvaluacion() {
-        return tecnicaInstrumentoEvaluacion;
-    }
-
-    public void setTecnicaInstrumentoEvaluacion(String tecnicaInstrumentoEvaluacion) {
-        this.tecnicaInstrumentoEvaluacion = tecnicaInstrumentoEvaluacion;
-    }
-
     public ActividadAprendizaje getIdActividadAprendizaje() {
         return idActividadAprendizaje;
     }
@@ -140,6 +131,22 @@ public class Evidencia implements Serializable {
 
     public void setIdTipoEvidencia(TipoEvidencia idTipoEvidencia) {
         this.idTipoEvidencia = idTipoEvidencia;
+    }
+
+    public TecnicaDidactica getIdTecnicaDidactica() {
+        return idTecnicaDidactica;
+    }
+
+    public void setIdTecnicaDidactica(TecnicaDidactica idTecnicaDidactica) {
+        this.idTecnicaDidactica = idTecnicaDidactica;
+    }
+
+    public TipoEvaluacion getIdTipoEvaluacion() {
+        return idTipoEvaluacion;
+    }
+
+    public void setIdTipoEvaluacion(TipoEvaluacion idTipoEvaluacion) {
+        this.idTipoEvaluacion = idTipoEvaluacion;
     }
 
     @Override
@@ -164,7 +171,7 @@ public class Evidencia implements Serializable {
 
     @Override
     public String toString() {
-        return getNombreEvidencia().toUpperCase();
+        return "com.pepe.jpa.entities.Evidencia[ idEvidencia=" + idEvidencia + " ]";
     }
     
 }

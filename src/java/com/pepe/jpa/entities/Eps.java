@@ -109,7 +109,7 @@ public class Eps implements Serializable {
 
     @Override
     public String toString() {
-        return getNombreEps().toUpperCase();
+        return "com.pepe.jpa.entities.Eps[ idEps=" + idEps + " ]";
     }
     
 }

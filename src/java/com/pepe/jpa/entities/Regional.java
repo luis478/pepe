@@ -124,7 +124,7 @@ public class Regional implements Serializable {
 
     @Override
     public String toString() {
-        return getNombreRegional().toUpperCase();
+        return "com.pepe.jpa.entities.Regional[ idRegional=" + idRegional + " ]";
     }
     
 }

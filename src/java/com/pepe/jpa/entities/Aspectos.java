@@ -9,6 +9,7 @@ package com.pepe.jpa.entities;
 import java.io.Serializable;
 import java.util.List;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -21,6 +22,7 @@ import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -67,6 +69,8 @@ public class Aspectos implements Serializable {
     @JoinColumn(name = "id_ficha", referencedColumnName = "id_ficha")
     @ManyToOne(optional = false)
     private Ficha idFicha;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idAspectos")
+    private List<Fase> faseList;
 
     public Aspectos() {
     }
@@ -130,6 +134,15 @@ public class Aspectos implements Serializable {
         this.idFicha = idFicha;
     }
 
+    @XmlTransient
+    public List<Fase> getFaseList() {
+        return faseList;
+    }
+
+    public void setFaseList(List<Fase> faseList) {
+        this.faseList = faseList;
+    }
+
     @Override
     public int hashCode() {
         int hash = 0;
@@ -152,7 +165,7 @@ public class Aspectos implements Serializable {
 
     @Override
     public String toString() {
-        return getObservacionesAspectos().toUpperCase();
+        return "com.pepe.jpa.entities.Aspectos[ idAspectos=" + idAspectos + " ]";
     }
     
 }

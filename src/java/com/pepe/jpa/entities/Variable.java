@@ -60,6 +60,9 @@ public class Variable implements Serializable {
     @JoinColumn(name = "id_revision", referencedColumnName = "id_revision")
     @ManyToOne(optional = false)
     private Revision idRevision;
+    @JoinColumn(name = "id_descripcion", referencedColumnName = "id_descripcion")
+    @ManyToOne(optional = false)
+    private Descripcion idDescripcion;
 
     public Variable() {
     }
@@ -113,6 +116,14 @@ public class Variable implements Serializable {
 
     public void setIdRevision(Revision idRevision) {
         this.idRevision = idRevision;
+    }
+
+    public Descripcion getIdDescripcion() {
+        return idDescripcion;
+    }
+
+    public void setIdDescripcion(Descripcion idDescripcion) {
+        this.idDescripcion = idDescripcion;
     }
 
     @Override

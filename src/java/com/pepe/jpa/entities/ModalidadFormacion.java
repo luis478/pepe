@@ -109,7 +109,7 @@ public class ModalidadFormacion implements Serializable {
 
     @Override
     public String toString() {
-        return getModalidadFormacion().toUpperCase();
+        return "com.pepe.jpa.entities.ModalidadFormacion[ idModalidadFormacion=" + idModalidadFormacion + " ]";
     }
     
 }

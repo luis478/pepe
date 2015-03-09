@@ -7,6 +7,7 @@ package com.pepe.controller;
 
 import com.pepe.jpa.entities.Fase;
 import com.pepe.jpa.sesions.FaseFacade;
+import java.util.List;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
@@ -24,11 +25,32 @@ import javax.faces.convert.FacesConverter;
 public class FaseController {
     @EJB
 private FaseFacade faseFacade;
-
+private Fase faseSeleccionada; 
+private int faseSeleccionadaInt; 
+private List<Fase> listaFase = null;
     /**
      * Creates a new instance of FaseControlller
      */
-    public FaseController() {
+ public Fase getFaseSeleccionada() {
+        if(faseSeleccionada == null){
+            faseSeleccionada = new Fase();
+        }
+        return faseSeleccionada;
+    }
+
+    public void setFaseSeleccionada(Fase faseSeleccionada) {
+        this.faseSeleccionada = faseSeleccionada;
+    }
+
+    public int getFaseSeleccionadaInt() {
+        return faseSeleccionadaInt;
+    }
+
+    public void setFaseSeleccionadaInt(int faseSeleccionadaInt) {
+        this.faseSeleccionadaInt = faseSeleccionadaInt;
+    }
+        
+public FaseController() {
     }
       public FaseFacade getFaseFacade() {
         return faseFacade;
@@ -38,6 +60,26 @@ private FaseFacade faseFacade;
         return getFaseFacade().find(id);
     }
 
+      public List<Fase> getListaFase() {
+         if (listaFase == null) {
+            try {
+                listaFase = getFaseFacade().findAll();
+            } catch (Exception e) {
+                addErrorMessage("Error closing resource " + e.getClass().getName(), "Message: " + e.getMessage());
+            }
+        }
+        return listaFase;
+    }
+
+    public void setListaFase(List<Fase> listaFase) {
+        this.listaFase = listaFase;
+    }
+
+    private void addErrorMessage(String string, String string0) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+     
+     
     @FacesConverter(forClass = Fase.class)
     public static class FaseControllerConverter implements Converter {
 

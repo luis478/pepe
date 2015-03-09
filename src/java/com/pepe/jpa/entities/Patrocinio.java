@@ -121,7 +121,7 @@ public class Patrocinio implements Serializable {
 
     @Override
     public String toString() {
-        return getPatrocinio().toUpperCase();
+        return "com.pepe.jpa.entities.Patrocinio[ idPatrocinio=" + idPatrocinio + " ]";
     }
     
 }

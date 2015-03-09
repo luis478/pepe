@@ -122,7 +122,7 @@ public class ConocimientoConceptoPrincipios implements Serializable {
 
     @Override
     public String toString() {
-        return getNombreConocimientoConceptoPrincipiosl().toUpperCase();
+        return "com.pepe.jpa.entities.ConocimientoConceptoPrincipios[ idConocimientoConceptoPrincipios=" + idConocimientoConceptoPrincipios + " ]";
     }
     
 }

@@ -108,7 +108,7 @@ public class EstiloAprendizaje implements Serializable {
 
     @Override
     public String toString() {
-        return getEstiloAprendizaje().toUpperCase();
+        return "com.pepe.jpa.entities.EstiloAprendizaje[ idEstiloAprendizaje=" + idEstiloAprendizaje + " ]";
     }
     
 }

@@ -15,9 +15,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
@@ -50,11 +47,6 @@ public class AmbienteFormacion implements Serializable {
     @Size(min = 1, max = 60)
     @Column(name = "nombre_ambiente_formacion")
     private String nombreAmbienteFormacion;
-    @JoinTable(name = "recurso_has_ambiente_formacion", joinColumns = {
-        @JoinColumn(name = "id_ambiente_formacion", referencedColumnName = "id_ambiente_formacion")}, inverseJoinColumns = {
-        @JoinColumn(name = "id_recurso", referencedColumnName = "id_recurso")})
-    @ManyToMany
-    private List<Recurso> recursoList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idAmbienteFormacion")
     private List<Evento> eventoList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idAmbienteFormacion")
@@ -86,15 +78,6 @@ public class AmbienteFormacion implements Serializable {
 
     public void setNombreAmbienteFormacion(String nombreAmbienteFormacion) {
         this.nombreAmbienteFormacion = nombreAmbienteFormacion;
-    }
-
-    @XmlTransient
-    public List<Recurso> getRecursoList() {
-        return recursoList;
-    }
-
-    public void setRecursoList(List<Recurso> recursoList) {
-        this.recursoList = recursoList;
     }
 
     @XmlTransient
@@ -137,7 +120,7 @@ public class AmbienteFormacion implements Serializable {
 
     @Override
     public String toString() {
-        return getNombreAmbienteFormacion().toUpperCase();
+        return "com.pepe.jpa.entities.AmbienteFormacion[ idAmbienteFormacion=" + idAmbienteFormacion + " ]";
     }
     
 }

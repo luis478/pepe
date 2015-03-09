@@ -122,7 +122,7 @@ public class CriteriosEvaluacion implements Serializable {
 
     @Override
     public String toString() {
-        return getNombreCriteriosEvaluacion().toUpperCase();
+        return "com.pepe.jpa.entities.CriteriosEvaluacion[ idCriteriosEvaluacion=" + idCriteriosEvaluacion + " ]";
     }
     
 }

@@ -108,7 +108,7 @@ public class Especialidad implements Serializable {
 
     @Override
     public String toString() {
-        return getNombreEspecialidad().toUpperCase();
+        return "com.pepe.jpa.entities.Especialidad[ idEspecialidad=" + idEspecialidad + " ]";
     }
     
 }

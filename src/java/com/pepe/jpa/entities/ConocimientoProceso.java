@@ -122,7 +122,7 @@ public class ConocimientoProceso implements Serializable {
 
     @Override
     public String toString() {
-        return getNombreConocimientoProceso().toUpperCase();
+        return "com.pepe.jpa.entities.ConocimientoProceso[ idConocimientoProceso=" + idConocimientoProceso + " ]";
     }
     
 }

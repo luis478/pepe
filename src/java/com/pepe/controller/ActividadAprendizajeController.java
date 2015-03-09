@@ -9,6 +9,7 @@ package com.pepe.controller;
 import com.pepe.jpa.entities.Actividad;
 import com.pepe.jpa.entities.ActividadAprendizaje;
 import com.pepe.jpa.entities.Fase;
+import com.pepe.jpa.entities.Ficha;
 import com.pepe.jpa.entities.Proyecto;
 import com.pepe.jpa.entities.TecnicaDidactica;
 import com.pepe.jpa.entities.TipoActividadAprendizaje;
@@ -23,6 +24,7 @@ import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
+import javax.faces.event.ActionEvent;
 
 /**
  *
@@ -37,6 +39,8 @@ public class ActividadAprendizajeController implements Serializable {
     private ActividadAprendizaje actividadAprendizajeActual;
     private List<ActividadAprendizaje> listaActividadAprendizaje = null;
     private int actividadSelect;
+    private Fase faseActual;
+    private Ficha fichaActual;
     @EJB
     private ActividadFacade actividadFacade;
     private int tecnicaDidacticaSelect;
@@ -69,12 +73,12 @@ public class ActividadAprendizajeController implements Serializable {
     public List<ActividadAprendizaje> getListaActividadAprendizaje() {
 //        if (listaActividadAprendizaje == null) {
 //            try {
-           return listaActividadAprendizaje = getActividadAprendizajeFacade().consultaPlaneacion(new Fase(1), new Proyecto(2223));
-//            } catch (Exception e) {
 //                addErrorMessage("Error closing resource " + e.getClass().getName(), "Message: " + e.getMessage());
 //            }
 //        }
 //        return listaActividadAprendizaje;
+          return listaActividadAprendizaje = getActividadAprendizajeFacade().consultaPlaneacion(faseActual, fichaActual.getIdProyecto());//            } catch (Exception e) {
+
     }
     
     
@@ -83,9 +87,17 @@ public class ActividadAprendizajeController implements Serializable {
         listaActividadAprendizaje = null;
     }
 
-    public String prepareCreate() {
-        actividadAprendizajeActual = new ActividadAprendizaje();
-        return "/planeacionpedagogica/FaseDeAnalisis/crear_actividadAprendizaje";
+    public void prepareCreate(ActionEvent event) {
+        fichaActual = new Ficha();
+        fichaActual = (Ficha) event.getComponent().getAttributes().get("ficha");
+        faseActual = new Fase();
+        faseActual = (Fase) event.getComponent().getAttributes().get("fase");
+        listaActividadAprendizaje=null;
+        listaActividadAprendizaje = getActividadAprendizajeFacade().consultaPlaneacion(faseActual, fichaActual.getIdProyecto());
+    }
+    
+    public String createActividad(){
+        return "/planeacionpedagogica/FaseDeAnalisis/vista_faseAnalisis";
     }
 
     public String prepareEdit() {

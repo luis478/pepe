@@ -6,15 +6,9 @@
        xmlns:jsf="http://xmlns.jcp.org/jsf"
        xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
        xmlns:p="http://primefaces.org/ui">
-   <!-- <ui:composition template="/html_plantillas/template.xhtml">
+   <ui:composition template="/html_plantillas/plantilla_paginas.xhtml">
         <ui:define name="title">Lista Guia Aprendizaje</ui:define>
-        <ui:define name="body"> -->
-   
-   <h:head>
-       
-   </h:head>
-   <body>
-       
+        <ui:define name="body">
             <form jsf:id="ListaActividad">
 
 
@@ -34,8 +28,8 @@
                         <h:outputText value="#{Actividad.idActividad}"/>
                     </p:column>
 
-                    <p:column filterBy="#{Actividad.nombreActividad}" headerText="NombreActividad" filterMatchMode="contains">
-                        <h:outputText value="#{Actividad.nombreActividad}"/>
+                    <p:column filterBy="#{Actividad.nombreActividadProyecto}" headerText="NombreActividad" filterMatchMode="contains">
+                        <h:outputText value="#{Actividad.nombreActividadProyecto}"/>
                     </p:column>
 
                     <p:column filterBy="#{Actividad.duracion}" headerText="Duracion" filterMatchMode="contains">
@@ -64,6 +58,11 @@
                             <f:setPropertyActionListener value="#{Actividad}" target="#{actividadController.actividadActual}"/>
 
                         </p:commandButton>
+                        
+                        <p:commandButton process="@this" value="AP asociadas" actionListener="#{actividadAprendizajeController.prepareCreate}" action="#{actividadAprendizajeController.createActividad}">
+                                 <f:attribute name="fase" value="#{faseController.faseSeleccionada}"/>
+                                 <f:attribute name="ficha" value="#{fichaController.fichaSeleccionada}"/>             
+                         </p:commandButton>
                     </p:column>
 
 
@@ -75,12 +74,7 @@
                 </p:confirmDialog>
                 </form>    
 
-            </form>
-
-       <!-- </ui:define>
-    </ui:composition>  -->
-      
-</body>
-
+            </form> </ui:define>
+   </ui:composition>
 </html>
 

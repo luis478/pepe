@@ -109,7 +109,7 @@ public class TipoOferta implements Serializable {
 
     @Override
     public String toString() {
-        return getTipoOferta().toUpperCase();
+        return "com.pepe.jpa.entities.TipoOferta[ idTipoOferta=" + idTipoOferta + " ]";
     }
     
 }

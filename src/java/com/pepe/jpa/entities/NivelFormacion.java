@@ -109,7 +109,7 @@ public class NivelFormacion implements Serializable {
 
     @Override
     public String toString() {
-        return getNivelFormacion().toUpperCase();
+        return "com.pepe.jpa.entities.NivelFormacion[ idNivelFormacion=" + idNivelFormacion + " ]";
     }
     
 }

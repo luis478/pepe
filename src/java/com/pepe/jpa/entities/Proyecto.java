@@ -15,6 +15,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.Lob;
 import javax.persistence.ManyToMany;
 import javax.persistence.NamedQueries;
@@ -156,6 +158,11 @@ public class Proyecto implements Serializable {
     private String descripcionAmbiente;
     @ManyToMany(mappedBy = "proyectoList")
     private List<Empresa> empresaList;
+    @JoinTable(name = "recurso_has_proyecto", joinColumns = {
+        @JoinColumn(name = "id_proyecto", referencedColumnName = "id_proyecto")}, inverseJoinColumns = {
+        @JoinColumn(name = "id_recurso", referencedColumnName = "id_recurso")})
+    @ManyToMany
+    private List<Recurso> recursoList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idProyecto")
     private List<VisitaTecnica> visitaTecnicaList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idProyecto")
@@ -166,8 +173,6 @@ public class Proyecto implements Serializable {
     private List<Verificacion> verificacionList;
     @OneToMany(mappedBy = "idProyecto")
     private List<Ficha> fichaList;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idProyecto")
-    private List<GuiaAprendizaje> guiaAprendizajeList;
 
     public Proyecto() {
     }
@@ -378,6 +383,15 @@ public class Proyecto implements Serializable {
     }
 
     @XmlTransient
+    public List<Recurso> getRecursoList() {
+        return recursoList;
+    }
+
+    public void setRecursoList(List<Recurso> recursoList) {
+        this.recursoList = recursoList;
+    }
+
+    @XmlTransient
     public List<VisitaTecnica> getVisitaTecnicaList() {
         return visitaTecnicaList;
     }
@@ -420,15 +434,6 @@ public class Proyecto implements Serializable {
 
     public void setFichaList(List<Ficha> fichaList) {
         this.fichaList = fichaList;
-    }
-
-    @XmlTransient
-    public List<GuiaAprendizaje> getGuiaAprendizajeList() {
-        return guiaAprendizajeList;
-    }
-
-    public void setGuiaAprendizajeList(List<GuiaAprendizaje> guiaAprendizajeList) {
-        this.guiaAprendizajeList = guiaAprendizajeList;
     }
 
     @Override

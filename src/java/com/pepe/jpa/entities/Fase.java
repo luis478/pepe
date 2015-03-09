@@ -15,6 +15,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
@@ -53,6 +55,9 @@ public class Fase implements Serializable {
     private List<Acompanamiento> acompanamientoList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "fase")
     private List<EvaluacionSeguimiento> evaluacionSeguimientoList;
+    @JoinColumn(name = "id_aspectos", referencedColumnName = "id_aspectos")
+    @ManyToOne(optional = false)
+    private Aspectos idAspectos;
 
     public Fase() {
     }
@@ -109,6 +114,14 @@ public class Fase implements Serializable {
         this.evaluacionSeguimientoList = evaluacionSeguimientoList;
     }
 
+    public Aspectos getIdAspectos() {
+        return idAspectos;
+    }
+
+    public void setIdAspectos(Aspectos idAspectos) {
+        this.idAspectos = idAspectos;
+    }
+
     @Override
     public int hashCode() {
         int hash = 0;
@@ -131,7 +144,7 @@ public class Fase implements Serializable {
 
     @Override
     public String toString() {
-        return getFase().toUpperCase();
+        return "com.pepe.jpa.entities.Fase[ idFase=" + idFase + " ]";
     }
     
 }

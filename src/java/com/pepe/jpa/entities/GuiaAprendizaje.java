@@ -70,9 +70,9 @@ public class GuiaAprendizaje implements Serializable {
     private String controlDocumento;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "guiaAprendizaje")
     private List<ActividadAprendizajeHasGuiaAprendizaje> actividadAprendizajeHasGuiaAprendizajeList;
-    @JoinColumn(name = "id_proyecto", referencedColumnName = "id_proyecto")
+    @JoinColumn(name = "id_actividad_proyecto", referencedColumnName = "id_actividad")
     @ManyToOne(optional = false)
-    private Proyecto idProyecto;
+    private Actividad idActividadProyecto;
 
     public GuiaAprendizaje() {
     }
@@ -138,12 +138,12 @@ public class GuiaAprendizaje implements Serializable {
         this.actividadAprendizajeHasGuiaAprendizajeList = actividadAprendizajeHasGuiaAprendizajeList;
     }
 
-    public Proyecto getIdProyecto() {
-        return idProyecto;
+    public Actividad getIdActividadProyecto() {
+        return idActividadProyecto;
     }
 
-    public void setIdProyecto(Proyecto idProyecto) {
-        this.idProyecto = idProyecto;
+    public void setIdActividadProyecto(Actividad idActividadProyecto) {
+        this.idActividadProyecto = idActividadProyecto;
     }
 
     @Override
