@@ -3,20 +3,33 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package com.pepe.controller;
 
+import com.pepe.jpa.entities.Actividad;
+import com.pepe.jpa.entities.ActividadHasResultadoAprendizaje;
 import com.pepe.jpa.entities.Evento;
 import com.pepe.jpa.entities.Fase;
+import com.pepe.jpa.entities.Ficha;
+import com.pepe.jpa.entities.Programador;
 import com.pepe.jpa.entities.Proyecto;
+import com.pepe.jpa.entities.ResultadoAprendizaje;
+import com.pepe.jpa.entities.Usuario;
+import com.pepe.jpa.entities.UsuarioHasFicha;
 import com.pepe.jpa.sesions.ActividadAprendizajeFacade;
 import com.pepe.jpa.sesions.ActividadFacade;
+import com.pepe.jpa.sesions.ActividadHasResultadoAprendizajeFacade;
 import com.pepe.jpa.sesions.CompetenciaFacade;
 import com.pepe.jpa.sesions.EventoFacade;
 import com.pepe.jpa.sesions.FaseFacade;
+import com.pepe.jpa.sesions.ProgramadorFacade;
 import com.pepe.jpa.sesions.ProyectoFacade;
 import com.pepe.jpa.sesions.ResultadoAprendizajeFacade;
+import com.pepe.jpa.sesions.UsuarioFacade;
+import com.pepe.jpa.sesions.UsuarioHasFichaFacade;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.ejb.EJB;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
@@ -25,6 +38,7 @@ import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
 import javax.faces.convert.FacesConverter;
+import javax.faces.event.ActionEvent;
 
 /**
  *
@@ -37,7 +51,7 @@ public class EventoController {
     @EJB
     private ResultadoAprendizajeFacade resultadoAprendizajeFacade;
     @EJB
-    private FaseFacade faseFacade; 
+    private FaseFacade faseFacade;
     @EJB
     private ActividadAprendizajeFacade actividadAprendizajeFacade;
     @EJB
@@ -48,10 +62,71 @@ public class EventoController {
     private ActividadFacade actividadFacade;
     @EJB
     private ProyectoFacade ProyectoFacade;
-    
+    @EJB
+    private ActividadHasResultadoAprendizajeFacade ActividadHasResultadoAprendizajeFacade;
+    @EJB
+    private ProgramadorFacade programadorFacade;
+    @EJB
+    private UsuarioHasFichaFacade UsuarioHasFichaFacade;
+
     private Evento eventoActual;
-    private List<Evento> listaEvento =null;
+    private List<Evento> listaEvento = null;
+    private List<Programador> listaProgramador = null;
+    private Programador programadorActual;
     private Proyecto proyectoActual;
+    private Ficha fichaActual;
+    private List<Usuario> listaUsuario = null;
+
+    public List<Usuario> getListaUsuario() {
+        return listaUsuario;
+    }
+
+    public void setListaUsuario(List<Usuario> listaUsuario) {
+        this.listaUsuario = listaUsuario;
+    }
+
+    public UsuarioHasFichaFacade getUsuarioHasFichaFacade() {
+        return UsuarioHasFichaFacade;
+    }
+
+    public void setUsuarioHasFichaFacade(UsuarioHasFichaFacade UsuarioHasFichaFacade) {
+        this.UsuarioHasFichaFacade = UsuarioHasFichaFacade;
+    }
+
+    public ProgramadorFacade getProgramadorFacade() {
+        return programadorFacade;
+    }
+
+    public void setProgramadorFacade(ProgramadorFacade programadorFacade) {
+        this.programadorFacade = programadorFacade;
+    }
+
+    public Programador getProgramadorActual() {
+        if (programadorActual == null) {
+            programadorActual = new Programador();
+        }
+        return programadorActual;
+    }
+
+    public void setProgramadorActual(Programador programadorActual) {
+        this.programadorActual = programadorActual;
+    }
+
+    public Ficha getFichaActual() {
+        return fichaActual;
+    }
+
+    public void setFichaActual(Ficha fichaActual) {
+        this.fichaActual = fichaActual;
+    }
+
+    public ActividadHasResultadoAprendizajeFacade getActividadHasResultadoAprendizajeFacade() {
+        return ActividadHasResultadoAprendizajeFacade;
+    }
+
+    public void setActividadHasResultadoAprendizajeFacade(ActividadHasResultadoAprendizajeFacade ActividadHasResultadoAprendizajeFacade) {
+        this.ActividadHasResultadoAprendizajeFacade = ActividadHasResultadoAprendizajeFacade;
+    }
 
     public ActividadFacade getActividadFacade() {
         return actividadFacade;
@@ -84,7 +159,6 @@ public class EventoController {
     public void setProyectoActual(Proyecto proyectoActual) {
         this.proyectoActual = proyectoActual;
     }
-    
 
     public EventoController() {
     }
@@ -98,6 +172,7 @@ public class EventoController {
     }
 
     public Evento getEventoActual() {
+
         return eventoActual;
     }
 
@@ -105,8 +180,6 @@ public class EventoController {
         this.eventoActual = eventoActual;
     }
 
-    
-    
     public ResultadoAprendizajeFacade getResultadoAprendizajeFacade() {
         return resultadoAprendizajeFacade;
     }
@@ -132,7 +205,6 @@ public class EventoController {
     }
 
 
-
     public CompetenciaFacade getCompetenciaFacade() {
         return competenciaFacade;
     }
@@ -141,13 +213,54 @@ public class EventoController {
         this.competenciaFacade = competenciaFacade;
     }
 
-      private void recargarLista() {
+    public List<Programador> getListaProgramador() {
+        return listaProgramador;
+    }
+
+    private void recargarLista() {
         listaEvento = null;
     }
 
-    public String prepareCreate() {
-      
-        return "";
+    public List<ActividadHasResultadoAprendizaje> obtListaAHR(Actividad a) {
+        return a.getActividadHasResultadoAprendizajeList();
+    }
+
+    public List<ActividadHasResultadoAprendizaje> actividadResultadoLista(Actividad a) {
+        try {
+            List<ActividadHasResultadoAprendizaje> l = getActividadHasResultadoAprendizajeFacade().finByResultado(a);
+            return l;
+        } catch (Exception ex) {
+            Logger.getLogger(EventoController.class.getName()).log(Level.SEVERE, null, ex);
+            return null;
+        }
+    }
+
+    
+    
+    public void prepareCreate(ActionEvent event) {
+        fichaActual = new Ficha();
+        fichaActual = ((Ficha) event.getComponent().getAttributes().get("ficha"));
+        listaProgramador = new ArrayList<>();
+        programadorActual = new Programador();
+        for (Actividad actividad : fichaActual.getIdProyecto().getActividadList()) {
+            for (ActividadHasResultadoAprendizaje resultado : actividadResultadoLista(actividad)) {
+                Programador programador = new Programador();
+                programador.setActividadHasResultadoAprendizaje(resultado);
+                listaProgramador.add(programador);
+            }
+        }
+
+    }
+    
+       
+    public List<Usuario> getListaUsuarioSelectOne() {
+        return getUsuarioHasFichaFacade().finByUsuario(fichaActual.getCodigoFicha());
+
+   }
+    
+
+    public String cargarCreate() {
+        return "/ProgramaciondeProyecto/programacion";
     }
 
     public String prepareEdit() {
@@ -162,23 +275,22 @@ public class EventoController {
         recargarLista();
         return "";
     }
-    
-      public String addEvento() {
-         try {
-            getEventoFacade().create(eventoActual);
+
+    public String addProgramador() {
+        try {
+            for ( Programador programador:listaProgramador) {
+                getProgramadorFacade().create(programador);
+            }  
             recargarLista();
             return "";
         } catch (Exception e) {
             addErrorMessage("Error closing resource " + e.getClass().getName(), "Message: " + e.getMessage());
             return null;
         }
-        
-        }
-    
-    
-   
-    
-     private void addErrorMessage(String title, String msg) {
+
+    }
+
+    private void addErrorMessage(String title, String msg) {
         FacesMessage facesMsg
                 = new FacesMessage(FacesMessage.SEVERITY_ERROR, title, msg);
         FacesContext.getCurrentInstance().addMessage(null, facesMsg);
@@ -189,7 +301,7 @@ public class EventoController {
                 = new FacesMessage(FacesMessage.SEVERITY_INFO, title, msg);
         FacesContext.getCurrentInstance().addMessage("successInfo", facesMsg);
     }
-    
+
     public Evento getEvento(java.lang.Integer id) {
         return getEventoFacade().find(id);
     }
@@ -233,5 +345,5 @@ public class EventoController {
         }
 
     }
-    
+
 }

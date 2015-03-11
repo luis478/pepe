@@ -27,6 +27,7 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "UsuarioHasFicha.findAll", query = "SELECT u FROM UsuarioHasFicha u"),
     @NamedQuery(name = "UsuarioHasFicha.findByIdUsuario", query = "SELECT u FROM UsuarioHasFicha u WHERE u.usuarioHasFichaPK.idUsuario = :idUsuario"),
     @NamedQuery(name = "UsuarioHasFicha.findByTipoInstructor", query = "SELECT u FROM UsuarioHasFicha u WHERE u.idTipoInstructor.idTipoInstructor = 1 AND u.ficha.codigoFicha = :codigoFicha"),
+    @NamedQuery(name = "UsuarioHasFicha.findByUsuario", query = "SELECT u.usuario FROM UsuarioHasFicha u WHERE u.ficha.codigoFicha = :codigoFicha"),
     @NamedQuery(name = "UsuarioHasFicha.findByIdFicha", query = "SELECT u FROM UsuarioHasFicha u WHERE u.usuarioHasFichaPK.idFicha = :idFicha")})
 public class UsuarioHasFicha implements Serializable {
     private static final long serialVersionUID = 1L;
@@ -107,7 +108,7 @@ public class UsuarioHasFicha implements Serializable {
 
     @Override
     public String toString() {
-        return "com.pepe.jpa.entities.UsuarioHasFicha[ usuarioHasFichaPK=" + usuarioHasFichaPK + " ]";
+        return usuario.getNombre1() + usuario.getApellido1();
     }
     
 }

@@ -35,7 +35,10 @@ import javax.ejb.EJB;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
+import javax.faces.convert.Converter;
+import javax.faces.convert.FacesConverter;
 
 /**
  *
@@ -353,5 +356,47 @@ public class UsuarioController implements Serializable{
                 = new FacesMessage(FacesMessage.SEVERITY_INFO, title, msg);
         FacesContext.getCurrentInstance().addMessage("successInfo", facesMsg);
     }
+    public Usuario getUsuario(java.lang.Integer id) {
+        return usuarioFacade.find(id);
+    }
     
+    @FacesConverter(forClass = Usuario.class)
+    public static class UsuarioControllerConverter implements Converter {
+
+        @Override
+        public Object getAsObject(FacesContext facesContext, UIComponent component, String value) {
+            if (value == null || value.length() == 0) {
+                return null;
+}
+            UsuarioController controller = (UsuarioController) facesContext.getApplication().getELResolver().
+                    getValue(facesContext.getELContext(), null, "usuarioController");
+            return controller.getUsuario(getKey(value));
+        }
+
+        java.lang.Integer getKey(String value) {
+            java.lang.Integer key;
+            key = Integer.valueOf(value);
+            return key;
+        }
+
+        String getStringKey(java.lang.Integer value) {
+            StringBuilder sb = new StringBuilder();
+            sb.append(value);
+            return sb.toString();
+        }
+
+        @Override
+        public String getAsString(FacesContext facesContext, UIComponent component, Object object) {
+            if (object == null) {
+                return null;
+            }
+            if (object instanceof Usuario) {
+                Usuario o = (Usuario) object;
+                return getStringKey(o.getIdUsuario());
+            } else {
+                throw new IllegalArgumentException("object " + object + " is of type " + object.getClass().getName() + "; expected type: " + Usuario.class.getName());
+            }
+        }
+
+    }
 }

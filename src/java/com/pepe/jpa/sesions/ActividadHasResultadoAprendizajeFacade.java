@@ -6,10 +6,15 @@
 
 package com.pepe.jpa.sesions;
 
+import com.pepe.jpa.entities.Actividad;
 import com.pepe.jpa.entities.ActividadHasResultadoAprendizaje;
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
+import javax.persistence.NonUniqueResultException;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
 /**
  *
@@ -28,5 +33,18 @@ public class ActividadHasResultadoAprendizajeFacade extends AbstractFacade<Activ
     public ActividadHasResultadoAprendizajeFacade() {
         super(ActividadHasResultadoAprendizaje.class);
     }
-    
+    public List<ActividadHasResultadoAprendizaje> finByResultado(Actividad actividad) {
+        Query q = getEntityManager().createNamedQuery("ActividadHasResultadoAprendizaje.findByIdActividad");
+        q.setParameter("idActividad", actividad.getIdActividad());
+        try {
+            return (List<ActividadHasResultadoAprendizaje>) q.getResultList();
+        } catch (NonUniqueResultException e) {
+            System.out.println(e.getCause());
+            return null;
+        } catch (NoResultException e) {
+            System.out.println(e.getMessage());
+            return null;
+        }
+
+    }
 }
