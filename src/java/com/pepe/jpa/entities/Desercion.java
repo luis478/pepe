@@ -53,14 +53,15 @@ public class Desercion implements Serializable {
     @Column(name = "fecha")
     @Temporal(TemporalType.DATE)
     private Date fecha;
+    @Lob
+    @Size(max = 65535)
+    @Column(name = "motivo")
+    private String motivo;
     @OneToMany(mappedBy = "idDesercion")
     private List<Usuario> usuarioList;
     @JoinColumn(name = "id_estado", referencedColumnName = "id_estado")
     @ManyToOne(optional = false)
     private Estado idEstado;
-    @JoinColumn(name = "id_motivo", referencedColumnName = "id_motivo")
-    @ManyToOne(optional = false)
-    private Motivo idMotivo;
 
     public Desercion() {
     }
@@ -93,6 +94,14 @@ public class Desercion implements Serializable {
         this.fecha = fecha;
     }
 
+    public String getMotivo() {
+        return motivo;
+    }
+
+    public void setMotivo(String motivo) {
+        this.motivo = motivo;
+    }
+
     @XmlTransient
     public List<Usuario> getUsuarioList() {
         return usuarioList;
@@ -108,14 +117,6 @@ public class Desercion implements Serializable {
 
     public void setIdEstado(Estado idEstado) {
         this.idEstado = idEstado;
-    }
-
-    public Motivo getIdMotivo() {
-        return idMotivo;
-    }
-
-    public void setIdMotivo(Motivo idMotivo) {
-        this.idMotivo = idMotivo;
     }
 
     @Override

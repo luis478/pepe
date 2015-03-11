@@ -27,7 +27,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author ADSI TARDE
+ * @author Junior Cabal
  */
 @Entity
 @Table(name = "rol")
@@ -52,11 +52,10 @@ public class Rol implements Serializable {
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 45)
-    @Column(name = "codigo_rol")
+   @Column(name = "codigo_rol")
     private String codigoRol;
         @ManyToMany (mappedBy = "rolList")
     private List<Usuario> usuarioList;
-
 
     public Rol() {
     }
@@ -126,7 +125,7 @@ public class Rol implements Serializable {
 
     @Override
     public String toString() {
-        return getNombreRol().toUpperCase();
+        return "com.pepe.jpa.entities.Rol[ idRol=" + idRol + " ]";
     }
     
 }

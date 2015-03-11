@@ -122,7 +122,12 @@
     margin-bottom: 1em;
     margin-top: 0;
 }
-
+.article-listaActividad{
+    display: inline-block;
+    margin-top: -20em;
+    margin-left: 15em;
+    
+}
 
 .articulo1{
     margin: 0;
@@ -252,7 +257,7 @@
 
 
 
-/* ESTILOS DE FORMULACION */
+/* ESTILOS DE FORMULACION 
 
 .error{
     color: red;
@@ -401,10 +406,11 @@
     margin-bottom: 5px;
     outline: none !important;
 }
-
+*/
 .Guardar{
     background-color:#00a0b0;
     color: white;
+    padding: 1em;
     margin-left: 5em;
     margin-top: 1em;
 }
@@ -430,3 +436,12 @@
     margin-right: 1em;
 }
 
+.Titulo-plantillas{
+    margin-top: 0;
+    margin-left: 0;
+    font-size: 2em;
+    display: inline-block;
+}
+.dialogo{
+    margin-top: 0;
+}

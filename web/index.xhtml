@@ -6,7 +6,7 @@
       xmlns:p="http://primefaces.org/ui"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
-
+    <a href="index.xhtml"></a>
     <head jsf:id="head">
         <title>PEPA</title>
         <meta charset="UTF-8"/>
@@ -81,10 +81,7 @@
                         <input  type="text" class="Pepe-formInput2" jsf:value="#{fichaController.fichaSeleccionada.programa.programaPK.version}" jsf:id="version"/>
                     </article>
 
-                    <article class="articulo2">
-                        <label for="comments" class="Pepe-articuloLabel">Duracion</label>
-                        <input type="text" class="Pepe-formInput2" jsf:value="#{fichaController.fichaSeleccionada.trimestresLectiva}" jsf:id="Duracion"/>
-                    </article>
+                   
                 </section>
 
 
@@ -141,48 +138,8 @@
                  <h:button value="¡Crear Ficha!" outcome="/ProgramaciondeProyecto/crear_ficha.xhtml" />
                  
             </h:form> 
-            <h:form>
-                <input type="submit"
-                       class="Boton"/>
-
-                <h:commandButton class="Guardar" value="Menu Planeacion pedagogica" type="button" onclick="PF('botonPlaneacionPedagogicaDlg').show();"/>
-                <br></br>
-                <h:commandButton class="Guardar" value="Menu crear usuario" type="button" onclick="PF('botonCrearUsuarioDlg').show();"/>
-                 <h:button class="Guardar" value="¡Programacion!" outcome="/ProgramaciondeProyecto/programacion.xhtml" />
-                 <h:button class="Guardar" value="¡Crear Ficha!" outcome="/ProgramaciondeProyecto/crear_ficha.xhtml" />
-                 
-            </h:form> 
-            <h:form>
-                <input class="Guardar" type="submit"
-                       
-
-                       jsf:value="programa"
-                       jsf:action="programa/programaInicio.xhtml"
-                       jsf:actionListener="#{programaController.anular()}">
-                </input>
-
-                <input type="submit"
-                       class="Boton"
-                       jsf:value="Proyecto"
-                       jsf:action="proyecto/proyectoCrear.xhtml">
-                </input>
-                <input type="submit"
-                       class="Boton"/>
-
-                <input class="Guardar" type="submit"
-                       
-
-                       jsf:value="Competencia"
-                       jsf:action="competencia/crear_competencia.xhtml">
-                </input>
-                
-                <input type="submit"
-                       class="Boton"
-                       jsf:value="Valoración"
-                       jsf:action="variable/Create.xhtml">
-                </input>
-                
-            </h:form>
+            
+            
         
         <hr width="100%" size="8" align="right"/>
         <footer class="Pepe-footer" >

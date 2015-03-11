@@ -19,6 +19,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.Lob;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
@@ -77,6 +78,9 @@ public class Competencia implements Serializable {
     private List<ConocimientoConceptoPrincipios> conocimientoConceptoPrincipiosList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idCompetencia")
     private List<CriteriosEvaluacion> criteriosEvaluacionList;
+    @JoinColumn(name = "id_tipo_competencia", referencedColumnName = "id_tipo_competencia")
+    @ManyToOne(optional = false)
+    private TipoCompetencia idTipoCompetencia;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idCompetencia")
     private List<ConocimientoProceso> conocimientoProcesoList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idCompetencia")
@@ -162,6 +166,14 @@ public class Competencia implements Serializable {
 
     public void setCriteriosEvaluacionList(List<CriteriosEvaluacion> criteriosEvaluacionList) {
         this.criteriosEvaluacionList = criteriosEvaluacionList;
+    }
+
+    public TipoCompetencia getIdTipoCompetencia() {
+        return idTipoCompetencia;
+    }
+
+    public void setIdTipoCompetencia(TipoCompetencia idTipoCompetencia) {
+        this.idTipoCompetencia = idTipoCompetencia;
     }
 
     @XmlTransient

@@ -39,7 +39,7 @@ import javax.xml.bind.annotation.XmlTransient;
 @NamedQueries({
     @NamedQuery(name = "ActividadAprendizaje.findAll", query = "SELECT a FROM ActividadAprendizaje a"),
     @NamedQuery(name = "ActividadAprendizaje.findByIdActividadAprendizaje", query = "SELECT a FROM ActividadAprendizaje a WHERE a.idActividadAprendizaje = :idActividadAprendizaje"),
-    @NamedQuery(name = "ActividadAprendizaje.findByConsultaActividad", query = "SELECT a FROM ActividadAprendizaje a WHERE a.idActividad = :idActividad"),
+     @NamedQuery(name = "ActividadAprendizaje.findByConsultaActividad", query = "SELECT a FROM ActividadAprendizaje a WHERE a.idActividad = :idActividad"),
     @NamedQuery(name = "ActividadAprendizaje.findByFase", query = "SELECT a FROM ActividadAprendizaje a WHERE a.idActividad.idProyecto = :idProyecto AND a.idActividad.idFase = :idFase"),
     @NamedQuery(name = "ActividadAprendizaje.findByDuracionActividadAprendizaje", query = "SELECT a FROM ActividadAprendizaje a WHERE a.duracionActividadAprendizaje = :duracionActividadAprendizaje")})
 public class ActividadAprendizaje implements Serializable {
@@ -65,6 +65,12 @@ public class ActividadAprendizaje implements Serializable {
     @Size(min = 1, max = 65535)
     @Column(name = "observaciones")
     private String observaciones;
+    @Basic(optional = false)
+    @NotNull
+    @Lob
+    @Size(min = 1, max = 65535)
+    @Column(name = "descripcion")
+    private String descripcion;
     @JoinTable(name = "actividad_aprendizaje_has_recurso", joinColumns = {
         @JoinColumn(name = "id_actividad_aprendizaje", referencedColumnName = "id_actividad_aprendizaje")}, inverseJoinColumns = {
         @JoinColumn(name = "id_recurso", referencedColumnName = "id_recurso")})
@@ -80,15 +86,12 @@ public class ActividadAprendizaje implements Serializable {
         @JoinColumn(name = "id_usuario", referencedColumnName = "id_usuario")})
     @ManyToMany
     private List<Usuario> usuarioList;
-    @JoinColumn(name = "id_actividad", referencedColumnName = "id_actividad")
-    @ManyToOne(optional = false)
-    private Actividad idActividad;
-    @JoinColumn(name = "id_tecnica_didactica", referencedColumnName = "id_tecnica_didactica")
-    @ManyToOne(optional = false)
-    private TecnicaDidactica idTecnicaDidactica;
     @JoinColumn(name = "id_tipo_actividad_aprendizaje", referencedColumnName = "id_tipo_actividad_aprendizaje")
     @ManyToOne(optional = false)
     private TipoActividadAprendizaje idTipoActividadAprendizaje;
+    @JoinColumn(name = "id_actividad", referencedColumnName = "id_actividad")
+    @ManyToOne(optional = false)
+    private Actividad idActividad;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "actividadAprendizaje")
     private List<ActividadAprendizajeHasGuiaAprendizaje> actividadAprendizajeHasGuiaAprendizajeList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idActividadAprendizaje")
@@ -101,11 +104,12 @@ public class ActividadAprendizaje implements Serializable {
         this.idActividadAprendizaje = idActividadAprendizaje;
     }
 
-    public ActividadAprendizaje(Integer idActividadAprendizaje, String nombreActividadAprendizaje, int duracionActividadAprendizaje, String observaciones) {
+    public ActividadAprendizaje(Integer idActividadAprendizaje, String nombreActividadAprendizaje, int duracionActividadAprendizaje, String observaciones, String descripcion) {
         this.idActividadAprendizaje = idActividadAprendizaje;
         this.nombreActividadAprendizaje = nombreActividadAprendizaje;
         this.duracionActividadAprendizaje = duracionActividadAprendizaje;
         this.observaciones = observaciones;
+        this.descripcion = descripcion;
     }
 
     public Integer getIdActividadAprendizaje() {
@@ -140,6 +144,14 @@ public class ActividadAprendizaje implements Serializable {
         this.observaciones = observaciones;
     }
 
+    public String getDescripcion() {
+        return descripcion;
+    }
+
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
+    }
+
     @XmlTransient
     public List<Recurso> getRecursoList() {
         return recursoList;
@@ -167,28 +179,20 @@ public class ActividadAprendizaje implements Serializable {
         this.usuarioList = usuarioList;
     }
 
-    public Actividad getIdActividad() {
-        return idActividad;
-    }
-
-    public void setIdActividad(Actividad idActividad) {
-        this.idActividad = idActividad;
-    }
-
-    public TecnicaDidactica getIdTecnicaDidactica() {
-        return idTecnicaDidactica;
-    }
-
-    public void setIdTecnicaDidactica(TecnicaDidactica idTecnicaDidactica) {
-        this.idTecnicaDidactica = idTecnicaDidactica;
-    }
-
     public TipoActividadAprendizaje getIdTipoActividadAprendizaje() {
         return idTipoActividadAprendizaje;
     }
 
     public void setIdTipoActividadAprendizaje(TipoActividadAprendizaje idTipoActividadAprendizaje) {
         this.idTipoActividadAprendizaje = idTipoActividadAprendizaje;
+    }
+
+    public Actividad getIdActividad() {
+        return idActividad;
+    }
+
+    public void setIdActividad(Actividad idActividad) {
+        this.idActividad = idActividad;
     }
 
     @XmlTransient
@@ -231,7 +235,7 @@ public class ActividadAprendizaje implements Serializable {
 
     @Override
     public String toString() {
-        return getNombreActividadAprendizaje().toUpperCase();
+        return "com.pepe.jpa.entities.ActividadAprendizaje[ idActividadAprendizaje=" + idActividadAprendizaje + " ]";
     }
     
 }

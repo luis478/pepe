@@ -36,10 +36,7 @@
                     </input>
             </h:panelGrid>
             <h:panelGrid columns="6">
-                    <label class="Label4" for="duracionProgramaText">Duración del programa:</label>
-                    <input class="Form-Input4" type="text" disabled="true"
-                           jsf:value="#{fichaController.fichaSeleccionada.programa.duracionTrimestres}">
-                    </input>
+                    
                     <label class="Label6" for="codigoProyectoText">Codigo del proyecto:</label>
                             <input class="Form-Input6" type="text" disabled="true"
                                    jsf:value="#{fichaController.fichaSeleccionada.idProyecto.codigoProyecto}">
@@ -63,7 +60,8 @@
     </form>
     </header>
         
-    <hr WIDTH='100%' SIZE='8' ALIGN='RIGHT'></hr>
+    <hr SIZE='20'></hr>
+    <section>
         <section class="pepe-color">
         <ul class="Pepe-listColor">
                 <li class="Pepe-listColorItem"><a href='#' class="PepeMenu-link"></a></li>
@@ -93,15 +91,15 @@
         </nav>    
     </section>
 
+    </section>
     
-    
-    <section class="section-centroTemplate">
+    <section class="article-listaActividad">
         <ui:insert name="body">Default Body</ui:insert> 
     </section>
 
          
 
-    <hr WIDTH='100%' SIZE='8' ALIGN='RIGHT'></hr>
+    <hr SIZE='20'></hr>
     <footer class="Pepe-footer">
         <figure class="Footer-imageContainer">
                 <img src="../resources/images/logosena.png" heigth="50" width="50" alt="logo sena" class="Footer-image"/>

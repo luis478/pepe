@@ -100,8 +100,8 @@ public class Proyecto implements Serializable {
     @NotNull
     @Lob
     @Size(min = 1, max = 65535)
-    @Column(name = "impacto_2_5_2")
-    private String impacto252;
+    @Column(name = "impacto_social_2_5_2_1")
+    private String impactoSocial2521;
     @Basic(optional = false)
     @NotNull
     @Lob
@@ -156,8 +156,26 @@ public class Proyecto implements Serializable {
     @Size(min = 1, max = 2147483647)
     @Column(name = "descripcion_ambiente")
     private String descripcionAmbiente;
+    @Basic(optional = false)
+    @NotNull
+    @Lob
+    @Size(min = 1, max = 65535)
+    @Column(name = "impacto_ambiental_2_5_2_3")
+    private String impactoAmbiental2523;
+    @Basic(optional = false)
+    @NotNull
+    @Lob
+    @Size(min = 1, max = 65535)
+    @Column(name = "impacto_economico_2_5_2_2")
+    private String impactoEconomico2522;
+    @Basic(optional = false)
+    @NotNull
+    @Lob
+    @Size(min = 1, max = 65535)
+    @Column(name = "impacto_tecnologico_2_5_2_4")
+    private String impactoTecnologico2524;
     @ManyToMany(mappedBy = "proyectoList")
-    private List<Empresa> empresaList;
+    private List<EstapaPractica> estapaPracticaList;
     @JoinTable(name = "recurso_has_proyecto", joinColumns = {
         @JoinColumn(name = "id_proyecto", referencedColumnName = "id_proyecto")}, inverseJoinColumns = {
         @JoinColumn(name = "id_recurso", referencedColumnName = "id_recurso")})
@@ -181,7 +199,7 @@ public class Proyecto implements Serializable {
         this.idProyecto = idProyecto;
     }
 
-    public Proyecto(Integer idProyecto, String nombreProyecto, String codigoProyecto, String justificacion22, String objetivoGeneral23, String objetivoEspecifico24, String palabrasClave17, String planteamiento21, String impacto252, String restricciones253, String productosResultados254, boolean innovacion261, boolean innovacion262, boolean innovacion263, boolean innovacion264, boolean innovacion265, boolean valoracion271, short valoracion272, int intructoresRequeridos, int aprendicesSugeridos, String descripcionAmbiente) {
+    public Proyecto(Integer idProyecto, String nombreProyecto, String codigoProyecto, String justificacion22, String objetivoGeneral23, String objetivoEspecifico24, String palabrasClave17, String planteamiento21, String impactoSocial2521, String restricciones253, String productosResultados254, boolean innovacion261, boolean innovacion262, boolean innovacion263, boolean innovacion264, boolean innovacion265, boolean valoracion271, short valoracion272, int intructoresRequeridos, int aprendicesSugeridos, String descripcionAmbiente, String impactoAmbiental2523, String impactoEconomico2522, String impactoTecnologico2524) {
         this.idProyecto = idProyecto;
         this.nombreProyecto = nombreProyecto;
         this.codigoProyecto = codigoProyecto;
@@ -190,7 +208,7 @@ public class Proyecto implements Serializable {
         this.objetivoEspecifico24 = objetivoEspecifico24;
         this.palabrasClave17 = palabrasClave17;
         this.planteamiento21 = planteamiento21;
-        this.impacto252 = impacto252;
+        this.impactoSocial2521 = impactoSocial2521;
         this.restricciones253 = restricciones253;
         this.productosResultados254 = productosResultados254;
         this.innovacion261 = innovacion261;
@@ -203,6 +221,9 @@ public class Proyecto implements Serializable {
         this.intructoresRequeridos = intructoresRequeridos;
         this.aprendicesSugeridos = aprendicesSugeridos;
         this.descripcionAmbiente = descripcionAmbiente;
+        this.impactoAmbiental2523 = impactoAmbiental2523;
+        this.impactoEconomico2522 = impactoEconomico2522;
+        this.impactoTecnologico2524 = impactoTecnologico2524;
     }
 
     public Integer getIdProyecto() {
@@ -269,12 +290,12 @@ public class Proyecto implements Serializable {
         this.planteamiento21 = planteamiento21;
     }
 
-    public String getImpacto252() {
-        return impacto252;
+    public String getImpactoSocial2521() {
+        return impactoSocial2521;
     }
 
-    public void setImpacto252(String impacto252) {
-        this.impacto252 = impacto252;
+    public void setImpactoSocial2521(String impactoSocial2521) {
+        this.impactoSocial2521 = impactoSocial2521;
     }
 
     public String getRestricciones253() {
@@ -373,13 +394,37 @@ public class Proyecto implements Serializable {
         this.descripcionAmbiente = descripcionAmbiente;
     }
 
-    @XmlTransient
-    public List<Empresa> getEmpresaList() {
-        return empresaList;
+    public String getImpactoAmbiental2523() {
+        return impactoAmbiental2523;
     }
 
-    public void setEmpresaList(List<Empresa> empresaList) {
-        this.empresaList = empresaList;
+    public void setImpactoAmbiental2523(String impactoAmbiental2523) {
+        this.impactoAmbiental2523 = impactoAmbiental2523;
+    }
+
+    public String getImpactoEconomico2522() {
+        return impactoEconomico2522;
+    }
+
+    public void setImpactoEconomico2522(String impactoEconomico2522) {
+        this.impactoEconomico2522 = impactoEconomico2522;
+    }
+
+    public String getImpactoTecnologico2524() {
+        return impactoTecnologico2524;
+    }
+
+    public void setImpactoTecnologico2524(String impactoTecnologico2524) {
+        this.impactoTecnologico2524 = impactoTecnologico2524;
+    }
+
+    @XmlTransient
+    public List<EstapaPractica> getEstapaPracticaList() {
+        return estapaPracticaList;
+    }
+
+    public void setEstapaPracticaList(List<EstapaPractica> estapaPracticaList) {
+        this.estapaPracticaList = estapaPracticaList;
     }
 
     @XmlTransient

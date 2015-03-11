@@ -16,7 +16,6 @@ import com.pepe.jpa.sesions.EventoFacade;
 import com.pepe.jpa.sesions.FaseFacade;
 import com.pepe.jpa.sesions.ProyectoFacade;
 import com.pepe.jpa.sesions.ResultadoAprendizajeFacade;
-import com.pepe.jpa.sesions.TrimestreFacade;
 import java.util.List;
 import javax.ejb.EJB;
 import javax.faces.application.FacesMessage;
@@ -41,8 +40,6 @@ public class EventoController {
     private FaseFacade faseFacade; 
     @EJB
     private ActividadAprendizajeFacade actividadAprendizajeFacade;
-    @EJB
-    private TrimestreFacade trimestreFacade;
     @EJB
     private CompetenciaFacade competenciaFacade;
     @EJB
@@ -134,13 +131,7 @@ public class EventoController {
         this.actividadAprendizajeFacade = actividadAprendizajeFacade;
     }
 
-    public TrimestreFacade getTrimestreFacade() {
-        return trimestreFacade;
-    }
 
-    public void setTrimestreFacade(TrimestreFacade trimestreFacade) {
-        this.trimestreFacade = trimestreFacade;
-    }
 
     public CompetenciaFacade getCompetenciaFacade() {
         return competenciaFacade;

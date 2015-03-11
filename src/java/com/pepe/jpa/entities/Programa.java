@@ -37,8 +37,9 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Programa.findAll", query = "SELECT p FROM Programa p"),
     @NamedQuery(name = "Programa.findByCodigo", query = "SELECT p FROM Programa p WHERE p.programaPK.codigo = :codigo"),
     @NamedQuery(name = "Programa.findByVersion", query = "SELECT p FROM Programa p WHERE p.programaPK.version = :version"),
-    @NamedQuery(name = "Programa.findByDuracionTrimestres", query = "SELECT p FROM Programa p WHERE p.duracionTrimestres = :duracionTrimestres"),
-    @NamedQuery(name = "Programa.findByEstado", query = "SELECT p FROM Programa p WHERE p.estado = :estado")})
+    @NamedQuery(name = "Programa.findByDuracionTrimestresLectiva", query = "SELECT p FROM Programa p WHERE p.duracionTrimestresLectiva = :duracionTrimestresLectiva"),
+    @NamedQuery(name = "Programa.findByEstado", query = "SELECT p FROM Programa p WHERE p.estado = :estado"),
+    @NamedQuery(name = "Programa.findByDuracionTrimestresProductiva", query = "SELECT p FROM Programa p WHERE p.duracionTrimestresProductiva = :duracionTrimestresProductiva")})
 public class Programa implements Serializable {
     private static final long serialVersionUID = 1L;
     @EmbeddedId
@@ -51,8 +52,8 @@ public class Programa implements Serializable {
     private String nombrePrograma;
     @Basic(optional = false)
     @NotNull
-    @Column(name = "duracion_trimestres")
-    private short duracionTrimestres;
+    @Column(name = "duracion_trimestres_lectiva")
+    private short duracionTrimestresLectiva;
     @Basic(optional = false)
     @NotNull
     @Column(name = "estado")
@@ -63,6 +64,10 @@ public class Programa implements Serializable {
     @Size(min = 1, max = 2147483647)
     @Column(name = "justificacion")
     private String justificacion;
+    @Basic(optional = false)
+    @NotNull
+    @Column(name = "duracion_trimestres_productiva")
+    private short duracionTrimestresProductiva;
     @ManyToMany(mappedBy = "programaList")
     private List<Competencia> competenciaList;
     @JoinColumn(name = "id_linea_tecnologica", referencedColumnName = "id_linea_tecnologica")
@@ -90,12 +95,13 @@ public class Programa implements Serializable {
         this.programaPK = programaPK;
     }
 
-    public Programa(ProgramaPK programaPK, String nombrePrograma, short duracionTrimestres, short estado, String justificacion) {
+    public Programa(ProgramaPK programaPK, String nombrePrograma, short duracionTrimestresLectiva, short estado, String justificacion, short duracionTrimestresProductiva) {
         this.programaPK = programaPK;
         this.nombrePrograma = nombrePrograma;
-        this.duracionTrimestres = duracionTrimestres;
+        this.duracionTrimestresLectiva = duracionTrimestresLectiva;
         this.estado = estado;
         this.justificacion = justificacion;
+        this.duracionTrimestresProductiva = duracionTrimestresProductiva;
     }
 
     public Programa(String codigo, String version) {
@@ -118,12 +124,12 @@ public class Programa implements Serializable {
         this.nombrePrograma = nombrePrograma;
     }
 
-    public short getDuracionTrimestres() {
-        return duracionTrimestres;
+    public short getDuracionTrimestresLectiva() {
+        return duracionTrimestresLectiva;
     }
 
-    public void setDuracionTrimestres(short duracionTrimestres) {
-        this.duracionTrimestres = duracionTrimestres;
+    public void setDuracionTrimestresLectiva(short duracionTrimestresLectiva) {
+        this.duracionTrimestresLectiva = duracionTrimestresLectiva;
     }
 
     public short getEstado() {
@@ -140,6 +146,14 @@ public class Programa implements Serializable {
 
     public void setJustificacion(String justificacion) {
         this.justificacion = justificacion;
+    }
+
+    public short getDuracionTrimestresProductiva() {
+        return duracionTrimestresProductiva;
+    }
+
+    public void setDuracionTrimestresProductiva(short duracionTrimestresProductiva) {
+        this.duracionTrimestresProductiva = duracionTrimestresProductiva;
     }
 
     @XmlTransient

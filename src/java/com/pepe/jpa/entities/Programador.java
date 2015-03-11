@@ -36,7 +36,8 @@ import javax.xml.bind.annotation.XmlTransient;
 @NamedQueries({
     @NamedQuery(name = "Programador.findAll", query = "SELECT p FROM Programador p"),
     @NamedQuery(name = "Programador.findByIdProgramador", query = "SELECT p FROM Programador p WHERE p.idProgramador = :idProgramador"),
-    @NamedQuery(name = "Programador.findByCantidadHora", query = "SELECT p FROM Programador p WHERE p.cantidadHora = :cantidadHora")})
+    @NamedQuery(name = "Programador.findByCantidadHora", query = "SELECT p FROM Programador p WHERE p.cantidadHora = :cantidadHora"),
+    @NamedQuery(name = "Programador.findByTrimestre", query = "SELECT p FROM Programador p WHERE p.trimestre = :trimestre")})
 public class Programador implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
@@ -48,6 +49,10 @@ public class Programador implements Serializable {
     @NotNull
     @Column(name = "cantidad_hora")
     private int cantidadHora;
+    @Basic(optional = false)
+    @NotNull
+    @Column(name = "trimestre")
+    private int trimestre;
     @JoinColumns({
         @JoinColumn(name = "id_actividad", referencedColumnName = "id_actividad"),
         @JoinColumn(name = "id_resultado_aprendizaje", referencedColumnName = "id_resultado_aprendizaje")})
@@ -66,9 +71,10 @@ public class Programador implements Serializable {
         this.idProgramador = idProgramador;
     }
 
-    public Programador(Integer idProgramador, int cantidadHora) {
+    public Programador(Integer idProgramador, int cantidadHora, int trimestre) {
         this.idProgramador = idProgramador;
         this.cantidadHora = cantidadHora;
+        this.trimestre = trimestre;
     }
 
     public Integer getIdProgramador() {
@@ -85,6 +91,14 @@ public class Programador implements Serializable {
 
     public void setCantidadHora(int cantidadHora) {
         this.cantidadHora = cantidadHora;
+    }
+
+    public int getTrimestre() {
+        return trimestre;
+    }
+
+    public void setTrimestre(int trimestre) {
+        this.trimestre = trimestre;
     }
 
     public ActividadHasResultadoAprendizaje getActividadHasResultadoAprendizaje() {

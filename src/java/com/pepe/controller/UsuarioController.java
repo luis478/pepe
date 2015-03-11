@@ -5,10 +5,8 @@ import com.pepe.jpa.entities.Desercion;
 import com.pepe.jpa.entities.Eps;
 import com.pepe.jpa.entities.Especialidad;
 import com.pepe.jpa.entities.EstiloAprendizaje;
-import com.pepe.jpa.entities.Fase;
 import com.pepe.jpa.entities.Genero;
 import com.pepe.jpa.entities.LibretaMilitar;
-import com.pepe.jpa.entities.Patrocinio;
 import com.pepe.jpa.entities.Rol;
 import com.pepe.jpa.entities.TipoContrato;
 import com.pepe.jpa.entities.TipoDocumento;
@@ -24,7 +22,6 @@ import com.pepe.jpa.sesions.FaseFacade;
 import com.pepe.jpa.sesions.FichaFacade;
 import com.pepe.jpa.sesions.GeneroFacade;
 import com.pepe.jpa.sesions.LibretaMilitarFacade;
-import com.pepe.jpa.sesions.PatrocinioFacade;
 import com.pepe.jpa.sesions.RolFacade;
 import com.pepe.jpa.sesions.TipoContratoFacade;
 import com.pepe.jpa.sesions.TipoDocumentoFacade;
@@ -54,8 +51,7 @@ public class UsuarioController implements Serializable{
     private CaracterizacionFacade caracterizacionFacade;
    @EJB
     private EstiloAprendizajeFacade estiloAprendizajeFacade;
-   @EJB
-    private PatrocinioFacade patrocinioFacade;
+ 
    @EJB
     private DesercionFacade desercionFacade;
    @EJB
@@ -124,7 +120,7 @@ public class UsuarioController implements Serializable{
     }
     
     
-    // select one menu Patrocinio
+    /* select one menu Patrocinio
     public PatrocinioFacade getPatrocinioFacade() {
         return patrocinioFacade;
     }
@@ -133,7 +129,7 @@ public class UsuarioController implements Serializable{
     }
     public List<Patrocinio> getListaPatrocinioSelectOne() {
         return getPatrocinioFacade().findAll();
-    }
+    }*/
     
     
     // select one menu Desercion

@@ -9,7 +9,6 @@ package com.pepe.jpa.entities;
 import java.io.Serializable;
 import java.util.List;
 import javax.persistence.Basic;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -32,22 +31,23 @@ import javax.xml.bind.annotation.XmlTransient;
  * @author Junior Cabal
  */
 @Entity
-@Table(name = "empresa")
+@Table(name = "estapa_practica")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "Empresa.findAll", query = "SELECT e FROM Empresa e"),
-    @NamedQuery(name = "Empresa.findByIdEmpresa", query = "SELECT e FROM Empresa e WHERE e.idEmpresa = :idEmpresa"),
-    @NamedQuery(name = "Empresa.findByNombreEmpresa", query = "SELECT e FROM Empresa e WHERE e.nombreEmpresa = :nombreEmpresa"),
-    @NamedQuery(name = "Empresa.findByRepresentante", query = "SELECT e FROM Empresa e WHERE e.representante = :representante"),
-    @NamedQuery(name = "Empresa.findByTelefono", query = "SELECT e FROM Empresa e WHERE e.telefono = :telefono"),
-    @NamedQuery(name = "Empresa.findByCorreo", query = "SELECT e FROM Empresa e WHERE e.correo = :correo")})
-public class Empresa implements Serializable {
+    @NamedQuery(name = "EstapaPractica.findAll", query = "SELECT e FROM EstapaPractica e"),
+    @NamedQuery(name = "EstapaPractica.findByIdEtapaPractica", query = "SELECT e FROM EstapaPractica e WHERE e.idEtapaPractica = :idEtapaPractica"),
+    @NamedQuery(name = "EstapaPractica.findByNombreEmpresa", query = "SELECT e FROM EstapaPractica e WHERE e.nombreEmpresa = :nombreEmpresa"),
+    @NamedQuery(name = "EstapaPractica.findByRepresentante", query = "SELECT e FROM EstapaPractica e WHERE e.representante = :representante"),
+    @NamedQuery(name = "EstapaPractica.findByTelefono", query = "SELECT e FROM EstapaPractica e WHERE e.telefono = :telefono"),
+    @NamedQuery(name = "EstapaPractica.findByCorreo", query = "SELECT e FROM EstapaPractica e WHERE e.correo = :correo"),
+    @NamedQuery(name = "EstapaPractica.findByTipoPractica", query = "SELECT e FROM EstapaPractica e WHERE e.tipoPractica = :tipoPractica")})
+public class EstapaPractica implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
-    @Column(name = "id_empresa")
-    private Integer idEmpresa;
+    @Column(name = "id_etapa_practica")
+    private Integer idEtapaPractica;
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 60)
@@ -68,35 +68,41 @@ public class Empresa implements Serializable {
     @Size(min = 1, max = 60)
     @Column(name = "Correo")
     private String correo;
+    @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 45)
+    @Column(name = "tipo_practica")
+    private String tipoPractica;
     @JoinTable(name = "empresa_has_proyecto", joinColumns = {
-        @JoinColumn(name = "id_empresa", referencedColumnName = "id_empresa")}, inverseJoinColumns = {
+        @JoinColumn(name = "id_empresa", referencedColumnName = "id_etapa_practica")}, inverseJoinColumns = {
         @JoinColumn(name = "id_proyecto", referencedColumnName = "id_proyecto")})
     @ManyToMany
     private List<Proyecto> proyectoList;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idEmpresa")
-    private List<Patrocinio> patrocinioList;
+    @OneToMany(mappedBy = "idEtapaPractica")
+    private List<Usuario> usuarioList;
 
-    public Empresa() {
+    public EstapaPractica() {
     }
 
-    public Empresa(Integer idEmpresa) {
-        this.idEmpresa = idEmpresa;
+    public EstapaPractica(Integer idEtapaPractica) {
+        this.idEtapaPractica = idEtapaPractica;
     }
 
-    public Empresa(Integer idEmpresa, String nombreEmpresa, String representante, String telefono, String correo) {
-        this.idEmpresa = idEmpresa;
+    public EstapaPractica(Integer idEtapaPractica, String nombreEmpresa, String representante, String telefono, String correo, String tipoPractica) {
+        this.idEtapaPractica = idEtapaPractica;
         this.nombreEmpresa = nombreEmpresa;
         this.representante = representante;
         this.telefono = telefono;
         this.correo = correo;
+        this.tipoPractica = tipoPractica;
     }
 
-    public Integer getIdEmpresa() {
-        return idEmpresa;
+    public Integer getIdEtapaPractica() {
+        return idEtapaPractica;
     }
 
-    public void setIdEmpresa(Integer idEmpresa) {
-        this.idEmpresa = idEmpresa;
+    public void setIdEtapaPractica(Integer idEtapaPractica) {
+        this.idEtapaPractica = idEtapaPractica;
     }
 
     public String getNombreEmpresa() {
@@ -131,6 +137,14 @@ public class Empresa implements Serializable {
         this.correo = correo;
     }
 
+    public String getTipoPractica() {
+        return tipoPractica;
+    }
+
+    public void setTipoPractica(String tipoPractica) {
+        this.tipoPractica = tipoPractica;
+    }
+
     @XmlTransient
     public List<Proyecto> getProyectoList() {
         return proyectoList;
@@ -141,29 +155,29 @@ public class Empresa implements Serializable {
     }
 
     @XmlTransient
-    public List<Patrocinio> getPatrocinioList() {
-        return patrocinioList;
+    public List<Usuario> getUsuarioList() {
+        return usuarioList;
     }
 
-    public void setPatrocinioList(List<Patrocinio> patrocinioList) {
-        this.patrocinioList = patrocinioList;
+    public void setUsuarioList(List<Usuario> usuarioList) {
+        this.usuarioList = usuarioList;
     }
 
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (idEmpresa != null ? idEmpresa.hashCode() : 0);
+        hash += (idEtapaPractica != null ? idEtapaPractica.hashCode() : 0);
         return hash;
     }
 
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Empresa)) {
+        if (!(object instanceof EstapaPractica)) {
             return false;
         }
-        Empresa other = (Empresa) object;
-        if ((this.idEmpresa == null && other.idEmpresa != null) || (this.idEmpresa != null && !this.idEmpresa.equals(other.idEmpresa))) {
+        EstapaPractica other = (EstapaPractica) object;
+        if ((this.idEtapaPractica == null && other.idEtapaPractica != null) || (this.idEtapaPractica != null && !this.idEtapaPractica.equals(other.idEtapaPractica))) {
             return false;
         }
         return true;
@@ -171,7 +185,7 @@ public class Empresa implements Serializable {
 
     @Override
     public String toString() {
-        return "com.pepe.jpa.entities.Empresa[ idEmpresa=" + idEmpresa + " ]";
+        return "com.pepe.jpa.entities.EstapaPractica[ idEtapaPractica=" + idEtapaPractica + " ]";
     }
-
+    
 }

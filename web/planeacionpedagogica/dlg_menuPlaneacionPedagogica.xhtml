@@ -12,22 +12,7 @@
             <h2>Menu de planeacion pedagogica</h2>
             <h:form>
                <h:panelGrid columns="1"> 
-                   <h:button value="Fase de Analisis" outcome="/Actividad/lista_Actividad"/>
-                   <h:button value="Fase de Planeación" outcome="/planeacionpedagogica/FaseDePlaneacion/vista_fasePlaneacion"/>
-                   <h:button value="Fase de Ejecución" outcome="/planeacionpedagogica/FaseDeEjecucion/vista_faseEjecucion"/>
-                   <h:button value="Fase de Evaluacion" outcome="/planeacionpedagogica/FaseDeEvaluacion/vista_faseEvaluacion"/>
-                   
-                   <br/>
-                   
-                    <h:button value="Tecnica Didactica" outcome="/TecnicaDidactica/lista_Tecnica_Didactica"/>
-                    <h:button value="Actividad" outcome="/Actividad/lista_Actividad"/>
-                    <h:button value="Guia Aprendizaje" outcome="/GuiaAprendizaje/lista_Guia_Aprendizaje"/>
-                   
-                </h:panelGrid>
-                
-            </h:form> 
-            <h:form>
-                 <article class="articulo1">
+                    <article class="articulo1">
                         <label for="comments" class="Pepe-articuloLabel">Fase</label>
                         <p:selectOneMenu id="faseSelectOne" value="#{faseController.faseSeleccionada}">
                             <f:selectItem itemLabel="Seleccionar uno.." />
@@ -36,12 +21,17 @@
                         </p:selectOneMenu>
                         <p:message id="faseSelectOneMsg" for="faseSelectOne"/>
                     </article>
-                <p:commandButton process="@this" value="ingresar planeacion" actionListener="#{actividadController.prepareCreate}" action="#{actividadController.createActividad}">
-                                 <f:attribute name="fase" value="#{faseController.faseSeleccionada}"/>
-                                 <f:attribute name="ficha" value="#{fichaController.fichaSeleccionada}"/>             
-                </p:commandButton>
-            </h:form>
-                    
+                    <p:commandButton process="@this" value="ingresar planeacion" actionListener="#{actividadController.prepareCreate}" action="#{actividadController.createActividad}">
+                                     <f:attribute name="fase" value="#{faseController.faseSeleccionada}"/>
+                                     <f:attribute name="ficha" value="#{fichaController.fichaSeleccionada}"/>             
+                    </p:commandButton>
+                   <br>
+                   </br>
+                    <h:button value="Tecnica Didactica" outcome="/TecnicaDidactica/lista_Tecnica_Didactica"/>
+                    <h:button value="Actividad" outcome="/Actividad/lista_Actividad"/>
+                    <h:button value="Guia Aprendizaje" outcome="/GuiaAprendizaje/lista_Guia_Aprendizaje"/>
+                </h:panelGrid>
+            </h:form> 
         </p:dialog>
     </ui:composition>
 </html>

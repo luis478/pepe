@@ -182,7 +182,7 @@
 
 
 .pepe-color{
-
+    position: absolute;
     display: block;
 }
 
@@ -194,6 +194,7 @@
     padding-right: 0px;
     text-align: center;
     text-decoration: none;
+    display: inline-block;
 }
 
 .Pepe-listMenuItem{

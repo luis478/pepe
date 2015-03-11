@@ -8,10 +8,8 @@ package com.pepe.controller;
 
 import com.pepe.jpa.entities.Desercion;
 import com.pepe.jpa.entities.Estado;
-import com.pepe.jpa.entities.Motivo;
 import com.pepe.jpa.sesions.DesercionFacade;
 import com.pepe.jpa.sesions.EstadoFacade;
-import com.pepe.jpa.sesions.MotivoFacade;
 import java.io.Serializable;
 import java.util.List;
 import javax.ejb.EJB;
@@ -33,8 +31,7 @@ public class DesercionController implements Serializable {
 
    @EJB
     private DesercionFacade desercionFacade;
-   @EJB
-    private MotivoFacade motivoFacade;
+  
    @EJB
     private EstadoFacade estadoFacade;
     private Desercion desercionActual;
@@ -43,15 +40,7 @@ public class DesercionController implements Serializable {
     
     
     
-    public MotivoFacade getMotivoFacade() {
-        return motivoFacade;
-    }
-    public void setMotivoFacade(MotivoFacade motivoFacade) {
-        this.motivoFacade = motivoFacade;
-    }
-    public List<Motivo> getListaMotivoSelectOne() {
-        return getMotivoFacade().findAll();
-    }
+
 
     public EstadoFacade getEstadoFacade() {
         return estadoFacade;

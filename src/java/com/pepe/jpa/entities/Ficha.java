@@ -18,8 +18,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinColumns;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
@@ -44,7 +42,6 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Ficha.findByIdFicha", query = "SELECT f FROM Ficha f WHERE f.idFicha = :idFicha"),
     @NamedQuery(name = "Ficha.findByCodigoFicha", query = "SELECT f FROM Ficha f WHERE f.codigoFicha = :codigoFicha"),
     @NamedQuery(name = "Ficha.findByFechaInicio", query = "SELECT f FROM Ficha f WHERE f.fechaInicio = :fechaInicio"),
-    @NamedQuery(name = "Ficha.findByTrimestresLectiva", query = "SELECT f FROM Ficha f WHERE f.trimestresLectiva = :trimestresLectiva"),
     @NamedQuery(name = "Ficha.findByEstado", query = "SELECT f FROM Ficha f WHERE f.estado = :estado")})
 public class Ficha implements Serializable {
     private static final long serialVersionUID = 1L;
@@ -65,19 +62,8 @@ public class Ficha implements Serializable {
     private Date fechaInicio;
     @Basic(optional = false)
     @NotNull
-    @Column(name = "trimestres_lectiva")
-    private short trimestresLectiva;
-    @Basic(optional = false)
-    @NotNull
     @Column(name = "estado")
     private boolean estado;
-    @JoinTable(name = "trimestre_has_ficha", joinColumns = {
-        @JoinColumn(name = "id_ficha", referencedColumnName = "id_ficha")}, inverseJoinColumns = {
-        @JoinColumn(name = "id_trimestre", referencedColumnName = "id_trimestre")})
-    @ManyToMany
-    private List<Trimestre> trimestreList;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idFicha")
-    private List<Aspectos> aspectosList;
     @JoinColumn(name = "id_centro_formacion", referencedColumnName = "id_centro_formacion")
     @ManyToOne(optional = false)
     private CentroFormacion idCentroFormacion;
@@ -102,6 +88,8 @@ public class Ficha implements Serializable {
     private List<Acompanamiento> acompanamientoList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "ficha")
     private List<UsuarioHasFicha> usuarioHasFichaList;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "fichaIdFicha")
+    private List<Seguimiento> seguimientoList;
 
     public Ficha() {
     }
@@ -110,11 +98,10 @@ public class Ficha implements Serializable {
         this.idFicha = idFicha;
     }
 
-    public Ficha(Integer idFicha, String codigoFicha, Date fechaInicio, short trimestresLectiva, boolean estado) {
+    public Ficha(Integer idFicha, String codigoFicha, Date fechaInicio, boolean estado) {
         this.idFicha = idFicha;
         this.codigoFicha = codigoFicha;
         this.fechaInicio = fechaInicio;
-        this.trimestresLectiva = trimestresLectiva;
         this.estado = estado;
     }
 
@@ -142,38 +129,12 @@ public class Ficha implements Serializable {
         this.fechaInicio = fechaInicio;
     }
 
-    public short getTrimestresLectiva() {
-        return trimestresLectiva;
-    }
-
-    public void setTrimestresLectiva(short trimestresLectiva) {
-        this.trimestresLectiva = trimestresLectiva;
-    }
-
     public boolean getEstado() {
         return estado;
     }
 
     public void setEstado(boolean estado) {
         this.estado = estado;
-    }
-
-    @XmlTransient
-    public List<Trimestre> getTrimestreList() {
-        return trimestreList;
-    }
-
-    public void setTrimestreList(List<Trimestre> trimestreList) {
-        this.trimestreList = trimestreList;
-    }
-
-    @XmlTransient
-    public List<Aspectos> getAspectosList() {
-        return aspectosList;
-    }
-
-    public void setAspectosList(List<Aspectos> aspectosList) {
-        this.aspectosList = aspectosList;
     }
 
     public CentroFormacion getIdCentroFormacion() {
@@ -242,6 +203,15 @@ public class Ficha implements Serializable {
         this.usuarioHasFichaList = usuarioHasFichaList;
     }
 
+    @XmlTransient
+    public List<Seguimiento> getSeguimientoList() {
+        return seguimientoList;
+    }
+
+    public void setSeguimientoList(List<Seguimiento> seguimientoList) {
+        this.seguimientoList = seguimientoList;
+    }
+
     @Override
     public int hashCode() {
         int hash = 0;
@@ -264,7 +234,7 @@ public class Ficha implements Serializable {
 
     @Override
     public String toString() {
-        return "com.pepe.jpa.entities.Ficha[ idFicha=" + idFicha + " ]";
+        return getCodigoFicha();
     }
     
 }

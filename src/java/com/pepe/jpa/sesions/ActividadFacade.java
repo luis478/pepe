@@ -7,7 +7,6 @@
 package com.pepe.jpa.sesions;
 
 import com.pepe.jpa.entities.Actividad;
-import com.pepe.jpa.entities.ActividadAprendizaje;
 import com.pepe.jpa.entities.Fase;
 import com.pepe.jpa.entities.Proyecto;
 import java.util.List;

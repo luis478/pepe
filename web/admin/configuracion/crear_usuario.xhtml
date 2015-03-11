@@ -29,11 +29,6 @@ and open the template in the editor.
                             <f:selectItems value="#{usuarioController.listaEstiloAprendizajeSelectOne}" var="estilo_Aprendizaje" itemValue="#{estilo_Aprendizaje}"/>  
                         </h:selectOneMenu>
                         
-                        <h:outputLabel class="form-1" value="Patrocinio:"  for="nomPatrocinio"/>
-                        <h:selectOneMenu class="form-1" id="idPatrocinioSelect" value="#{usuarioController.usuarioActual.idPatrocinio}">
-                            <f:selectItem itemLabel="Seleccionar uno.." />
-                            <f:selectItems value="#{usuarioController.listaPatrocinioSelectOne}" var="patrocinio" itemValue="#{patrocinio}"/>  
-                        </h:selectOneMenu>
                         
                         <h:outputLabel class="form-1" value="Desercion:"  for="nomDesercion"/>
                         <h:selectOneMenu class="form-1"  id="idDesercionSelect" value="#{usuarioController.usuarioActual.idDesercion}">
@@ -190,15 +185,10 @@ and open the template in the editor.
                         <h:selectOneMenu class="form-1" id="idEspecialidadSelect" value="#{usuarioController.usuarioActual.idEspecialidad}">
                             <f:selectItem itemLabel="Seleccionar uno.." />
                             <f:selectItems value="#{usuarioController.listaEspecialidadSelectOne}" var="especialidad" itemValue="#{especialidad}"/>  
-                        </h:selectOneMenu>
-                        
-<<<<<<< HEAD
+                        </h:selectOneMenu>    
+
                         <h:outputLabel value="Tipo Contrato:"  for="idContratoSelect"/>
                         <h:selectOneMenu id="idContratoSelect" value="#{usuarioController.usuarioActual.idTipoContrato}">
-=======
-                        <h:outputLabel  class="form-1" value="Tipo Contrato:"  for="idContratoSelect"/>
-                        <h:selectOneMenu class="form-1" id="idContratoSelect" value="#{usuarioController.usuarioActual.idTipoContrato}">
->>>>>>> origin/master
                             <f:selectItem itemLabel="Seleccionar uno.." />
                             <f:selectItems value="#{usuarioController.listaTipoContratoSelectOne}" var="contrato" itemValue="#{contrato}"/>  
                         </h:selectOneMenu>

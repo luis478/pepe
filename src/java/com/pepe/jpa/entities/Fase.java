@@ -58,6 +58,8 @@ public class Fase implements Serializable {
     @JoinColumn(name = "id_aspectos", referencedColumnName = "id_aspectos")
     @ManyToOne(optional = false)
     private Aspectos idAspectos;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "faseIdFase")
+    private List<Seguimiento> seguimientoList;
 
     public Fase() {
     }
@@ -122,6 +124,15 @@ public class Fase implements Serializable {
         this.idAspectos = idAspectos;
     }
 
+    @XmlTransient
+    public List<Seguimiento> getSeguimientoList() {
+        return seguimientoList;
+    }
+
+    public void setSeguimientoList(List<Seguimiento> seguimientoList) {
+        this.seguimientoList = seguimientoList;
+    }
+
     @Override
     public int hashCode() {
         int hash = 0;
@@ -144,7 +155,7 @@ public class Fase implements Serializable {
 
     @Override
     public String toString() {
-        return "com.pepe.jpa.entities.Fase[ idFase=" + idFase + " ]";
+        return getFase();
     }
     
 }

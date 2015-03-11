@@ -6,13 +6,9 @@
 
 package com.pepe.controller;
 
-import com.pepe.jpa.entities.Empresa;
-import com.pepe.jpa.entities.Patrocinio;
-import com.pepe.jpa.sesions.EmpresaFacade;
-import com.pepe.jpa.sesions.PatrocinioFacade;
+import com.pepe.jpa.entities.ResultadoAprendizaje;
+import com.pepe.jpa.sesions.ResultadoAprendizajeFacade;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.ejb.EJB;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
@@ -24,67 +20,56 @@ import javax.faces.convert.FacesConverter;
 
 /**
  *
- * @author Windows 8
+ * @author Junior Cabal
  */
 @ManagedBean
 @SessionScoped
-public class PatrocinioController {
+public class ResultadoAprendizajeController {
 
-    @EJB
-    private PatrocinioFacade patrocinioFacade;
-    @EJB
-    private EmpresaFacade empresaFacade;
-    private Patrocinio patrocinioActual;
-    private List<Patrocinio> listaPatrocinio = null;
+  @EJB
+    private ResultadoAprendizajeFacade resultadoAprendizajeFacade;
+    private ResultadoAprendizaje resultadoAprendizajeActual;
+    private List<ResultadoAprendizaje> listaResultadoAprendizaje = null;
 
     /**
      * Creates a new instance of CiudadController
      */
-    public PatrocinioController() {
+    public ResultadoAprendizajeController() {
     }
 
-    public PatrocinioFacade getPatrocinioFacade() {
-        return patrocinioFacade;
+    public ResultadoAprendizajeFacade getResultadoAprendizajeFacade() {
+        return resultadoAprendizajeFacade;
     }
-    public Patrocinio getPatrocinioActual() {
-        if (patrocinioActual == null) {
-            patrocinioActual = new Patrocinio();
+    public ResultadoAprendizaje getResultadoAprendizajeActual() {
+        if (resultadoAprendizajeActual == null) {
+            resultadoAprendizajeActual = new ResultadoAprendizaje();
         }
-        return patrocinioActual;
+        return resultadoAprendizajeActual;
     }
 
-    public void setPatrocinioActual(Patrocinio generoActual) {
-        this.patrocinioActual = generoActual;
+    public void setResultadoAprendizajeActual(ResultadoAprendizaje resultadoAprendizajeActual) {
+        this.resultadoAprendizajeActual = resultadoAprendizajeActual;
     }
-    public EmpresaFacade getEmpresaFacade() {
-        return empresaFacade;
-    }
-    public void setEmpresaFacade(EmpresaFacade empresaFacade) {
-        this.empresaFacade = empresaFacade;
-    }
-     public List<Empresa> getListaEmpresaSelectOne() {
-        return getEmpresaFacade().findAll();
-    }
- 
 
-    public List<Patrocinio> getListaPatrocinio() {
-        if (listaPatrocinio == null) {
+  
+    public List<ResultadoAprendizaje> getListaResultadoAprendizaje() {
+        if (listaResultadoAprendizaje == null) {
             try {
-                listaPatrocinio = getPatrocinioFacade().findAll();
+                listaResultadoAprendizaje = getResultadoAprendizajeFacade().findAll();
             } catch (Exception e) {
                 addErrorMessage("Error closing resource " + e.getClass().getName(), "Message: " + e.getMessage());
             }
         }
-        return listaPatrocinio;
+        return listaResultadoAprendizaje;
     }
 
     private void recargarLista() {
-        listaPatrocinio = null;
+        listaResultadoAprendizaje = null;
     }
 
     public String prepareCreate() {
-        patrocinioActual = new Patrocinio();
-        return "/admin/crear_patrocinio";
+        resultadoAprendizajeActual = new ResultadoAprendizaje();
+        return "";
     }
 
     public String prepareEdit() {
@@ -100,10 +85,10 @@ public class PatrocinioController {
         return "";
     }
 
-    public String addPatrocinio() {
+    public String addResultadoAprendizaje() {
         try {
 
-            getPatrocinioFacade().create(patrocinioActual);
+            getResultadoAprendizajeFacade().create(resultadoAprendizajeActual);
             recargarLista();
             return "";
         } catch (Exception e) {
@@ -112,9 +97,9 @@ public class PatrocinioController {
         }
     }
 
-    public String updatePatrocinio() {
+    public String updateResultadoAprendizaje() {
         try {
-            getPatrocinioFacade().edit(patrocinioActual);
+            getResultadoAprendizajeFacade().edit(resultadoAprendizajeActual);
             recargarLista();
             return "";
         } catch (Exception e) {
@@ -123,9 +108,9 @@ public class PatrocinioController {
         }
     }
 
-    public String deletePatrocinio() {
+    public String deleteResultadoAprendizaje() {
         try {
-            getPatrocinioFacade().remove(patrocinioActual);
+            getResultadoAprendizajeFacade().remove(resultadoAprendizajeActual);
             recargarLista();
         } catch (Exception e) {
             addErrorMessage("Error closing resource " + e.getClass().getName(), "Message: " + e.getMessage());
@@ -144,22 +129,20 @@ public class PatrocinioController {
                 = new FacesMessage(FacesMessage.SEVERITY_INFO, title, msg);
         FacesContext.getCurrentInstance().addMessage("successInfo", facesMsg);
     }
-    
-    public Patrocinio getPatrocinio(java.lang.Integer id) {
-        return getPatrocinioFacade().find(id);
+     public ResultadoAprendizaje getResultadoAprendizaje(java.lang.Integer id) {
+        return getResultadoAprendizajeFacade().find(id);
     }
 
-   @FacesConverter(forClass = Patrocinio.class)
-    public static class PatrocinioControllerConverter implements Converter {
+    @FacesConverter(forClass = ResultadoAprendizaje.class)
+    public static class ResultadoAprendizajeControllerConverter implements Converter {
 
-        @Override
         public Object getAsObject(FacesContext facesContext, UIComponent component, String value) {
             if (value == null || value.length() == 0) {
                 return null;
             }
-            PatrocinioController controller = (PatrocinioController) facesContext.getApplication().getELResolver().
-                    getValue(facesContext.getELContext(), null, "patrocinioController");
-            return controller.getPatrocinio(getKey(value));
+            ResultadoAprendizajeController controller = (ResultadoAprendizajeController) facesContext.getApplication().getELResolver().
+                    getValue(facesContext.getELContext(), null, "resultadoAprendizajeController");
+            return controller.getResultadoAprendizaje(getKey(value));
         }
 
         java.lang.Integer getKey(String value) {
@@ -179,13 +162,14 @@ public class PatrocinioController {
             if (object == null) {
                 return null;
             }
-            if (object instanceof Patrocinio) {
-                Patrocinio o = (Patrocinio) object;
-                return getStringKey(o.getIdPatrocinio());
+            if (object instanceof ResultadoAprendizaje) {
+                ResultadoAprendizaje o = (ResultadoAprendizaje) object;
+                return getStringKey(o.getIdResultadoAprendizaje());
             } else {
-                throw new IllegalArgumentException("object " + object + " is of type " + object.getClass().getName() + "; expected type: " + Patrocinio.class.getName());
+                throw new IllegalArgumentException("object " + object + " is of type " + object.getClass().getName() + "; expected type: " + ResultadoAprendizaje.class.getName());
             }
         }
 
-    } 
+    }
+    
 }

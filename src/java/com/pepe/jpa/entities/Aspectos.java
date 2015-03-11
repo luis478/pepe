@@ -19,7 +19,6 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.Lob;
 import javax.persistence.ManyToMany;
-import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
@@ -57,18 +56,11 @@ public class Aspectos implements Serializable {
     @NotNull
     @Column(name = "cumple")
     private boolean cumple;
-    @Lob
-    @Size(max = 65535)
-    @Column(name = "observaciones_aspectos")
-    private String observacionesAspectos;
     @JoinTable(name = "usuario_has_aspectos", joinColumns = {
         @JoinColumn(name = "id_aspectos", referencedColumnName = "id_aspectos")}, inverseJoinColumns = {
         @JoinColumn(name = "id_usuario", referencedColumnName = "id_usuario")})
     @ManyToMany
     private List<Usuario> usuarioList;
-    @JoinColumn(name = "id_ficha", referencedColumnName = "id_ficha")
-    @ManyToOne(optional = false)
-    private Ficha idFicha;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idAspectos")
     private List<Fase> faseList;
 
@@ -109,14 +101,6 @@ public class Aspectos implements Serializable {
         this.cumple = cumple;
     }
 
-    public String getObservacionesAspectos() {
-        return observacionesAspectos;
-    }
-
-    public void setObservacionesAspectos(String observacionesAspectos) {
-        this.observacionesAspectos = observacionesAspectos;
-    }
-
     @XmlTransient
     public List<Usuario> getUsuarioList() {
         return usuarioList;
@@ -124,14 +108,6 @@ public class Aspectos implements Serializable {
 
     public void setUsuarioList(List<Usuario> usuarioList) {
         this.usuarioList = usuarioList;
-    }
-
-    public Ficha getIdFicha() {
-        return idFicha;
-    }
-
-    public void setIdFicha(Ficha idFicha) {
-        this.idFicha = idFicha;
     }
 
     @XmlTransient

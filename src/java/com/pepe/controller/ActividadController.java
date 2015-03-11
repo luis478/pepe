@@ -41,6 +41,8 @@ public class ActividadController implements Serializable {
     private ProyectoFacade proyectoFacade;
     @EJB
     private ActividadFacade actividadFacade;
+    @EJB
+    private FaseFacade faseFacade;
     private Fase faseActual;
     private Ficha fichaActual;
     private int actividadSeleccionadaInt;
@@ -136,6 +138,18 @@ public class ActividadController implements Serializable {
     public List<Proyecto> getListaProyectoSelectOne() {
         return getProyectoFacade().findAll();
     }
+    public List<Fase> getListaFaseSelectOne() {
+        return getFaseFacade().findAll();
+    }
+
+    public FaseFacade getFaseFacade() {
+        return faseFacade;
+    }
+
+    public void setFaseFacade(FaseFacade faseFacade) {
+        this.faseFacade = faseFacade;
+    }
+
 
     private void recargarlista() {
         listaActividad = null;
@@ -149,6 +163,10 @@ public class ActividadController implements Serializable {
         listaActividad=null;
         listaActividad = getActividadFacade().consultaPlaneacionActividades(faseActual, fichaActual.getIdProyecto());
        
+    }
+    public String createActividadProyecto(){
+        actividadActual = new Actividad();
+        return "crear_actividad";
     }
 
     public String createActividad() {

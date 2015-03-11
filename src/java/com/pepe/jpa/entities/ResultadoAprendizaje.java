@@ -38,6 +38,7 @@ import javax.xml.bind.annotation.XmlTransient;
 @NamedQueries({
     @NamedQuery(name = "ResultadoAprendizaje.findAll", query = "SELECT r FROM ResultadoAprendizaje r"),
     @NamedQuery(name = "ResultadoAprendizaje.findByIdResultadoAprendizaje", query = "SELECT r FROM ResultadoAprendizaje r WHERE r.idResultadoAprendizaje = :idResultadoAprendizaje"),
+    @NamedQuery(name = "ResultadoAprendizaje.findByIdTipoResultadoAprendizaje", query = "SELECT r FROM ResultadoAprendizaje r WHERE r.idTipoResultadoAprendizaje = :idTipoResultadoAprendizaje"),
     @NamedQuery(name = "ResultadoAprendizaje.findByEstado", query = "SELECT r FROM ResultadoAprendizaje r WHERE r.estado = :estado")})
 public class ResultadoAprendizaje implements Serializable {
     private static final long serialVersionUID = 1L;
@@ -46,6 +47,10 @@ public class ResultadoAprendizaje implements Serializable {
     @Basic(optional = false)
     @Column(name = "id_resultado_aprendizaje")
     private Integer idResultadoAprendizaje;
+    @Basic(optional = false)
+    @NotNull
+    @Column(name = "id_tipo_resultado_aprendizaje")
+    private int idTipoResultadoAprendizaje;
     @Basic(optional = false)
     @NotNull
     @Lob
@@ -63,9 +68,6 @@ public class ResultadoAprendizaje implements Serializable {
     @JoinColumn(name = "id_competencia", referencedColumnName = "id_competencia")
     @ManyToOne(optional = false)
     private Competencia idCompetencia;
-    @JoinColumn(name = "id_tipo_resultado_aprendizaje", referencedColumnName = "id_tipo_resultado_aprendizaje")
-    @ManyToOne(optional = false)
-    private TipoResultadoAprendizaje idTipoResultadoAprendizaje;
 
     public ResultadoAprendizaje() {
     }
@@ -74,8 +76,9 @@ public class ResultadoAprendizaje implements Serializable {
         this.idResultadoAprendizaje = idResultadoAprendizaje;
     }
 
-    public ResultadoAprendizaje(Integer idResultadoAprendizaje, String nombreResultadoAprendizaje, boolean estado) {
+    public ResultadoAprendizaje(Integer idResultadoAprendizaje, int idTipoResultadoAprendizaje, String nombreResultadoAprendizaje, boolean estado) {
         this.idResultadoAprendizaje = idResultadoAprendizaje;
+        this.idTipoResultadoAprendizaje = idTipoResultadoAprendizaje;
         this.nombreResultadoAprendizaje = nombreResultadoAprendizaje;
         this.estado = estado;
     }
@@ -86,6 +89,14 @@ public class ResultadoAprendizaje implements Serializable {
 
     public void setIdResultadoAprendizaje(Integer idResultadoAprendizaje) {
         this.idResultadoAprendizaje = idResultadoAprendizaje;
+    }
+
+    public int getIdTipoResultadoAprendizaje() {
+        return idTipoResultadoAprendizaje;
+    }
+
+    public void setIdTipoResultadoAprendizaje(int idTipoResultadoAprendizaje) {
+        this.idTipoResultadoAprendizaje = idTipoResultadoAprendizaje;
     }
 
     public String getNombreResultadoAprendizaje() {
@@ -128,14 +139,6 @@ public class ResultadoAprendizaje implements Serializable {
 
     public void setIdCompetencia(Competencia idCompetencia) {
         this.idCompetencia = idCompetencia;
-    }
-
-    public TipoResultadoAprendizaje getIdTipoResultadoAprendizaje() {
-        return idTipoResultadoAprendizaje;
-    }
-
-    public void setIdTipoResultadoAprendizaje(TipoResultadoAprendizaje idTipoResultadoAprendizaje) {
-        this.idTipoResultadoAprendizaje = idTipoResultadoAprendizaje;
     }
 
     @Override
