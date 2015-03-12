@@ -219,5 +219,4 @@ public class Recurso implements Serializable {
     public String toString() {
         return "com.pepe.jpa.entities.Recurso[ idRecurso=" + idRecurso + " ]";
     }
-    
 }

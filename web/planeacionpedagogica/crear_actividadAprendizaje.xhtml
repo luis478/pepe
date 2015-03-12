@@ -83,6 +83,41 @@ and open the template in the editor.
                             </p:column>
                         </p:dataTable>
                     </h:panelGroup>
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    <h:panelGroup id="agregar-Recurso">
+                        <h:outputLabel class="form-1" value="Recurso:"  for="nomRecurso"/>
+                        <h:selectOneMenu class="form-1" id="idRecursoSelect" value="#{actividadAprendizajeController.recursoActual}" required="true">
+                            <f:selectItem itemLabel="Seleccionar uno.." />
+                            <f:selectItems value="#{actividadAprendizajeController.listaRecursoSelectOne}" var="recurso" itemValue="#{recurso}"/>  
+                        </h:selectOneMenu>
+                        
+                        <h:commandButton action="#{actividadAprendizajeController.addRecurso}" value="Agregar Recurso">
+                            <f:ajax execute="@this idRecursoSelect" render="agregar-Recurso"/>
+                        </h:commandButton>
+                        
+                        <p:dataTable id="tablaRecurso" value="#{actividadAprendizajeController.listaRecurso}" var="itemRecurso">
+                            <p:column headerText="Recurso">
+                                <h:outputText value="#{itemRecurso.idRecurso}"/>
+                            </p:column>
+                            <p:column headerText="Nombre Recurso">
+                                <h:outputText value="#{itemRecurso.nombre}"/>
+                            </p:column>
+                        </p:dataTable>
+                    </h:panelGroup>
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
                     <input type="submit" value="Guardar" jsf:action="#{actividadAprendizajeController.addActividadAprendizaje}">
                         <f:ajax execute="@this formulario-actividadAprendizaje" render="formulario-actividadAprendizaje"/>
                     </input>
