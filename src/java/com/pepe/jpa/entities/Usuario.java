@@ -563,7 +563,7 @@ public class Usuario implements Serializable {
 
     @Override
     public String toString() {
-        return "com.pepe.jpa.entities.Usuario[ idUsuario=" + idUsuario + " ]";
+        return nombre1 + apellido1;
     }
     
 }

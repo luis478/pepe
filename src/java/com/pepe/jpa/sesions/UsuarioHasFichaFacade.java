@@ -48,8 +48,14 @@ public class UsuarioHasFichaFacade extends AbstractFacade<UsuarioHasFicha> {
             System.out.println(e.getCause());
               return null;
         }
-      
+    }
+     
+     public List<Usuario> finByUsuario(String ficha){
+        Query q= getEntityManager().createNamedQuery("UsuarioHasFicha.findByUsuario");
+        q.setParameter("codigoFicha", ficha);
          
+           return q.getResultList();  
+  
     }
     
 }

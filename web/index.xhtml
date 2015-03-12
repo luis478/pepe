@@ -134,7 +134,9 @@
                 <h:commandButton value="Menu Planeacion pedagogica" type="button" onclick="PF('botonPlaneacionPedagogicaDlg').show();"/>
                 <br></br>
                 <h:commandButton value="Menu crear usuario" type="button" onclick="PF('botonCrearUsuarioDlg').show();"/>
-                 <h:button value="¡Programacion!" outcome="/ProgramaciondeProyecto/programacion.xhtml" />
+                  <p:commandButton process="@this" value="¡Programacion!" actionListener="#{eventoController.prepareCreate}" action="#{eventoController.cargarCreate}">
+                    <f:attribute name="ficha" value="#{fichaController.fichaSeleccionada}"/>
+                </p:commandButton> 
                  <h:button value="¡Crear Ficha!" outcome="/ProgramaciondeProyecto/crear_ficha.xhtml" />
                  
             </h:form> 
