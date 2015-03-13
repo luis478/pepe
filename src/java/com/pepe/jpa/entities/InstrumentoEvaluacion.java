@@ -7,22 +7,20 @@
 package com.pepe.jpa.entities;
 
 import java.io.Serializable;
-import java.util.List;
 import javax.persistence.Basic;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
@@ -47,8 +45,9 @@ public class InstrumentoEvaluacion implements Serializable {
     @Size(min = 1, max = 45)
     @Column(name = "nombre_instrumento_evaluacion")
     private String nombreInstrumentoEvaluacion;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idInstrumentoEvaluacion")
-    private List<TecnicaDidactica> tecnicaDidacticaList;
+    @JoinColumn(name = "id_tecnica_evaluacion", referencedColumnName = "id_tecnica_evaluacion")
+    @ManyToOne(optional = false)
+    private TecnicaEvaluacion idTecnicaEvaluacion;
 
     public InstrumentoEvaluacion() {
     }
@@ -78,13 +77,12 @@ public class InstrumentoEvaluacion implements Serializable {
         this.nombreInstrumentoEvaluacion = nombreInstrumentoEvaluacion;
     }
 
-    @XmlTransient
-    public List<TecnicaDidactica> getTecnicaDidacticaList() {
-        return tecnicaDidacticaList;
+    public TecnicaEvaluacion getIdTecnicaEvaluacion() {
+        return idTecnicaEvaluacion;
     }
 
-    public void setTecnicaDidacticaList(List<TecnicaDidactica> tecnicaDidacticaList) {
-        this.tecnicaDidacticaList = tecnicaDidacticaList;
+    public void setIdTecnicaEvaluacion(TecnicaEvaluacion idTecnicaEvaluacion) {
+        this.idTecnicaEvaluacion = idTecnicaEvaluacion;
     }
 
     @Override

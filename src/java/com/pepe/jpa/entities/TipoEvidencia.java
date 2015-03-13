@@ -15,6 +15,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
@@ -34,7 +35,7 @@ import javax.xml.bind.annotation.XmlTransient;
 @NamedQueries({
     @NamedQuery(name = "TipoEvidencia.findAll", query = "SELECT t FROM TipoEvidencia t"),
     @NamedQuery(name = "TipoEvidencia.findByIdTipoEvidencia", query = "SELECT t FROM TipoEvidencia t WHERE t.idTipoEvidencia = :idTipoEvidencia"),
-    @NamedQuery(name = "TipoEvidencia.findByTipoEvidencia", query = "SELECT t FROM TipoEvidencia t WHERE t.tipoEvidencia = :tipoEvidencia")})
+    @NamedQuery(name = "TipoEvidencia.findByNombreTipoEvidencia", query = "SELECT t FROM TipoEvidencia t WHERE t.nombreTipoEvidencia = :nombreTipoEvidencia")})
 public class TipoEvidencia implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
@@ -45,8 +46,10 @@ public class TipoEvidencia implements Serializable {
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 45)
-    @Column(name = "tipo_evidencia")
-    private String tipoEvidencia;
+    @Column(name = "nombre_tipo_evidencia")
+    private String nombreTipoEvidencia;
+    @ManyToMany(mappedBy = "tipoEvidenciaList")
+    private List<TecnicaEvaluacion> tecnicaEvaluacionList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idTipoEvidencia")
     private List<Evidencia> evidenciaList;
 
@@ -57,9 +60,9 @@ public class TipoEvidencia implements Serializable {
         this.idTipoEvidencia = idTipoEvidencia;
     }
 
-    public TipoEvidencia(Integer idTipoEvidencia, String tipoEvidencia) {
+    public TipoEvidencia(Integer idTipoEvidencia, String nombreTipoEvidencia) {
         this.idTipoEvidencia = idTipoEvidencia;
-        this.tipoEvidencia = tipoEvidencia;
+        this.nombreTipoEvidencia = nombreTipoEvidencia;
     }
 
     public Integer getIdTipoEvidencia() {
@@ -70,12 +73,21 @@ public class TipoEvidencia implements Serializable {
         this.idTipoEvidencia = idTipoEvidencia;
     }
 
-    public String getTipoEvidencia() {
-        return tipoEvidencia;
+    public String getNombreTipoEvidencia() {
+        return nombreTipoEvidencia;
     }
 
-    public void setTipoEvidencia(String tipoEvidencia) {
-        this.tipoEvidencia = tipoEvidencia;
+    public void setNombreTipoEvidencia(String nombreTipoEvidencia) {
+        this.nombreTipoEvidencia = nombreTipoEvidencia;
+    }
+
+    @XmlTransient
+    public List<TecnicaEvaluacion> getTecnicaEvaluacionList() {
+        return tecnicaEvaluacionList;
+    }
+
+    public void setTecnicaEvaluacionList(List<TecnicaEvaluacion> tecnicaEvaluacionList) {
+        this.tecnicaEvaluacionList = tecnicaEvaluacionList;
     }
 
     @XmlTransient

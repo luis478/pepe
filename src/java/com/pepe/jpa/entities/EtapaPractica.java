@@ -31,17 +31,17 @@ import javax.xml.bind.annotation.XmlTransient;
  * @author Junior Cabal
  */
 @Entity
-@Table(name = "estapa_practica")
+@Table(name = "etapa_practica")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "EstapaPractica.findAll", query = "SELECT e FROM EstapaPractica e"),
-    @NamedQuery(name = "EstapaPractica.findByIdEtapaPractica", query = "SELECT e FROM EstapaPractica e WHERE e.idEtapaPractica = :idEtapaPractica"),
-    @NamedQuery(name = "EstapaPractica.findByNombreEmpresa", query = "SELECT e FROM EstapaPractica e WHERE e.nombreEmpresa = :nombreEmpresa"),
-    @NamedQuery(name = "EstapaPractica.findByRepresentante", query = "SELECT e FROM EstapaPractica e WHERE e.representante = :representante"),
-    @NamedQuery(name = "EstapaPractica.findByTelefono", query = "SELECT e FROM EstapaPractica e WHERE e.telefono = :telefono"),
-    @NamedQuery(name = "EstapaPractica.findByCorreo", query = "SELECT e FROM EstapaPractica e WHERE e.correo = :correo"),
-    @NamedQuery(name = "EstapaPractica.findByTipoPractica", query = "SELECT e FROM EstapaPractica e WHERE e.tipoPractica = :tipoPractica")})
-public class EstapaPractica implements Serializable {
+    @NamedQuery(name = "EtapaPractica.findAll", query = "SELECT e FROM EtapaPractica e"),
+    @NamedQuery(name = "EtapaPractica.findByIdEtapaPractica", query = "SELECT e FROM EtapaPractica e WHERE e.idEtapaPractica = :idEtapaPractica"),
+    @NamedQuery(name = "EtapaPractica.findByNombreEmpresa", query = "SELECT e FROM EtapaPractica e WHERE e.nombreEmpresa = :nombreEmpresa"),
+    @NamedQuery(name = "EtapaPractica.findByRepresentante", query = "SELECT e FROM EtapaPractica e WHERE e.representante = :representante"),
+    @NamedQuery(name = "EtapaPractica.findByTelefono", query = "SELECT e FROM EtapaPractica e WHERE e.telefono = :telefono"),
+    @NamedQuery(name = "EtapaPractica.findByCorreo", query = "SELECT e FROM EtapaPractica e WHERE e.correo = :correo"),
+    @NamedQuery(name = "EtapaPractica.findByTipoPractica", query = "SELECT e FROM EtapaPractica e WHERE e.tipoPractica = :tipoPractica")})
+public class EtapaPractica implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -81,14 +81,14 @@ public class EstapaPractica implements Serializable {
     @OneToMany(mappedBy = "idEtapaPractica")
     private List<Usuario> usuarioList;
 
-    public EstapaPractica() {
+    public EtapaPractica() {
     }
 
-    public EstapaPractica(Integer idEtapaPractica) {
+    public EtapaPractica(Integer idEtapaPractica) {
         this.idEtapaPractica = idEtapaPractica;
     }
 
-    public EstapaPractica(Integer idEtapaPractica, String nombreEmpresa, String representante, String telefono, String correo, String tipoPractica) {
+    public EtapaPractica(Integer idEtapaPractica, String nombreEmpresa, String representante, String telefono, String correo, String tipoPractica) {
         this.idEtapaPractica = idEtapaPractica;
         this.nombreEmpresa = nombreEmpresa;
         this.representante = representante;
@@ -173,10 +173,10 @@ public class EstapaPractica implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof EstapaPractica)) {
+        if (!(object instanceof EtapaPractica)) {
             return false;
         }
-        EstapaPractica other = (EstapaPractica) object;
+        EtapaPractica other = (EtapaPractica) object;
         if ((this.idEtapaPractica == null && other.idEtapaPractica != null) || (this.idEtapaPractica != null && !this.idEtapaPractica.equals(other.idEtapaPractica))) {
             return false;
         }
@@ -185,7 +185,7 @@ public class EstapaPractica implements Serializable {
 
     @Override
     public String toString() {
-        return "com.pepe.jpa.entities.EstapaPractica[ idEtapaPractica=" + idEtapaPractica + " ]";
+        return "com.pepe.jpa.entities.EtapaPractica[ idEtapaPractica=" + idEtapaPractica + " ]";
     }
     
 }

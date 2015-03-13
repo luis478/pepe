@@ -174,8 +174,14 @@ public class Proyecto implements Serializable {
     @Size(min = 1, max = 65535)
     @Column(name = "impacto_tecnologico_2_5_2_4")
     private String impactoTecnologico2524;
+    @Basic(optional = false)
+    @NotNull
+    @Lob
+    @Size(min = 1, max = 65535)
+    @Column(name = "beneficiario_2_5_1")
+    private String beneficiario251;
     @ManyToMany(mappedBy = "proyectoList")
-    private List<EstapaPractica> estapaPracticaList;
+    private List<EtapaPractica> etapaPracticaList;
     @JoinTable(name = "recurso_has_proyecto", joinColumns = {
         @JoinColumn(name = "id_proyecto", referencedColumnName = "id_proyecto")}, inverseJoinColumns = {
         @JoinColumn(name = "id_recurso", referencedColumnName = "id_recurso")})
@@ -187,8 +193,6 @@ public class Proyecto implements Serializable {
     private List<Actividad> actividadList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idProyecto")
     private List<Revision> revisionList;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idProyecto")
-    private List<Verificacion> verificacionList;
     @OneToMany(mappedBy = "idProyecto")
     private List<Ficha> fichaList;
 
@@ -199,7 +203,7 @@ public class Proyecto implements Serializable {
         this.idProyecto = idProyecto;
     }
 
-    public Proyecto(Integer idProyecto, String nombreProyecto, String codigoProyecto, String justificacion22, String objetivoGeneral23, String objetivoEspecifico24, String palabrasClave17, String planteamiento21, String impactoSocial2521, String restricciones253, String productosResultados254, boolean innovacion261, boolean innovacion262, boolean innovacion263, boolean innovacion264, boolean innovacion265, boolean valoracion271, short valoracion272, int intructoresRequeridos, int aprendicesSugeridos, String descripcionAmbiente, String impactoAmbiental2523, String impactoEconomico2522, String impactoTecnologico2524) {
+    public Proyecto(Integer idProyecto, String nombreProyecto, String codigoProyecto, String justificacion22, String objetivoGeneral23, String objetivoEspecifico24, String palabrasClave17, String planteamiento21, String impactoSocial2521, String restricciones253, String productosResultados254, boolean innovacion261, boolean innovacion262, boolean innovacion263, boolean innovacion264, boolean innovacion265, boolean valoracion271, short valoracion272, int intructoresRequeridos, int aprendicesSugeridos, String descripcionAmbiente, String impactoAmbiental2523, String impactoEconomico2522, String impactoTecnologico2524, String beneficiario251) {
         this.idProyecto = idProyecto;
         this.nombreProyecto = nombreProyecto;
         this.codigoProyecto = codigoProyecto;
@@ -224,6 +228,7 @@ public class Proyecto implements Serializable {
         this.impactoAmbiental2523 = impactoAmbiental2523;
         this.impactoEconomico2522 = impactoEconomico2522;
         this.impactoTecnologico2524 = impactoTecnologico2524;
+        this.beneficiario251 = beneficiario251;
     }
 
     public Integer getIdProyecto() {
@@ -418,13 +423,21 @@ public class Proyecto implements Serializable {
         this.impactoTecnologico2524 = impactoTecnologico2524;
     }
 
-    @XmlTransient
-    public List<EstapaPractica> getEstapaPracticaList() {
-        return estapaPracticaList;
+    public String getBeneficiario251() {
+        return beneficiario251;
     }
 
-    public void setEstapaPracticaList(List<EstapaPractica> estapaPracticaList) {
-        this.estapaPracticaList = estapaPracticaList;
+    public void setBeneficiario251(String beneficiario251) {
+        this.beneficiario251 = beneficiario251;
+    }
+
+    @XmlTransient
+    public List<EtapaPractica> getEtapaPracticaList() {
+        return etapaPracticaList;
+    }
+
+    public void setEtapaPracticaList(List<EtapaPractica> etapaPracticaList) {
+        this.etapaPracticaList = etapaPracticaList;
     }
 
     @XmlTransient
@@ -461,15 +474,6 @@ public class Proyecto implements Serializable {
 
     public void setRevisionList(List<Revision> revisionList) {
         this.revisionList = revisionList;
-    }
-
-    @XmlTransient
-    public List<Verificacion> getVerificacionList() {
-        return verificacionList;
-    }
-
-    public void setVerificacionList(List<Verificacion> verificacionList) {
-        this.verificacionList = verificacionList;
     }
 
     @XmlTransient

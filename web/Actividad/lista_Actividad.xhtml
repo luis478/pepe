@@ -10,7 +10,7 @@
         <ui:define name="title">Lista Guia Aprendizaje</ui:define>
         <ui:define name="body">
             <form jsf:id="ListaActividad">
-                <h1 class="Titulo-plantillas"><h:outputText value="Listar Actividad"/></h1>
+                <h1 class="Titulo-plantillas"><h:outputText value="Lista de Actividades de proyecto"/></h1>
                     <p:commandButton  value="Crear Actividad" action="#{actividadController.createActividadProyecto}"/>
                     <p:button  value="Inicio" outcome="/index"/>
                     <p:dataTable  value="#{actividadController.listaActividad}" var="Actividad"

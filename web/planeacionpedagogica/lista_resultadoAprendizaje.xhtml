@@ -1,0 +1,37 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html  xmlns="http://www.w3.org/1999/xhtml"
+       xmlns:h="http://xmlns.jcp.org/jsf/html"
+       xmlns:f="http://xmlns.jcp.org/jsf/core"
+       xmlns:jsf="http://xmlns.jcp.org/jsf"
+       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+       xmlns:p="http://primefaces.org/ui">
+   <ui:composition template="/html_plantillas/plantilla_paginas.xhtml">
+        <ui:define name="title">Lista de Resultados de aprendizaje</ui:define>
+        <ui:define name="body">
+            <form jsf:id="ListaResultadoAprendizaje">
+                <h1 class="Titulo-plantillas"><h:outputText value="Lista de Resultados de aprendizaje"/></h1>
+                    <p:button  value="Volver atras" outcome="lista_ActividadAprendizaje"/>
+                    <p:button  value="Inicio" outcome="/index"/>
+                    <p:dataTable  value="#{actividadAprendizajeController.listaResultadoAprendizaje}" var="itemResultadoAprendizaje"
+                                 paginator="true" rows="10" id="Actividadtable"
+                                 paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}" 
+                                 rowsPerPageTemplate="5,10,15">
+
+
+
+                        <p:column filterBy="#{itemResultadoAprendizaje.nombreResultadoAprendizaje}" headerText="Nombre resultado aprendizaje" filterMatchMode="contains">
+                            <h:outputText value="#{itemResultadoAprendizaje.nombreResultadoAprendizaje}"/>
+                        </p:column>
+                        <p:column filterBy="#{itemResultadoAprendizaje.idTipoResultadoAprendizaje}" headerText="Tipo resultado de aprendizaje" filterMatchMode="contains">
+                            <h:outputText value="#{itemResultadoAprendizaje.idTipoResultadoAprendizaje}"/>
+                        </p:column>
+                        <p:column filterBy="#{itemResultadoAprendizaje.idCompetencia}" headerText="Competencia" filterMatchMode="contains">
+                            <h:outputText value="#{itemResultadoAprendizaje.idCompetencia.toString()}"/>
+                        </p:column>
+                    </p:dataTable>
+            </form> 
+        </ui:define>
+   </ui:composition>
+</html>
+

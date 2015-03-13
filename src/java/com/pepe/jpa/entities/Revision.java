@@ -17,6 +17,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinColumns;
 import javax.persistence.JoinTable;
 import javax.persistence.Lob;
 import javax.persistence.ManyToMany;
@@ -42,7 +43,8 @@ import javax.xml.bind.annotation.XmlTransient;
 @NamedQueries({
     @NamedQuery(name = "Revision.findAll", query = "SELECT r FROM Revision r"),
     @NamedQuery(name = "Revision.findByIdRevision", query = "SELECT r FROM Revision r WHERE r.idRevision = :idRevision"),
-    @NamedQuery(name = "Revision.findByFechaRevision", query = "SELECT r FROM Revision r WHERE r.fechaRevision = :fechaRevision")})
+    @NamedQuery(name = "Revision.findByFechaRevision", query = "SELECT r FROM Revision r WHERE r.fechaRevision = :fechaRevision"),
+    @NamedQuery(name = "Revision.findByAmbienteApto", query = "SELECT r FROM Revision r WHERE r.ambienteApto = :ambienteApto")})
 public class Revision implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
@@ -50,10 +52,8 @@ public class Revision implements Serializable {
     @Basic(optional = false)
     @Column(name = "id_revision")
     private Integer idRevision;
-    @Basic(optional = false)
-    @NotNull
     @Lob
-    @Size(min = 1, max = 65535)
+    @Size(max = 65535)
     @Column(name = "concepto")
     private String concepto;
     @Basic(optional = false)
@@ -61,21 +61,29 @@ public class Revision implements Serializable {
     @Column(name = "fecha_revision")
     @Temporal(TemporalType.DATE)
     private Date fechaRevision;
+    @Column(name = "ambiente_apto")
+    private Boolean ambienteApto;
     @JoinTable(name = "revision_has_usuario", joinColumns = {
         @JoinColumn(name = "id_revision", referencedColumnName = "id_revision")}, inverseJoinColumns = {
         @JoinColumn(name = "id_usuario", referencedColumnName = "id_usuario")})
     @ManyToMany
     private List<Usuario> usuarioList;
-    @JoinTable(name = "revision_has_usuario1", joinColumns = {
-        @JoinColumn(name = "id_revision", referencedColumnName = "id_revision")}, inverseJoinColumns = {
-        @JoinColumn(name = "id_usuario", referencedColumnName = "id_usuario")})
-    @ManyToMany
-    private List<Usuario> usuarioList1;
     @JoinColumn(name = "id_proyecto", referencedColumnName = "id_proyecto")
     @ManyToOne(optional = false)
     private Proyecto idProyecto;
+    @JoinColumn(name = "id_ambiente_formacion", referencedColumnName = "id_ambiente_formacion")
+    @ManyToOne
+    private AmbienteFormacion idAmbienteFormacion;
+    @JoinColumns({
+        @JoinColumn(name = "id_ciudad", referencedColumnName = "id_ciudad"),
+        @JoinColumn(name = "id_departamento", referencedColumnName = "id_departamento")})
+    @ManyToOne
+    private Ciudad ciudad;
+    @JoinColumn(name = "id_tipo_revision", referencedColumnName = "id_tipo_revision")
+    @ManyToOne(optional = false)
+    private TipoRevision idTipoRevision;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idRevision")
-    private List<Variable> variableList;
+    private List<Valoracion> valoracionList;
 
     public Revision() {
     }
@@ -84,9 +92,8 @@ public class Revision implements Serializable {
         this.idRevision = idRevision;
     }
 
-    public Revision(Integer idRevision, String concepto, Date fechaRevision) {
+    public Revision(Integer idRevision, Date fechaRevision) {
         this.idRevision = idRevision;
-        this.concepto = concepto;
         this.fechaRevision = fechaRevision;
     }
 
@@ -114,6 +121,14 @@ public class Revision implements Serializable {
         this.fechaRevision = fechaRevision;
     }
 
+    public Boolean getAmbienteApto() {
+        return ambienteApto;
+    }
+
+    public void setAmbienteApto(Boolean ambienteApto) {
+        this.ambienteApto = ambienteApto;
+    }
+
     @XmlTransient
     public List<Usuario> getUsuarioList() {
         return usuarioList;
@@ -121,15 +136,6 @@ public class Revision implements Serializable {
 
     public void setUsuarioList(List<Usuario> usuarioList) {
         this.usuarioList = usuarioList;
-    }
-
-    @XmlTransient
-    public List<Usuario> getUsuarioList1() {
-        return usuarioList1;
-    }
-
-    public void setUsuarioList1(List<Usuario> usuarioList1) {
-        this.usuarioList1 = usuarioList1;
     }
 
     public Proyecto getIdProyecto() {
@@ -140,13 +146,37 @@ public class Revision implements Serializable {
         this.idProyecto = idProyecto;
     }
 
-    @XmlTransient
-    public List<Variable> getVariableList() {
-        return variableList;
+    public AmbienteFormacion getIdAmbienteFormacion() {
+        return idAmbienteFormacion;
     }
 
-    public void setVariableList(List<Variable> variableList) {
-        this.variableList = variableList;
+    public void setIdAmbienteFormacion(AmbienteFormacion idAmbienteFormacion) {
+        this.idAmbienteFormacion = idAmbienteFormacion;
+    }
+
+    public Ciudad getCiudad() {
+        return ciudad;
+    }
+
+    public void setCiudad(Ciudad ciudad) {
+        this.ciudad = ciudad;
+    }
+
+    public TipoRevision getIdTipoRevision() {
+        return idTipoRevision;
+    }
+
+    public void setIdTipoRevision(TipoRevision idTipoRevision) {
+        this.idTipoRevision = idTipoRevision;
+    }
+
+    @XmlTransient
+    public List<Valoracion> getValoracionList() {
+        return valoracionList;
+    }
+
+    public void setValoracionList(List<Valoracion> valoracionList) {
+        this.valoracionList = valoracionList;
     }
 
     @Override

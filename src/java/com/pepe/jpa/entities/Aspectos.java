@@ -7,26 +7,19 @@
 package com.pepe.jpa.entities;
 
 import java.io.Serializable;
-import java.util.List;
 import javax.persistence.Basic;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.Lob;
-import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
@@ -38,7 +31,7 @@ import javax.xml.bind.annotation.XmlTransient;
 @NamedQueries({
     @NamedQuery(name = "Aspectos.findAll", query = "SELECT a FROM Aspectos a"),
     @NamedQuery(name = "Aspectos.findByIdAspectos", query = "SELECT a FROM Aspectos a WHERE a.idAspectos = :idAspectos"),
-    @NamedQuery(name = "Aspectos.findByCumple", query = "SELECT a FROM Aspectos a WHERE a.cumple = :cumple")})
+    @NamedQuery(name = "Aspectos.findByValoracion", query = "SELECT a FROM Aspectos a WHERE a.valoracion = :valoracion")})
 public class Aspectos implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
@@ -48,21 +41,14 @@ public class Aspectos implements Serializable {
     private Integer idAspectos;
     @Basic(optional = false)
     @NotNull
-    @Lob
-    @Size(min = 1, max = 65535)
-    @Column(name = "descripcion")
-    private String descripcion;
-    @Basic(optional = false)
-    @NotNull
-    @Column(name = "cumple")
-    private boolean cumple;
-    @JoinTable(name = "usuario_has_aspectos", joinColumns = {
-        @JoinColumn(name = "id_aspectos", referencedColumnName = "id_aspectos")}, inverseJoinColumns = {
-        @JoinColumn(name = "id_usuario", referencedColumnName = "id_usuario")})
-    @ManyToMany
-    private List<Usuario> usuarioList;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idAspectos")
-    private List<Fase> faseList;
+    @Column(name = "valoracion")
+    private boolean valoracion;
+    @JoinColumn(name = "id_descripcion_aspectos", referencedColumnName = "id_descripcion_aspectos")
+    @ManyToOne(optional = false)
+    private DescripcionAspectos idDescripcionAspectos;
+    @JoinColumn(name = "id_seguimiento", referencedColumnName = "id_seguimiento")
+    @ManyToOne(optional = false)
+    private Seguimiento idSeguimiento;
 
     public Aspectos() {
     }
@@ -71,10 +57,9 @@ public class Aspectos implements Serializable {
         this.idAspectos = idAspectos;
     }
 
-    public Aspectos(Integer idAspectos, String descripcion, boolean cumple) {
+    public Aspectos(Integer idAspectos, boolean valoracion) {
         this.idAspectos = idAspectos;
-        this.descripcion = descripcion;
-        this.cumple = cumple;
+        this.valoracion = valoracion;
     }
 
     public Integer getIdAspectos() {
@@ -85,38 +70,28 @@ public class Aspectos implements Serializable {
         this.idAspectos = idAspectos;
     }
 
-    public String getDescripcion() {
-        return descripcion;
+    public boolean getValoracion() {
+        return valoracion;
     }
 
-    public void setDescripcion(String descripcion) {
-        this.descripcion = descripcion;
+    public void setValoracion(boolean valoracion) {
+        this.valoracion = valoracion;
     }
 
-    public boolean getCumple() {
-        return cumple;
+    public DescripcionAspectos getIdDescripcionAspectos() {
+        return idDescripcionAspectos;
     }
 
-    public void setCumple(boolean cumple) {
-        this.cumple = cumple;
+    public void setIdDescripcionAspectos(DescripcionAspectos idDescripcionAspectos) {
+        this.idDescripcionAspectos = idDescripcionAspectos;
     }
 
-    @XmlTransient
-    public List<Usuario> getUsuarioList() {
-        return usuarioList;
+    public Seguimiento getIdSeguimiento() {
+        return idSeguimiento;
     }
 
-    public void setUsuarioList(List<Usuario> usuarioList) {
-        this.usuarioList = usuarioList;
-    }
-
-    @XmlTransient
-    public List<Fase> getFaseList() {
-        return faseList;
-    }
-
-    public void setFaseList(List<Fase> faseList) {
-        this.faseList = faseList;
+    public void setIdSeguimiento(Seguimiento idSeguimiento) {
+        this.idSeguimiento = idSeguimiento;
     }
 
     @Override

@@ -9,19 +9,15 @@ package com.pepe.jpa.entities;
 import java.io.Serializable;
 import java.util.List;
 import javax.persistence.Basic;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
+import javax.persistence.Lob;
 import javax.persistence.ManyToMany;
-import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -38,7 +34,7 @@ import javax.xml.bind.annotation.XmlTransient;
 @NamedQueries({
     @NamedQuery(name = "TecnicaDidactica.findAll", query = "SELECT t FROM TecnicaDidactica t"),
     @NamedQuery(name = "TecnicaDidactica.findByIdTecnicaDidactica", query = "SELECT t FROM TecnicaDidactica t WHERE t.idTecnicaDidactica = :idTecnicaDidactica"),
-    @NamedQuery(name = "TecnicaDidactica.findByTecnicaDidactica", query = "SELECT t FROM TecnicaDidactica t WHERE t.tecnicaDidactica = :tecnicaDidactica")})
+    @NamedQuery(name = "TecnicaDidactica.findByNombreTecnicaDidactica", query = "SELECT t FROM TecnicaDidactica t WHERE t.nombreTecnicaDidactica = :nombreTecnicaDidactica")})
 public class TecnicaDidactica implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
@@ -48,18 +44,18 @@ public class TecnicaDidactica implements Serializable {
     private Integer idTecnicaDidactica;
     @Basic(optional = false)
     @NotNull
-    @Size(min = 1, max = 60)
-    @Column(name = "tecnica_didactica")
-    private String tecnicaDidactica;
-    @JoinTable(name = "tipo_evaluacion_has_tecnica_didactica", joinColumns = {
-        @JoinColumn(name = "id_tecnica_didactica", referencedColumnName = "id_tecnica_didactica")}, inverseJoinColumns = {
-        @JoinColumn(name = "id_tipo_evaluacion", referencedColumnName = "id_tipo_evaluacion")})
-    @ManyToMany
-    private List<TipoEvaluacion> tipoEvaluacionList;
-    @JoinColumn(name = "id_instrumento_evaluacion", referencedColumnName = "id_instrumento_evaluacion")
-    @ManyToOne(optional = false)
-    private InstrumentoEvaluacion idInstrumentoEvaluacion;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idTecnicaDidactica")
+    @Size(min = 1, max = 45)
+    @Column(name = "nombre_tecnica_didactica")
+    private String nombreTecnicaDidactica;
+    @Basic(optional = false)
+    @NotNull
+    @Lob
+    @Size(min = 1, max = 65535)
+    @Column(name = "descripcion_tecnica_didactica")
+    private String descripcionTecnicaDidactica;
+    @ManyToMany(mappedBy = "tecnicaDidacticaList")
+    private List<ActividadAprendizaje> actividadAprendizajeList;
+    @ManyToMany(mappedBy = "tecnicaDidacticaList")
     private List<Evidencia> evidenciaList;
 
     public TecnicaDidactica() {
@@ -69,9 +65,10 @@ public class TecnicaDidactica implements Serializable {
         this.idTecnicaDidactica = idTecnicaDidactica;
     }
 
-    public TecnicaDidactica(Integer idTecnicaDidactica, String tecnicaDidactica) {
+    public TecnicaDidactica(Integer idTecnicaDidactica, String nombreTecnicaDidactica, String descripcionTecnicaDidactica) {
         this.idTecnicaDidactica = idTecnicaDidactica;
-        this.tecnicaDidactica = tecnicaDidactica;
+        this.nombreTecnicaDidactica = nombreTecnicaDidactica;
+        this.descripcionTecnicaDidactica = descripcionTecnicaDidactica;
     }
 
     public Integer getIdTecnicaDidactica() {
@@ -82,29 +79,29 @@ public class TecnicaDidactica implements Serializable {
         this.idTecnicaDidactica = idTecnicaDidactica;
     }
 
-    public String getTecnicaDidactica() {
-        return tecnicaDidactica;
+    public String getNombreTecnicaDidactica() {
+        return nombreTecnicaDidactica;
     }
 
-    public void setTecnicaDidactica(String tecnicaDidactica) {
-        this.tecnicaDidactica = tecnicaDidactica;
+    public void setNombreTecnicaDidactica(String nombreTecnicaDidactica) {
+        this.nombreTecnicaDidactica = nombreTecnicaDidactica;
+    }
+
+    public String getDescripcionTecnicaDidactica() {
+        return descripcionTecnicaDidactica;
+    }
+
+    public void setDescripcionTecnicaDidactica(String descripcionTecnicaDidactica) {
+        this.descripcionTecnicaDidactica = descripcionTecnicaDidactica;
     }
 
     @XmlTransient
-    public List<TipoEvaluacion> getTipoEvaluacionList() {
-        return tipoEvaluacionList;
+    public List<ActividadAprendizaje> getActividadAprendizajeList() {
+        return actividadAprendizajeList;
     }
 
-    public void setTipoEvaluacionList(List<TipoEvaluacion> tipoEvaluacionList) {
-        this.tipoEvaluacionList = tipoEvaluacionList;
-    }
-
-    public InstrumentoEvaluacion getIdInstrumentoEvaluacion() {
-        return idInstrumentoEvaluacion;
-    }
-
-    public void setIdInstrumentoEvaluacion(InstrumentoEvaluacion idInstrumentoEvaluacion) {
-        this.idInstrumentoEvaluacion = idInstrumentoEvaluacion;
+    public void setActividadAprendizajeList(List<ActividadAprendizaje> actividadAprendizajeList) {
+        this.actividadAprendizajeList = actividadAprendizajeList;
     }
 
     @XmlTransient

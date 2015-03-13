@@ -30,45 +30,45 @@ import javax.xml.bind.annotation.XmlTransient;
  * @author Junior Cabal
  */
 @Entity
-@Table(name = "conclusiones")
+@Table(name = "descripcion_aspectos")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "Conclusiones.findAll", query = "SELECT c FROM Conclusiones c"),
-    @NamedQuery(name = "Conclusiones.findByIdConclusiones", query = "SELECT c FROM Conclusiones c WHERE c.idConclusiones = :idConclusiones")})
-public class Conclusiones implements Serializable {
+    @NamedQuery(name = "DescripcionAspectos.findAll", query = "SELECT d FROM DescripcionAspectos d"),
+    @NamedQuery(name = "DescripcionAspectos.findByIdDescripcionAspectos", query = "SELECT d FROM DescripcionAspectos d WHERE d.idDescripcionAspectos = :idDescripcionAspectos")})
+public class DescripcionAspectos implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
-    @Column(name = "id_conclusiones")
-    private Integer idConclusiones;
+    @Column(name = "id_descripcion_aspectos")
+    private Integer idDescripcionAspectos;
     @Basic(optional = false)
     @NotNull
     @Lob
     @Size(min = 1, max = 65535)
     @Column(name = "descripcion")
     private String descripcion;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idConclusiones")
-    private List<CriterioSeguimientoHasAcompanamiento> criterioSeguimientoHasAcompanamientoList;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idDescripcionAspectos")
+    private List<Aspectos> aspectosList;
 
-    public Conclusiones() {
+    public DescripcionAspectos() {
     }
 
-    public Conclusiones(Integer idConclusiones) {
-        this.idConclusiones = idConclusiones;
+    public DescripcionAspectos(Integer idDescripcionAspectos) {
+        this.idDescripcionAspectos = idDescripcionAspectos;
     }
 
-    public Conclusiones(Integer idConclusiones, String descripcion) {
-        this.idConclusiones = idConclusiones;
+    public DescripcionAspectos(Integer idDescripcionAspectos, String descripcion) {
+        this.idDescripcionAspectos = idDescripcionAspectos;
         this.descripcion = descripcion;
     }
 
-    public Integer getIdConclusiones() {
-        return idConclusiones;
+    public Integer getIdDescripcionAspectos() {
+        return idDescripcionAspectos;
     }
 
-    public void setIdConclusiones(Integer idConclusiones) {
-        this.idConclusiones = idConclusiones;
+    public void setIdDescripcionAspectos(Integer idDescripcionAspectos) {
+        this.idDescripcionAspectos = idDescripcionAspectos;
     }
 
     public String getDescripcion() {
@@ -80,29 +80,29 @@ public class Conclusiones implements Serializable {
     }
 
     @XmlTransient
-    public List<CriterioSeguimientoHasAcompanamiento> getCriterioSeguimientoHasAcompanamientoList() {
-        return criterioSeguimientoHasAcompanamientoList;
+    public List<Aspectos> getAspectosList() {
+        return aspectosList;
     }
 
-    public void setCriterioSeguimientoHasAcompanamientoList(List<CriterioSeguimientoHasAcompanamiento> criterioSeguimientoHasAcompanamientoList) {
-        this.criterioSeguimientoHasAcompanamientoList = criterioSeguimientoHasAcompanamientoList;
+    public void setAspectosList(List<Aspectos> aspectosList) {
+        this.aspectosList = aspectosList;
     }
 
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (idConclusiones != null ? idConclusiones.hashCode() : 0);
+        hash += (idDescripcionAspectos != null ? idDescripcionAspectos.hashCode() : 0);
         return hash;
     }
 
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Conclusiones)) {
+        if (!(object instanceof DescripcionAspectos)) {
             return false;
         }
-        Conclusiones other = (Conclusiones) object;
-        if ((this.idConclusiones == null && other.idConclusiones != null) || (this.idConclusiones != null && !this.idConclusiones.equals(other.idConclusiones))) {
+        DescripcionAspectos other = (DescripcionAspectos) object;
+        if ((this.idDescripcionAspectos == null && other.idDescripcionAspectos != null) || (this.idDescripcionAspectos != null && !this.idDescripcionAspectos.equals(other.idDescripcionAspectos))) {
             return false;
         }
         return true;
@@ -110,7 +110,7 @@ public class Conclusiones implements Serializable {
 
     @Override
     public String toString() {
-        return "com.pepe.jpa.entities.Conclusiones[ idConclusiones=" + idConclusiones + " ]";
+        return "com.pepe.jpa.entities.DescripcionAspectos[ idDescripcionAspectos=" + idDescripcionAspectos + " ]";
     }
     
 }

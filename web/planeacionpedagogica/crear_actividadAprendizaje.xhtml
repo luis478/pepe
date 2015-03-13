@@ -75,11 +75,11 @@ and open the template in the editor.
                         </h:commandButton>
                         
                         <p:dataTable id="tablaResultadoAprendizaje" value="#{actividadAprendizajeController.listaResultadoAprendizaje}" var="itemResultadoAprendizaje">
-                            <p:column headerText="Resultado de aprendizaje">
-                                <h:outputText value="#{itemResultadoAprendizaje.idTipoResultadoAprendizaje}"/>
-                            </p:column>
                             <p:column headerText="Nombre Resultado de aprendizaje">
                                 <h:outputText value="#{itemResultadoAprendizaje.nombreResultadoAprendizaje}"/>
+                            </p:column>
+                            <p:column headerText="Competencia">
+                                <h:outputText value="#{itemResultadoAprendizaje.idCompetencia.toString()}"/>
                             </p:column>
                         </p:dataTable>
                     </h:panelGroup>
@@ -102,11 +102,14 @@ and open the template in the editor.
                         </h:commandButton>
                         
                         <p:dataTable id="tablaRecurso" value="#{actividadAprendizajeController.listaRecurso}" var="itemRecurso">
-                            <p:column headerText="Recurso">
-                                <h:outputText value="#{itemRecurso.idRecurso}"/>
-                            </p:column>
                             <p:column headerText="Nombre Recurso">
                                 <h:outputText value="#{itemRecurso.nombre}"/>
+                            </p:column>
+                            <p:column headerText="Cantidad">
+                                <h:outputText value="#{itemRecurso.cantidad}"/>
+                            </p:column>
+                            <p:column headerText="Valor unitario">
+                                <h:outputText value="#{itemRecurso.valorUnitario}"/>
                             </p:column>
                         </p:dataTable>
                     </h:panelGroup>

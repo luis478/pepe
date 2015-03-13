@@ -88,7 +88,7 @@ public class Ficha implements Serializable {
     private List<Acompanamiento> acompanamientoList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "ficha")
     private List<UsuarioHasFicha> usuarioHasFichaList;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "fichaIdFicha")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idFicha")
     private List<Seguimiento> seguimientoList;
 
     public Ficha() {

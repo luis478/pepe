@@ -108,7 +108,7 @@ public class UsuarioHasFicha implements Serializable {
 
     @Override
     public String toString() {
-        return usuario.getNombre1() + usuario.getApellido1();
+        return "com.pepe.jpa.entities.UsuarioHasFicha[ usuarioHasFichaPK=" + usuarioHasFichaPK + " ]";
     }
     
 }

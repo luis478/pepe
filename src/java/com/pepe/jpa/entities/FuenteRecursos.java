@@ -109,7 +109,7 @@ public class FuenteRecursos implements Serializable {
 
     @Override
     public String toString() {
-        return "com.pepe.jpa.entities.FuenteRecursos[ idFuenteRecursos=" + idFuenteRecursos + " ]";
+        return getNombreRecursos();
     }
     
 }

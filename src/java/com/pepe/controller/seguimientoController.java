@@ -9,7 +9,6 @@ import com.pepe.jpa.entities.Acompanamiento;
 import com.pepe.jpa.entities.Fase;
 import com.pepe.jpa.entities.Ficha;
 import com.pepe.jpa.sesions.AcompanamientoFacade;
-import com.pepe.jpa.sesions.ConclusionesFacade;
 import com.pepe.jpa.sesions.FaseFacade;
 import com.pepe.jpa.sesions.FichaFacade;
 import java.util.List;
@@ -34,9 +33,7 @@ private List<Acompanamiento> listaAcompanamiento = null;
  private FichaFacade fichaFacade;
  @EJB
  private FaseFacade faseFacade;
- @EJB
- private ConclusionesFacade conclusionesFacade;
- 
+
  
     /**
      * Creates a new instance of seguimientoController
@@ -52,9 +49,6 @@ private List<Acompanamiento> listaAcompanamiento = null;
         return faseFacade;
     }
 
-    public ConclusionesFacade getConclusionesFacade() {
-        return conclusionesFacade;
-    }
 
     public Acompanamiento getAcompanamientoActual() {
         if (acompanamientoActual == null) {

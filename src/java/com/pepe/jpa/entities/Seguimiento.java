@@ -7,7 +7,9 @@
 package com.pepe.jpa.entities;
 
 import java.io.Serializable;
+import java.util.List;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -18,9 +20,11 @@ import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
@@ -43,12 +47,17 @@ public class Seguimiento implements Serializable {
     @Size(max = 65535)
     @Column(name = "observaciones")
     private String observaciones;
-    @JoinColumn(name = "fase_id_fase", referencedColumnName = "id_fase")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idSeguimiento")
+    private List<Aspectos> aspectosList;
+    @JoinColumn(name = "id_fase", referencedColumnName = "id_fase")
     @ManyToOne(optional = false)
-    private Fase faseIdFase;
-    @JoinColumn(name = "ficha_id_ficha", referencedColumnName = "id_ficha")
+    private Fase idFase;
+    @JoinColumn(name = "id_ficha", referencedColumnName = "id_ficha")
     @ManyToOne(optional = false)
-    private Ficha fichaIdFicha;
+    private Ficha idFicha;
+    @JoinColumn(name = "id_usuario", referencedColumnName = "id_usuario")
+    @ManyToOne(optional = false)
+    private Usuario idUsuario;
 
     public Seguimiento() {
     }
@@ -73,20 +82,37 @@ public class Seguimiento implements Serializable {
         this.observaciones = observaciones;
     }
 
-    public Fase getFaseIdFase() {
-        return faseIdFase;
+    @XmlTransient
+    public List<Aspectos> getAspectosList() {
+        return aspectosList;
     }
 
-    public void setFaseIdFase(Fase faseIdFase) {
-        this.faseIdFase = faseIdFase;
+    public void setAspectosList(List<Aspectos> aspectosList) {
+        this.aspectosList = aspectosList;
     }
 
-    public Ficha getFichaIdFicha() {
-        return fichaIdFicha;
+    public Fase getIdFase() {
+        return idFase;
     }
 
-    public void setFichaIdFicha(Ficha fichaIdFicha) {
-        this.fichaIdFicha = fichaIdFicha;
+    public void setIdFase(Fase idFase) {
+        this.idFase = idFase;
+    }
+
+    public Ficha getIdFicha() {
+        return idFicha;
+    }
+
+    public void setIdFicha(Ficha idFicha) {
+        this.idFicha = idFicha;
+    }
+
+    public Usuario getIdUsuario() {
+        return idUsuario;
+    }
+
+    public void setIdUsuario(Usuario idUsuario) {
+        this.idUsuario = idUsuario;
     }
 
     @Override

@@ -38,9 +38,9 @@ import javax.xml.bind.annotation.XmlTransient;
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "ActividadAprendizaje.findAll", query = "SELECT a FROM ActividadAprendizaje a"),
-    @NamedQuery(name = "ActividadAprendizaje.findByIdActividadAprendizaje", query = "SELECT a FROM ActividadAprendizaje a WHERE a.idActividadAprendizaje = :idActividadAprendizaje"),
-     @NamedQuery(name = "ActividadAprendizaje.findByConsultaActividad", query = "SELECT a FROM ActividadAprendizaje a WHERE a.idActividad = :idActividad"),
+    @NamedQuery(name = "ActividadAprendizaje.findByConsultaActividad", query = "SELECT a FROM ActividadAprendizaje a WHERE a.idActividad = :idActividad"),
     @NamedQuery(name = "ActividadAprendizaje.findByFase", query = "SELECT a FROM ActividadAprendizaje a WHERE a.idActividad.idProyecto = :idProyecto AND a.idActividad.idFase = :idFase"),
+    @NamedQuery(name = "ActividadAprendizaje.findByIdActividadAprendizaje", query = "SELECT a FROM ActividadAprendizaje a WHERE a.idActividadAprendizaje = :idActividadAprendizaje"),
     @NamedQuery(name = "ActividadAprendizaje.findByDuracionActividadAprendizaje", query = "SELECT a FROM ActividadAprendizaje a WHERE a.duracionActividadAprendizaje = :duracionActividadAprendizaje")})
 public class ActividadAprendizaje implements Serializable {
     private static final long serialVersionUID = 1L;
@@ -76,6 +76,11 @@ public class ActividadAprendizaje implements Serializable {
         @JoinColumn(name = "id_recurso", referencedColumnName = "id_recurso")})
     @ManyToMany
     private List<Recurso> recursoList;
+    @JoinTable(name = "actividad_aprendizaje_has_tecnica_didactica", joinColumns = {
+        @JoinColumn(name = "id_actividad_aprendizaje", referencedColumnName = "id_actividad_aprendizaje")}, inverseJoinColumns = {
+        @JoinColumn(name = "id_tecnica_didactica", referencedColumnName = "id_tecnica_didactica")})
+    @ManyToMany
+    private List<TecnicaDidactica> tecnicaDidacticaList;
     @JoinTable(name = "actividad_aprendizaje_has_resultado_aprendizaje", joinColumns = {
         @JoinColumn(name = "id_actividad_aprendizaje", referencedColumnName = "id_actividad_aprendizaje")}, inverseJoinColumns = {
         @JoinColumn(name = "id_resultado_aprendizaje", referencedColumnName = "id_resultado_aprendizaje")})
@@ -162,6 +167,15 @@ public class ActividadAprendizaje implements Serializable {
     }
 
     @XmlTransient
+    public List<TecnicaDidactica> getTecnicaDidacticaList() {
+        return tecnicaDidacticaList;
+    }
+
+    public void setTecnicaDidacticaList(List<TecnicaDidactica> tecnicaDidacticaList) {
+        this.tecnicaDidacticaList = tecnicaDidacticaList;
+    }
+
+    @XmlTransient
     public List<ResultadoAprendizaje> getResultadoAprendizajeList() {
         return resultadoAprendizajeList;
     }
@@ -235,7 +249,7 @@ public class ActividadAprendizaje implements Serializable {
 
     @Override
     public String toString() {
-        return "com.pepe.jpa.entities.ActividadAprendizaje[ idActividadAprendizaje=" + idActividadAprendizaje + " ]";
+        return getNombreActividadAprendizaje();
     }
     
 }

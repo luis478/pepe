@@ -104,6 +104,17 @@ public class ActividadAprendizajeController implements Serializable {
     public String createActividad(){
         return "/planeacionpedagogica/lista_ActividadAprendizaje";
     }
+    
+    public String prepareResultadoAprendizaje(){
+        listaResultadoAprendizaje = new ArrayList<>();
+        listaResultadoAprendizaje = actividadAprendizajeActual.getResultadoAprendizajeList();
+        return "lista_resultadoAprendizaje";
+    }
+     public String prepareRecursos(){
+        listaRecurso = new ArrayList<>();
+        listaRecurso = actividadAprendizajeActual.getRecursoList();
+        return "lista_recursos";
+    }
 
     public String prepareEdit() {
         return "";

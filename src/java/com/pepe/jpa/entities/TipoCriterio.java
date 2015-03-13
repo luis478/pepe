@@ -30,45 +30,45 @@ import javax.xml.bind.annotation.XmlTransient;
  * @author Junior Cabal
  */
 @Entity
-@Table(name = "nombre_criterio")
+@Table(name = "tipo_criterio")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "NombreCriterio.findAll", query = "SELECT n FROM NombreCriterio n"),
-    @NamedQuery(name = "NombreCriterio.findByIdNombreCriterio", query = "SELECT n FROM NombreCriterio n WHERE n.idNombreCriterio = :idNombreCriterio")})
-public class NombreCriterio implements Serializable {
+    @NamedQuery(name = "TipoCriterio.findAll", query = "SELECT t FROM TipoCriterio t"),
+    @NamedQuery(name = "TipoCriterio.findByIdTipoCriterio", query = "SELECT t FROM TipoCriterio t WHERE t.idTipoCriterio = :idTipoCriterio")})
+public class TipoCriterio implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
-    @Column(name = "id_nombre_criterio")
-    private Integer idNombreCriterio;
+    @Column(name = "id_tipo_criterio")
+    private Integer idTipoCriterio;
     @Basic(optional = false)
     @NotNull
     @Lob
     @Size(min = 1, max = 65535)
     @Column(name = "nombre_criterio")
     private String nombreCriterio;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idNombreCriterio")
-    private List<CriterioSeguimientoHasAcompanamiento> criterioSeguimientoHasAcompanamientoList;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idTipoCriterio")
+    private List<Criterio> criterioList;
 
-    public NombreCriterio() {
+    public TipoCriterio() {
     }
 
-    public NombreCriterio(Integer idNombreCriterio) {
-        this.idNombreCriterio = idNombreCriterio;
+    public TipoCriterio(Integer idTipoCriterio) {
+        this.idTipoCriterio = idTipoCriterio;
     }
 
-    public NombreCriterio(Integer idNombreCriterio, String nombreCriterio) {
-        this.idNombreCriterio = idNombreCriterio;
+    public TipoCriterio(Integer idTipoCriterio, String nombreCriterio) {
+        this.idTipoCriterio = idTipoCriterio;
         this.nombreCriterio = nombreCriterio;
     }
 
-    public Integer getIdNombreCriterio() {
-        return idNombreCriterio;
+    public Integer getIdTipoCriterio() {
+        return idTipoCriterio;
     }
 
-    public void setIdNombreCriterio(Integer idNombreCriterio) {
-        this.idNombreCriterio = idNombreCriterio;
+    public void setIdTipoCriterio(Integer idTipoCriterio) {
+        this.idTipoCriterio = idTipoCriterio;
     }
 
     public String getNombreCriterio() {
@@ -80,29 +80,29 @@ public class NombreCriterio implements Serializable {
     }
 
     @XmlTransient
-    public List<CriterioSeguimientoHasAcompanamiento> getCriterioSeguimientoHasAcompanamientoList() {
-        return criterioSeguimientoHasAcompanamientoList;
+    public List<Criterio> getCriterioList() {
+        return criterioList;
     }
 
-    public void setCriterioSeguimientoHasAcompanamientoList(List<CriterioSeguimientoHasAcompanamiento> criterioSeguimientoHasAcompanamientoList) {
-        this.criterioSeguimientoHasAcompanamientoList = criterioSeguimientoHasAcompanamientoList;
+    public void setCriterioList(List<Criterio> criterioList) {
+        this.criterioList = criterioList;
     }
 
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (idNombreCriterio != null ? idNombreCriterio.hashCode() : 0);
+        hash += (idTipoCriterio != null ? idTipoCriterio.hashCode() : 0);
         return hash;
     }
 
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof NombreCriterio)) {
+        if (!(object instanceof TipoCriterio)) {
             return false;
         }
-        NombreCriterio other = (NombreCriterio) object;
-        if ((this.idNombreCriterio == null && other.idNombreCriterio != null) || (this.idNombreCriterio != null && !this.idNombreCriterio.equals(other.idNombreCriterio))) {
+        TipoCriterio other = (TipoCriterio) object;
+        if ((this.idTipoCriterio == null && other.idTipoCriterio != null) || (this.idTipoCriterio != null && !this.idTipoCriterio.equals(other.idTipoCriterio))) {
             return false;
         }
         return true;
@@ -110,7 +110,7 @@ public class NombreCriterio implements Serializable {
 
     @Override
     public String toString() {
-        return "com.pepe.jpa.entities.NombreCriterio[ idNombreCriterio=" + idNombreCriterio + " ]";
+        return "com.pepe.jpa.entities.TipoCriterio[ idTipoCriterio=" + idTipoCriterio + " ]";
     }
     
 }

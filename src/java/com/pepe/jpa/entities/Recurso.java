@@ -217,6 +217,7 @@ public class Recurso implements Serializable {
 
     @Override
     public String toString() {
-        return "com.pepe.jpa.entities.Recurso[ idRecurso=" + idRecurso + " ]";
+        return getNombre();
     }
+    
 }

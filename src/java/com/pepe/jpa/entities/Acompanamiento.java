@@ -17,8 +17,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
+import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
@@ -27,6 +26,7 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 
@@ -59,19 +59,15 @@ public class Acompanamiento implements Serializable {
     @Column(name = "facha_fin")
     @Temporal(TemporalType.TIMESTAMP)
     private Date fachaFin;
-    @JoinTable(name = "usuario_has_acompanamiento", joinColumns = {
-        @JoinColumn(name = "id_acompanamiento", referencedColumnName = "id_acompanamiento")}, inverseJoinColumns = {
-        @JoinColumn(name = "id_usuario", referencedColumnName = "id_usuario")})
-    @ManyToMany
-    private List<Usuario> usuarioList;
-    @JoinColumn(name = "id_fase", referencedColumnName = "id_fase")
-    @ManyToOne(optional = false)
-    private Fase idFase;
+    @Lob
+    @Size(max = 2147483647)
+    @Column(name = "conclusiones")
+    private String conclusiones;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idAcompanamiento")
+    private List<Criterio> criterioList;
     @JoinColumn(name = "id_ficha", referencedColumnName = "id_ficha")
     @ManyToOne(optional = false)
     private Ficha idFicha;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "acompanamiento")
-    private List<CriterioSeguimientoHasAcompanamiento> criterioSeguimientoHasAcompanamientoList;
 
     public Acompanamiento() {
     }
@@ -110,21 +106,21 @@ public class Acompanamiento implements Serializable {
         this.fachaFin = fachaFin;
     }
 
+    public String getConclusiones() {
+        return conclusiones;
+    }
+
+    public void setConclusiones(String conclusiones) {
+        this.conclusiones = conclusiones;
+    }
+
     @XmlTransient
-    public List<Usuario> getUsuarioList() {
-        return usuarioList;
+    public List<Criterio> getCriterioList() {
+        return criterioList;
     }
 
-    public void setUsuarioList(List<Usuario> usuarioList) {
-        this.usuarioList = usuarioList;
-    }
-
-    public Fase getIdFase() {
-        return idFase;
-    }
-
-    public void setIdFase(Fase idFase) {
-        this.idFase = idFase;
+    public void setCriterioList(List<Criterio> criterioList) {
+        this.criterioList = criterioList;
     }
 
     public Ficha getIdFicha() {
@@ -133,15 +129,6 @@ public class Acompanamiento implements Serializable {
 
     public void setIdFicha(Ficha idFicha) {
         this.idFicha = idFicha;
-    }
-
-    @XmlTransient
-    public List<CriterioSeguimientoHasAcompanamiento> getCriterioSeguimientoHasAcompanamientoList() {
-        return criterioSeguimientoHasAcompanamientoList;
-    }
-
-    public void setCriterioSeguimientoHasAcompanamientoList(List<CriterioSeguimientoHasAcompanamiento> criterioSeguimientoHasAcompanamientoList) {
-        this.criterioSeguimientoHasAcompanamientoList = criterioSeguimientoHasAcompanamientoList;
     }
 
     @Override

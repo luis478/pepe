@@ -109,7 +109,7 @@ public class TipoRubro implements Serializable {
 
     @Override
     public String toString() {
-        return "com.pepe.jpa.entities.TipoRubro[ idTipoRubro=" + idTipoRubro + " ]";
+        return getNombreTipoRubro();
     }
     
 }

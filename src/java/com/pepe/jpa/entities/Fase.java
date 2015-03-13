@@ -15,8 +15,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
@@ -52,13 +50,10 @@ public class Fase implements Serializable {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idFase")
     private List<Actividad> actividadList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idFase")
-    private List<Acompanamiento> acompanamientoList;
+    private List<Criterio> criterioList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "fase")
     private List<EvaluacionSeguimiento> evaluacionSeguimientoList;
-    @JoinColumn(name = "id_aspectos", referencedColumnName = "id_aspectos")
-    @ManyToOne(optional = false)
-    private Aspectos idAspectos;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "faseIdFase")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idFase")
     private List<Seguimiento> seguimientoList;
 
     public Fase() {
@@ -99,12 +94,12 @@ public class Fase implements Serializable {
     }
 
     @XmlTransient
-    public List<Acompanamiento> getAcompanamientoList() {
-        return acompanamientoList;
+    public List<Criterio> getCriterioList() {
+        return criterioList;
     }
 
-    public void setAcompanamientoList(List<Acompanamiento> acompanamientoList) {
-        this.acompanamientoList = acompanamientoList;
+    public void setCriterioList(List<Criterio> criterioList) {
+        this.criterioList = criterioList;
     }
 
     @XmlTransient
@@ -114,14 +109,6 @@ public class Fase implements Serializable {
 
     public void setEvaluacionSeguimientoList(List<EvaluacionSeguimiento> evaluacionSeguimientoList) {
         this.evaluacionSeguimientoList = evaluacionSeguimientoList;
-    }
-
-    public Aspectos getIdAspectos() {
-        return idAspectos;
-    }
-
-    public void setIdAspectos(Aspectos idAspectos) {
-        this.idAspectos = idAspectos;
     }
 
     @XmlTransient

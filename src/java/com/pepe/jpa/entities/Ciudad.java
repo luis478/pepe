@@ -57,6 +57,8 @@ public class Ciudad implements Serializable {
     private List<VisitaTecnica> visitaTecnicaList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "ciudad")
     private List<CentroFormacion> centroFormacionList;
+    @OneToMany(mappedBy = "ciudad")
+    private List<Revision> revisionList;
     @JoinColumn(name = "id_departamento", referencedColumnName = "id_departamento", insertable = false, updatable = false)
     @ManyToOne(optional = false)
     private Departamento departamento;
@@ -118,6 +120,15 @@ public class Ciudad implements Serializable {
 
     public void setCentroFormacionList(List<CentroFormacion> centroFormacionList) {
         this.centroFormacionList = centroFormacionList;
+    }
+
+    @XmlTransient
+    public List<Revision> getRevisionList() {
+        return revisionList;
+    }
+
+    public void setRevisionList(List<Revision> revisionList) {
+        this.revisionList = revisionList;
     }
 
     public Departamento getDepartamento() {
