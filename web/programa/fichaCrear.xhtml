@@ -1,0 +1,81 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:jsf="http://xmlns.jcp.org/jsf"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <p:dialog widgetVar="fichaCrearVentana" 
+              resizable="false"
+              modal="true"
+              draggable="false"
+              styleClass="Dialogo">
+        <h:form id="fichaCrearVentanaForm">
+            <h1><h:outputText value="Crear Ficha"/></h1>
+            <h:panelGrid columns="1">
+
+                <h:selectOneMenu id="idCentroFormacionSelect" value="#{fichaController.idCentro}">
+                    <f:selectItem itemLabel="Centro de Formación..." />
+                    <f:selectItems value="#{fichaController.listaCentroFormacionSelectOne}" var="centroFormacion" itemValue="#{centroFormacion.idCentroFormacion}"/>  
+                </h:selectOneMenu>
+
+
+
+                <h:selectOneMenu id="idTipoOfertaSelect" value="#{fichaController.idOferta}">
+                    <f:selectItem itemLabel="Tipo de Oferta..." />
+                    <f:selectItems value="#{fichaController.listaTipoOfertaSelectOne}" var="tipoOferta" itemValue="#{tipoOferta.idTipoOferta}"/>  
+                </h:selectOneMenu>
+
+
+                <h:selectOneMenu id="idJornadaSelect" value="#{fichaController.jornada}">
+                    <f:selectItem itemLabel="Jornada..." />
+                    <f:selectItems value="#{fichaController.listaJornadaSelectOne}" var="Jornada" itemValue="#{Jornada.idJornada}"/>  
+                </h:selectOneMenu>
+
+
+                <input type="text" 
+                       pattern="[0-9]{6,8}" 
+                       placeholder="Código Ficha"
+                       minlength="6"
+                       maxlength="8"
+                       jsf:validator="#{fichaController.validarCodigoFicha}"
+                       jsf:value="#{fichaController.fichaActual.codigoFicha}" 
+                       jsf:id="codigoFicha">
+                    <f:ajax execute="codigoFicha"
+                            render="msgcodigoFicha"/>
+                    <f:ajax execute="codigoFicha"
+                            render="msgcodigoFicha"
+                            event="blur"/>
+                </input>
+                <h:message id="msgcodigoFicha"
+                           for="codigoFicha"
+                           styleClass="error"/>
+
+
+                <input type="date" jsf:id="FechaInicio"
+                       jsf:value="#{fichaController.fichaActual.fechaInicio}">
+                    <f:convertDateTime pattern="yyyy-MM-dd"></f:convertDateTime></input>
+
+
+                <h:selectOneMenu id="idTipoFormacionSelect" value="#{fichaController.idTipoFormacion}">
+                    <f:selectItem itemLabel="Tipo de Formación..." />
+                    <f:selectItems value="#{fichaController.listaTipoFormacionSelectOne}" var="tipoFormacion" itemValue="#{tipoFormacion.idTipoFormacion}"/>  
+                </h:selectOneMenu>
+
+                <h:selectOneMenu id="idLider" value="#{fichaController.idUsu}">
+                    <f:selectItem itemLabel="Lider Ejecutor..." />
+                    <f:selectItems value="#{usuarioController.listaUsuariosInstr}" 
+                                   var="usu" 
+                                   itemValue="#{usu.idUsuario}"/>  
+                </h:selectOneMenu>
+
+                <p:commandButton actionListener="#{fichaController.addFicha}" 
+                                 value="Guardar Ficha"
+                                 update=":fichaCrearVentanaForm"
+                                 oncomplete="PF('fichaCrearVentana').hide()">
+                    <f:attribute name="prog" value="#{programaController.programaActual}"/>
+                </p:commandButton>
+            </h:panelGrid>
+        </h:form>
+    </p:dialog>
+</html>

@@ -12,6 +12,7 @@
               styleClass="Dialogo">
         <h:form id="listaCCPVentanaForm">
             <p:dataTable value="#{programaController.listaCCP}" 
+                         id="tablaCCP"
                          var="item"
                          selectionMode="single"
                          selection="#{programaController.conocimientoConceptoPrincipiosActual}"
@@ -30,18 +31,21 @@
                                      onclick="crearCCPVentana.show()"
                                      action="#{programaController.anularItem()}"/>
                     <p:commandButton update=":modificarCCPVentanaForm"
+                                     process="tablaCCP"
                                      id="modificarCCP"
                                      disabled="#{programaController.ccpBoolean()}"
                                      value="modificar"
                                      onclick="modificarCCPVentana.show()"/>
                     <p:commandButton update=":deshabilitarCCPVentanaForm"
                                      id="deshabilitarCCP"
+                                     process="tablaCCP"
                                      disabled="#{programaController.ccpBoolean()}"
                                      value="deshabilitar"
                                      onclick="deshabilitarCCPVentana.show()"/>
                 </f:facet>
             </p:dataTable>
         </h:form>
+        
     </p:dialog>
 </html>
 

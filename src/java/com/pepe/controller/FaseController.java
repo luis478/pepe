@@ -7,8 +7,10 @@ package com.pepe.controller;
 
 import com.pepe.jpa.entities.Fase;
 import com.pepe.jpa.sesions.FaseFacade;
+import java.io.Serializable;
 import java.util.List;
 import javax.ejb.EJB;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.component.UIComponent;
@@ -22,17 +24,19 @@ import javax.faces.convert.FacesConverter;
  */
 @ManagedBean
 @SessionScoped
-public class FaseController {
+public class FaseController implements Serializable{
+
     @EJB
-private FaseFacade faseFacade;
-private Fase faseSeleccionada; 
-private int faseSeleccionadaInt; 
-private List<Fase> listaFase = null;
+    private FaseFacade faseFacade;
+    private Fase faseSeleccionada;
+    private int faseSeleccionadaInt;
+    private List<Fase> listaFase = null;
+
     /**
      * Creates a new instance of FaseControlller
      */
- public Fase getFaseSeleccionada() {
-        if(faseSeleccionada == null){
+    public Fase getFaseSeleccionada() {
+        if (faseSeleccionada == null) {
             faseSeleccionada = new Fase();
         }
         return faseSeleccionada;
@@ -49,26 +53,28 @@ private List<Fase> listaFase = null;
     public void setFaseSeleccionadaInt(int faseSeleccionadaInt) {
         this.faseSeleccionadaInt = faseSeleccionadaInt;
     }
-        
-public FaseController() {
+
+    public FaseController() {
     }
-      public FaseFacade getFaseFacade() {
+
+    public FaseFacade getFaseFacade() {
         return faseFacade;
     }
-    
-     public Fase getFase(java.lang.Integer id) {
+
+    public Fase getFase(java.lang.Integer id) {
         return getFaseFacade().find(id);
     }
 
-      public List<Fase> getListaFase() {
-         if (listaFase == null) {
-            try {
+    public List<Fase> getListaFase() {
+        try {
+            if (listaFase == null) {
                 listaFase = getFaseFacade().findAll();
-            } catch (Exception e) {
-                addErrorMessage("Error closing resource " + e.getClass().getName(), "Message: " + e.getMessage());
             }
+            return listaFase;
+        } catch (Exception e) {
+            addErrorMessage("Error closing resource " + e.getClass().getName(), "Message: " + e.getMessage());
+            return null;
         }
-        return listaFase;
     }
 
     public void setListaFase(List<Fase> listaFase) {
@@ -76,10 +82,11 @@ public FaseController() {
     }
 
     private void addErrorMessage(String string, String string0) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        FacesMessage facesMsg
+                = new FacesMessage(FacesMessage.SEVERITY_ERROR, string, string0);
+        FacesContext.getCurrentInstance().addMessage(null, facesMsg);
     }
-     
-     
+
     @FacesConverter(forClass = Fase.class)
     public static class FaseControllerConverter implements Converter {
 
@@ -119,5 +126,5 @@ public FaseController() {
         }
 
     }
-    
+
 }

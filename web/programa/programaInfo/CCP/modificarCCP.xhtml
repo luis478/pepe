@@ -14,7 +14,7 @@
                       required="true"/>
             <p:commandButton update=":listaCCPVentanaForm"
                              action="#{programaController.modificarCCP()}"
-                             oncomplete="handleSubmit(args,'modificarCCPVentana','');"/>
+                             oncomplete="PF('modificarCCPVentana').hide()"/>
         </h:form>
     </p:dialog>
 </html>

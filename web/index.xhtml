@@ -43,6 +43,14 @@
 
                         <input class="Guardar" type="submit" value="Ingresar" jsf:action="#{loginController.login}"/>
 
+            <h:form>
+                <p:commandButton
+                    styleClass="Boton"
+                    value="programa"
+                    action="programa/programaInicio.xhtml"
+                    actionListener="#{programaController.anular}">
+                </p:commandButton>
+            </h:form>
                
                         <a class="Pepe-inicioLabel1" href="#"><font  size="+1">¿Olvidaste tu contraseña?</font></a>     
                 </form>

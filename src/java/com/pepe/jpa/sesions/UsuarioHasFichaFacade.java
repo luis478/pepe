@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package com.pepe.jpa.sesions;
 
 import com.pepe.jpa.entities.Programa;
@@ -23,6 +22,7 @@ import javax.persistence.Query;
  */
 @Stateless
 public class UsuarioHasFichaFacade extends AbstractFacade<UsuarioHasFicha> {
+
     @PersistenceContext(unitName = "pepeAplicacionPU")
     private EntityManager em;
 
@@ -34,28 +34,31 @@ public class UsuarioHasFichaFacade extends AbstractFacade<UsuarioHasFicha> {
     public UsuarioHasFichaFacade() {
         super(UsuarioHasFicha.class);
     }
-    
-     public UsuarioHasFicha finByNombre(String ficha){
-        Query q= getEntityManager().createNamedQuery("UsuarioHasFicha.findByTipoInstructor");
+//@NamedQuery(name = "UsuarioHasFicha.findByTipoInstructor", query = "SELECT u FROM UsuarioHasFicha u WHERE u.idTipoInstructor.idTipoInstructor = 1 AND u.ficha.codigoFicha = :codigoFicha"),
+    public UsuarioHasFicha finByTipoInstructor(String ficha) {
+        Query q = getEntityManager().createNamedQuery("UsuarioHasFicha.findByTipoInstructor");
         q.setParameter("codigoFicha", ficha);
-         try {
-           return (UsuarioHasFicha)q.getSingleResult();  
-         } catch (NonUniqueResultException e) {
-             System.out.println(e.getCause());
-               return null;
-         }
-        catch(NoResultException e){
+        try {
+            return (UsuarioHasFicha) q.getSingleResult();
+        } catch (NonUniqueResultException e) {
             System.out.println(e.getCause());
-              return null;
+            return null;
+        } catch (NoResultException e) {
+            System.out.println(e.getCause());
+            return null;
         }
     }
-     
-     public List<Usuario> finByUsuario(String ficha){
-        Query q= getEntityManager().createNamedQuery("UsuarioHasFicha.findByUsuario");
+//@NamedQuery(name = "UsuarioHasFicha.findByUsuario", query = "SELECT u.usuario FROM UsuarioHasFicha u WHERE u.ficha.codigoFicha = :codigoFicha"),
+    public List<Usuario> finByUsuario(String ficha) {
+        Query q = getEntityManager().createNamedQuery("UsuarioHasFicha.findByUsuario");
         q.setParameter("codigoFicha", ficha);
-         
-           return q.getResultList();  
-  
+        try {
+            return q.getResultList();
+        } catch (Exception ex) {
+            System.out.println(ex.getMessage());
+            return null;
+        }
+
     }
-    
+
 }

@@ -6,53 +6,152 @@
 
 package com.pepe.controller;
 
+import com.pepe.jpa.entities.Actividad;
+import com.pepe.jpa.entities.Competencia;
+import com.pepe.jpa.entities.Fase;
+import com.pepe.jpa.entities.Ficha;
 import com.pepe.jpa.entities.Proyecto;
+import com.pepe.jpa.sesions.ActividadFacade;
+import com.pepe.jpa.sesions.CompetenciaFacade;
+import com.pepe.jpa.sesions.FaseFacade;
+import com.pepe.jpa.sesions.FichaFacade;
 import com.pepe.jpa.sesions.ProyectoFacade;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import javax.ejb.EJB;
 import javax.enterprise.context.SessionScoped;
 import javax.faces.application.FacesMessage;
-import javax.inject.Named;
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
 import javax.faces.convert.FacesConverter;
+import javax.faces.event.ActionEvent;
+import javax.faces.validator.ValidatorException;
+import javax.inject.Named;
 
 /**
  *
  * @author Adsit
  */
-
+@Named(value = "proyectoController")
 @SessionScoped
-@Named
-public class ProyectoController implements Serializable{
+public class ProyectoController implements Serializable {
 
     @EJB
     private ProyectoFacade proyectoFacade;
     private Proyecto proyectoActual;
     private List<Proyecto> listaProyecto = null;
+    @EJB
+    private FichaFacade fichaFacade;
+    private Ficha fichaActual;
+    @EJB
+    private ActividadFacade actividadFacade;
+    private Actividad actividadActual;
+    private List<Actividad> listaActividad;
+    @EJB
+    private CompetenciaFacade competenciaFacade;
+    private List<Competencia> listaCompetencia;
+    @EJB
+    private FaseFacade faseFacade;
+    private int idFase;
 
-    
-    public ProyectoController() {
-    }
-    
-      
     public ProyectoFacade getProyectoFacade() {
         return proyectoFacade;
+    }
+
+    public FichaFacade getFichaFacade() {
+        return fichaFacade;
+    }
+
+    public void setFichaFacade(FichaFacade fichaFacade) {
+        this.fichaFacade = fichaFacade;
+    }
+
+    public int getIdFase() {
+        return idFase;
+    }
+
+    public void setIdFase(int idFase) {
+        this.idFase = idFase;
     }
 
     public void setProyectoFacade(ProyectoFacade proyectoFacade) {
         this.proyectoFacade = proyectoFacade;
     }
 
+    public ActividadFacade getActividadFacade() {
+        return actividadFacade;
+    }
+
+    public void setActividadFacade(ActividadFacade actividadFacade) {
+        this.actividadFacade = actividadFacade;
+    }
+
+    public Actividad getActividadActual() {
+        return actividadActual;
+    }
+
+    public void setActividadActual(Actividad actividadActual) {
+        this.actividadActual = actividadActual;
+    }
+
+    public List<Actividad> getListaActividad() {
+        listaActividad = new ArrayList<>();
+        listaActividad = getProyectoActual().getActividadList();
+        return listaActividad;
+    }
+
+    public void setListaActividad(List<Actividad> listaActividad) {
+        this.listaActividad = listaActividad;
+    }
+
+    public CompetenciaFacade getCompetenciaFacade() {
+        return competenciaFacade;
+    }
+
+    public void setCompetenciaFacade(CompetenciaFacade competenciaFacade) {
+        this.competenciaFacade = competenciaFacade;
+    }
+
+    public List<Competencia> getListaCompetencia() {
+        listaCompetencia = fichaActual.getPrograma().getCompetenciaList();
+        return listaCompetencia;
+    }
+
+    public void setListaCompetencia(List<Competencia> listaCompetencia) {
+        this.listaCompetencia = listaCompetencia;
+    }
+
     public Proyecto getProyectoActual() {
-          if (proyectoActual == null) {
+        if (proyectoActual == null) {
             proyectoActual = new Proyecto();
         }
         return proyectoActual;
+    }
+
+    public FaseFacade getFaseFacade() {
+        return faseFacade;
+    }
+
+    public void setFaseFacade(FaseFacade faseFacade) {
+        this.faseFacade = faseFacade;
+    }
+
+    public List<Fase> listaFase() {
+        return getFaseFacade().findAll();
+    }
+
+    public Ficha getFichaActual() {
+        return fichaActual;
+    }
+
+    public void setFichaActual(Ficha fichaActual) {
+        this.fichaActual = fichaActual;
     }
 
     public void setProyectoActual(Proyecto proyectoActual) {
@@ -60,101 +159,94 @@ public class ProyectoController implements Serializable{
     }
 
     public List<Proyecto> getListaProyecto() {
-        if (listaProyecto == null) {
-            try {
-                listaProyecto = getProyectoFacade().findAll();
-            } catch (Exception e) {
-                addErrorMessage("Error closing resource " + e.getClass().getName(), "Message: " + e.getMessage());
-            }
-        }
         return listaProyecto;
     }
-    
-  
 
     public void setListaProyecto(List<Proyecto> listaProyecto) {
         this.listaProyecto = listaProyecto;
     }
-    
-      public Proyecto getProyecto(java.lang.Integer id) {
+
+    public void validarCodigoProyecto(FacesContext context, UIComponent component, Object o) throws ValidatorException {
+        Proyecto u = getProyectoFacade().getByCodigoProyecto((String) o);
+        Pattern pat = Pattern.compile("[0-9]{6,8}");
+        Matcher mat = pat.matcher((String) o);
+        if (mat.matches()) {
+            if (u == null) {
+                proyectoActual.setCodigoProyecto((String) o);
+            } else {
+                throw new ValidatorException(new FacesMessage(FacesMessage.SEVERITY_ERROR, "", "El Codigo del proyecto ya fue registrado"));
+            }
+        } else {
+            throw new ValidatorException(new FacesMessage(FacesMessage.SEVERITY_ERROR, "", "El codigo de la ficha debe contener 6 digitos númericos"));
+        }
+    }
+
+    public void validarNumeroAprendices(FacesContext context, UIComponent component, Object o) throws ValidatorException {
+        String u = (String) o;
+        int n;
+        Pattern pat = Pattern.compile("[0-9]");
+        Matcher mat = pat.matcher((String) o);
+        if (mat.matches()) {
+            n = Integer.parseInt(u);
+            if ((n < 20) || (n > 35)) {
+                throw new ValidatorException(new FacesMessage(FacesMessage.SEVERITY_ERROR, "", "El numero de aprendices requeridos debe estar en el rango de 20-35"));
+            } else {
+                proyectoActual.setAprendicesSugeridos(n);
+            }
+        } else {
+            throw new ValidatorException(new FacesMessage(FacesMessage.SEVERITY_ERROR, "", "Ingrese el numero de aprendices requeridos para la ejecución del proyecto"));
+        }
+    }
+
+    public void validarNumeroInstructores(FacesContext context, UIComponent component, Object o) throws ValidatorException {
+        String u = (String) o;
+        int n;
+        Pattern pat = Pattern.compile("[0-9]");
+        Matcher mat = pat.matcher((String) o);
+        if (mat.matches()) {
+            n = Integer.parseInt(u);
+            if ((n < 10) || (n > 15)) {
+                throw new ValidatorException(new FacesMessage(FacesMessage.SEVERITY_ERROR, "", "El numero de instructores requeridos debe estar en el rango de 10-15"));
+            } else {
+                proyectoActual.setAprendicesSugeridos(n);
+            }
+        } else {
+            throw new ValidatorException(new FacesMessage(FacesMessage.SEVERITY_ERROR, "", "Ingrese el numero de instructores requeridos para la ejecución del proyecto"));
+        }
+    }
+
+    public String validarProyecto() {
+        if (fichaActual.getIdProyecto() == null) {
+            return "No hay un proyecto asignado a la ficha";
+        } else {
+            return fichaActual.getIdProyecto().getCodigoProyecto();
+        }
+    }
+
+    public void asignarFicha(ActionEvent e) {
+        fichaActual = (Ficha) e.getComponent().getAttributes().get("ficha");
+    }
+
+    public void addProyecto(ActionEvent ev) {
+        try {
+            getProyectoFacade().create(proyectoActual);
+            fichaActual.setIdProyecto(proyectoActual);
+            getFichaFacade().edit(fichaActual);
+            proyectoActual = null;
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    public Proyecto getProyecto(java.lang.Integer id) {
         return getProyectoFacade().find(id);
     }
-    
-    private void recargarLista() {
-        listaProyecto = null;
+
+    public ProyectoController() {
     }
 
-    public String prepareCreate() {
-        proyectoActual = new Proyecto();
-        return "proyecto/proyectoCrear.xhtml";
-    }
-
-    public String prepareEdit() {
-        return "";
-    }
-
-    public String prepareView() {
-        return "";
-    }
-
-    public String prepareList() {
-        recargarLista();
-        return "";
-    
-    }
-    
-    public String xd(){
-        return "proyecto/proyectoCrear.xhtml";
-    }
-    
-    public String addProyecto() {
-        try {
-
-            getProyectoFacade().create(proyectoActual);
-            recargarLista();
-            return "";
-        } catch (Exception e) {
-            addErrorMessage("Error closing resource " + e.getClass().getName(), "Message: " + e.getMessage());
-            return null;
-        }
-    }
-
-    public String updateProyecto() {
-        try {
-            getProyectoFacade().edit(proyectoActual);
-            recargarLista();
-            return "";
-        } catch (Exception e) {
-            addErrorMessage("Error closing resource " + e.getClass().getName(), "Message: " + e.getMessage());
-            return null;
-        }
-    }
-    
-      public String deleteProyecto() {
-        try {
-            getProyectoFacade().remove(proyectoActual);
-            recargarLista();
-        } catch (Exception e) {
-            addErrorMessage("Error closing resource " + e.getClass().getName(), "Message: " + e.getMessage());
-        }
-        return "List";
-    }
-    
-   private void addErrorMessage(String title, String msg) {
-        FacesMessage facesMsg
-                = new FacesMessage(FacesMessage.SEVERITY_ERROR, title, msg);
-        FacesContext.getCurrentInstance().addMessage(null, facesMsg);
-    }
-
-    private void addSuccessMessage(String title, String msg) {
-        FacesMessage facesMsg
-                = new FacesMessage(FacesMessage.SEVERITY_INFO, title, msg);
-        FacesContext.getCurrentInstance().addMessage("successInfo", facesMsg);
-    }
-    
-    
-       @FacesConverter(forClass = Proyecto.class)
-    public class ProyectoControllerConverter implements Converter {
+    @FacesConverter(forClass = Proyecto.class)
+    public static class ProyectoControllerConverter implements Converter {
 
         @Override
         public Object getAsObject(FacesContext facesContext, UIComponent component, String value) {
@@ -193,6 +285,5 @@ public class ProyectoController implements Serializable{
         }
 
     }
+
 }
-
-

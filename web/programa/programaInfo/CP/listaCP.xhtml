@@ -11,13 +11,35 @@
               draggable="false"
               styleClass="Dialogo">
         <h:form id="listaCPVentanaForm">
-            <p:dataTable value="#{programaController.listaCP}" var="item">
+            <p:dataTable value="#{programaController.listaCP}" 
+                         var="item"
+                         selectionMode="single"
+                         selection="#{programaController.conocimientoProcesoActual}"
+                         rowKey="#{item.idConocimientoProceso}">
+                <p:ajax event="rowSelect" update="modificarCP deshabilitarCP"/>
+                <p:ajax event="rowUnselect" update="modificarCP deshabilitarCP"/>
                 <p:column>
                     <f:facet name="header">
                         <h:outputText value="Conocimientos de Proceso"/>
                     </f:facet>
                     <h:outputText value="#{item.nombreConocimientoProceso}"/>
                 </p:column>
+                 <f:facet name="footer">
+                    <p:commandButton update=":crearCPVentanaForm"
+                                     value="crear"
+                                     onclick="crearCPVentana.show()"
+                                     action="#{programaController.anularItem()}"/>
+                    <p:commandButton update=":modificarCPVentanaForm"
+                                     id="modificarCP"
+                                     disabled="#{programaController.cpBoolean()}"
+                                     value="modificar"
+                                     onclick="modificarCPVentana.show()"/>
+                    <p:commandButton update=":deshabilitarCPVentanaForm"
+                                     id="deshabilitarCP"
+                                     disabled="#{programaController.cpBoolean()}"
+                                     value="deshabilitar"
+                                     onclick="deshabilitarCPVentana.show()"/>
+                </f:facet>
             </p:dataTable>
         </h:form>
     </p:dialog>

@@ -1,0 +1,39 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:jsf="http://xmlns.jcp.org/jsf"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <p:dialog widgetVar="actividadCrearVentana" 
+              resizable="false"
+              modal="true"
+              draggable="false"
+              styleClass="Dialogo">
+        <h:form id="actividadCrearVentanaForm">
+            <h1>Actividades de Proyecto</h1>
+            <textarea jsf:value="#{proyectoController.actividadActual.nombreActividadProyecto}"
+                      required="true"/>
+            <input type="number"
+                   jsf:id="crearNombreActividad"
+                   jsf:value="#{proyectoController.actividadActual.duracion}"
+                   placeholder="tiempo estimado en horas"
+                   jsf:validatorMessage="esta mal">
+                <f:ajax execute="crearNombreActividad"
+                        render="crearNombreActividadmsg"/>
+                <f:ajax execute="crearNombreActividad"
+                        render="crearNombreActividadmsg"
+                        event="blur"/>
+            </input>
+            <h:message id="crearNombreActividadmsg"
+                       for="crearNombreActividad"
+                       styleClass="error"/>
+            <p:commandButton value="Guardar"
+                             id="botonGuardar"
+                             update=":actividadListVentanaForm"
+                             action="#{programaController.crearCompetencia()}"
+                             oncomplete="PF('actividadCrearVentana').hide()">
+            </p:commandButton>
+        </h:form>
+    </p:dialog>
+</html>

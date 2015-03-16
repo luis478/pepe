@@ -31,7 +31,7 @@ public class ResultadoAprendizajeFacade extends AbstractFacade<ResultadoAprendiz
     public ResultadoAprendizajeFacade() {
         super(ResultadoAprendizaje.class);
     }
-
+//@NamedQuery(name = "ResultadoAprendizaje.consultaRA", query = "SELECT r FROM ResultadoAprendizaje r WHERE r.idCompetencia.idCompetencia = :idCompetencia AND r.estado = 1"),
     public List<ResultadoAprendizaje> consulta(Competencia c) {
         Query q = getEntityManager().createNamedQuery("ResultadoAprendizaje.consultaRA");
         q.setParameter("idCompetencia", c.getIdCompetencia());

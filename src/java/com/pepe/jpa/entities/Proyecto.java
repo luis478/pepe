@@ -39,6 +39,7 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Proyecto.findAll", query = "SELECT p FROM Proyecto p"),
     @NamedQuery(name = "Proyecto.findByIdProyecto", query = "SELECT p FROM Proyecto p WHERE p.idProyecto = :idProyecto"),
     @NamedQuery(name = "Proyecto.findByCodigoProyecto", query = "SELECT p FROM Proyecto p WHERE p.codigoProyecto = :codigoProyecto"),
+    @NamedQuery(name = "Proyecto.findByCodigoProyecto", query = "SELECT p FROM Proyecto p WHERE p.codigoProyecto = :codigoProyecto"),
     @NamedQuery(name = "Proyecto.findByInnovacion261", query = "SELECT p FROM Proyecto p WHERE p.innovacion261 = :innovacion261"),
     @NamedQuery(name = "Proyecto.findByInnovacion262", query = "SELECT p FROM Proyecto p WHERE p.innovacion262 = :innovacion262"),
     @NamedQuery(name = "Proyecto.findByInnovacion263", query = "SELECT p FROM Proyecto p WHERE p.innovacion263 = :innovacion263"),
@@ -141,7 +142,7 @@ public class Proyecto implements Serializable {
     @Basic(optional = false)
     @NotNull
     @Column(name = "Valoracion_2_7_2")
-    private short valoracion272;
+    private boolean valoracion272;
     @Basic(optional = false)
     @NotNull
     @Column(name = "intructores_requeridos")
@@ -203,7 +204,7 @@ public class Proyecto implements Serializable {
         this.idProyecto = idProyecto;
     }
 
-    public Proyecto(Integer idProyecto, String nombreProyecto, String codigoProyecto, String justificacion22, String objetivoGeneral23, String objetivoEspecifico24, String palabrasClave17, String planteamiento21, String impactoSocial2521, String restricciones253, String productosResultados254, boolean innovacion261, boolean innovacion262, boolean innovacion263, boolean innovacion264, boolean innovacion265, boolean valoracion271, short valoracion272, int intructoresRequeridos, int aprendicesSugeridos, String descripcionAmbiente, String impactoAmbiental2523, String impactoEconomico2522, String impactoTecnologico2524, String beneficiario251) {
+    public Proyecto(Integer idProyecto, String nombreProyecto, String codigoProyecto, String justificacion22, String objetivoGeneral23, String objetivoEspecifico24, String palabrasClave17, String planteamiento21, String impactoSocial2521, String restricciones253, String productosResultados254, boolean innovacion261, boolean innovacion262, boolean innovacion263, boolean innovacion264, boolean innovacion265, boolean valoracion271, boolean valoracion272, int intructoresRequeridos, int aprendicesSugeridos, String descripcionAmbiente, String impactoAmbiental2523, String impactoEconomico2522, String impactoTecnologico2524, String beneficiario251) {
         this.idProyecto = idProyecto;
         this.nombreProyecto = nombreProyecto;
         this.codigoProyecto = codigoProyecto;
@@ -367,11 +368,11 @@ public class Proyecto implements Serializable {
         this.valoracion271 = valoracion271;
     }
 
-    public short getValoracion272() {
+    public boolean getValoracion272() {
         return valoracion272;
     }
 
-    public void setValoracion272(short valoracion272) {
+    public void setValoracion272(boolean valoracion272) {
         this.valoracion272 = valoracion272;
     }
 

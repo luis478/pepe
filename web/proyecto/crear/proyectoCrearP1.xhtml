@@ -1,0 +1,166 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:jsf="http://xmlns.jcp.org/jsf"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <p:dialog widgetVar="proyectoCrearP1Ventana" 
+              resizable="false"
+              modal="true"
+              draggable="false"
+              styleClass="Dialogo">
+        <h:form id="proyectoCrearP1VentanaForm">
+            <h1>Formulación de Proyecto</h1>
+            <h:panelGrid columns="1">
+                <h3>1 Información Basica del Proyecto</h3>
+                <!-- Codigo del Proyecto -->
+                <label for="crearCodigoP" jsf:value="Codigo del proyecto"/>
+                <input jsf:id="crearCodigoP"
+                       type="text"
+                       jsf:value="#{proyectoController.proyectoActual.codigoProyecto}"
+                       required="true"
+                       jsf:validator="#{proyectoController.validarCodigoProyecto}"
+                       jsf:validatorMessage="esta mal XD"
+                       pattern="[0-9]{6,8}"
+                       placeholder="Codigo Proyecto"
+                       jsf:requiredMessage="Se requiere de un codigo">
+                    <f:validateRegex pattern="[0-9]{6,8}"/>
+                    <f:ajax execute="crearCodigoP"
+                            render="msgcrearCodigoP"
+                            event="blur"/>
+                </input>
+                <h:message id="msgcrearCodigoP"
+                           for="crearCodigoP"
+                           styleClass="error"/>
+
+                <!-- Nombre del Proyecto -->
+                <label for="crearNombre" jsf:value="Nombre del proyecto"/>
+                <textarea jsf:id="crearNombre"
+                          jsf:value="#{proyectoController.proyectoActual.nombreProyecto}"
+                          required="true"
+                          jsf:requiredMessage="El nombre del proyecto es un campo requerido"
+                          placeholder="Nombre Proyecto">
+                    <f:ajax execute="crearNombre"
+                            render="msgcrearNombre"
+                            event="blur"/>
+                </textarea>
+                <h:message id="msgcrearNombre"
+                           for="crearNombre"
+                           styleClass="error"/>
+                <!-- Palabras Clave -->
+                <label for="crearPalabras" jsf:value="Palabras clave de búsqueda"/>
+                <textarea jsf:id="crearPalabras"
+                          jsf:value="#{proyectoController.proyectoActual.palabrasClave17}"
+                          required="true"
+                          jsf:requiredMessage="Las palabras clave son un campo requerido"
+                          placeholder="Palabras Claves">
+                    <f:ajax execute="crearPalabras"
+                            render="msgcrearPalabras"
+                            event="blur"/>
+                </textarea>
+                <h:message id="msgcrearPalabras"
+                           for="crearPalabras"
+                           styleClass="error"/>
+                <!-- Instructores requeridos -->
+                <label for="crearInstructores" jsf:value="Instructores requeridos"/>
+                <input type="number" 
+                       jsf:id="crearInstructores"
+                       max="15"
+                       min="10"
+                       jsf:requiredMessage="El número de instructores requeridos esta entre 10-15, es un campo requerido."
+                       jsf:value="#{proyectoController.proyectoActual.intructoresRequeridos}"
+                       required="true">
+                    <f:ajax execute="crearInstructores"
+                            render="msgcrearInstructores"
+                            event="blur"/>
+                </input>
+                <h:message id="msgcrearInstructores"
+                           for="crearInstructores"
+                           styleClass="error"/>
+                <!-- Aprendices requeridos -->
+                <label for="crearAprendices" jsf:value="Aprendices requeridos"/>
+                <input type="number" 
+                       jsf:id="crearAprendices"
+                       max="35"
+                       min="30"
+                       jsf:requiredMessage="el número de aprendices requeridos esta entre 30-35, es un campo requerido"
+                       jsf:value="#{proyectoController.proyectoActual.aprendicesSugeridos}"
+                       required="true">
+                    <f:ajax execute="crearAprendices"
+                            render="msgcrearAprendices"
+                            event="blur"/>
+                </input>
+                <h:message id="msgcrearAprendices"
+                           for="crearAprendices"
+                           styleClass="error"/>
+                <!-- Numero de Resultados 
+                <label for="crearNumeroRA" jsf:value="Total de resultados de aprendizaje"/>
+                <input type="text"
+                       jsf:id="crearNumeroRA"
+                       disabled="true"
+                       value="# {programaController.totalRAA()}"/>
+                -->
+                <h3>2 Estructura del Proyecto</h3>
+                <!-- Planteamiento -->
+                <label for="crearPlanteamiento" jsf:value="2.1 Planteamiento del problema"/>
+                <textarea jsf:id="crearPlanteamiento"
+                          jsf:value="#{proyectoController.proyectoActual.planteamiento21}"
+                          required="true"
+                          jsf:requiredMessage="el planteamiento del problema, es un campo requerido"
+                          placeholder="Planteamiento Proyecto">
+                    <f:ajax execute="crearPlanteamiento"
+                            render="msgcrearPlanteamiento"
+                            event="blur"/>
+                </textarea>
+                <h:message id="msgcrearPlanteamiento"
+                           for="crearPlanteamiento"
+                           styleClass="error"/>
+                <!-- Justificación -->
+                <label for="crearJustificacion" jsf:value="2.2 Justificacion del problema"/>
+                <textarea jsf:id="crearJustificacion"
+                          jsf:value="#{proyectoController.proyectoActual.justificacion22}"
+                          required="true"
+                          jsf:requiredMessage="la justificación del proyecto, es un campo requerido"
+                          placeholder="Justificacion Proyecto">
+                    <f:ajax execute="crearJustificacion"
+                            render="msgcrearJustificacion"
+                            event="blur"/>
+                </textarea>
+                <h:message id="msgcrearJustificacion"
+                           for="crearJustificacion"
+                           styleClass="error"/>
+                <!-- Objetivo General -->
+                <label for="crearObjetivoG" jsf:value="2.3 Objetivo general"/>
+                <textarea jsf:id="crearObjetivoG"
+                          jsf:value="#{proyectoController.proyectoActual.objetivoGeneral23}"
+                          required="true"
+                          jsf:requiredMessage="El objetivo general, es un campo requerido"
+                          placeholder="Objetivo General Proyecto">
+                    <f:ajax execute="crearObjetivoG"
+                            render="msgcrearObjetivoG"
+                            event="blur"/>
+                </textarea>
+                <h:message id="msgcrearObjetivoG"
+                           for="crearObjetivoG"
+                           styleClass="error"/>
+                <!-- Objetivo Especifico -->
+                <label for="crearObjetivoO" jsf:value="2.4 Objetivos especificos"/>
+                <textarea jsf:id="crearObjetivoO"
+                          jsf:value="#{proyectoController.proyectoActual.objetivoEspecifico24}"
+                          required="true"
+                          jsf:requiredMessage="los objetivos especificos, es un campo requerido"
+                          placeholder="Objetivos Especificos Proyecto">
+                    <f:ajax execute="crearObjetivoO"
+                            render="msgcrearObjetivoO"
+                            event="blur"/>
+                </textarea>
+                <h:message id="msgcrearObjetivoO"
+                           for="crearObjetivoO"
+                           styleClass="error"/>
+                <p:commandButton oncomplete="handleSubmit(args,'proyectoCrearP1Ventana','proyectoCrearP2Ventana');"
+                                 value="Siguiente"/>
+            </h:panelGrid>
+        </h:form>
+    </p:dialog>
+</html>

@@ -3,19 +3,20 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:p="http://primefaces.org/ui"
-      xmlns:jsf="http://xmlns.jcp.org/jsf">
-    <p:dialog widgetVar="crearCEVentana" 
+      xmlns:jsf="http://xmlns.jcp.org/jsf"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <p:dialog widgetVar="crearRAVentana" 
               resizable="false"
               modal="true"
               draggable="false"
               styleClass="Dialogo">
-        <h:form id="crearCEVentanaForm">
-            <textarea jsf:value="#{programaController.criteriosEvaluacionActual.nombreCriteriosEvaluacion}"
+        <h:form id="crearRAVentanaForm">
+            <textarea jsf:value="#{programaController.resultadoAprendizajeActual.nombreResultadoAprendizaje}"
                       required="true"/>
-            <p:commandButton update="@this :listaCEVentanaForm"
-                             action="#{programaController.crearCE()}"
+            <p:commandButton update="@this :listaRAVentanaForm"
+                             action="#{programaController.crearRA()}"
                              value="crear"
-                             oncomplete="PF('crearCEVentana').hide()"/>
+                             oncomplete="PF('crearRAVentana').hide()"/>
         </h:form>
     </p:dialog>
 </html>

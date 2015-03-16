@@ -1,0 +1,122 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:jsf="http://xmlns.jcp.org/jsf"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <p:dialog widgetVar="proyectoCrearP2Ventana" 
+              resizable="false"
+              modal="true"
+              draggable="false"
+              styleClass="Dialogo">
+        <h:form id="proyectoCrearP2VentanaForm">
+            <h1>2 Estructura del Proyecto: Parte 2</h1>
+            <h:panelGrid columns="1">
+                <h3>2.5 Alcance</h3>
+                <!-- Beneficiarios -->
+                <label for="crearBeneficiarios" jsf:value="2.5.1 Beneficiarios del Proyecto"/>
+                <textarea jsf:id="crearBeneficiarios"
+                          jsf:value="#{proyectoController.proyectoActual.beneficiario251}"
+                          required="true"
+                          placeholder="Beneficiarios Proyecto"
+                          jsf:requiredMessage="Los beneficiarios del proyecto , es un campo requerido">
+                    <f:ajax execute="crearBeneficiarios"
+                            render="msgcrearBeneficiarios"
+                            event="blur"/>
+                </textarea>
+                <h:message id="msgcrearBeneficiarios"
+                           for="crearBeneficiarios"
+                           styleClass="error"/>
+                <!-- Impacto Social -->
+                <label for="crearImpactoSocial" jsf:value="2.5.2.1 Impacto Social"/>
+                <textarea jsf:id="crearImpactoSocial"
+                          jsf:value="#{proyectoController.proyectoActual.impactoSocial2521}"
+                          required="true"
+                          placeholder="Social"
+                          jsf:requiredMessage="El impacto ambiental, es un campo requerido">
+                    <f:ajax execute="crearImpactoSocial"
+                            render="msgcrearImpactoSocial"
+                            event="blur"/>
+                </textarea>
+                <h:message id="msgcrearImpactoSocial"
+                           for="crearImpactoSocial"
+                           styleClass="error"/>
+                <!-- Impacto Economico -->
+                <label for="crearImpactoEconomico" jsf:value="2.5.2.2 Impacto Economico"/>
+                <textarea jsf:id="crearImpactoEconomico"
+                          jsf:value="#{proyectoController.proyectoActual.impactoEconomico2522}"
+                          required="true"
+                          placeholder="Económico"
+                          jsf:requiredMessage="El impacto economico, es un campo requerido">
+                    <f:ajax execute="crearImpactoEconomico"
+                            render="msgcrearImpactoEconomico"
+                            event="blur"/>
+                </textarea>
+                <h:message id="msgcrearImpactoEconomico"
+                           for="crearImpactoEconomico"
+                           styleClass="error"/>
+                <!-- Impacto Ambiental -->
+                <label for="crearImpactoAmbiental" jsf:value="2.5.2.3 Impacto Ambiental"/>
+                <textarea jsf:id="crearImpactoAmbiental"
+                          jsf:value="#{proyectoController.proyectoActual.impactoAmbiental2523}"
+                          required="true"
+                          placeholder="Ambiental"
+                          jsf:requiredMessage="El impacto ambiental, es un campo requerido">
+                    <f:ajax execute="crearImpactoAmbiental"
+                            render="msgcrearImpactoAmbiental"
+                            event="blur"/>
+                </textarea>
+                <h:message id="msgcrearImpactoAmbiental"
+                           for="crearImpactoAmbiental"
+                           styleClass="error"/>
+                <!-- Impacto Tecnologico -->
+                <label for="crearImpactoTecnologico" jsf:value="2.5.1 Impacto Tecnológico"/>
+                <textarea jsf:id="crearImpactoTecnologico"
+                          jsf:value="#{proyectoController.proyectoActual.impactoTecnologico2524}"
+                          required="true"
+                          placeholder="Tecnológico"
+                          jsf:requiredMessage="El impacto tecnologico, es un campo requerido">
+                    <f:ajax execute="crearImpactoTecnologico"
+                            render="msgcrearImpactoTecnologico"
+                            event="blur"/>
+                </textarea>
+                <h:message id="msgcrearImpactoTecnologico"
+                           for="crearImpactoTecnologico"
+                           styleClass="error"/>
+                <!-- Restricciones -->
+                <label for="crearRestricciones" jsf:value="2.5.3 Restricciones o riesgos asociados y alternativas de solución"/>
+                <textarea jsf:id="crearRestricciones"
+                          jsf:value="#{proyectoController.proyectoActual.restricciones253}"
+                          required="true"
+                          placeholder="Restricciones"
+                          jsf:requiredMessage="las restricciones del proyecto, es un campo requerido">
+                    <f:ajax execute="crearRestricciones"
+                            render="msgcrearRestricciones"
+                            event="blur"/>
+                </textarea>
+                <h:message id="msgcrearRestricciones"
+                           for="crearRestricciones"
+                           styleClass="error"/>
+                <!-- Producto -->
+                <label for="crearProducto" jsf:value="2.5.4 Productos o resultados del proyecto"/>
+                <textarea jsf:id="crearProducto"
+                          jsf:value="#{proyectoController.proyectoActual.productosResultados254}"
+                          required="true"
+                          placeholder="Productos y Resultados"
+                          jsf:requiredMessage="los productos y resultados, es un campo requerido">
+                    <f:ajax execute="crearProducto"
+                            render="msgcrearProducto"
+                            event="blur"/>
+                </textarea>
+                <h:message id="msgcrearProducto"
+                           for="crearProducto"
+                           styleClass="error"/>
+                <p:commandButton oncomplete="handleSubmit(args,'proyectoCrearP2Ventana','proyectoCrearP3Ventana');"
+                                 value="Siguiente"/>
+                <p:commandButton onclick="proyectoCrearP2Ventana.hide(), proyectoCrearP1Ventana.show()"
+                                 value="Atras"/>
+            </h:panelGrid>
+        </h:form>
+    </p:dialog>
+</html>

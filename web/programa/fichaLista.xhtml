@@ -1,0 +1,73 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:jsf="http://xmlns.jcp.org/jsf"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <p:dialog widgetVar="fichaListaVentana" 
+              resizable="false"
+              modal="true"
+              draggable="false"
+              styleClass="Dialogo">
+        <h:form id="fichaListaVentanaForm">
+            <h1><h:outputText value="Crear Ficha"/></h1>
+            <p:dataTable value="#{programaController.fichaListaPrograma}" 
+                         var="item"
+                         selection="#{fichaController.fichaActual}"
+                         selectionMode="single"
+                         paginator="true"
+                         rowKey="#{item.idFicha}"
+                         rows="10">
+                <p:ajax event="rowSelect" update="botonF"/>
+                <p:column>
+                    <f:facet name="header">
+                        <h:outputText value="CodigoFicha"/>
+                    </f:facet>
+                    <h:outputText value="#{item.codigoFicha}"/>
+                </p:column>
+                <p:column>
+                    <f:facet name="header">
+                        <h:outputText value="FechaInicio"/>
+                    </f:facet>
+                    <h:outputText value="#{item.fechaInicio}">
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:outputText>
+                </p:column>
+                <p:column>
+                    <f:facet name="header">
+                        <h:outputText value="IdTipoFormacion"/>
+                    </f:facet>
+                    <h:outputText value="#{item.idTipoFormacion}"/>
+                </p:column>
+                <p:column>
+                    <f:facet name="header">
+                        <h:outputText value="IdJornada"/>
+                    </f:facet>
+                    <h:outputText value="#{item.idJornada}"/>
+                </p:column>
+                <p:column>
+                    <f:facet name="header">
+                        <h:outputText value="IdTipoOferta"/>
+                    </f:facet>
+                    <h:outputText value="#{item.idTipoOferta}"/>
+                </p:column>
+                <p:column>
+                    <f:facet name="header">
+                        <h:outputText value="IdCentroFormacion"/>
+                    </f:facet>
+                    <h:outputText value="#{item.idCentroFormacion}"/>
+                </p:column>
+                <f:facet name="footer">
+                    <p:commandButton action="/proyecto/proyectoCrear.xhtml"
+                                     actionListener="#{proyectoController.asignarFicha}"
+                                     id="botonF"
+                                     disabled="#{fichaController.fichaBoolean()}"
+                                     value="consultar">
+                        <f:attribute name="ficha" value="#{fichaController.fichaActual}"/>
+                    </p:commandButton>
+                </f:facet>
+            </p:dataTable>
+        </h:form>
+    </p:dialog>
+</html>

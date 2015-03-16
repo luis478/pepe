@@ -19,7 +19,7 @@
             </h:panelGrid>
             <p:commandButton update=":listaCCPVentanaForm"
                              action="#{programaController.deshabilitarCCP()}"
-                             oncomplete="handleSubmit(args,'deshabilitarCCPVentana','');"/>
+                             oncomplete="PF('deshabilitarCCPVentana').hide()"/>
         </h:form>
     </p:dialog>
 </html>

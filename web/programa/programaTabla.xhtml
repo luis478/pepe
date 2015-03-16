@@ -10,27 +10,29 @@
         <ui:define name="Contenido">
             <h:form id="competenciaForm">
                 <section class="row">
-                    <h1 class="columns-5">#{programaController.programaActual.programaPK.codigo} + #{programaController.programaActual.programaPK.version}: Competencias</h1>
+                    <h1 class="columns-5">#{programaController.programaActual.nombrePrograma}</h1>
+                    <h2 class="columns-5">#{programaController.programaActual.programaPK.codigo} + #{programaController.programaActual.programaPK.version}</h2>
                     <input type="submit"
                            class="button columns-4"
                            jsf:actionListener="#{programaController.anular()}"
                            jsf:action="programaInicio.xhtml"
                            jsf:value="cambiar programa"/>
+                    <p:commandButton onclick="programaVerVentana.show()"
+                                     styleClass="button columns-4"
+                                     value="ver programa"
+                                     update=":programaVerVentanaForm"/>
                 </section>
-                <p:commandButton onclick="programaVerVentana.show()"
-                                 value="ver programa"
-                                 update=":programaVerVentanaForm"/>
+
                 <section class="row">
+                    <h3>Competencias</h3>
                     <p:dataTable value="#{programaController.listaCompetencia}" 
                                  var="item"
                                  selection="#{programaController.competenciaActual}"
                                  selectionMode="single"
-                                 rowKey="#{item.codigo}"
+                                 paginator="true"
+                                 rowKey="#{item.idCompetencia}"
                                  rows="10">
-                        <p:ajax event="rowSelect"
-                                update="botonRA botonCCP botonCP botonCE botonE"/>
-                        <p:ajax event="rowUnselect"
-                                update="botonRA botonCCP botonCP botonCE botonE"/>
+                        <p:ajax event="rowSelect" update="botonE botonRA botonCCP botonCP botonCE"/>
                         <p:column>
                             <f:facet name="header">
                                 <h:outputText value="Codigo"/>
@@ -43,7 +45,7 @@
                             </f:facet>
                             <h:outputText value="#{item.nombreCompetencia}"/>
                         </p:column>
-                        
+
                         <p:column>
                             <f:facet name="header">
                                 <h:outputText value="NombreCompetencia"/>
@@ -53,33 +55,40 @@
                         <f:facet name="footer">
                             <section class="row">
                                 <p:commandButton id="botonC"
+                                                 styleClass="button"
                                                  value="crear"
-                                                 actionListener="#{programaController.anularComp()}"
+                                                 action="#{programaController.anularComp()}"
                                                  onclick="competenciaCrearVentana.show()"
                                                  update=":competenciaCrearVentanaForm"/>
                                 <p:commandButton id="botonE"
+                                                 styleClass="button"
                                                  value="editar"
+                                                 process="@this"
                                                  onclick="competenciaEditarVentana.show()"
                                                  update=":competenciaEditarVentanaForm"
                                                  disabled="#{programaController.competenciaNull()}"/>
                             </section>
                             <section class="row">
                                 <p:commandButton id="botonRA"
+                                                 styleClass="button"
                                                  value="RA"
                                                  disabled="#{programaController.competenciaNull()}"
                                                  onclick="listaRAVentana.show()"
                                                  update=":listaRAVentanaForm"/>
                                 <p:commandButton id="botonCCP"
+                                                 styleClass="button"
                                                  value="CCP"
                                                  disabled="#{programaController.competenciaNull()}"
                                                  onclick="listaCCPVentana.show()"
                                                  update=":listaCCPVentanaForm"/>
                                 <p:commandButton id="botonCP"
+                                                 styleClass="button"
                                                  value="CP"
                                                  disabled="#{programaController.competenciaNull()}"
                                                  onclick="listaCPVentana.show()"
                                                  update=":listaCPVentanaForm"/>
                                 <p:commandButton id="botonCE"
+                                                 styleClass="button"
                                                  value="CE"
                                                  disabled="#{programaController.competenciaNull()}"
                                                  onclick="listaCEVentana.show()"
@@ -92,20 +101,38 @@
                                      value="nueva version"
                                      update=":programaVersionCrearVentanaForm"
                                      onclick="programaVersionCrearVentana.show()"/>
+                    <p:commandButton value="crear Ficha"
+                                     action="#{fichaController.prepareCreate()}"
+                                     update=":fichaCrearVentanaForm"
+                                     onclick="fichaCrearVentana.show()"/>
+                    <p:commandButton value="Fichas"
+                                     update=":fichaListaVentanaForm"
+                                     onclick="fichaListaVentana.show()">
+                    </p:commandButton>
                 </section>
             </h:form>
+
             <ui:include src="programaInfo/CCP/listaCCP.xhtml"/>
             <ui:include src="programaInfo/CCP/crearCCP.xhtml"/>            
             <ui:include src="programaInfo/CCP/modificarCCP.xhtml"/>
             <ui:include src="programaInfo/CCP/deshabilitarCCP.xhtml"/>
             <ui:include src="programaInfo/CP/listaCP.xhtml"/>
+            <ui:include src="programaInfo/CP/crearCP.xhtml"/>            
+            <ui:include src="programaInfo/CP/modificarCP.xhtml"/>
+            <ui:include src="programaInfo/CP/deshabilitarCP.xhtml"/>
             <ui:include src="programaInfo/CE/listaCE.xhtml"/>
             <ui:include src="programaInfo/CE/crearCE.xhtml"/>            
             <ui:include src="programaInfo/CE/modificarCE.xhtml"/>
             <ui:include src="programaInfo/CE/deshabilitarCE.xhtml"/>
             <ui:include src="programaInfo/RA/listaRA.xhtml"/>
+            <ui:include src="programaInfo/RA/crearRA.xhtml"/>            
+            <ui:include src="programaInfo/RA/modificarRA.xhtml"/>
+            <ui:include src="programaInfo/RA/deshabilitarRA.xhtml"/>
+
             <ui:include src="programaVer.xhtml"/>
             <ui:include src="programaVersion.xhtml"/>
+            <ui:include src="fichaCrear.xhtml"/>
+            <ui:include src="fichaLista.xhtml"/>
             <ui:include src="programaInfo/competencia/competenciaCreate.xhtml"/>
             <ui:include src="programaInfo/competencia/competenciaEditar.xhtml"/>
         </ui:define>

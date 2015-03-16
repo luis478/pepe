@@ -24,20 +24,20 @@
                                     maxResults="10">
                         <f:ajax execute="programa" 
                                 render="msgprograma"
-                                event="blur"/>
+                                event="change"/>
                     </p:autoComplete>
                     <h:message id="msgprograma" 
                                for="programa"
                                styleClass="error"/> 
                     <section class="row">
-                        <input type="submit"
-                               class="button"
-                               jsf:action="#{programaController.programaConsulta()}"
-                               jsf:value="consulta"/>
+                        <p:commandButton
+                               styleClass="button"
+                               action="#{programaController.programaConsulta}"
+                               value="consulta"/>
                         <p:commandButton onclick="programaCrearVentana.show()"
                                          value="crear programa"
                                          styleClass="button"
-                                         action="#{programaController.anular()}"
+                                         actionListener="#{programaController.anular()}"
                                          update=":programaCrearVentanaForm"/>
                     </section>
                 </section>
