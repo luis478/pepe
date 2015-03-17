@@ -7,6 +7,7 @@ package com.pepe.controller;
 
 import com.pepe.jpa.entities.Fase;
 import com.pepe.jpa.sesions.FaseFacade;
+import java.io.Serializable;
 import java.util.List;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
@@ -22,8 +23,8 @@ import javax.faces.convert.FacesConverter;
  */
 @ManagedBean
 @SessionScoped
-public class FaseController {
-    @EJB
+public class FaseController implements Serializable{
+@EJB
 private FaseFacade faseFacade;
 private Fase faseSeleccionada; 
 private int faseSeleccionadaInt; 
