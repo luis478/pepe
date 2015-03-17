@@ -13,11 +13,14 @@
         <h:form id="actividadListVentanaForm">
             <h1>Actividades de Proyecto</h1>
             <h:selectOneMenu id="idFaseP"
-                             value="#{proyectoController.idFase}">
+                             value="#{proyectoController.faseActividad}">
                 <f:selectItem itemLabel="Todas las fases ..." />
                 <f:selectItems value="#{proyectoController.listaFase()}"
                                var="fase"
                                itemValue="#{fase.idFase}"/>
+                <p:ajax process="idFaseP" 
+                        update="actividadListVentanaForm"
+                        event="change"/>
             </h:selectOneMenu>
             <p:dataTable value="#{proyectoController.listaActividad}" var="item">
                 <p:column>

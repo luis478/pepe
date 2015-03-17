@@ -14,23 +14,49 @@
             <h1><h:outputText value="Crear Ficha"/></h1>
             <h:panelGrid columns="1">
 
-                <h:selectOneMenu id="idCentroFormacionSelect" value="#{fichaController.idCentro}">
+                <h:selectOneMenu id="idCentroFormacionSelect" 
+                                 value="#{fichaController.idCentro}"
+                                 required="true"
+                                 requiredMessage="Debe seleccionar el Centro de Formación">
                     <f:selectItem itemLabel="Centro de Formación..." />
                     <f:selectItems value="#{fichaController.listaCentroFormacionSelectOne}" var="centroFormacion" itemValue="#{centroFormacion.idCentroFormacion}"/>  
+                    <f:ajax execute="idCentroFormacionSelect"
+                            render="idCentroFormacionSelectmsg"
+                            event="blur"/>
+                    <f:ajax execute="idCentroFormacionSelect"
+                            render="idCentroFormacionSelectmsg"/>
                 </h:selectOneMenu>
-
+                <h:message id="idCentroFormacionSelectmsg"
+                           for="idCentroFormacionSelect"
+                           styleClass="error"/>
 
 
                 <h:selectOneMenu id="idTipoOfertaSelect" value="#{fichaController.idOferta}">
                     <f:selectItem itemLabel="Tipo de Oferta..." />
                     <f:selectItems value="#{fichaController.listaTipoOfertaSelectOne}" var="tipoOferta" itemValue="#{tipoOferta.idTipoOferta}"/>  
+                    <f:ajax execute="idTipoOfertaSelect"
+                            render="idTipoOfertaSelectmsg"
+                            event="blur"/>
+                    <f:ajax execute="idTipoOfertaSelect"
+                            render="idTipoOfertaSelectmsg"/>
                 </h:selectOneMenu>
+                <h:message id="idTipoOfertaSelectmsg"
+                           for="idTipoOfertaSelect"
+                           styleClass="error"/>
 
 
                 <h:selectOneMenu id="idJornadaSelect" value="#{fichaController.jornada}">
                     <f:selectItem itemLabel="Jornada..." />
                     <f:selectItems value="#{fichaController.listaJornadaSelectOne}" var="Jornada" itemValue="#{Jornada.idJornada}"/>  
+                    <f:ajax execute="idJornadaSelect"
+                            render="idJornadaSelectmsg"
+                            event="blur"/>
+                    <f:ajax execute="idJornadaSelect"
+                            render="idJornadaSelectmsg"/>
                 </h:selectOneMenu>
+                <h:message id="idJornadaSelectmsg"
+                           for="idJornadaSelect"
+                           styleClass="error"/>
 
 
                 <input type="text" 
@@ -54,25 +80,42 @@
 
                 <input type="date" jsf:id="FechaInicio"
                        jsf:value="#{fichaController.fichaActual.fechaInicio}">
-                    <f:convertDateTime pattern="yyyy-MM-dd"></f:convertDateTime></input>
+                    <f:convertDateTime pattern="yyyy-MM-dd"/>
+                </input>
 
 
                 <h:selectOneMenu id="idTipoFormacionSelect" value="#{fichaController.idTipoFormacion}">
                     <f:selectItem itemLabel="Tipo de Formación..." />
                     <f:selectItems value="#{fichaController.listaTipoFormacionSelectOne}" var="tipoFormacion" itemValue="#{tipoFormacion.idTipoFormacion}"/>  
+                    <f:ajax execute="idTipoFormacionSelect"
+                            render="idTipoFormacionSelectmsg"
+                            event="blur"/>
+                    <f:ajax execute="idTipoFormacionSelect"
+                            render="idTipoFormacionSelectmsg"/>
                 </h:selectOneMenu>
+                <h:message id="idTipoFormacionSelectmsg"
+                           for="idTipoFormacionSelect"
+                           styleClass="error"/>
 
                 <h:selectOneMenu id="idLider" value="#{fichaController.idUsu}">
                     <f:selectItem itemLabel="Lider Ejecutor..." />
                     <f:selectItems value="#{usuarioController.listaUsuariosInstr}" 
                                    var="usu" 
                                    itemValue="#{usu.idUsuario}"/>  
+                    <f:ajax execute="idLider"
+                            render="idLidermsg"
+                            event="blur"/>
+                    <f:ajax execute="idLider"
+                            render="idLidermsg"/>
                 </h:selectOneMenu>
+                <h:message id="idLidermsg"
+                           for="idLider"
+                           styleClass="error"/>
 
                 <p:commandButton actionListener="#{fichaController.addFicha}" 
                                  value="Guardar Ficha"
                                  update=":fichaCrearVentanaForm"
-                                 oncomplete="PF('fichaCrearVentana').hide()">
+                                 oncomplete="handleSubmit(args,'fichaCrearVentana','');">
                     <f:attribute name="prog" value="#{programaController.programaActual}"/>
                 </p:commandButton>
             </h:panelGrid>

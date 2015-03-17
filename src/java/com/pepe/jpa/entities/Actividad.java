@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package com.pepe.jpa.entities;
 
 import java.io.Serializable;
@@ -40,8 +39,14 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Actividad.findAll", query = "SELECT a FROM Actividad a"),
     @NamedQuery(name = "Actividad.findByActividadesProyecto", query = "SELECT a FROM Actividad a WHERE a.idProyecto = :idProyecto AND a.idFase = :idFase"),
     @NamedQuery(name = "Actividad.findByIdActividad", query = "SELECT a FROM Actividad a WHERE a.idActividad = :idActividad"),
+    @NamedQuery(name = "Actividad.buscarActividadProyecto", query = "SELECT a FROM Actividad a WHERE a.idProyecto.idProyecto = :idProyecto"),
+    @NamedQuery(name = "Actividad.buscarActividadProyecto1", query = "SELECT a FROM Actividad a WHERE a.idProyecto.idProyecto = :idProyecto AND a.idFase.idFase = 1"),
+    @NamedQuery(name = "Actividad.buscarActividadProyecto2", query = "SELECT a FROM Actividad a WHERE a.idProyecto.idProyecto = :idProyecto AND a.idFase.idFase = 2"),
+    @NamedQuery(name = "Actividad.buscarActividadProyecto3", query = "SELECT a FROM Actividad a WHERE a.idProyecto.idProyecto = :idProyecto AND a.idFase.idFase = 3"),
+    @NamedQuery(name = "Actividad.buscarActividadProyecto4", query = "SELECT a FROM Actividad a WHERE a.idProyecto.idProyecto = :idProyecto AND a.idFase.idFase = 4"),
     @NamedQuery(name = "Actividad.findByDuracion", query = "SELECT a FROM Actividad a WHERE a.duracion = :duracion")})
 public class Actividad implements Serializable {
+
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -189,5 +194,5 @@ public class Actividad implements Serializable {
     public String toString() {
         return getNombreActividadProyecto();
     }
-    
+
 }

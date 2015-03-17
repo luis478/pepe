@@ -66,7 +66,7 @@ public class FichaController implements Serializable {
     @EJB
     private TipoInstructorFacade tipoInstructorFacade;
     private List<Ficha> listaFicha = null;
-    private Ficha fichaActual;
+    private Ficha fichaActual = null;
     private int idCentro;
     private int idOferta;
     private int jornada;
@@ -129,6 +129,10 @@ public class FichaController implements Serializable {
         }
         return fichaSeleccionada;
     }
+    
+//    public void asignarFichaSeleccionada(){
+//        fichaSeleccionada = getFichaFacade().find(fichaActual.getIdFicha());
+//    }
 
     public int getFichaSeleccionadaInt() {
         return fichaSeleccionadaInt;
@@ -411,7 +415,7 @@ public class FichaController implements Serializable {
     }
 
     public boolean fichaBoolean() {
-        if (fichaActual == null && fichaActual.getIdFicha() == null) {
+        if (getFichaSeleccionada().getIdFicha() == null) {
             return true;
         } else {
             return false;
@@ -419,7 +423,7 @@ public class FichaController implements Serializable {
     }
 
     public boolean proyectoBoolean() {
-        if (fichaActual.getIdProyecto() == null) {
+        if (getFichaSeleccionada().getIdProyecto() == null) {
             return true;
         } else {
             return false;

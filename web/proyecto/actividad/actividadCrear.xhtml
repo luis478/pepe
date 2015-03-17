@@ -12,15 +12,44 @@
               styleClass="Dialogo">
         <h:form id="actividadCrearVentanaForm">
             <h1>Actividades de Proyecto</h1>
+            <h:selectOneMenu id="idFaseActividad" 
+                             value="#{proyectoController.idFase}"
+                             required="true"
+                             requiredMessage="Debe seleccionar una fase">
+                <f:selectItem itemLabel="Centro de Formación..." />
+                <f:selectItems value="#{proyectoController.listaFase()}" 
+                               var="fase" 
+                               itemValue="#{fase.idFase}"/>  
+                <f:ajax execute="idFaseActividad"
+                        render="idFaseActividadmsg"
+                        event="blur"/>
+                <f:ajax execute="idFaseActividad"
+                        render="idFaseActividadmsg"/>
+            </h:selectOneMenu>
+            <h:message id="idFaseActividadmsg"
+                       for="idFaseActividad"
+                       styleClass="error"/>
+
             <textarea jsf:value="#{proyectoController.actividadActual.nombreActividadProyecto}"
-                      required="true"/>
+                      jsf:id="crearDesActividad"
+                      required="true"
+                      jsf:requiredMessage="Insgrese la descirpcion de la Actividad de Proyecto"
+                      placeholder="Nombre Proyecto">
+                <f:ajax execute="crearDesActividad"
+                        render="crearDesActividadmsg"
+                        event="blur"/>
+            </textarea>
+            <h:message id="crearDesActividadmsg"
+                       for="crearDesActividad"
+                       styleClass="error"/>
+
             <input type="number"
                    jsf:id="crearNombreActividad"
                    jsf:value="#{proyectoController.actividadActual.duracion}"
                    placeholder="tiempo estimado en horas"
+                   required="true"
+                   jsf:requiredMessage="Ingrese el numero de horas para completar dicha actividad"
                    jsf:validatorMessage="esta mal">
-                <f:ajax execute="crearNombreActividad"
-                        render="crearNombreActividadmsg"/>
                 <f:ajax execute="crearNombreActividad"
                         render="crearNombreActividadmsg"
                         event="blur"/>
@@ -30,9 +59,8 @@
                        styleClass="error"/>
             <p:commandButton value="Guardar"
                              id="botonGuardar"
-                             update=":actividadListVentanaForm"
-                             action="#{programaController.crearCompetencia()}"
-                             oncomplete="PF('actividadCrearVentana').hide()">
+                             actionListener="#{proyectoController.addActividad}"
+                             oncomplete="handleSubmit(args,'actividadCrearVentana','');">
             </p:commandButton>
         </h:form>
     </p:dialog>

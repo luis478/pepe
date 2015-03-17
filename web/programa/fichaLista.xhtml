@@ -11,7 +11,7 @@
               draggable="false"
               styleClass="Dialogo">
         <h:form id="fichaListaVentanaForm">
-            <h1><h:outputText value="Crear Ficha"/></h1>
+            <h1><h:outputText value="Fichas sin Proyecto asignado"/></h1>
             <p:dataTable value="#{programaController.fichaListaPrograma}" 
                          var="item"
                          selection="#{fichaController.fichaActual}"
@@ -64,6 +64,7 @@
                                      id="botonF"
                                      disabled="#{fichaController.fichaBoolean()}"
                                      value="consultar">
+                        <f:actionListener binding="#{fichaController.asignarFichaSeleccionada()}"/>
                         <f:attribute name="ficha" value="#{fichaController.fichaActual}"/>
                     </p:commandButton>
                 </f:facet>

@@ -26,6 +26,7 @@ import com.pepe.jpa.sesions.ProyectoFacade;
 import com.pepe.jpa.sesions.ResultadoAprendizajeFacade;
 import com.pepe.jpa.sesions.UsuarioFacade;
 import com.pepe.jpa.sesions.UsuarioHasFichaFacade;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
@@ -46,7 +47,7 @@ import javax.faces.event.ActionEvent;
  */
 @ManagedBean
 @SessionScoped
-public class EventoController {
+public class EventoController implements Serializable{
 
     @EJB
     private ResultadoAprendizajeFacade resultadoAprendizajeFacade;
