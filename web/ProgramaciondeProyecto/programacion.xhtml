@@ -134,7 +134,7 @@
                                 <h:selectOneMenu value="#{programador.idUsuario}" style="width:100%">
                                     <f:selectItem itemLabel="Seleccionar uno.." />
                                     <f:selectItems value="#{eventoController.listaUsuarioSelectOne}" var="usuario" itemLabel="#{usuario}" itemValue="#{usuario}" />
-                                    <p:ajax event="change" update=":formInicio"/>
+                                    <p:ajax event="change" update=":formInicio" />
                                 </h:selectOneMenu>
                             </f:facet>
                         </p:cellEditor>
@@ -143,7 +143,11 @@
                     <p:column headerText="hora">
                         <p:cellEditor>
                             <f:facet name="output"><h:outputText value="#{programador.cantidadHora}" /></f:facet>
-                            <f:facet name="input"><p:inputText value="#{programador.cantidadHora}" style="width:96%" label="hora"/></f:facet>
+                            <f:facet name="input"><p:inputText value="#{programador.cantidadHora}" style="width:96%" label="hora">
+                            <p:ajax event="change" update=":formInicio" listener="#{eventoController.sumaHoras}"/>
+                                </p:inputText>
+                            
+                            </f:facet>
                         </p:cellEditor>                  
                     </p:column>
                 </p:dataTable>
