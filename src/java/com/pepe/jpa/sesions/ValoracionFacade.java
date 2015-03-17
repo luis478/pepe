@@ -6,20 +6,17 @@
 
 package com.pepe.jpa.sesions;
 
-import com.pepe.jpa.entities.TipoRevision;
-import com.pepe.jpa.entities.Variable;
-import java.util.List;
+import com.pepe.jpa.entities.Valoracion;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import javax.persistence.Query;
 
 /**
  *
  * @author ADSI-DESAROLLO
  */
 @Stateless
-public class VariableFacade extends AbstractFacade<Variable> {
+public class ValoracionFacade extends AbstractFacade<Valoracion> {
     @PersistenceContext(unitName = "pepeAplicacionPU")
     private EntityManager em;
 
@@ -27,14 +24,9 @@ public class VariableFacade extends AbstractFacade<Variable> {
     protected EntityManager getEntityManager() {
         return em;
     }
-
-    public VariableFacade() {
-        super(Variable.class);
+    
+    public ValoracionFacade() {
+        super(Valoracion.class);
     }
     
-    public List<Variable> findByIdTipoRevision(TipoRevision tipo){
-        Query q = getEntityManager().createNamedQuery("Variable.findByidTipoRevision");
-        q.setParameter("idTipoRevision", tipo);
-        return q.getResultList();
-    }
 }

@@ -98,41 +98,36 @@
 
         <section class="Panel_scroll">
             <form jsf:id="formInicio">
-                <h:messages/>
-                <h:selectOneMenu value="#{ejecucionController.seguimientoActual.idUsuario}" style="width:100%">
-                    <f:selectItem itemLabel="Seleccionar uno.." />
-                    <f:selectItems value="#{ejecucionController.listaUsuarioOSelectOne}" var="usuario" itemLabel="#{usuario}" itemValue="#{usuario}" />
-                    <p:ajax event="change" update=":formInicio"/>
-                </h:selectOneMenu>
-                <h:selectOneMenu value="#{ejecucionController.seguimientoActual.idFase}" style="width:100%">
-                    <f:selectItem itemLabel="Seleccionar uno.." />
-                    <f:selectItems value="#{ejecucionController.listaFaseSelectOne}" var="usuario" itemLabel="#{usuario}" itemValue="#{usuario}" />
-                    <p:ajax event="change" update=":formInicio"/>
-                </h:selectOneMenu>
-
-                <p:dataTable id="aspectoTable"
-                             var="aspecto" 
-                             value="#{ejecucionController.listaAspectos}"
-                             rowKey="#{aspecto.idAspectos}"
+ 
+                <p:dataTable id="valoracionTable"
+                             var="valoracion" 
+                             value="#{variableController.listaValoracion}"
+                             rowKey="#{valoracion.idValoracion}"
                              editable="true" 
                              editMode="cell">
 
-                    <p:column headerText="Descripcion">                                            
-                        <h:outputText value="#{aspecto.idDescripcionAspectos.descripcion}"/>
+                    <p:column headerText="Variable/Indicador">                                            
+                        <h:outputText value="#{valoracion.idVariable.nombreVariable}"/>
                     </p:column>
                     <p:column headerText="Cumple">
                         <p:cellEditor>
-                            <f:facet name="output"><p:selectBooleanCheckbox disabled="true  " value="#{aspecto.valoracion}" /></f:facet>
+                            <f:facet name="output"><p:selectBooleanCheckbox disabled="true  " value="#{valoracion.cumple}" /></f:facet>
                             <f:facet name="input">
-                                <p:selectBooleanCheckbox value="#{aspecto.valoracion}" >
-                                    <p:ajax event="change" update="aspectoTable"/>
+                                <p:selectBooleanCheckbox value="#{valoracion.cumple}" >
+                                    <p:ajax event="change" update="valoracionTable"/>
                                 </p:selectBooleanCheckbox>
                             </f:facet>
                         </p:cellEditor>
-                    </p:column>                    
-                </p:dataTable>
-                <p:inputText value="#{ejecucionController.seguimientoActual.observaciones}" style="width:96%" label="Observacion"/>
-                <p:commandButton process="@this formInicio" update="formInicio" value="guardar" action="#{ejecucionController.addSeguimiento()}"/>
+                    </p:column>  
+                    <p:column headerText="Observaciones">
+                        <p:cellEditor>
+                            <f:facet name="output"><h:outputText value="#{valoracion.observacion}" /></f:facet>
+                            <f:facet name="input"><p:inputText value="#{valoracion.observacion}" style="width:96%" label="Observaciones"/></f:facet>
+                        </p:cellEditor>                  
+                    </p:column>
+                </p:dataTable> 
+                
+                <h:inputText id="proyecto" rendered="#{variableController.proyecto}" value=""/>
             </form>
         </section>
         <article class="Pepe-button">
