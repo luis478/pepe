@@ -1,195 +1,162 @@
 package com.pepe.controller;
 
+import com.pepe.jpa.entities.Ficha;
+import com.pepe.jpa.entities.Revision;
+import com.pepe.jpa.entities.TipoRevision;
+import com.pepe.jpa.entities.Valoracion;
 import com.pepe.jpa.entities.Variable;
-import controller.util.JsfUtil;
-import controller.util.PaginationHelper;
+import com.pepe.jpa.sesions.RevisionFacade;
+import com.pepe.jpa.sesions.ValoracionFacade;
 import com.pepe.jpa.sesions.VariableFacade;
-
 import java.io.Serializable;
-import java.util.ResourceBundle;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 import javax.ejb.EJB;
-import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
 import javax.faces.convert.FacesConverter;
-import javax.faces.model.DataModel;
-import javax.faces.model.ListDataModel;
-import javax.faces.model.SelectItem;
+import javax.faces.event.ActionEvent;
+import javax.inject.Named;
 
 @Named("variableController")
 @SessionScoped
 public class VariableController implements Serializable {
 
-    private Variable current;
-    private DataModel items = null;
     @EJB
-    private com.pepe.jpa.sesions.VariableFacade ejbFacade;
-    private PaginationHelper pagination;
-    private int selectedItemIndex;
+    private VariableFacade variableFacade;
+    @EJB
+    private RevisionFacade revisionFacade;
+    @EJB
+    private ValoracionFacade valoracionFacade;
+    
+    private Valoracion valoracionActual;
+    private Variable variableActual;
+    private List<Variable> listaVariable;
+    private Ficha fichaActual;
+    private List<Valoracion> listaValoracion;
+    private Revision revisionActual;
+
+    public List<Valoracion> getListaValoracion() {
+        return listaValoracion;
+    }
+
+    public void setListaValoracion(List<Valoracion> listaValoracion) {
+        this.listaValoracion = listaValoracion;
+    }
+
+    public VariableFacade getVariableFacade() {
+        return variableFacade;
+    }
+
+    public Valoracion getValoracionActual() {
+        return valoracionActual;
+    }
+
+    public void setValoracionActual(Valoracion valoracionActual) {
+        this.valoracionActual = valoracionActual;
+    }
+
+    public Ficha getFichaActual() {
+        if (fichaActual == null) {
+            fichaActual = new Ficha();
+        }
+        return fichaActual;
+    }
+
+    public void setFichaActual(Ficha fichaActual) {
+        this.fichaActual = fichaActual;
+    }
+
+    public RevisionFacade getRevisionFacade() {
+        return revisionFacade;
+    }
+
+    public void setRevisionFacade(RevisionFacade revisionFacade) {
+        this.revisionFacade = revisionFacade;
+    }
+
+    public ValoracionFacade getValoracionFacade() {
+        return valoracionFacade;
+    }
+
+    public void setValoracionFacade(ValoracionFacade valoracionFacade) {
+        this.valoracionFacade = valoracionFacade;
+    }
+
+    public Variable getVariableActual() {
+        if (variableActual == null) {
+            variableActual = new Variable();
+        }
+        return variableActual;
+    }
+
+    public void setVariableActual(Variable variableActual) {
+        this.variableActual = variableActual;
+    }
+
+    public List<Variable> getListaVariable() {
+        return listaVariable;
+    }
+
+    public void setListaVariable(List<Variable> listaVariable) {
+        this.listaVariable = listaVariable;
+    }
+
+    public void setVariableFacade(VariableFacade variableFacade) {
+        this.variableFacade = variableFacade;
+    }
 
     public VariableController() {
     }
 
-    public Variable getSelected() {
-        if (current == null) {
-            current = new Variable();
-            selectedItemIndex = -1;
-        }
-        return current;
-    }
-
-    private VariableFacade getFacade() {
-        return ejbFacade;
-    }
-
-    public PaginationHelper getPagination() {
-        if (pagination == null) {
-            pagination = new PaginationHelper(10) {
-
-                @Override
-                public int getItemsCount() {
-                    return getFacade().count();
-                }
-
-                @Override
-                public DataModel createPageDataModel() {
-                    return new ListDataModel(getFacade().findRange(new int[]{getPageFirstItem(), getPageFirstItem() + getPageSize()}));
-                }
-            };
-        }
-        return pagination;
-    }
-
     public String prepareList() {
-        recreateModel();
+
         return "List";
     }
 
     public String prepareView() {
-        current = (Variable) getItems().getRowData();
-        selectedItemIndex = pagination.getPageFirstItem() + getItems().getRowIndex();
+
         return "View";
     }
 
-    public String prepareCreate() {
-        current = new Variable();
-        selectedItemIndex = -1;
-        return "Create";
-    }
+    public void prepareCreate(ActionEvent event) {
+        fichaActual = ((Ficha) event.getComponent().getAttributes().get("ficha"));
+        revisionActual = new Revision();
+        revisionActual.setIdProyecto(fichaActual.getIdProyecto());
+        revisionActual.setFechaRevision(new Date());
+        revisionActual.setIdTipoRevision(new TipoRevision(Integer.parseInt((String) event.getComponent().getAttributes().get("variable"))));
+        variableActual = new Variable();
+        listaValoracion = new ArrayList<>();
 
-    public String create() {
-        try {
-            getFacade().create(current);
-            JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("VariableCreated"));
-            return prepareCreate();
-        } catch (Exception e) {
-            JsfUtil.addErrorMessage(e, ResourceBundle.getBundle("/Bundle").getString("PersistenceErrorOccured"));
-            return null;
+        for (Variable variableGeneral : getVariableFacade().findByIdTipoRevision(revisionActual.getIdTipoRevision())) {
+            valoracionActual = new Valoracion();
+            valoracionActual.setIdVariable(variableGeneral);
+            valoracionActual.setCumple(true);
+            listaValoracion.add(valoracionActual);
         }
     }
 
-    public String prepareEdit() {
-        current = (Variable) getItems().getRowData();
-        selectedItemIndex = pagination.getPageFirstItem() + getItems().getRowIndex();
-        return "Edit";
-    }
-
-    public String update() {
-        try {
-            getFacade().edit(current);
-            JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("VariableUpdated"));
-            return "View";
-        } catch (Exception e) {
-            JsfUtil.addErrorMessage(e, ResourceBundle.getBundle("/Bundle").getString("PersistenceErrorOccured"));
-            return null;
-        }
-    }
-
-    public String destroy() {
-        current = (Variable) getItems().getRowData();
-        selectedItemIndex = pagination.getPageFirstItem() + getItems().getRowIndex();
-        performDestroy();
-        recreatePagination();
-        recreateModel();
-        return "List";
-    }
-
-    public String destroyAndView() {
-        performDestroy();
-        recreateModel();
-        updateCurrentItem();
-        if (selectedItemIndex >= 0) {
-            return "View";
+    public boolean tipoRevisionForm() {
+        if (revisionActual.getIdTipoRevision().getIdTipoRevision() == 1) {
+            return false;
         } else {
-            // all items were removed - go back to list
-            recreateModel();
-            return "List";
+            return true;
         }
     }
 
-    private void performDestroy() {
-        try {
-            getFacade().remove(current);
-            JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("VariableDeleted"));
-        } catch (Exception e) {
-            JsfUtil.addErrorMessage(e, ResourceBundle.getBundle("/Bundle").getString("PersistenceErrorOccured"));
-        }
+    public boolean isProyecto() {
+        return revisionActual.getIdTipoRevision().getIdTipoRevision() == 1;
     }
 
-    private void updateCurrentItem() {
-        int count = getFacade().count();
-        if (selectedItemIndex >= count) {
-            // selected index cannot be bigger than number of items:
-            selectedItemIndex = count - 1;
-            // go to previous page if last page disappeared:
-            if (pagination.getPageFirstItem() >= count) {
-                pagination.previousPage();
-            }
-        }
-        if (selectedItemIndex >= 0) {
-            current = getFacade().findRange(new int[]{selectedItemIndex, selectedItemIndex + 1}).get(0);
-        }
-    }
-
-    public DataModel getItems() {
-        if (items == null) {
-            items = getPagination().createPageDataModel();
-        }
-        return items;
-    }
-
-    private void recreateModel() {
-        items = null;
-    }
-
-    private void recreatePagination() {
-        pagination = null;
-    }
-
-    public String next() {
-        getPagination().nextPage();
-        recreateModel();
-        return "List";
-    }
-
-    public String previous() {
-        getPagination().previousPage();
-        recreateModel();
-        return "List";
-    }
-
-    public SelectItem[] getItemsAvailableSelectMany() {
-        return JsfUtil.getSelectItems(ejbFacade.findAll(), false);
-    }
-
-    public SelectItem[] getItemsAvailableSelectOne() {
-        return JsfUtil.getSelectItems(ejbFacade.findAll(), true);
+    public String cargarCreate() {
+        return "/Valoracion/crearValoracion";
     }
 
     public Variable getVariable(java.lang.Integer id) {
-        return ejbFacade.find(id);
+        return variableFacade.find(id);
     }
 
     @FacesConverter(forClass = Variable.class)
