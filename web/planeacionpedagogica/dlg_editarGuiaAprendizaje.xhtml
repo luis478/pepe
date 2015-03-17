@@ -1,0 +1,29 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:jsf="http://xmlns.jcp.org/jsf">
+    
+    <ui:composition>
+      
+        <p:dialog widgetVar="botonEditarGuiaDlg" modal="true" height="580" width="500" >
+            <h2>Editar Actividad de aprendizaje</h2>
+            <h:form id="editarActividad">
+               <h:panelGrid columns="1"> 
+                            <h:outputLabel class="form-1" value="Descripcion Actividad de Aprendizaje:"  for="descriActividadAprendizaje"/>
+                            <textarea class="form-1" type="text" jsf:id="descriActividadAprendizaje" 
+                                   jsf:value="#{actividadController.actividadAprendizajeActual.descripcion}"/>
+                            
+                            <h:outputLabel class="form-1" value="Observaciones:"  for="nomObservacionesInputText"/>
+                            <textarea class="form-1" type="text" jsf:id="nomObservacionesInputText" 
+                                   jsf:value="#{actividadController.actividadAprendizajeActual.observaciones}"/>  
+                            
+                            <p:commandButton value="guardar"  process="editarActividad" oncomplete="handleSubmit(args,'botonEditarGuiaDlg')" action="#{actividadController.updateActividadAprendizaje}" update=":formtable"/>
+                            <p:commandButton onclick="PF('botonEditarGuiaDlg').hide()" value="cancelar"/>
+                </h:panelGrid>
+            </h:form> 
+        </p:dialog>
+    </ui:composition>
+</html>

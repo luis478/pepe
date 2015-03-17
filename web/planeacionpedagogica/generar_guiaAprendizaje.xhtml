@@ -1,0 +1,86 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html  xmlns="http://www.w3.org/1999/xhtml"
+       xmlns:h="http://xmlns.jcp.org/jsf/html"
+       xmlns:f="http://xmlns.jcp.org/jsf/core"
+       xmlns:jsf="http://xmlns.jcp.org/jsf"
+       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+       xmlns:p="http://primefaces.org/ui">
+    
+    
+   <ui:composition template="/html_plantillas/plantilla_paginas.xhtml">
+        <ui:define name="title">Genearar guia</ui:define>
+        <ui:define name="body">
+            <h:form id="formtable">
+                <h1 class="Titulo-plantillas"><h:outputText value="lista Actividad de actividad de aprendizaje"/></h1>
+                    <p:dataTable  value="#{actividadController.actividadAprendizajeList}" var="Actividad"
+                                 paginator="true" rows="10" id="Actividadtable"
+                                 paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}" 
+                                 rowsPerPageTemplate="5,10,15">
+                        <p:column filterBy="#{Actividad.idActividad.toString()}" headerText="Actividad de proyecto" filterMatchMode="contains">
+                            <h:outputText value="#{Actividad.idActividad.toString()}"/>
+                        </p:column>
+                        <p:column filterBy="#{Actividad.idActividad.duracion}" headerText="Duracion Actividad de proyecto (Horas)" filterMatchMode="contains">
+                            <h:outputText value="#{Actividad.idActividad.duracion}"/>
+                        </p:column>
+                        <p:column>
+                                <f:facet name="header">Resultados de aprendizaje</f:facet>
+                                <p:dataList value="#{Actividad.resultadoAprendizajeList}" var="resultado">
+                                    #{resultado}
+                                </p:dataList>
+                        </p:column>
+                        <p:column filterBy="#{Actividad.nombreActividadAprendizaje}" headerText="Nombre Actividad de Aprendizaje" filterMatchMode="contains">
+                            <h:outputText value="#{Actividad.nombreActividadAprendizaje}"/>
+                        </p:column>
+                        <p:column headerText="Duracion Actividad de Aprendizaje" >
+                            <h:outputText value="#{Actividad.duracionActividadAprendizaje}"/>
+                        </p:column>
+                        <p:column headerText="Observaciones" >
+                            <h:outputText value="#{Actividad.observaciones}"/>
+                        </p:column>
+                        <p:column headerText="Descripcion" >
+                            <h:outputText value="#{Actividad.descripcion}"/>
+                        </p:column>   
+                        <p:column headerText="Tipo Actividad de aprendizaje" >
+                            <h:outputText value="#{Actividad.idTipoActividadAprendizaje.toString()}"/>
+                        </p:column>
+                        <p:column>
+                                <f:facet name="header">Materiales de formacion</f:facet>
+                                <p:dataList value="#{Actividad.recursoList}" var="recurso">
+                                    #{recurso}
+                                </p:dataList>
+                        </p:column>
+                        <p:column>
+                                <f:facet name="header">Tecnica didactica</f:facet>
+                                <p:dataList value="#{Actividad.tecnicaDidacticaList}" var="tecnicaDidactica">
+                                    #{tecnicaDidactica}
+                                </p:dataList>
+                        </p:column>
+                        <p:column>
+                                <f:facet name="header">Instructores</f:facet>
+                                <p:dataList value="#{Actividad.usuarioList}" var="instructores">
+                                    #{instructores}
+                                </p:dataList>
+                        </p:column>
+                        <p:column> 
+                            <p:commandButton icon="ui-icon-pencil" process="@this" update=":editarActividad" 
+                                             actionListener="#{actividadController.editarDialogo}" onclick="PF('botonEditarGuiaDlg').show()">
+                                <f:attribute value="#{Actividad}" name="actividad"/>
+                            </p:commandButton>
+                        </p:column>
+                    </p:dataTable>
+                <form jsf:id="ConfirmForm">
+                <p:confirmDialog global="true" showEffect="fade" hideEffect="explode">
+                    <p:commandButton value="Si" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+                    <p:commandButton value="No" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+                </p:confirmDialog>
+                </form>    
+            </h:form> 
+        <ui:include src="dlg_editarGuiaAprendizaje.xhtml"/>
+        </ui:define>
+        
+   </ui:composition>
+</html>
+
+
+
