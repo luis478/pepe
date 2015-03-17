@@ -357,9 +357,8 @@ public class UsuarioController implements Serializable{
         FacesContext.getCurrentInstance().addMessage("successInfo", facesMsg);
     }
     public Usuario getUsuario(java.lang.Integer id) {
-        return usuarioFacade.find(id);
+        return getUsuarioFacade().find(id);
     }
-    
     @FacesConverter(forClass = Usuario.class)
     public static class UsuarioControllerConverter implements Converter {
 
@@ -367,7 +366,7 @@ public class UsuarioController implements Serializable{
         public Object getAsObject(FacesContext facesContext, UIComponent component, String value) {
             if (value == null || value.length() == 0) {
                 return null;
-}
+            }
             UsuarioController controller = (UsuarioController) facesContext.getApplication().getELResolver().
                     getValue(facesContext.getELContext(), null, "usuarioController");
             return controller.getUsuario(getKey(value));
@@ -399,4 +398,5 @@ public class UsuarioController implements Serializable{
         }
 
     }
+    
 }
