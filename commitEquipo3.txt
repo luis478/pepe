@@ -1,0 +1,714 @@
+commit c61ca8261cc000edd0ac3420ae6bf1c33748256e
+Author: ShikiFuujin <shiki.fuujin@outlook.com>
+Date:   Tue Mar 17 18:07:18 2015 -0500
+
+    Actualizacion del modulo de Formulación de proyecto
+
+commit 5f79f3ada9be6cdd4f9c1aead6672103334553fd
+Author: ShikiFuujin <shiki.fuujin@outlook.com>
+Date:   Mon Mar 16 09:52:38 2015 -0500
+
+    Union modulo programa y proyecto al repositorio,  cambio de un campo de la tabla proyecto de short  boolean (valoracion 272)
+
+commit 81f9dcf1618cdf122a64d24d0534c09b3049f330
+Author: LuisCarlosCabal <lccabal@misena.edu.co>
+Date:   Fri Mar 13 13:56:48 2015 -0500
+
+    Actualicion de entidades y base de datos
+
+commit 7ff70dcae1b483c86d7d843ed7b0cc42b40adfa8
+Merge: a0f56ed c1e2d91
+Author: LuisCarlosCabal <lccabal@misena.edu.co>
+Date:   Thu Mar 12 09:20:17 2015 -0500
+
+    Merge remote-tracking branch 'origin/master'
+
+commit a0f56ed1ded75be6f198ae5b50cba321a81228b9
+Author: LuisCarlosCabal <lccabal@misena.edu.co>
+Date:   Thu Mar 12 09:19:13 2015 -0500
+
+    Actualizacion modulo programacion
+
+commit c1e2d9179786f9aef1609ab418e3805c2046e9a7
+Author: andres <eamartinez15@misena.edu.co>
+Date:   Wed Mar 11 13:33:51 2015 -0500
+
+    actualizacion Programacion de Proyecto,ProgramadorFacade,UsuarioHasFicha.java,usuarioController,index.xhtml,usuario.java,eventoController
+
+commit f1e650a5b652eda54d9e8421c6c6933d15effc32
+Author: LuisCarlosCabal <lccabal@misena.edu.co>
+Date:   Tue Mar 10 19:32:03 2015 -0500
+
+    Nuevo pepa entidades limpias
+
+commit c46d665424e5c5830e9ccfd75002e6be625cd849
+Merge: 8c85fbc 6be4062
+Author: LuisCarlosCabal <lccabal@misena.edu.co>
+Date:   Mon Mar 9 13:31:01 2015 -0500
+
+    actualizacion planeacion y entidades
+
+commit 8c85fbc00bf0e4a52c86265169b14c9ee58500be
+Author: LuisCarlosCabal <lccabal@misena.edu.co>
+Date:   Mon Mar 9 13:24:49 2015 -0500
+
+    Actualizacion de entidades y Planeacion
+
+commit adc7f5a39e2e6a9bfce14b0f007d1ecb5b4db278
+Author: LuisCarlosCabal <lccabal@misena.edu.co>
+Date:   Mon Mar 9 08:50:22 2015 -0500
+
+    Actualizacion de entidades mas planeacion pedagogica
+
+commit 48e5d4897417b5157e415a080c868f7601413094
+Author: LuisCarlosCabal <lccabal@misena.edu.co>
+Date:   Mon Mar 9 08:44:38 2015 -0500
+
+    actualizacion base de datos
+
+commit 6be4062866bcdf23c537dbd42b82a239db472371
+Merge: f125a16 2cbd8d6
+Author: RC15 <color.ui>
+Date:   Fri Mar 6 14:22:39 2015 -0500
+
+    Merge remote-tracking branch 'origin/master'
+
+commit f125a1685ef3687db95e9c7a0b092c55307b76b0
+Author: RC15 <color.ui>
+Date:   Fri Mar 6 14:21:59 2015 -0500
+
+    Actulizacion proyecto y variable
+
+commit 15d58bedd6446626c6c97062a3f54a098f2e1e3f
+Author: Julian Cocuy <juliandcb@misena.edu.co>
+Date:   Fri Mar 6 07:29:56 2015 -0500
+
+    Actualizacion
+
+commit 2cbd8d6d11614d6b8c512e890afbfc24aa699e3b
+Merge: ce6f7d4 52adc5d
+Author: Yuly Castañeda <yjcastaneda7@misena.edu.co>
+Date:   Wed Mar 4 17:56:08 2015 -0500
+
+    Merge remote-tracking branch 'origin/master'
+
+commit ce6f7d4caf5701d34a0f0135a0c44b4e287dbfab
+Author: Yuly Castañeda <yjcastaneda7@misena.edu.co>
+Date:   Wed Mar 4 17:55:17 2015 -0500
+
+    actualizacion modulo acompanamiento
+
+commit 52adc5d964f02976c627525a23cffada9c62265f
+Merge: 8d78b0d 5499c2f
+Author: Julian Cocuy <juliandcb@misena.edu.co>
+Date:   Wed Mar 4 15:57:13 2015 -0500
+
+    Actualización html para proyecto
+
+commit 8d78b0deabb04200ed7221f1e846ecd8a1c13938
+Author: Julian Cocuy <juliandcb@misena.edu.co>
+Date:   Wed Mar 4 15:55:47 2015 -0500
+
+    Actualización html para proyecto
+
+commit 5499c2fabc6415951d36ff72d7ed37db35197640
+Merge: 7ebf38f 882cef8
+Author: camilo <camiarana@misena.edu.co>
+Date:   Wed Mar 4 15:13:09 2015 -0500
+
+    Merge remote-tracking branch 'origin/master'
+
+commit 7ebf38f794ccfc6d2178ca7865b6dc1d1bad67b3
+Author: camilo <camiarana@misena.edu.co>
+Date:   Wed Mar 4 15:12:02 2015 -0500
+
+    actualizar actividad
+
+commit 882cef8d820d6ed6f93814f6424bc224801b9c8d
+Author: LuisCarlosCabal <lccabal@misena.edu.co>
+Date:   Tue Mar 3 17:37:14 2015 -0500
+
+    Actualizacion query planeacion
+
+commit d630ee0ae0f37670e9ae88845f96071b9302b499
+Author: Julian Cocuy <juliandcb@misena.edu.co>
+Date:   Tue Mar 3 17:06:56 2015 -0500
+
+    Actualizacion 5
+
+commit e927a231acd37142147b2612da7ee6dfbd0e4ea9
+Author: Julian Cocuy <juliandcb@misena.edu.co>
+Date:   Tue Mar 3 17:01:19 2015 -0500
+
+    Actualizacion 5
+
+commit b15833b45c8cca22187d5bc42ee2dba5bb0007fc
+Merge: 9d82fc8 c4d94c6
+Author: LuisCarlosCabal <lccabal@misena.edu.co>
+Date:   Tue Mar 3 15:07:04 2015 -0500
+
+    Actualizacion de entidades y base de datos
+
+commit 9d82fc803fc5c64e58759c2060350fce0e513732
+Author: LuisCarlosCabal <lccabal@misena.edu.co>
+Date:   Tue Mar 3 14:59:34 2015 -0500
+
+    Actualizacion de entidades y base de datos
+
+commit 8b8f9449929c89a327e6fced6b69c4d6d6dbda52
+Author: LuisCarlosCabal <lccabal@misena.edu.co>
+Date:   Tue Mar 3 14:48:51 2015 -0500
+
+    Actualizacion de entidades
+
+commit e3bb2977ecb67a014f0114e0356dce6187db8277
+Author: LuisCarlosCabal <lccabal@misena.edu.co>
+Date:   Tue Mar 3 14:19:53 2015 -0500
+
+    Actualizacion Entidades actualizadas
+
+commit 64ddfb1d649ffbe6325c6314c45d77b412672a98
+Author: LuisCarlosCabal <lccabal@misena.edu.co>
+Date:   Tue Mar 3 11:06:35 2015 -0500
+
+    Actualizacion de entidades
+
+commit c4d94c66bd6af3757ffe6e4b8c3d95dc68b3dbfd
+Author: Julian Cocuy <juliandcb@misena.edu.co>
+Date:   Tue Mar 3 07:32:00 2015 -0500
+
+    Competencia
+
+commit 33ab7db2cb5b4cbc4e1634ca7d4a878adc6d9b12
+Author: LuisCarlosCabal <lccabal@misena.edu.co>
+Date:   Tue Mar 3 07:25:53 2015 -0500
+
+    Actualizacion modulo planeacion pedagogica
+
+commit 1bdf0890ea810b53c6d488f7b372b576810b1465
+Merge: 2daaac7 54015a1
+Author: Julian Cocuy <juliandcb@misena.edu.co>
+Date:   Tue Mar 3 07:08:34 2015 -0500
+
+    Merge remote-tracking branch 'origin/master'
+
+commit 2daaac75ce35a39d0af1deaec2ccfdb1cf5c4400
+Author: Julian Cocuy <juliandcb@misena.edu.co>
+Date:   Tue Mar 3 07:07:51 2015 -0500
+
+    Actializacion
+
+commit 54015a1e4bf8e1467f123bdb5772e0235ce99018
+Author: John Andrade <tvz@misena.edu.co>
+Date:   Mon Mar 2 17:51:19 2015 -0500
+
+    Actualizacion de css y html y los toStrings subida
+
+commit b7fb06d01fcd382eb9fbd14ec62a2d6cc48a9941
+Merge: 76ae390 7ab13f8
+Author: John Andrade <tvz@misena.edu.co>
+Date:   Mon Mar 2 17:50:22 2015 -0500
+
+    Merge remote-tracking branch 'origin/master'
+
+commit 76ae39088d928581b684ec97d21a1052a10bc94d
+Author: John Andrade <tvz@misena.edu.co>
+Date:   Mon Mar 2 17:49:54 2015 -0500
+
+    Actualizacion de css y html y los toStrings
+
+commit 7ab13f84a686bb913c8776cd349d2d48fe9a3584
+Merge: 13647bc 17d9c9d
+Author: jhonny <jhonny.agudelo@misena.edu.co>
+Date:   Mon Mar 2 14:46:03 2015 -0500
+
+    Merge remote-tracking branch 'origin/master'
+
+commit 13647bc7765857a7f113b84ad2108785483d82ed
+Author: jhonny <jhonny.agudelo@misena.edu.co>
+Date:   Mon Mar 2 14:44:54 2015 -0500
+
+    Actualizacion planeacion pedagogica
+
+commit 17d9c9d3ff4f43f88b3c0ce12afc556f2aefba6f
+Merge: 8c13e7e 2aabe0d
+Author: LuisCarlosCabal <lccabal@misena.edu.co>
+Date:   Mon Mar 2 12:51:17 2015 -0500
+
+    Actualizacion correccion registro usuario subida
+
+commit 8c13e7ef88872c9963ce13579ed2717ffb041db8
+Author: LuisCarlosCabal <lccabal@misena.edu.co>
+Date:   Mon Mar 2 12:38:17 2015 -0500
+
+    Actualizacion Registro de usuario
+
+commit 96dcbaf82912624a2c118a82226723ad40569a2d
+Author: LuisCarlosCabal <lccabal@misena.edu.co>
+Date:   Mon Mar 2 12:35:53 2015 -0500
+
+    Actualizacion Correccion registrar usuario
+
+commit 2aabe0d385357fbd18b6ac8b24570f44c8a9230c
+Author: John Andrade <tvz@misena.edu.co>
+Date:   Mon Mar 2 12:28:25 2015 -0500
+
+    Actualizacion css y html subida
+
+commit 6276fce03ab466152aa72d41ff99b8bb8213abc7
+Merge: 9444887 2f8d4f4
+Author: John Andrade <tvz@misena.edu.co>
+Date:   Mon Mar 2 12:25:58 2015 -0500
+
+    Actualizacion de html y css
+
+commit 94448874d7b26f6c89be5475f735b346ce39cbf8
+Author: John Andrade <tvz@misena.edu.co>
+Date:   Mon Mar 2 12:17:01 2015 -0500
+
+    Actualizacion del html y css
+
+commit 13a3bdd3a30755b4a655395b562fc91853bf11f3
+Author: John Andrade <tvz@misena.edu.co>
+Date:   Fri Feb 27 09:03:20 2015 -0500
+
+    Actualizacion con remote
+
+commit 2f8d4f4154460b2e621259072ce65b76f4ea04d4
+Merge: 71675f1 844a648
+Author: Junior Cabal <lccabal@misena.edu.co>
+Date:   Wed Feb 25 09:59:03 2015 -0500
+
+    Actualizacion cargar ficha al template
+
+commit 71675f14dab933de558091e5a9b6b68f28359575
+Author: Junior Cabal <lccabal@misena.edu.co>
+Date:   Wed Feb 25 09:33:59 2015 -0500
+
+    Actualizacion cargado de informacion de ficha
+
+commit 844a6489c802a0e80cfb958f92f29d10b4e491fc
+Author: Cesar <Ceaugoca20@misena.edu.co>
+Date:   Wed Feb 25 09:26:55 2015 -0500
+
+    Se actulizo formularios edit y lista Actividad Guia Tecnica
+
+commit 89b433b54f015e1d10b211b76131903be5fee080
+Author: Miguel angel <angel-495@hotmail.com>
+Date:   Tue Feb 24 17:56:45 2015 -0500
+
+    Actualizo Tecnica Didactica y botones del menu
+
+commit f7252d26e97547234f7d91efe0a94574e8a930f2
+Merge: 7d9a165 1c46ae8
+Author: andres <eamartinez15@misena.edu.co>
+Date:   Tue Feb 24 17:34:46 2015 -0500
+
+    Merge remote-tracking branch 'origin/master'
+
+commit 822312ced413316ef18b02b768786773a8a9336b
+Merge: ebbfc72 1c46ae8
+Author: Junior Cabal <lccabal@misena.edu.co>
+Date:   Tue Feb 24 17:34:16 2015 -0500
+
+    Merge remote-tracking branch 'origin/master'
+
+commit 7d9a165a77029e2b4173b5da5841769bb64511cd
+Author: andres <eamartinez15@misena.edu.co>
+Date:   Tue Feb 24 17:33:59 2015 -0500
+
+    actualizacion plantilla
+
+commit ebbfc72caeda0028369a5b225fd52f2f99b1471d
+Author: Junior Cabal <lccabal@misena.edu.co>
+Date:   Tue Feb 24 17:33:47 2015 -0500
+
+    Actualizacion plantilla
+
+commit 1c46ae86eb4bf64e7db93bf55185a41a9dd6c3b1
+Merge: b8243e7 be4d220
+Author: ShikiFuujin <shiki.fuujin@outlook.com>
+Date:   Tue Feb 24 17:28:46 2015 -0500
+
+    Merge remote-tracking branch 'origin/master'
+
+commit b8243e7f506ee3413e7098001ba5a41dd0bdd81e
+Author: ShikiFuujin <shiki.fuujin@outlook.com>
+Date:   Tue Feb 24 17:26:43 2015 -0500
+
+    Commit Equipo 3 : XXIV-II-MMXV 17:26:35
+
+commit 8c1aee36d7905abeb163ab6ab9843aa3d7c84d80
+Merge: 7417e94 be4d220
+Author: Junior Cabal <lccabal@misena.edu.co>
+Date:   Tue Feb 24 17:25:56 2015 -0500
+
+    Merge remote-tracking branch 'origin/master'
+
+commit 3c4f5d244cbf29c1fe838a3ee0cd58c21e3b1731
+Author: ShikiFuujin <shiki.fuujin@outlook.com>
+Date:   Tue Feb 24 17:25:36 2015 -0500
+
+    Reorganización de git
+
+commit be4d22013ba0953dda19a804e80b6a33811f29d5
+Merge: ada9665 52a3b14
+Author: andres <eamartinez15@misena.edu.co>
+Date:   Tue Feb 24 17:19:01 2015 -0500
+
+    Merge remote-tracking branch 'origin/master'
+
+commit ada9665bd217f7dababf2ce0e7ed2cdba3ba192f
+Author: andres <eamartinez15@misena.edu.co>
+Date:   Tue Feb 24 17:16:19 2015 -0500
+
+    actualizacion plantilla
+
+commit 7417e946143268333efd8a2b199c4de983745359
+Merge: c0cd808 52a3b14
+Author: Junior Cabal <lccabal@misena.edu.co>
+Date:   Tue Feb 24 16:51:01 2015 -0500
+
+    Merge remote-tracking branch 'origin/master'
+
+commit c0cd8085451397f3eb1f757bf87e6d848ea87ef3
+Author: Junior Cabal <lccabal@misena.edu.co>
+Date:   Tue Feb 24 16:49:41 2015 -0500
+
+    Actualizacion Entidades
+
+commit 52a3b14beef3b8cf9b146cc8ee987c6e3098d6ab
+Author: Jhonny9022 <jhonny.agudelo@misena.edu.co>
+Date:   Tue Feb 24 16:41:14 2015 -0500
+
+    Se actualizo Actividad y Guia Aprendizaje
+
+commit c03f4e41f2089a64d12e974ca455d04e3c01342c
+Merge: 3de68a1 05892dd
+Author: Jhonny9022 <jhonny.agudelo@misena.edu.co>
+Date:   Tue Feb 24 16:19:05 2015 -0500
+
+    Actualizacin actividadController y guia de aprendizaje
+
+commit 05892ddd46d9022118f970f7de1068ba9b7b262d
+Author: luis478 <junior47895@hotmail.com>
+Date:   Tue Feb 24 16:16:59 2015 -0500
+
+    Update UsuarioHasFicha.java
+
+commit 80a543fbc3591a355bc762253b94dfca0c1d3fb6
+Author: luis478 <junior47895@hotmail.com>
+Date:   Tue Feb 24 16:16:02 2015 -0500
+
+    Update Usuario.java
+
+commit 3de68a112689bc9ac408f9fb58ed8ed925e2e838
+Author: Jhonny9022 <jhonny.agudelo@misena.edu.co>
+Date:   Tue Feb 24 16:09:29 2015 -0500
+
+    Actualizacion actividadController y guiaAprendizaje
+
+commit 552f4354e217d9a21c3e1d637f74c1b8e9a07bac
+Author: Jhonny9022 <jhonny.agudelo@misena.edu.co>
+Date:   Tue Feb 24 16:01:28 2015 -0500
+
+    Actualizacion guia de aprendizaje y actividadController
+
+commit 979251f2798c083c8def42882ba348f17ef2a4fd
+Author: Jhonny9022 <jhonny.agudelo@misena.edu.co>
+Date:   Tue Feb 24 15:52:03 2015 -0500
+
+    Actualizacion ActividadController y guia de aprendizaje
+
+commit 172b1d42b98d85a1925201ea4a081a377f02bc0b
+Author: Junior Cabal <lccabal@misena.edu.co>
+Date:   Tue Feb 24 15:24:13 2015 -0500
+
+    actualizacion planeacion pedagogica
+
+commit 6dcdf2edb384e4af337c9c6ce7f86bb1d0d46960
+Author: Jhonny9022 <jhonny.agudelo@misena.edu.co>
+Date:   Tue Feb 24 15:18:39 2015 -0500
+
+    actualizacion actividad y guia aprendizaje
+
+commit fc4759cd28747cedcf3cda8777fd1c516f709caa
+Author: Jhonny9022 <jhonny.agudelo@misena.edu.co>
+Date:   Tue Feb 24 15:14:45 2015 -0500
+
+    actualizacion actividad y guia aprendizaje
+
+commit d31a10e1233146be63492281745eb0eecec0a31b
+Merge: 9c86ccf c591e68
+Author: Junior Cabal <lccabal@misena.edu.co>
+Date:   Tue Feb 24 15:08:57 2015 -0500
+
+    Actualizacion ficha index
+
+commit 9c86ccfbdc7e23b03d6707e5cef4743a5fdc0a6d
+Merge: 52747d1 9433b3d
+Author: Junior Cabal <lccabal@misena.edu.co>
+Date:   Tue Feb 24 15:00:52 2015 -0500
+
+    Actualizacion ficha index
+
+commit c591e6846373104c85a0a8d1267cfb4064be7022
+Author: andres <eamartinez15@misena.edu.co>
+Date:   Tue Feb 24 14:56:15 2015 -0500
+
+    Actualizacion pantalla de incio terminada
+
+commit 4a66b1d4f0309e49b7efa9e75ac9225a93e30b72
+Merge: 35fece4 9433b3d
+Author: andres <eamartinez15@misena.edu.co>
+Date:   Tue Feb 24 14:52:05 2015 -0500
+
+    Actualizacion pantalla de incio terminada
+
+commit 35fece4ba6a44417ca7961a64d7d39396e5ffcaf
+Author: andres <eamartinez15@misena.edu.co>
+Date:   Tue Feb 24 14:44:31 2015 -0500
+
+    Actualizacion pantalla de incio terminada
+
+commit 52747d1e0adca79d4c1d87e2e520baae074d40ba
+Author: Junior Cabal <lccabal@misena.edu.co>
+Date:   Tue Feb 24 14:16:33 2015 -0500
+
+    Actualizacion Entidades 2
+
+commit 9433b3d860e59c89e8d4351a32a754f5ca22f52c
+Author: ShikiFuujin <shiki.fuujin@outlook.com>
+Date:   Tue Feb 24 14:07:31 2015 -0500
+
+    Reorganización de git
+
+commit 6f0408d2dfc9e338bf1a6c756914ad1b52dacb4b
+Author: Jhonny9022 <jhonny.agudelo@misena.edu.co>
+Date:   Tue Feb 24 13:20:53 2015 -0500
+
+    Se actualizo controller actividad
+
+commit a827e2206c251ad6410c483632ae3e59eeae6d75
+Author: Jhonny9022 <jhonny.agudelo@misena.edu.co>
+Date:   Tue Feb 24 13:04:08 2015 -0500
+
+    Se actualizo el controller de actividad
+
+commit 14d6e041190c51d05969e453a74f6f13bc244ace
+Merge: 39c9645 5230e69
+Author: ShikiFuujin <shiki.fuujin@outlook.com>
+Date:   Tue Feb 24 11:08:30 2015 -0500
+
+    Merge remote-tracking branch 'origin/master'
+
+commit 39c96450cf8f595cfb6eefd4a116f8fd6686d28b
+Merge: 82a5078 33367ce
+Author: ShikiFuujin <shiki.fuujin@outlook.com>
+Date:   Tue Feb 24 11:07:54 2015 -0500
+
+    Formulario de creacion de competencia
+
+commit 5230e69507b9b80c079fcfb385b964015be2e612
+Author: Yuly Castañeda <yjcastaneda7@misena.edu.co>
+Date:   Tue Feb 24 11:00:17 2015 -0500
+
+    acompanamiento
+
+commit bc1df73b10fd7a44ff9ad64fc82558e7c2a13744
+Merge: ee3721d 1074a9d
+Author: Junior Cabal <lccabal@misena.edu.co>
+Date:   Tue Feb 24 10:10:04 2015 -0500
+
+    Actualizacion entidades
+
+commit 82a5078f945440f55e64463b8373d01cecbdc4dc
+Author: ShikiFuujin <shiki.fuujin@outlook.com>
+Date:   Tue Feb 24 10:06:20 2015 -0500
+
+    Cambios Equipo 3
+
+commit 33367ce71c27b895c410e5e5cd7e660e9e77ef55
+Merge: 1f4a428 f3b7701
+Author: andres <eamartinez15@misena.edu.co>
+Date:   Tue Feb 24 10:04:41 2015 -0500
+
+    Actualizacion ficha seleccionada en el index
+
+commit 1f4a428feac32668bafed20fa6508889304e797b
+Author: andres <eamartinez15@misena.edu.co>
+Date:   Tue Feb 24 09:59:06 2015 -0500
+
+    actualzacio selecciondado de ficha pagina de inicio
+
+commit f2175837fbabee72b83996ff63a58a668a9a4727
+Merge: ec56565 1074a9d
+Author: ShikiFuujin <shiki.fuujin@outlook.com>
+Date:   Tue Feb 24 09:58:28 2015 -0500
+
+    Merge de equipo3 y 5
+
+commit f3b7701baea82b250e75cd25c7e25c45d6a0b1f8
+Author: Aura <acvalencia94@misena.edu.co>
+Date:   Tue Feb 24 09:15:50 2015 -0500
+
+    controller Actividad
+
+commit ec56565f5beacea0b96dbff792f40a931462043f
+Author: ShikiFuujin <shiki.fuujin@outlook.com>
+Date:   Tue Feb 24 09:12:58 2015 -0500
+
+    Se agrego el css de foundation, formularios de programa,competencia,ra,ccp,ce,cp
+
+commit b3e756213b06204ca51c79dbf2cddf7bd6c37701
+Author: ShikiFuujin <shiki.fuujin@outlook.com>
+Date:   Tue Feb 24 07:11:14 2015 -0500
+
+    Modulo de programa
+
+commit ee3721da3a4e1bac73fbf90c67fae8e018dc06ff
+Author: Junior Cabal <lccabal@misena.edu.co>
+Date:   Mon Feb 23 17:44:56 2015 -0500
+
+    Actualizacion ficha
+
+commit 1074a9d9aa855810ca4fecb5e4634b41906966f7
+Author: andres <eamartinez15@misena.edu.co>
+Date:   Mon Feb 23 15:31:44 2015 -0500
+
+    Creacion Formulario de ficha, creacion de controller ficha, progrma, creacion boton programacion y se creo en el index un select menu para la ficha
+
+commit de1fba5ca1f05aef4f26d79e83d5f8dedcd118a9
+Author: Junior Cabal <lccabal@misena.edu.co>
+Date:   Mon Feb 23 09:28:26 2015 -0500
+
+    Actualizacion inserts total de la base de datos
+
+commit 32aaa08ff20049639c1ecf1380f4cd75b7bfc06b
+Author: Shiki Fuujin <shiki.fuujin@outlook.com>
+Date:   Wed Feb 18 11:29:56 2015 -0500
+
+    Formulacion de proyecto : formularios de programa
+
+commit 45371fbb0ae0bb986fee516cf02e5b86f6d19ef4
+Author: Shiki Fuujin <shiki.fuujin@outlook.com>
+Date:   Wed Feb 18 07:19:58 2015 -0500
+
+    Formulacion: Programa
+
+commit ff564148ed3ba96924b24672d4889f23bfd6ac84
+Author: junior <lccabal@misena.edu.co>
+Date:   Tue Feb 17 17:58:16 2015 -0500
+
+    Actualizado (se quito la relacion entre fase y guia de aprendizaje y se agrego la relacion de fase a actividad_has_resultado, se relaciono recurso con actividad de aprendizaje, la tabla guia_aprendizaje se relaciono con actividades_has_aprendizaje y se agregaron campos nuevos, se agregaron campos a la table evidencias)
+
+commit cda8a4ab1039f236b9d1105da16644d891068386
+Author: junior <lccabal@misena.edu.co>
+Date:   Mon Feb 16 16:26:08 2015 -0500
+
+    Actulizado template e inicio de sesion
+
+commit b1a9c89b19c20ac9b4e30a7f678c660a9fda8190
+Author: junior <lccabal@misena.edu.co>
+Date:   Mon Feb 16 14:45:57 2015 -0500
+
+    Fusion experimental con master
+
+commit 2c9b891daa12d05ebc31318c5315efe9c17037f2
+Merge: fc2d81b 2284a10
+Author: junior <lccabal@misena.edu.co>
+Date:   Mon Feb 16 14:42:46 2015 -0500
+
+    Fusion experimental con master
+
+commit fc2d81be86af76d735063f87cc796ebca763f70d
+Author: junior <lccabal@misena.edu.co>
+Date:   Mon Feb 16 14:41:14 2015 -0500
+
+    Fusion rama experimental con master
+
+commit 2284a108e1a2706f6d0397ee7eb1da457a1474aa
+Merge: bea76f0 14bf597
+Author: junior <lccabal@misena.edu.co>
+Date:   Mon Feb 16 14:36:38 2015 -0500
+
+    Actualizado base de datos y entidades con remote
+
+commit bea76f0963ae47050620942c06b7c1816ce2764e
+Author: junior <lccabal@misena.edu.co>
+Date:   Mon Feb 16 14:35:52 2015 -0500
+
+    Actualizado base de datos y entidades
+
+commit 14bf5976d0833873e972e2cbd1312507a822c96d
+Author: Leo Andrés Moreno Caicedo <leoandresm@gmail.com>
+Date:   Mon Feb 16 13:24:03 2015 -0500
+
+    Actualizado .gitignore con archivos .bak
+
+commit 638a848cebc66e5ed0b16cfd1f5034b4a868f750
+Author: Leo Andrés Moreno Caicedo <leoandresm@gmail.com>
+Date:   Mon Feb 16 09:56:35 2015 -0500
+
+    Eliminada carpeta build
+
+commit 5903decc95f6c426fbff192ac71a9ff64ff6eda1
+Author: Leo Andrés Moreno Caicedo <leoandresm@gmail.com>
+Date:   Mon Feb 16 09:30:05 2015 -0500
+
+    Agregado .gitignore
+
+commit 18d04ed218bd3a42cc418624897127910e4f4841
+Author: junior <lccabal@misena.edu.co>
+Date:   Mon Feb 16 07:49:02 2015 -0500
+
+    Actualizado err Base de Datos
+
+commit 3a4c8ff78796615cddfc3054472bea48cb276b08
+Author: junior <lccabal@misena.edu.co>
+Date:   Mon Feb 16 07:43:44 2015 -0500
+
+    Actualizacion 5(base de datos final actualizada 2)
+
+commit 71e5efd0385f1f4ae0e236d0e6162e0c4daf1273
+Author: junior <lccabal@misena.edu.co>
+Date:   Fri Feb 13 18:05:49 2015 -0500
+
+    Actualizacion 4(base de datos Final actualizada)
+
+commit 9e0f9191679f20eb1a5f8ae245cb38ad8267751a
+Author: junior <lccabal@misena.edu.co>
+Date:   Fri Feb 13 17:16:01 2015 -0500
+
+    Actualizacion 3(Base de datos final)
+
+commit ea1894bf09400094e1d20f921973f6f2b80d9a53
+Author: junior <lccabal@misena.edu.co>
+Date:   Wed Feb 11 23:21:11 2015 -0500
+
+    Actualizacion 2(Link index2)
+
+commit 7553a1b1f9e31a1f337a975b9a64072632e4794f
+Author: junior <lccabal@misena.edu.co>
+Date:   Tue Feb 10 14:25:18 2015 -0500
+
+    actualizar index 2
+
+commit 6215b30f67520b5531b0aa6fdf51b62735fd5cfd
+Merge: 00ccb3f 35f8b46
+Author: junior <lccabal@misena.edu.co>
+Date:   Mon Feb 9 18:17:27 2015 -0500
+
+    Merge remote-tracking branch 'origin/master'
+
+commit 00ccb3f03a2a22b2efa2af3926b5887cec990c95
+Author: junior <lccabal@misena.edu.co>
+Date:   Mon Feb 9 18:08:36 2015 -0500
+
+    Commit Inicial
+
+commit 35f8b467e0eaf1e6b3aeb4f4c0afd29d26417907
+Author: junior <lccabal@misena.edu.co>
+Date:   Mon Feb 9 18:08:36 2015 -0500
+
+    Commit inicial
