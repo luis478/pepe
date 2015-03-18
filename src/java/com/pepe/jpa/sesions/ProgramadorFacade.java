@@ -5,6 +5,7 @@
  */
 package com.pepe.jpa.sesions;
 
+import com.pepe.jpa.entities.Ficha;
 import com.pepe.jpa.entities.Programador;
 import java.util.List;
 import javax.ejb.Stateless;
@@ -39,7 +40,14 @@ public class ProgramadorFacade extends AbstractFacade<Programador> {
            return q.getResultList();  
   
     }
-    
-   
-    
+     public List<Programador> findByFichaProgramador(Ficha ficha){
+        Query q= getEntityManager().createNamedQuery("findByFichaProgramador");
+        q.setParameter("idFicha", ficha);
+           return q.getResultList();   
+     }
+     public List<Programador> findByProyecto(Ficha ficha){
+        Query q= getEntityManager().createNamedQuery("Programador.findByProyecto");
+        q.setParameter("idProyecto", ficha.getIdProyecto().getIdProyecto());
+           return q.getResultList();   
+     }
 }

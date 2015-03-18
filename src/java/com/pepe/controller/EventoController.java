@@ -26,6 +26,7 @@ import com.pepe.jpa.sesions.ProyectoFacade;
 import com.pepe.jpa.sesions.ResultadoAprendizajeFacade;
 import com.pepe.jpa.sesions.UsuarioFacade;
 import com.pepe.jpa.sesions.UsuarioHasFichaFacade;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
@@ -46,7 +47,7 @@ import javax.faces.event.ActionEvent;
  */
 @ManagedBean
 @SessionScoped
-public class EventoController {
+public class EventoController implements Serializable {
 
     @EJB
     private ResultadoAprendizajeFacade resultadoAprendizajeFacade;
@@ -204,7 +205,6 @@ public class EventoController {
         this.actividadAprendizajeFacade = actividadAprendizajeFacade;
     }
 
-
     public CompetenciaFacade getCompetenciaFacade() {
         return competenciaFacade;
     }
@@ -235,29 +235,53 @@ public class EventoController {
         }
     }
 
-    
-    
+    public void sumaHoras() {
+        int acum = 0;
+        if (listaProgramador != null) {
+
+            for (Programador evento : listaProgramador) {
+                acum = acum + evento.getCantidadHora();
+            }
+            if (acum > 40) {
+                addErrorMessage("Advertencia", "La cantidad de horas sobrepasa las 40");
+            }
+        }
+    }
+
     public void prepareCreate(ActionEvent event) {
         fichaActual = new Ficha();
         fichaActual = ((Ficha) event.getComponent().getAttributes().get("ficha"));
-        listaProgramador = new ArrayList<>();
-        programadorActual = new Programador();
-        for (Actividad actividad : fichaActual.getIdProyecto().getActividadList()) {
-            for (ActividadHasResultadoAprendizaje resultado : actividadResultadoLista(actividad)) {
-                Programador programador = new Programador();
+        listaProgramador = getProgramadorFacade().findByProyecto(fichaActual);
+        programadorActual = getProgramadorFacade().find(fichaActual.getIdFicha()) == null ? new Programador(fichaActual.getIdFicha()) : getProgramadorFacade().find(fichaActual.getIdFicha());
+        boolean v;
+
+        for (ActividadHasResultadoAprendizaje resultado : getActividadHasResultadoAprendizajeFacade().findByIdActividadPoyecto(fichaActual)) {
+            v = false;
+            Programador programador;
+            for (Programador programado : listaProgramador) {
+                v = false;
+                if ((programado.getActividadHasResultadoAprendizaje().getActividad().equals(resultado.getActividad()) && programado.getActividadHasResultadoAprendizaje().getResultadoAprendizaje().equals(resultado.getResultadoAprendizaje()))) {
+                    v = true;
+                }
+
+            }
+            if (!v) {
+                 programador = new Programador();
+                 programador.setIdFicha(fichaActual);
                 programador.setActividadHasResultadoAprendizaje(resultado);
                 listaProgramador.add(programador);
             }
         }
-
     }
-    
-       
+
     public List<Usuario> getListaUsuarioSelectOne() {
         return getUsuarioHasFichaFacade().finByUsuario(fichaActual.getCodigoFicha());
 
-   }
-    
+    }
+
+    public List<Programador> getListaFichaProgramador() {
+        return getProgramadorFacade().findByFichaProgramador(programadorActual.getIdFicha());
+    }
 
     public String cargarCreate() {
         return "/ProgramaciondeProyecto/programacion";
@@ -278,9 +302,9 @@ public class EventoController {
 
     public String addProgramador() {
         try {
-            for ( Programador programador:listaProgramador) {
-                getProgramadorFacade().create(programador);
-            }  
+            for (Programador programador : listaProgramador) {
+                getProgramadorFacade().edit(programador);
+            }
             recargarLista();
             return "";
         } catch (Exception e) {

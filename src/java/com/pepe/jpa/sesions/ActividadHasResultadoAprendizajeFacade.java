@@ -8,6 +8,7 @@ package com.pepe.jpa.sesions;
 
 import com.pepe.jpa.entities.Actividad;
 import com.pepe.jpa.entities.ActividadHasResultadoAprendizaje;
+import com.pepe.jpa.entities.Ficha;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -47,4 +48,9 @@ public class ActividadHasResultadoAprendizajeFacade extends AbstractFacade<Activ
         }
 
     }
+    public List<ActividadHasResultadoAprendizaje> findByIdActividadPoyecto(Ficha ficha){
+        Query q= getEntityManager().createNamedQuery("ActividadHasResultadoAprendizaje.findByIdActividadPoyecto");
+        q.setParameter("idProyecto", ficha.getIdProyecto().getIdProyecto());
+           return q.getResultList();   
+     }
 }

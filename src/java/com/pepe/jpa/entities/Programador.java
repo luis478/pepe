@@ -21,6 +21,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.xml.bind.annotation.XmlRootElement;
@@ -36,8 +37,10 @@ import javax.xml.bind.annotation.XmlTransient;
 @NamedQueries({
     @NamedQuery(name = "Programador.findAll", query = "SELECT p FROM Programador p"),
     @NamedQuery(name = "Programador.findByIdProgramador", query = "SELECT p FROM Programador p WHERE p.idProgramador = :idProgramador"),
+    @NamedQuery(name = "Programador.findByFichaProgramador", query = "SELECT p FROM Programador p WHERE p.idFicha = :idFicha"),
     @NamedQuery(name = "Programador.findByCantidadHora", query = "SELECT p FROM Programador p WHERE p.cantidadHora = :cantidadHora"),
     @NamedQuery(name = "Programador.findByUsuarioP", query = "SELECT p FROM Programador p WHERE p.idUsuario = :idUsuario"),
+    @NamedQuery(name = "Programador.findByProyecto", query = "SELECT p FROM Programador p WHERE p.actividadHasResultadoAprendizaje.actividad.idProyecto.idProyecto = :idProyecto"),
     @NamedQuery(name = "Programador.findByTrimestre", query = "SELECT p FROM Programador p WHERE p.trimestre = :trimestre")})
 public class Programador implements Serializable {
     private static final long serialVersionUID = 1L;
@@ -64,9 +67,23 @@ public class Programador implements Serializable {
     private Usuario idUsuario;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idProgramador")
     private List<Evento> eventoList;
+     @JoinColumn(name = "id_ficha", referencedColumnName = "id_ficha")
+    @ManyToOne(optional = false)
+    private Ficha idFicha;
+    
 
     public Programador() {
     }
+
+    public Ficha getIdFicha() {
+        return idFicha;
+    }
+
+    public void setIdFicha(Ficha idFicha) {
+        this.idFicha = idFicha;
+    }
+
+    
 
     public Programador(Integer idProgramador) {
         this.idProgramador = idProgramador;
