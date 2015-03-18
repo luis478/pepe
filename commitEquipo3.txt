@@ -1,9 +1,67 @@
+commit 0616294eae2830e2f53566f9e8f6480c2cf33a17
+Merge: 21b80b2 a556d47
+Author: ShikiFuujin <shiki.fuujin@outlook.com>
+Date:   Wed Mar 18 08:51:15 2015 -0500
+
+    Actualizacion Formulacio XVIII -III - MMXV 0851
+
+commit 21b80b22f7570d3d156437c01433eb39e0e5038f
+Author: ShikiFuujin <shiki.fuujin@outlook.com>
+Date:   Wed Mar 18 08:09:05 2015 -0500
+
+    Actualizar el archivo commitEquipo3.txt
+
 commit 300901756e666a55e20512036c9961d7b54f89f6
 Merge: f047e5e 71d3374
 Author: ShikiFuujin <shiki.fuujin@outlook.com>
 Date:   Wed Mar 18 08:07:01 2015 -0500
 
     Actualizacion de Formulacion de Proyecto XVIII - III -MMXV 0806
+
+commit a556d47657d33aba13cc95c960f37ad2bde643b5
+Author: LuisCarlosCabal <lccabal@misena.edu.co>
+Date:   Wed Mar 18 07:57:11 2015 -0500
+
+    Actualizacion repositorio nuevo
+
+commit 6af9e3756d51480c11950f1a5a2dc2eca2e624bd
+Merge: d7310b2 a888f86
+Author: LuisCarlosCabal <lccabal@misena.edu.co>
+Date:   Tue Mar 17 18:27:15 2015 -0500
+
+    Merge remote-tracking branch 'origin/master'
+
+commit d7310b27c959176d379c1abc804e7dc2abb06763
+Author: LuisCarlosCabal <lccabal@misena.edu.co>
+Date:   Tue Mar 17 18:26:46 2015 -0500
+
+    Actualizacion correccion de lo de cocuy
+
+commit a888f86794ab4cb0809dc56af0ca22ea0177fc1a
+Author: luis478 <junior47895@hotmail.com>
+Date:   Tue Mar 17 18:25:56 2015 -0500
+
+    Update index.xhtml
+
+commit d31e43292f9f0a9803ba0881d21aaacb18851866
+Merge: 8a23c96 d1b5b9a
+Author: LuisCarlosCabal <lccabal@misena.edu.co>
+Date:   Tue Mar 17 18:13:07 2015 -0500
+
+    Merge remote-tracking branch 'origin/master'
+
+commit 8a23c96ccc9ccd2c36e49c243a831fe5585149f4
+Author: LuisCarlosCabal <lccabal@misena.edu.co>
+Date:   Tue Mar 17 18:12:23 2015 -0500
+
+    Actualizacion guia de aprendizaje
+
+commit d1b5b9a70a62d3465c2de1acff8cf03c2964a452
+Merge: f492fda 71d3374
+Author: JulianCocuy <julian.beron@hotmail.com>
+Date:   Tue Mar 17 18:08:19 2015 -0500
+
+    Actualizacion Valoracion
 
 commit f047e5e34e94a0a2790919c07a70818d6f901b28
 Author: ShikiFuujin <shiki.fuujin@outlook.com>
@@ -16,6 +74,18 @@ Author: ShikiFuujin <shiki.fuujin@outlook.com>
 Date:   Tue Mar 17 18:07:18 2015 -0500
 
     Actualizacion del modulo de Formulación de proyecto
+
+commit f492fdafb8ae5da95020c528849349e7b3d04ef5
+Author: JulianCocuy <julian.beron@hotmail.com>
+Date:   Tue Mar 17 18:06:13 2015 -0500
+
+    Actualizacion Valoracion
+
+commit 12e67a98816283066d4514b56b7e628effdb38bb
+Author: JulianCocuy <julian.beron@hotmail.com>
+Date:   Tue Mar 17 17:57:17 2015 -0500
+
+    Actualizacion Valoracion
 
 commit 71d3374095ca5c7d84fe83798b7768fcba47061d
 Merge: 845707e 36234fb
