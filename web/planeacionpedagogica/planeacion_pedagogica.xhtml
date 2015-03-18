@@ -61,27 +61,6 @@
                                     #{instructores}
                                 </p:dataList>
                         </p:column>
-                        <p:column> 
-                            <p:commandButton icon="ui-icon-search" action="#{actividadController.prepareView}">
-                                <f:setPropertyActionListener value="#{Actividad}" target="#{actividadController.actividadActual}"/>
-                            </p:commandButton>
-
-                            <p:commandButton icon="ui-icon-pencil" action="#{actividadController.prepareEdit}">
-                                <f:setPropertyActionListener value="#{Actividad}" target="#{actividadController.actividadActual}"/>
-                            </p:commandButton>
-
-                            <p:commandButton icon="ui-icon-trash" action="#{actividadController.deleteActividad}"
-
-                                             process="@this" update="Actividadtable">
-
-                                <p:confirm header="Confirmacion" message="Esta seguro de que desea eliminar la guia" icon="ui-icon-alert"/>
-
-                                <f:setPropertyActionListener value="#{Actividad}" target="#{actividadController.actividadActual}"/>
-
-                            </p:commandButton>
-
-                            
-                        </p:column>
                     </p:dataTable>
                 <form jsf:id="ConfirmForm">
                 <p:confirmDialog global="true" showEffect="fade" hideEffect="explode">
