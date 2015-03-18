@@ -8,16 +8,16 @@
         <title><ui:insert name="title">PEPE</ui:insert></title>
         <meta charset="UTF-8"/>
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <h:outputStylesheet name="estilo.css" library="css"/>
-        <h:outputStylesheet name="estilospepe.css" library="css"/>
-        <h:outputScript library="js" name="jsfcrud.js"/>
-        <h:outputStylesheet name="normalize.css" library="css"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="stylesheet" type="text/css" href="#{request.contextPath}/resources/css/estilo.css" media="screen"/>
+        <link rel="stylesheet" type="text/css" href="#{request.contextPath}/resources/css/estilospepe.css" media="screen"/>
+        <link rel="stylesheet" type="text/css" href="#{request.contextPath}/resources/css/normalize.css" media="screen"/>
         <link href='http://fonts.googleapis.com/css?family=Oswald:400,300,700' rel='stylesheet' type='text/css'/>
         <link rel="stylesheet" type="text/js" href="../resources/js/foundation-5.5.1/js/vendor/modernizr.js" media="screen"/>
     </head>
     <body class="Body-plantilla" jsf:id="body-plantilla">
         <header class="Header">
-            <h:form styleClass="Header-Form">
+            <h:form class="Header-Form">
                 <section class="Header-pepeForm">
                     <h:panelGrid columns="8">
                         <label class="Label1" for="nombreProgramaText">Programa de formacion:</label>
@@ -116,6 +116,7 @@
                     2015</p>
             </section>
         </footer>
+        <script src="#{request.contextPath}/resources/js/jsfcrud.js"/>
     </body>
 </html>
 

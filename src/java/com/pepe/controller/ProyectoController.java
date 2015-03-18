@@ -238,6 +238,7 @@ public class ProyectoController implements Serializable {
 
     public void asignarFicha(ActionEvent e) {
         fichaActual = (Ficha) e.getComponent().getAttributes().get("ficha");
+        getFichaActual();
     }
 
     public void addProyecto(ActionEvent ev) {

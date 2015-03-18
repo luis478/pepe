@@ -193,7 +193,6 @@ public class FichaController implements Serializable {
     public int getIdOferta() {
         if (fichaActual != null && fichaActual.getIdTipoOferta() != null) {
             idOferta = fichaActual.getIdTipoOferta().getIdTipoOferta();
-
         }
         return idOferta;
     }

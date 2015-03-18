@@ -26,7 +26,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author Junior Cabal
+ * @author ADSI-DESAROLLO
  */
 @Entity
 @Table(name = "tipo_revision")
@@ -49,6 +49,8 @@ public class TipoRevision implements Serializable {
     private String nombreTipoRevision;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idTipoRevision")
     private List<Revision> revisionList;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idTipoRevision")
+    private List<Variable> variableList;
 
     public TipoRevision() {
     }
@@ -85,6 +87,15 @@ public class TipoRevision implements Serializable {
 
     public void setRevisionList(List<Revision> revisionList) {
         this.revisionList = revisionList;
+    }
+
+    @XmlTransient
+    public List<Variable> getVariableList() {
+        return variableList;
+    }
+
+    public void setVariableList(List<Variable> variableList) {
+        this.variableList = variableList;
     }
 
     @Override

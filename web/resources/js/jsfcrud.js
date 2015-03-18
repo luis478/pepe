@@ -8,3 +8,11 @@ function handleSubmit(args, dialog, dialog2) {
         PF(dialog2).show();
     }
 }
+function handleSubmit(args, dialog) {
+    var jqDialog = jQuery('#' + dialog);
+    if (args.validationFailed) {
+        jqDialog.effect('shake', {times: 3}, 100);
+    } else {
+        PF(dialog).hide();
+    }
+}

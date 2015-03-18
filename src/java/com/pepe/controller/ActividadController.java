@@ -179,6 +179,25 @@ public class ActividadController implements Serializable {
     private void recargarlista() {
         listaActividad = null;
     }
+    public void prepareCreateGenerarGuia(ActionEvent event) {
+        actividadActual = new Actividad();
+        actividadActual = (Actividad) event.getComponent().getAttributes().get("actividad");
+        actividadAprendizajeList = new ArrayList<>();
+         
+                    actividadAprendizajeList.addAll(getActividadAprendizajeFacade().consultaActividad(actividadActual));
+           
+                    
+        //listaActividadAprendizaje=actividadActual.getActividadAprendizajeList();
+        
+    }
+    public void prepareCreateGuiaAprendizaje(ActionEvent event){
+        fichaActual = new Ficha();
+        fichaActual = (Ficha) event.getComponent().getAttributes().get("ficha");
+        faseActual = new Fase();
+        faseActual = (Fase) event.getComponent().getAttributes().get("fase");
+        listaActividad=null;
+        listaActividad = getActividadFacade().consultaPlaneacionActividades(faseActual, fichaActual.getIdProyecto());
+    }
 
     public void prepareCreate(ActionEvent event) {
         fichaActual = new Ficha();
@@ -200,6 +219,13 @@ public class ActividadController implements Serializable {
 
     public String createActividad() {
         return "/planeacionpedagogica/planeacion_pedagogica";
+    }
+    
+    public String createGuiaAprendizaje(){
+        return "/planeacionpedagogica/guia_aprendizaje";
+    }
+    public String createGenerarGuia(){
+        return "generar_guiaAprendizaje";
     }
 
     public String prepareEdit() {
@@ -404,14 +430,15 @@ public class ActividadController implements Serializable {
             return null;
         }
     }
+    public void editarDialogo(ActionEvent event){
+        actividadAprendizajeActual= (ActividadAprendizaje) event.getComponent().getAttributes().get("actividad");
+    }
 
-    public String updateActividadAprendizaje() {
+    public void updateActividadAprendizaje() {
         try {
             getActividadAprendizajeFacade().edit(actividadAprendizajeActual);
-            return "Admin_ListaCategorias";
         } catch (Exception e) {
             addErrorMessage("Error closing resource " + e.getClass().getName(), "Message: " + e.getMessage());
-            return null;
         }
     }
 

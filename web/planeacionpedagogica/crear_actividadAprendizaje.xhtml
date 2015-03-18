@@ -29,12 +29,11 @@ and open the template in the editor.
                             <h:message id="nombreActividadAprendizajeMessaje" for="nombreActividadAprendizaje" styleClass="error"/>
 
                             <h:outputLabel class="form-1" value="Descripcion Actividad de Aprendizaje:"  for="descriActividadAprendizaje"/>
-                            <input class="form-1" type="text" jsf:id="descriActividadAprendizaje" 
-                                   jsf:value="#{actividadController.actividadAprendizajeActual.descripcion}" 
-                                   required="true" >  
-                                <f:ajax execute="@this" render="descriActividadAprendizajeMessaje"/>
-                            </input>
-                            <h:message id="descriActividadAprendizajeMessaje" for="descriActividadAprendizaje" styleClass="error"/>
+                            <textarea class="form-1" type="text" jsf:id="descriActividadAprendizaje" 
+                                   jsf:value="#{actividadController.actividadAprendizajeActual.descripcion}" >  
+                                
+                            </textarea>
+                            
                             
                             
                             <h:outputLabel class="form-1" value="Horas actividad Aprendizaje:" for="nomDuracion" />
@@ -47,12 +46,9 @@ and open the template in the editor.
 
 
                             <h:outputLabel class="form-1" value="Observaciones:"  for="nomObservaciones"/>
-                            <input class="form-1" type="text" jsf:id="nomObservacionesInputText" 
-                                   jsf:value="#{actividadController.actividadAprendizajeActual.observaciones}" 
-                                   required="true" >  
-                                <f:ajax execute="@this" render="nombreActividadAprendizajeMessaje"/>
-                            </input>
-                            <h:message id="nomObservacionesMessaje" for="nomObservacionesInputText" styleClass="error"/>
+                            <textarea class="form-1" type="text" jsf:id="nomObservacionesInputText" 
+                                   jsf:value="#{actividadController.actividadAprendizajeActual.observaciones}">  
+                            </textarea>
 
 
 

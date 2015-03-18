@@ -43,6 +43,7 @@
 
                         <input class="Guardar" type="submit" value="Ingresar" jsf:action="#{loginController.login}"/>
 
+
                         <h:form>
                             <p:commandButton
                                 styleClass="Boton"
@@ -71,6 +72,7 @@
                 </div>
                 <hr size="20"/>
             </header>
+
             <h:form class="Pepe-body" id="formInicio">
                 <div class="large-12 medium-12 columns">
                     <div>
@@ -160,30 +162,59 @@
 
                 </div>
             </h:form> 
-            <hr width="100%" size="8" align="right"/>
-            <div>
-                <h:form>
-                    <p:commandButton styleClass="button"
-                                     action="programa/programaInicio.xhtml"
-                                     value="Programa"/>
-                    <h:commandButton value="Menu Planeacion pedagogica" type="button" onclick="PF('botonPlaneacionPedagogicaDlg').show();"/>
-                    <br></br>
-                    <h:commandButton value="Menu crear usuario" type="button" onclick="PF('botonCrearUsuarioDlg').show();"/>
-                    <p:commandButton process="@this" value="¡Programacion!" actionListener="#{eventoController.prepareCreate}" action="#{eventoController.cargarCreate}">
-                        <f:attribute name="ficha" value="#{fichaController.fichaSeleccionada}"/>
-                    </p:commandButton> 
-                    <h:button value="¡Crear Ficha!" outcome="/ProgramaciondeProyecto/crear_ficha.xhtml" />
+            <nav class="seccion4">
+
+                <h:form class="Form-opciones-header">
+                    <p:commandButton value="Cerrar sesión" 
+                                     update="@all" 
+                                     action="#{loginController.logout}" 
+                                     styleClass="Pepe-botones"/>
                 </h:form>
-            </div>
+
+            </nav>
+
+
+
+
+            <h:form> 
+
+                <p:commandButton value="Menu Planeacion pedagogica" 
+                                     type="button" onclick="PF('botonPlaneacionPedagogicaDlg').show();"/>
+            
+                <p:commandButton value="Menu crear usuario" type="button" onclick="PF('botonCrearUsuarioDlg').show();"/>
+                <p:commandButton process="@this" value="¡Programacion!" actionListener="#{eventoController.prepareCreate}" action="#{eventoController.cargarCreate}">
+                    <f:attribute name="ficha" value="#{fichaController.fichaSeleccionada}"/>
+                </p:commandButton> 
+
+                <p:commandButton process="@this" 
+                                 value="¡Aspectos!" 
+                                 actionListener="#{ejecucionController.prepareCreate}" 
+                                 action="#{ejecucionController.cargarCreate}">
+                    <f:attribute name="ficha" value="#{fichaController.fichaSeleccionada}"/>
+                </p:commandButton> 
+                <p:commandButton value="¡Crear Ficha!" action="/ProgramaciondeProyecto/crear_ficha.xhtml" />
+                <p:commandButton process="@this" 
+                                 value="Valoracion de proyecto" 
+                                 actionListener="#{variableController.prepareCreate}" 
+                                 action="#{variableController.cargarCreate}">
+                    <f:attribute name="ficha" value="#{fichaController.fichaSeleccionada}"/>
+                    <f:attribute name="variable" value="1"/>
+                </p:commandButton> 
+                <p:commandButton process="@this" 
+                                 value="Valoración de ambiente" 
+                                 actionListener="#{variableController.prepareCreate}" 
+                                 action="#{variableController.cargarCreate}">
+                    <f:attribute name="ficha" value="#{fichaController.fichaSeleccionada}"/>
+                    <f:attribute name="variable" value="2"/>
+                </p:commandButton>                   
+
+
+            </h:form> 
+
+
+
+            <hr width="100%" size="8" align="right"/>
             <footer class="Pepe-footer" >
-                <div class="seccion4">
-                    <h:form class="Form-opciones-header">
-                        <p:commandButton value="Cerrar sesión" 
-                                         update="@all" 
-                                         action="#{loginController.logout}" 
-                                         styleClass="Pepe-botones"/>
-                    </h:form>
-                </div>
                 <figure class="Footer-imageContainer">
                     <img src="resources/images/logosena.png" heigth="50" width="50" alt="logo sena" class="Footer-image"/>
 
@@ -225,6 +256,7 @@
         <script src="resources/foundation-5.5.1/js/foundation/foundation.js"></script>
         <script src="resources/foundation-5.5.1/js/foundation/foundation.equalizer.js"></script>
         <script>
+
                         $(document).foundation();
         </script>
         <ui:include src="/admin/dlg_menuCrearUsuario.xhtml"/>

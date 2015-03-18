@@ -1,0 +1,72 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html  xmlns="http://www.w3.org/1999/xhtml"
+       xmlns:h="http://xmlns.jcp.org/jsf/html"
+       xmlns:f="http://xmlns.jcp.org/jsf/core"
+       xmlns:jsf="http://xmlns.jcp.org/jsf"
+       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+       xmlns:p="http://primefaces.org/ui">
+   <ui:composition template="/html_plantillas/plantilla_paginas.xhtml">
+        <ui:define name="title">Lista Guia Aprendizaje</ui:define>
+        <ui:define name="body">
+            <form jsf:id="ListaActividad">
+                <h1 class="Titulo-plantillas"><h:outputText value="Lista de Actividades de proyecto"/></h1>
+                    <p:commandButton  value="Crear Actividad" action="#{actividadController.createActividadProyecto}"/>
+                    <p:button  value="Inicio" outcome="/index"/>
+                    <p:dataTable  value="#{actividadController.listaActividad}" var="Actividad"
+                                 paginator="true" rows="10" id="Actividadtable"
+                                 paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}" 
+                                 rowsPerPageTemplate="5,10,15">
+
+
+
+                        <p:column filterBy="#{Actividad.nombreActividadProyecto}" headerText="NombreActividad" filterMatchMode="contains">
+                            <h:outputText value="#{Actividad.nombreActividadProyecto}"/>
+                        </p:column>
+
+                        <p:column filterBy="#{Actividad.duracion}" headerText="Duracion" filterMatchMode="contains">
+                            <h:outputText value="#{Actividad.duracion}"/>
+                        </p:column>
+
+                        <p:column filterBy="#{Actividad.idProyecto.nombreProyecto}" headerText="Proyecto" filterMatchMode="contains">
+                            <h:outputText value="#{Actividad.idProyecto.nombreProyecto}"/>
+                        </p:column>
+
+                        <p:column filterBy="#{Actividad.idFase.fase}" headerText="fase" filterMatchMode="contains">
+                            <h:outputText value="#{Actividad.idFase.fase}"/>
+                        </p:column>
+
+                        <p:column> 
+                            <p:commandButton icon="ui-icon-search" action="#{actividadController.prepareView}">
+                                <f:setPropertyActionListener value="#{Actividad}" target="#{actividadController.actividadActual}"/>
+                            </p:commandButton>
+
+                            <p:commandButton icon="ui-icon-pencil" action="#{actividadController.prepareEdit}">
+                                <f:setPropertyActionListener value="#{Actividad}" target="#{actividadController.actividadActual}"/>
+                            </p:commandButton>
+
+                            <p:commandButton icon="ui-icon-trash" action="#{actividadController.deleteActividad}"
+
+                                             process="@this" update="Actividadtable">
+
+                                <p:confirm header="Confirmacion" message="Esta seguro de que desea eliminar la guia" icon="ui-icon-alert"/>
+
+                                <f:setPropertyActionListener value="#{Actividad}" target="#{actividadController.actividadActual}"/>
+
+                            </p:commandButton>
+
+                            <p:commandButton process="@this" value="Generar Guia" actionListener="#{actividadController.prepareCreateGenerarGuia}" action="#{actividadController.createGenerarGuia}">
+                                <f:attribute name="actividad" value="#{Actividad}"/>            
+                             </p:commandButton>
+                        </p:column>
+                    </p:dataTable>
+                <form jsf:id="ConfirmForm">
+                <p:confirmDialog global="true" showEffect="fade" hideEffect="explode">
+                    <p:commandButton value="Si" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+                    <p:commandButton value="No" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+                </p:confirmDialog>
+                </form>    
+            </form> 
+        </ui:define>
+   </ui:composition>
+</html>
