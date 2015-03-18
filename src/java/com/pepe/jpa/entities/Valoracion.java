@@ -57,9 +57,6 @@ public class Valoracion implements Serializable {
     @JoinColumn(name = "id_variable", referencedColumnName = "id_variable")
     @ManyToOne
     private Variable idVariable;
-    @JoinColumn(name = "id_variable_ambiente", referencedColumnName = "id_variable_ambiente")
-    @ManyToOne
-    private VariableAmbiente idVariableAmbiente;
 
     public Valoracion() {
     }
@@ -112,14 +109,6 @@ public class Valoracion implements Serializable {
 
     public void setIdVariable(Variable idVariable) {
         this.idVariable = idVariable;
-    }
-
-    public VariableAmbiente getIdVariableAmbiente() {
-        return idVariableAmbiente;
-    }
-
-    public void setIdVariableAmbiente(VariableAmbiente idVariableAmbiente) {
-        this.idVariableAmbiente = idVariableAmbiente;
     }
 
     @Override

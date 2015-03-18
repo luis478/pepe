@@ -21,11 +21,15 @@
                         </p:selectOneMenu>
                         <p:message id="faseSelectOneMsg" for="faseSelectOne"/>
                     </article>
-                    <p:commandButton process="@this" value="ingresar planeacion" actionListener="#{actividadController.prepareCreate}" action="#{actividadController.createActividad}">
+                        <p:commandButton process="@this" value="ingresar planeacion" actionListener="#{actividadController.prepareCreate}" action="#{actividadController.createActividad}">
+                                         <f:attribute name="fase" value="#{faseController.faseSeleccionada}"/>
+                                         <f:attribute name="ficha" value="#{fichaController.fichaSeleccionada}"/>             
+                        </p:commandButton>
+                   <br>
+                        <p:commandButton process="@this" value="Ingresar Guia aprendizaje" actionListener="#{actividadController.prepareCreateGuiaAprendizaje}" action="#{actividadController.createGuiaAprendizaje}">
                                      <f:attribute name="fase" value="#{faseController.faseSeleccionada}"/>
                                      <f:attribute name="ficha" value="#{fichaController.fichaSeleccionada}"/>             
-                    </p:commandButton>
-                   <br>
+                        </p:commandButton>
                    </br>
                     <h:button value="Tecnica Didactica" outcome="/TecnicaDidactica/lista_Tecnica_Didactica"/>
                     <h:button value="Actividad" outcome="/Actividad/lista_Actividad"/>

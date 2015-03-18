@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package com.pepe.jpa.entities;
 
 import java.io.Serializable;
@@ -14,7 +13,9 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.Lob;
+import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
@@ -26,15 +27,17 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author Junior Cabal
+ * @author ADSI-DESAROLLO
  */
 @Entity
 @Table(name = "variable")
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Variable.findAll", query = "SELECT v FROM Variable v"),
+    @NamedQuery(name = "Variable.findByidTipoRevision", query = "SELECT v FROM Variable v WHERE v.idTipoRevision = :idTipoRevision"),
     @NamedQuery(name = "Variable.findByIdVariable", query = "SELECT v FROM Variable v WHERE v.idVariable = :idVariable")})
 public class Variable implements Serializable {
+
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -49,6 +52,9 @@ public class Variable implements Serializable {
     private String nombreVariable;
     @OneToMany(mappedBy = "idVariable")
     private List<Valoracion> valoracionList;
+    @JoinColumn(name = "id_tipo_revision", referencedColumnName = "id_tipo_revision")
+    @ManyToOne(optional = false)
+    private TipoRevision idTipoRevision;
 
     public Variable() {
     }
@@ -87,6 +93,14 @@ public class Variable implements Serializable {
         this.valoracionList = valoracionList;
     }
 
+    public TipoRevision getIdTipoRevision() {
+        return idTipoRevision;
+    }
+
+    public void setIdTipoRevision(TipoRevision idTipoRevision) {
+        this.idTipoRevision = idTipoRevision;
+    }
+
     @Override
     public int hashCode() {
         int hash = 0;
@@ -111,5 +125,5 @@ public class Variable implements Serializable {
     public String toString() {
         return "com.pepe.jpa.entities.Variable[ idVariable=" + idVariable + " ]";
     }
-    
+
 }

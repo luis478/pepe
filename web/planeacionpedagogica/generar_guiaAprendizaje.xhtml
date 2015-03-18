@@ -6,12 +6,13 @@
        xmlns:jsf="http://xmlns.jcp.org/jsf"
        xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
        xmlns:p="http://primefaces.org/ui">
+    
+    
    <ui:composition template="/html_plantillas/plantilla_paginas.xhtml">
-        <ui:define name="title">Planeacion pedagogica</ui:define>
+        <ui:define name="title">Genearar guia</ui:define>
         <ui:define name="body">
-            <form jsf:id="ListaActividad">
+            <h:form id="formtable">
                 <h1 class="Titulo-plantillas"><h:outputText value="lista Actividad de actividad de aprendizaje"/></h1>
-                    <p:commandButton value="Crear Actividad de aprendizaje" action="#{actividadController.crearActividadAprendizaje}"/>                    <p:button  value="Inicio" outcome="/index"/>
                     <p:dataTable  value="#{actividadController.actividadAprendizajeList}" var="Actividad"
                                  paginator="true" rows="10" id="Actividadtable"
                                  paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}" 
@@ -62,25 +63,10 @@
                                 </p:dataList>
                         </p:column>
                         <p:column> 
-                            <p:commandButton icon="ui-icon-search" action="#{actividadController.prepareView}">
-                                <f:setPropertyActionListener value="#{Actividad}" target="#{actividadController.actividadActual}"/>
+                            <p:commandButton icon="ui-icon-pencil" process="@this" update=":editarActividad" 
+                                             actionListener="#{actividadController.editarDialogo}" onclick="PF('botonEditarGuiaDlg').show()">
+                                <f:attribute value="#{Actividad}" name="actividad"/>
                             </p:commandButton>
-
-                            <p:commandButton icon="ui-icon-pencil" action="#{actividadController.prepareEdit}">
-                                <f:setPropertyActionListener value="#{Actividad}" target="#{actividadController.actividadActual}"/>
-                            </p:commandButton>
-
-                            <p:commandButton icon="ui-icon-trash" action="#{actividadController.deleteActividad}"
-
-                                             process="@this" update="Actividadtable">
-
-                                <p:confirm header="Confirmacion" message="Esta seguro de que desea eliminar la guia" icon="ui-icon-alert"/>
-
-                                <f:setPropertyActionListener value="#{Actividad}" target="#{actividadController.actividadActual}"/>
-
-                            </p:commandButton>
-
-                            
                         </p:column>
                     </p:dataTable>
                 <form jsf:id="ConfirmForm">
@@ -89,9 +75,12 @@
                     <p:commandButton value="No" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
                 </p:confirmDialog>
                 </form>    
-            </form> 
+            </h:form> 
+        <ui:include src="dlg_editarGuiaAprendizaje.xhtml"/>
         </ui:define>
+        
    </ui:composition>
 </html>
+
 
 
