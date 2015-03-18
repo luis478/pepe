@@ -59,8 +59,9 @@
                        styleClass="error"/>
             <p:commandButton value="Guardar"
                              id="botonGuardar"
+                             update=":actividadCrearVentanaForm"
                              actionListener="#{proyectoController.addActividad}"
-                             oncomplete="handleSubmit(args,'actividadCrearVentana','');">
+                             oncomplete="handleSubmit(args,'actividadCrearVentana','actividadListVentana');">
             </p:commandButton>
         </h:form>
     </p:dialog>

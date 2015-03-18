@@ -25,14 +25,14 @@ import javax.faces.convert.FacesConverter;
 
 @ManagedBean
 @SessionScoped
-public class TecnicadidacticaController implements Serializable {
+public class TecnicaDidacticaController implements Serializable {
 
     private TecnicaDidactica tecnicaActual;
     private List<TecnicaDidactica> listaTecnica = null;
     @EJB
     private TecnicaDidacticaFacade tecnicaFacade;
     
-    public TecnicadidacticaController() {
+    public TecnicaDidacticaController() {
         
     }
 
@@ -136,4 +136,50 @@ public class TecnicadidacticaController implements Serializable {
                 = new FacesMessage(FacesMessage.SEVERITY_INFO, title, msg);
         FacesContext.getCurrentInstance().addMessage("successInfo", facesMsg);
     }
+    public TecnicaDidactica getTecnicaDidactica(java.lang.Integer id) {
+        return getTecnicaFacade().find(id);
+    }
+
+    @FacesConverter(forClass = TecnicaDidactica.class)
+    public static class TecnicaDidacticaControllerConverter implements Converter {
+
+        @Override
+        public Object getAsObject(FacesContext facesContext, UIComponent component, String value) {
+            if (value == null || value.length() == 0) {
+                return null;
+            }
+            TecnicaDidacticaController controller = (TecnicaDidacticaController) facesContext.getApplication().getELResolver().
+                    getValue(facesContext.getELContext(), null, "tecnicaDidacticaController");
+            return controller.getTecnicaDidactica(getKey(value));
+        }
+
+        java.lang.Integer getKey(String value) {
+            java.lang.Integer key;
+            key = Integer.valueOf(value);
+            return key;
+        }
+
+        String getStringKey(java.lang.Integer value) {
+            StringBuilder sb = new StringBuilder();
+            sb.append(value);
+            return sb.toString();
+        }
+
+        @Override
+        public String getAsString(FacesContext facesContext, UIComponent component, Object object) {
+            if (object == null) {
+                return null;
+            }
+            if (object instanceof TecnicaDidactica) {
+                TecnicaDidactica o = (TecnicaDidactica) object;
+                return getStringKey(o.getIdTecnicaDidactica());
+            } else {
+                throw new IllegalArgumentException("object " + object + " is of type " + object.getClass().getName() + "; expected type: " + TecnicaDidactica.class.getName());
+            }
+        }
+
+    }
+
+         
+         
 }

@@ -392,7 +392,7 @@ public class UsuarioController implements Serializable {
     }
 
     public Usuario getUsuario(java.lang.Integer id) {
-        return usuarioFacade.find(id);
+        return getUsuarioFacade().find(id);
     }
 
     @FacesConverter(forClass = Usuario.class)

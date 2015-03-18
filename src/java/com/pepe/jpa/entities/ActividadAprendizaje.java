@@ -60,13 +60,11 @@ public class ActividadAprendizaje implements Serializable {
     @Column(name = "duracion_actividad_aprendizaje")
     private int duracionActividadAprendizaje;
     @Basic(optional = false)
-    @NotNull
     @Lob
     @Size(min = 1, max = 65535)
     @Column(name = "observaciones")
     private String observaciones;
     @Basic(optional = false)
-    @NotNull
     @Lob
     @Size(min = 1, max = 65535)
     @Column(name = "descripcion")
