@@ -236,13 +236,25 @@ public class EventoController implements Serializable{
         }
     }
 
+    public void sumaHoras(){
+        int acum = 0;
+        if (listaProgramador != null) {
+
+            for (Programador evento : listaProgramador) {
+                acum = acum + evento.getCantidadHora();
+            }
+            if (acum > 40) {
+                addErrorMessage("Advertencia", "La cantidad de horas sobrepasa las 40");
+            }
+        }
+    }
     
     
     public void prepareCreate(ActionEvent event) {
         fichaActual = new Ficha();
         fichaActual = ((Ficha) event.getComponent().getAttributes().get("ficha"));
         listaProgramador = new ArrayList<>();
-        programadorActual = new Programador();
+        programadorActual = getProgramadorFacade().find(fichaActual.getIdFicha())== null? new Programador(fichaActual.getIdFicha()): getProgramadorFacade().find(fichaActual.getIdFicha());
         for (Actividad actividad : fichaActual.getIdProyecto().getActividadList()) {
             for (ActividadHasResultadoAprendizaje resultado : actividadResultadoLista(actividad)) {
                 Programador programador = new Programador();
@@ -259,6 +271,9 @@ public class EventoController implements Serializable{
 
    }
     
+    public List<Programador> getListaFichaProgramador(){
+        return getProgramadorFacade().findByFichaProgramador(programadorActual.getIdFicha());
+    }
 
     public String cargarCreate() {
         return "/ProgramaciondeProyecto/programacion";
@@ -280,7 +295,7 @@ public class EventoController implements Serializable{
     public String addProgramador() {
         try {
             for ( Programador programador:listaProgramador) {
-                getProgramadorFacade().create(programador);
+                getProgramadorFacade().edit(programador);
             }  
             recargarLista();
             return "";

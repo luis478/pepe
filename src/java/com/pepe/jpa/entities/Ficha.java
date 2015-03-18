@@ -92,6 +92,8 @@ public class Ficha implements Serializable {
     private List<UsuarioHasFicha> usuarioHasFichaList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idFicha")
     private List<Seguimiento> seguimientoList;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idFicha")
+    private List<Programador> programadorList;
 
     public Ficha() {
     }
@@ -110,6 +112,16 @@ public class Ficha implements Serializable {
     public Integer getIdFicha() {
         return idFicha;
     }
+
+    public List<Programador> getProgramadorList() {
+        return programadorList;
+    }
+
+    public void setProgramadorList(List<Programador> programadorList) {
+        this.programadorList = programadorList;
+    }
+    
+    
 
     public void setIdFicha(Integer idFicha) {
         this.idFicha = idFicha;
@@ -139,6 +151,7 @@ public class Ficha implements Serializable {
         this.estado = estado;
     }
 
+    
     public CentroFormacion getIdCentroFormacion() {
         return idCentroFormacion;
     }
