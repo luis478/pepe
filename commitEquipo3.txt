@@ -1,8 +1,40 @@
+commit 300901756e666a55e20512036c9961d7b54f89f6
+Merge: f047e5e 71d3374
+Author: ShikiFuujin <shiki.fuujin@outlook.com>
+Date:   Wed Mar 18 08:07:01 2015 -0500
+
+    Actualizacion de Formulacion de Proyecto XVIII - III -MMXV 0806
+
+commit f047e5e34e94a0a2790919c07a70818d6f901b28
+Author: ShikiFuujin <shiki.fuujin@outlook.com>
+Date:   Tue Mar 17 18:07:58 2015 -0500
+
+    Actualizacion luego del commit principal de Formulación
+
 commit c61ca8261cc000edd0ac3420ae6bf1c33748256e
 Author: ShikiFuujin <shiki.fuujin@outlook.com>
 Date:   Tue Mar 17 18:07:18 2015 -0500
 
     Actualizacion del modulo de Formulación de proyecto
+
+commit 71d3374095ca5c7d84fe83798b7768fcba47061d
+Merge: 845707e 36234fb
+Author: LuisCarlosCabal <lccabal@misena.edu.co>
+Date:   Tue Mar 17 14:14:03 2015 -0500
+
+    Merge remote-tracking branch 'origin/master'
+
+commit 845707eaabc1a9f10a2b5b231401754eb7184cd1
+Author: LuisCarlosCabal <lccabal@misena.edu.co>
+Date:   Tue Mar 17 14:06:00 2015 -0500
+
+    actualizacion planeacion pedagogica
+
+commit 36234fb4888b16c76f180c181c1e862bf52a7f0d
+Author: Yuly Castañeda <yjcastaneda7@misena.edu.co>
+Date:   Mon Mar 16 11:22:53 2015 -0500
+
+    modulo actualizado de ejecucion
 
 commit 5f79f3ada9be6cdd4f9c1aead6672103334553fd
 Author: ShikiFuujin <shiki.fuujin@outlook.com>
