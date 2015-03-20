@@ -8,6 +8,7 @@ package com.pepe.controller;
 
 import com.pepe.jpa.entities.Recurso;
 import com.pepe.jpa.sesions.RecursoFacade;
+import java.io.Serializable;
 import java.util.List;
 import javax.ejb.EJB;
 import javax.faces.application.FacesMessage;
@@ -24,7 +25,7 @@ import javax.faces.convert.FacesConverter;
  */
 @ManagedBean
 @SessionScoped
-public class RecursoController {
+public class RecursoController implements Serializable{
 
     @EJB
     private RecursoFacade recursoFacade;

@@ -11,6 +11,13 @@
               draggable="false"
               styleClass="Dialogo">
         <h:form id="competenciaCrearVentanaForm">
+            <h:selectOneMenu id="idTipoResultado"
+                             value="#{programaController.idTipoC}">
+                <f:selectItem itemLabel="Tipo Competencia.." />
+                <f:selectItems value="#{programaController.tipoCompetenciaList}"
+                               var="tc"
+                               itemValue="#{tc.idTipoCompetencia}"/>
+            </h:selectOneMenu>
             <input type="text"
                    jsf:id="crearCompetencia"
                    jsf:value="#{programaController.competenciaActual.codigo}"
@@ -44,10 +51,12 @@
             <h:message id="crearCompetenciaHorasmsg"
                        for="crearCompetenciaHoras"
                        styleClass="error"/>
-            <p:commandButton update=":competenciaForm"
-                             value="Guardar"
+            <p:commandButton value="Guardar"
+                             id="botonGuardar"
+                             update=":competenciaCrearVentanaForm :competenciaForm"
                              action="#{programaController.crearCompetencia()}"
-                             oncomplete="handleSubmit(args,'competenciaCrearVentana','');"/>
+                             oncomplete="PF('competenciaCrearVentana').hide()">
+            </p:commandButton>
         </h:form>
     </p:dialog>
 </html>

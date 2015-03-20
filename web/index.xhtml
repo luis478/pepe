@@ -12,181 +12,252 @@
         <meta charset="UTF-8"/>
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <link rel="stylesheet" type="text/css" href="resources/css/estilo.css" media="screen" />
-        <link rel="stylesheet" type="text/css" href="resources/css/normalize.css" media="screen"/>
+        <link rel="stylesheet" type="text/css" href="resources/css/foundation.css" media="screen"/>
         <link href='http://fonts.googleapis.com/css?family=Oswald:400,300,700' rel='stylesheet' type='text/css'/>
         <link rel="stylesheet" type="text/js" href="resources/foundation-5.5.1/js/vendor/modernizr.js" media="screen"/>
 
     </head>
-  <body jsf:id="body" class='Body'>
-       <h:panelGroup rendered="#{!loginController.authenticated}">
-           
-          <section class='Pepe-inicio'>
+    <body jsf:id="body" class='Body'>
+        <h:panelGroup rendered="#{!loginController.authenticated}">
+
+            <section class='Pepe-inicio'>
                 <figure class='Pepe-inicioContenedor'>
                     <img src="resources/images/Pepelogo1.png" class='Pepe-inicioLogo' height="240"/> 
                 </figure>    
-            <p class='Pepe-inicioDescripcion'>
-            Programador Estrategico de
-            <br></br>
-            Proyectos Academicos
-            </p>
-        <h:panelGroup>
+                <p class='Pepe-inicioDescripcion'>
+                    Programador Estrategico de
+                    <br></br>
+                    Proyectos Academicos
+                </p>
+                <h:panelGroup>
 
-                <form jsf:id="LoginForm" class='Pepe-form1'>
+                    <form jsf:id="LoginForm" class='Pepe-form1'>
 
-                   <h:panelGroup id="messagePanel" layout="block">
-                       <p:messages/>
-                   </h:panelGroup>
-                    <label for="comments" class='Pepe-inicioLabel1'><font  size="+1">Ingreso de Usuario Registrado</font></label>
-                    <input jsf:id="user" type="text" class='Pepe-formInput9' placeholder="Usuario" jsf:value="#{loginController.username}" required="true"/>
-                    <input jsf:id="password" type="password" class='Pepe-formInput9' placeholder="Contraseña" jsf:value="#{loginController.password}" required="true"/>
-                    <br/>
+                        <h:panelGroup id="messagePanel" layout="block">
+                            <p:messages/>
+                        </h:panelGroup>
+                        <label for="comments" class='Pepe-inicioLabel1'><font  size="+1">Ingreso de Usuario Registrado</font></label>
+                        <input jsf:id="user" type="text" class='Pepe-formInput9' placeholder="Usuario" jsf:value="#{loginController.username}" required="true"/>
+                        <input jsf:id="password" type="password" class='Pepe-formInput9' placeholder="Contraseña" jsf:value="#{loginController.password}" required="true"/>
+                        <br/>
 
                         <input class="Guardar" type="submit" value="Ingresar" jsf:action="#{loginController.login}"/>
 
-               
+
+                        <h:form>
+                            <p:commandButton
+                                styleClass="Boton"
+                                value="programa"
+                                action="programa/programaInicio.xhtml"
+                                actionListener="#{programaController.anular}">
+                            </p:commandButton>
+                        </h:form>
+
                         <a class="Pepe-inicioLabel1" href="#"><font  size="+1">¿Olvidaste tu contraseña?</font></a>     
-                </form>
-                    
-          </h:panelGroup>
-        </section> 
+                    </form>
+
+                </h:panelGroup>
+            </section> 
             <section class='Pepe-figureContainer'>
                 <figure class='Pepe-formLogo'>
                     <img src="resources/images/logosena.png" heigth="70" width="100" alt="logo sena" class='Pepe-formImage'/> 
                 </figure>
             </section>
         </h:panelGroup>
-      <h:panelGroup rendered="#{loginController.authenticated}">
-          <header class="Header">
-            <div class="Header-left">
-                <h1 class="Titulo-pepe">P.E.P.A</h1>
-                Programador Estrategico de Proyectos Academicos
-            </div>
-            <hr size="20"/>
-        </header>
-            <form class="Pepe-body" jsf:id="formInicio">
-                <section class="seccion1">
+        <h:panelGroup rendered="#{loginController.authenticated}">
+            <header class="Header">
+                <div class="Header-left">
+                    <h1 class="Titulo-pepe">P.E.P.A</h1>
+                    Programador Estrategico de Proyectos Academicos
+                </div>
+                <hr size="20"/>
+            </header>
 
-                    <article class="articulo1">
-                        <label for="comments" class="Pepe-articuloLabel">Programa de Formación</label>
-                        <input  type="text" class="Pepe-formInput1" jsf:value="#{fichaController.fichaSeleccionada.programa.nombrePrograma}" jsf:id="programa"/>
-                    </article>
+            <h:form class="Pepe-body" id="formInicio">
+                <div class="large-12 medium-12 columns">
+                    <div>
+                        <div class="large-12 medium-12 columns">
+                            <label for="comments" 
+                                   class="Pepe-articuloLabel">N° de ficha</label>
+                            <h:selectOneMenu id="fichaselectone"
+                                             value="#{fichaController.fichaSeleccionada}">
+                                <f:selectItem itemLabel="Seleccionar uno.." />
+                                <f:selectItems value="#{fichaController.listaFicha}" 
+                                               var="ficha" 
+                                               itemValue="#{ficha}"/>  
+                                <p:ajax process="fichaselectone" 
+                                        update="formInicio fichaselectoneMsg"/>
+                            </h:selectOneMenu>
+                            <h:message id="fichaselectoneMsg" 
+                                       for="fichaselectone"/>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="large-4 medium-4 columns">
+                            <label for="comments" 
+                                   class="Pepe-articuloLabel">Codigo</label>
+                            <input  type="text"  
+                                    disabled="true" 
+                                    class="Pepe-formInput2" 
+                                    jsf:value="#{fichaController.fichaSeleccionada.programa.programaPK.codigo}" 
+                                    jsf:id="codigo"/>
+                        </div>
+                        <div class="large-4 medium-4 columns">
+                            <label for="comments" 
+                                   class="Pepe-articuloLabel">Programa de Formación</label>
+                            <input  type="text" 
+                                    disabled="true" 
+                                    class="Pepe-formInput1" 
+                                    jsf:value="#{fichaController.fichaSeleccionada.programa.nombrePrograma}" 
+                                    jsf:id="programa"/>
+                        </div>
+                        <div class="large-4 medium-4 columns">
+                            <label for="comments" 
+                                   class="Pepe-articuloLabel">Version</label>
+                            <input  type="text" 
+                                    disabled="true" 
+                                    class="Pepe-formInput2" 
+                                    jsf:value="#{fichaController.fichaSeleccionada.programa.programaPK.version}" 
+                                    jsf:id="version"/>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="large-4 medium-4 columns">
+                            <label for="comments" 
+                                   class="Pepe-articuloLabel">Nombre del proyecto</label>
+                            <input  type="text"  
+                                    disabled="true" 
+                                    class="Pepe-formInput3" 
+                                    jsf:value="#{fichaController.fichaSeleccionada.idProyecto.nombreProyecto}" 
+                                    jsf:id="proyecto"/>
+                        </div>
+                        <div class="large-4 medium-4 columns">
+                            <label for="comments" 
+                                   class="Pepe-articuloLabel">Codigo</label>
+                            <input  type="text"  
+                                    disabled="true" 
+                                    class="Pepe-formInput2" 
+                                    jsf:value="#{fichaController.fichaSeleccionada.idProyecto.codigoProyecto}" 
+                                    jsf:id="codigoProyecto"/>
+                        </div>
+                        <div class="large-4 medium-4 columns">
+                            <label for="comments"  
+                                   class="Pepe-articuloLabel">Nombre de líder ejecutor</label>
+                            <input  type="text" 
+                                    disabled="true" 
+                                    class="Pepe-formInput4" 
+                                    jsf:value="#{fichaController.usuarioFicha.usuario}" 
+                                    jsf:id="nombreLider"/>      
+                        </div>
+                    </div>
 
-                    <article class="articulo2">
-                        <label for="comments" class="Pepe-articuloLabel">Codigo</label>
-                        <input  type="text" class="Pepe-formInput2" jsf:value="#{fichaController.fichaSeleccionada.programa.programaPK.codigo}" jsf:id="codigo"/>
-                    </article>
+                    <h:commandButton action="/proyecto/proyectoCrear.xhtml"
+                                     id="botonF"
+                                     actionListener="#{proyectoController.asignarFicha}"
+                                     styleClass="small-3 button"
+                                     disabled="#{fichaController.fichaBoolean()}"
+                                     value="consultar">
+                        <f:attribute name="ficha" value="#{fichaController.fichaSeleccionada}"/>
+                    </h:commandButton>
 
-                    <article class="articulo2">
-                        <label for="comments" class="Pepe-articuloLabel">Version</label>
-                        <input  type="text" class="Pepe-formInput2" jsf:value="#{fichaController.fichaSeleccionada.programa.programaPK.version}" jsf:id="version"/>
-                    </article>
+                </div>
+            </h:form> 
+            <nav class="seccion4">
 
-                   
-                </section>
+                <h:form class="Form-opciones-header">
+                    <p:commandButton value="Cerrar sesión" 
+                                     update="@all" 
+                                     action="#{loginController.logout}" 
+                                     styleClass="Pepe-botones"/>
+                </h:form>
 
-
-                <section class="seccion2">
-
-                    <article class="articulo1">
-                        <label for="comments" class="Pepe-articuloLabel">Nombre del proyecto</label>
-                        <input  type="text" class="Pepe-formInput3" jsf:value="#{fichaController.fichaSeleccionada.idProyecto.nombreProyecto}" jsf:id="proyecto"/>
-                    </article>
-
-                    <article class="articulo1">
-                        <label for="comments" class="Pepe-articuloLabel">Codigo</label>
-                        <input  type="text" class="Pepe-formInput2" jsf:value="#{fichaController.fichaSeleccionada.idProyecto.codigoProyecto}" jsf:id="codigoProyecto"/>
-                    </article>
-
-                    <article class="articulo1">
-                        <label for="comments" class="Pepe-articuloLabel">N° de ficha</label>
-                        <p:selectOneMenu id="fichaselectone" value="#{fichaController.fichaSeleccionada}">
-                            <f:selectItem itemLabel="Seleccionar uno.." />
-                            <f:selectItems value="#{fichaController.listaFicha}" var="ficha" itemValue="#{ficha}"/>  
-                            <p:ajax process="fichaselectone" update="formInicio fichaselectoneMsg"/>
-                        </p:selectOneMenu>
-                        <p:message id="fichaselectoneMsg" for="fichaselectone"/>
-                    </article>
-
-                </section>
-
-                <section class="seccion3">
-                    <article class="articulo1">
-                        <label for="comments" class="Pepe-articuloLabel">Nombre de líder ejecutor</label>
-                        <input  type="text" class="Pepe-formInput4" jsf:value="#{fichaController.usuarioFicha.usuario}" jsf:id="nombreLider"/>
-                    </article>
-                </section>
+            </nav>
 
 
 
-                <nav class="seccion4">
-                    <h:form class="Form-opciones-header">
-
-                        <p:commandButton value="Cerrar sesión" update="@all" action="#{loginController.logout}" styleClass="Pepe-botones"/>
-
-                    </h:form>
-                </nav>
-
-
-            </form>
 
             <h:form> 
 
-                <h:commandButton value="Menu Planeacion pedagogica" type="button" onclick="PF('botonPlaneacionPedagogicaDlg').show();"/>
-                <br></br>
-                <h:commandButton value="Menu crear usuario" type="button" onclick="PF('botonCrearUsuarioDlg').show();"/>
-                  <p:commandButton process="@this" value="¡Programacion!" actionListener="#{eventoController.prepareCreate}" action="#{eventoController.cargarCreate}">
+                <p:commandButton value="Menu Planeacion pedagogica" 
+                                     type="button" onclick="PF('botonPlaneacionPedagogicaDlg').show();"/>
+            
+                <p:commandButton value="Menu crear usuario" type="button" onclick="PF('botonCrearUsuarioDlg').show();"/>
+                <p:commandButton process="@this" value="¡Programacion!" actionListener="#{eventoController.prepareCreate}" action="#{eventoController.cargarCreate}">
                     <f:attribute name="ficha" value="#{fichaController.fichaSeleccionada}"/>
                 </p:commandButton> 
-                 <h:button value="¡Crear Ficha!" outcome="/ProgramaciondeProyecto/crear_ficha.xhtml" />
-                 
-            </h:form> 
-            
-            
-        
-        <hr width="100%" size="8" align="right"/>
-        <footer class="Pepe-footer" >
-            <figure class="Footer-imageContainer">
-                <img src="resources/images/logosena.png" heigth="50" width="50" alt="logo sena" class="Footer-image"/>
 
-            </figure>
-            <section class="Pepe-redes">
-                <article class="ico">
-                    <a href="https://www.facebook.com/sena.general" target="_blank" class="icon-facebook" style="
-                       text-decoration: blink"></a>
-                </article> 
-                <article class="ico">
-                    <a href="https://twitter.com/senacomunica" target="_black" class="icon-twitter" style="
-                       text-decoration: blink"></a>
-                </article> 
-                <article class="ico">
-                    <a href="https://plus.google.com/+senacolombia/posts" target="_black" class="icon-googleplus" style="
-                       text-decoration: blink"> </a>
-                </article> 
-                <article class="ico">
-                    <a href="http://www.pinterest.com/senacomunica/" target="_black" class="icon-pinterest" style="
-                       text-decoration: blink;"> </a>
-                </article> 
-            </section>
-            <section>
-                <p class="Footer-description"> 
-                       Servicio Nacional de Aprendizaje SENA – Centro de Bioctecnologia Industrial- carrera 30 #40-25, Palmira-valle 
-                    <br></br>
-                       Línea gratuita de atención al ciudadano 275 0978 – Resto del país 018000 910270
-                    <br></br>
-                       Horario de atención: lunes a viernes de 8:00 am a 5:30 pm
-                    <br></br>
-                       Todos los derechos reservados ©
-                    <br></br>
-                    2015</p>
-            </section>
-        </footer>
+                <p:commandButton process="@this" 
+                                 value="¡Aspectos!" 
+                                 actionListener="#{ejecucionController.prepareCreate}" 
+                                 action="#{ejecucionController.cargarCreate}">
+                    <f:attribute name="ficha" value="#{fichaController.fichaSeleccionada}"/>
+                </p:commandButton> 
+                <p:commandButton value="¡Crear Ficha!" action="/ProgramaciondeProyecto/crear_ficha.xhtml" />
+                <p:commandButton process="@this" 
+                                 value="Valoracion de proyecto" 
+                                 actionListener="#{variableController.prepareCreate}" 
+                                 action="#{variableController.cargarCreate}">
+                    <f:attribute name="ficha" value="#{fichaController.fichaSeleccionada}"/>
+                    <f:attribute name="variable" value="1"/>
+                </p:commandButton> 
+                <p:commandButton process="@this" 
+                                 value="Valoración de ambiente" 
+                                 actionListener="#{variableController.prepareCreate}" 
+                                 action="#{variableController.cargarCreate}">
+                    <f:attribute name="ficha" value="#{fichaController.fichaSeleccionada}"/>
+                    <f:attribute name="variable" value="2"/>
+                </p:commandButton>                   
+
+
+            </h:form> 
+
+
+
+            <hr width="100%" size="8" align="right"/>
+            <footer class="Pepe-footer" >
+                <figure class="Footer-imageContainer">
+                    <img src="resources/images/logosena.png" heigth="50" width="50" alt="logo sena" class="Footer-image"/>
+
+                </figure>
+                <section class="Pepe-redes">
+                    <article class="ico">
+                        <a href="https://www.facebook.com/sena.general" target="_blank" class="icon-facebook" style="
+                           text-decoration: blink"></a>
+                    </article> 
+                    <article class="ico">
+                        <a href="https://twitter.com/senacomunica" target="_black" class="icon-twitter" style="
+                           text-decoration: blink"></a>
+                    </article> 
+                    <article class="ico">
+                        <a href="https://plus.google.com/+senacolombia/posts" target="_black" class="icon-googleplus" style="
+                           text-decoration: blink"> </a>
+                    </article> 
+                    <article class="ico">
+                        <a href="http://www.pinterest.com/senacomunica/" target="_black" class="icon-pinterest" style="
+                           text-decoration: blink;"> </a>
+                    </article> 
+                </section>
+                <section>
+                    <p class="Footer-description"> 
+                        Servicio Nacional de Aprendizaje SENA – Centro de Bioctecnologia Industrial- carrera 30 #40-25, Palmira-valle 
+                        <br></br>
+                        Línea gratuita de atención al ciudadano 275 0978 – Resto del país 018000 910270
+                        <br></br>
+                        Horario de atención: lunes a viernes de 8:00 am a 5:30 pm
+                        <br></br>
+                        Todos los derechos reservados ©
+                        <br></br>
+                        2015</p>
+                </section>
+            </footer>
         </h:panelGroup>
         <script src="resources/foundation-5.5.1/js/vendor/jquery.js"></script>
         <script src="resources/foundation-5.5.1/js/foundation.min.js"></script>
         <script src="resources/foundation-5.5.1/js/foundation/foundation.js"></script>
         <script src="resources/foundation-5.5.1/js/foundation/foundation.equalizer.js"></script>
         <script>
-            $(document).foundation();
+
+                        $(document).foundation();
         </script>
         <ui:include src="/admin/dlg_menuCrearUsuario.xhtml"/>
         <ui:include src="/planeacionpedagogica/dlg_menuPlaneacionPedagogica.xhtml"/>

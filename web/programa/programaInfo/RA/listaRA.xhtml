@@ -11,25 +11,35 @@
               draggable="false"
               styleClass="Dialogo">
         <h:form id="listaRAVentanaForm">
-            <p:dataTable value="#{programaController.listaRA}" var="item">
-                <p:column>
-                    <f:facet name="header">
-                        <h:outputText value="Codigo de Resultado de Aprendizaje"/>
-                    </f:facet>
-                    <h:outputText value="#{item.idResultadoAprendizaje}"/>
-                </p:column>
-                <p:column>
-                    <f:facet name="header">
-                        <h:outputText value="Tipo de Resultado de Aprendizaje"/>
-                    </f:facet>
-                    <h:outputText value="#{item.idTipoResultadoAprendizaje.tipoResultadoAprendizaje}"/>
-                </p:column>
+            <p:dataTable value="#{programaController.listaRA}" 
+                         var="item"
+                         selectionMode="single"
+                         selection="#{programaController.resultadoAprendizajeActual}"
+                         rowKey="#{item.idResultadoAprendizaje}">
+                <p:ajax event="rowSelect" update="modificarRA deshabilitarRA"/>
+                <p:ajax event="rowUnselect" update="modificarRA deshabilitarRA"/>
                 <p:column>
                     <f:facet name="header">
                         <h:outputText value="Resultado de Aprendizaje"/>
                     </f:facet>
                     <h:outputText value="#{item.nombreResultadoAprendizaje}"/>
                 </p:column>
+                <f:facet name="footer">
+                    <p:commandButton update=":crearRAVentanaForm"
+                                     value="crear"
+                                     onclick="crearRAVentana.show()"
+                                     action="#{programaController.anularItem()}"/>
+                    <p:commandButton update=":modificarRAVentanaForm"
+                                     id="modificarRA"
+                                     disabled="#{programaController.raBoolean()}"
+                                     value="modificar"
+                                     onclick="modificarRAVentana.show()"/>
+                    <p:commandButton update=":deshabilitarRAVentanaForm"
+                                     id="deshabilitarRA"
+                                     disabled="#{programaController.raBoolean()}"
+                                     value="deshabilitar"
+                                     onclick="deshabilitarRAVentana.show()"/>
+                </f:facet>
             </p:dataTable>
         </h:form>
     </p:dialog>

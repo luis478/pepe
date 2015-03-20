@@ -1,0 +1,81 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:jsf="http://xmlns.jcp.org/jsf"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <p:dialog widgetVar="proyectoCrearP3Ventana" 
+              resizable="false"
+              modal="true"
+              draggable="false"
+              styleClass="Dialogo">
+        <h:form id="proyectoCrearP3VentanaForm">
+            <h:panelGrid columns="1">
+                <h3>2.6 Innovación/Gestión Tecnológica </h3>
+                <!-- innovacion261 -->
+                <label for="crearInnovacion261" jsf:value="El proyecto resuelve una necesidad del sector productivo? "/>
+                <p:selectBooleanButton id="crearInnovacion261" 
+                                       value="#{proyectoController.proyectoActual.innovacion261}" 
+                                       onLabel="Si" 
+                                       offLabel="No"  />
+                <!-- innovacion262 -->
+                <label for="crearInnovacion262" jsf:value="El proyecto mejora el proceso/producto/servicio existente? "/>
+                <p:selectBooleanButton id="crearInnovacion262" 
+                                       value="#{proyectoController.proyectoActual.innovacion262}" 
+                                       onLabel="Si" 
+                                       offLabel="No"  />
+                <!-- innovacion263 -->
+                <label for="crearInnovacion263" jsf:value="El proyecto involucra el uso de nuevas técnicas y tecnologías de proceso? "/>
+                <p:selectBooleanButton id="crearInnovacion263" 
+                                       value="#{proyectoController.proyectoActual.innovacion263}" 
+                                       onLabel="Si" 
+                                       offLabel="No"  />
+                <!-- innovacion264 -->
+                <label for="crearInnovacion264" jsf:value="Los productos finales son susceptibles a protección industrial y/o derechos de autor? "/>
+                <p:selectBooleanButton id="crearInnovacion264" 
+                                       value="#{proyectoController.proyectoActual.innovacion264}" 
+                                       onLabel="Si" 
+                                       offLabel="No"  />
+                <!-- innovacion265 -->
+                <label for="crearInnovacion265" jsf:value="Los productos obtenidos en el proyecto pueden ser posicionados en el mercado? "/>
+                <p:selectBooleanButton id="crearInnovacion265" 
+                                       value="#{proyectoController.proyectoActual.innovacion265}" 
+                                       onLabel="Si" 
+                                       offLabel="No"  />
+                <h3>2.7 Valoración Productiva</h3>
+                <!-- valoracion271 -->
+                <label for="crearValoracion271" jsf:value="Con el desarrollo del proyecto se puede satisfacer la necesidad de un cliente potencial?"/>
+                <p:selectBooleanButton id="crearValoracion271" 
+                                       value="#{proyectoController.proyectoActual.valoracion271}" 
+                                       onLabel="Si" 
+                                       offLabel="No"  />
+                <!-- valoracion272 -->
+                <label for="crearValoracion272" jsf:value="Viabilidad de proyecto para plan de negocio?"/>
+                <p:selectBooleanButton id="crearValoracion272" 
+                                       value="#{proyectoController.proyectoActual.valoracion272}" 
+                                       onLabel="Si" 
+                                       offLabel="No"  />
+                <!-- Planteamiento -->
+                <label for="crearAmbiente" jsf:value="3.6 Descripción del ambiente de aprendizaje requerido "/>
+                <textarea jsf:id="crearAmbiente"
+                          jsf:value="#{proyectoController.proyectoActual.descripcionAmbiente}"
+                          placeholder="Planteamiento Proyecto"
+                          jsf:requiredMessage="los productos y resultados, es un campo requerido">
+                    <f:ajax execute="crearAmbiente"
+                            render="msgcrearAmbiente"
+                            event="blur"/>
+                </textarea>
+                <h:message id="msgcrearAmbiente"
+                           for="crearAmbiente"
+                           styleClass="error"/>
+                <p:commandButton oncomplete="handleSubmit(args,'proyectoCrearP3Ventana','');"
+                                 actionListener="#{proyectoController.addProyecto}"
+                                 value="Siguiente">
+                </p:commandButton>
+                <p:commandButton onclick="proyectoCrearP3Ventana.hide(), proyectoCrearP2Ventana.show()"
+                                 value="Atras"/>
+            </h:panelGrid>
+        </h:form>
+    </p:dialog>
+</html>

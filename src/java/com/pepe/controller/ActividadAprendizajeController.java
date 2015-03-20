@@ -113,7 +113,7 @@ public class ActividadAprendizajeController implements Serializable {
      public String prepareRecursos(){
         listaRecurso = new ArrayList<>();
         listaRecurso = actividadAprendizajeActual.getRecursoList();
-        return "lista_recursos";
+       return "lista_recursos";
     }
 
     public String prepareEdit() {
@@ -133,11 +133,10 @@ public class ActividadAprendizajeController implements Serializable {
         try {
             actividadAprendizajeActual.setResultadoAprendizajeList(listaResultadoAprendizaje);
             actividadAprendizajeActual.setRecursoList(listaRecurso);
-            actividadAprendizajeActual.setIdActividad(actividadActual);
             actividadAprendizajeActual.setIdTipoActividadAprendizaje(getTipoActividadAprendizajeFacade().find(tipoActividadAprendizajeSelect));
             getActividadAprendizajeFacade().create(actividadAprendizajeActual);
             recargarLista();
-            return "lista_ActividadAprendizaje";
+            return "planeacion_pedagogica";
         } catch (Exception e) {
             addErrorMessage("Error closing resource " + e.getClass().getName(), "Message: " + e.getMessage());
             return null;

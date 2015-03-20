@@ -41,6 +41,8 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Ficha.findAll", query = "SELECT f FROM Ficha f"),
     @NamedQuery(name = "Ficha.findByIdFicha", query = "SELECT f FROM Ficha f WHERE f.idFicha = :idFicha"),
     @NamedQuery(name = "Ficha.findByCodigoFicha", query = "SELECT f FROM Ficha f WHERE f.codigoFicha = :codigoFicha"),
+    @NamedQuery(name = "Ficha.findByCodigoFicha", query = "SELECT f FROM Ficha f WHERE f.codigoFicha = :codigoFicha"),
+    @NamedQuery(name = "Ficha.consultaFP", query = "SELECT f FROM Ficha f WHERE f.programa.programaPK.codigo = :codigo AND f.programa.programaPK.version = :version AND f.idProyecto.idProyecto = NULL"),
     @NamedQuery(name = "Ficha.findByFechaInicio", query = "SELECT f FROM Ficha f WHERE f.fechaInicio = :fechaInicio"),
     @NamedQuery(name = "Ficha.findByEstado", query = "SELECT f FROM Ficha f WHERE f.estado = :estado")})
 public class Ficha implements Serializable {

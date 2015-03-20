@@ -59,16 +59,12 @@ public class ActividadAprendizaje implements Serializable {
     @NotNull
     @Column(name = "duracion_actividad_aprendizaje")
     private int duracionActividadAprendizaje;
-    @Basic(optional = false)
-    @NotNull
     @Lob
-    @Size(min = 1, max = 65535)
+    @Size( max = 65535)
     @Column(name = "observaciones")
     private String observaciones;
-    @Basic(optional = false)
-    @NotNull
     @Lob
-    @Size(min = 1, max = 65535)
+    @Size( max = 65535)
     @Column(name = "descripcion")
     private String descripcion;
     @JoinTable(name = "actividad_aprendizaje_has_recurso", joinColumns = {

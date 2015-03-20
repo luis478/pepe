@@ -12,6 +12,13 @@
               styleClass="Dialogo">
         <h:form id="competenciaEditarVentanaForm">
             <h1 class="row">#{programaController.competenciaActual.codigo}</h1>
+            <h:selectOneMenu id="idTipoResultado"
+                             value="#{programaController.idTipoC}">
+                <f:selectItem itemLabel="Tipo Competencia.." />
+                <f:selectItems value="#{programaController.tipoCompetenciaList}"
+                               var="tc"
+                               itemValue="#{tc.idTipoCompetencia}"/>
+            </h:selectOneMenu>
             <textarea jsf:value="#{programaController.competenciaActual.nombreCompetencia}"
                       required="true"/>
             <input type="number"
@@ -31,7 +38,7 @@
             <p:commandButton update=":competenciaForm"
                              value="Guardar"
                              action="#{programaController.editarCompetencia()}"
-                             oncomplete="handleSubmit(args,'competenciaEditarVentana','');"/>
+                             oncomplete="PF('competenciaEditarVentana').hide()"/>
         </h:form>
     </p:dialog>
 </html>

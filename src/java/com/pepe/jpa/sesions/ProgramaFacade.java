@@ -19,6 +19,10 @@ import javax.persistence.Query;
 @Stateless
 public class ProgramaFacade extends AbstractFacade<Programa> {
 
+       //@NamedQuery(name = "Programa.encontrarCodigoVersion", query = "SELECT p FROM Programa p WHERE p.programaPK.codigo = :codigo AND p.programaPK.version = :version"),
+    //@NamedQuery(name = "Programa.findByCodigo", query = "SELECT p FROM Programa p WHERE p.programaPK.codigo = :codigo"),
+    //@NamedQuery(name = "Programa.encontrarNombrePrograma", query = "SELECT p FROM Programa p WHERE p.nombrePrograma LIKE :nombrePrograma"),  
+//@NamedQuery(name = "Programa.findByNombrePrograma", query = "SELECT p FROM Programa p WHERE p.nombrePrograma like :nombrePrograma"),
     @PersistenceContext(unitName = "pepeAplicacionPU")
     private EntityManager em;
 
@@ -64,11 +68,11 @@ public class ProgramaFacade extends AbstractFacade<Programa> {
             return null;
         }
     }
-    
 
     public List<Programa> finByNombre(String nombrePrograma) {
         Query q = getEntityManager().createNamedQuery("Programa.findByNombrePrograma");
         q.setParameter("nombrePrograma", nombrePrograma + "%");
         return q.getResultList();
     }
+
 }

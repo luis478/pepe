@@ -3,13 +3,13 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package com.pepe.jpa.sesions;
 
 import com.pepe.jpa.entities.Proyecto;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
 /**
  *
@@ -17,6 +17,7 @@ import javax.persistence.PersistenceContext;
  */
 @Stateless
 public class ProyectoFacade extends AbstractFacade<Proyecto> {
+
     @PersistenceContext(unitName = "pepeAplicacionPU")
     private EntityManager em;
 
@@ -28,5 +29,15 @@ public class ProyectoFacade extends AbstractFacade<Proyecto> {
     public ProyectoFacade() {
         super(Proyecto.class);
     }
-    
+
+    public Proyecto getByCodigoProyecto(String c) {
+        Query q = getEntityManager().createNamedQuery("Proyecto.findByCodigoProyecto");
+        q.setParameter("codigoProyecto", c);
+        try {
+            return (Proyecto) q.getSingleResult();
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            return null;
+        }
+    }
 }

@@ -4,32 +4,37 @@ import com.pepe.jpa.entities.Competencia;
 import com.pepe.jpa.entities.ConocimientoConceptoPrincipios;
 import com.pepe.jpa.entities.ConocimientoProceso;
 import com.pepe.jpa.entities.CriteriosEvaluacion;
+import com.pepe.jpa.entities.Ficha;
 import com.pepe.jpa.entities.LineaTecnologica;
 import com.pepe.jpa.entities.ModalidadFormacion;
 import com.pepe.jpa.entities.NivelFormacion;
 import com.pepe.jpa.entities.PerfilEntrada;
+import com.pepe.jpa.entities.Programa;
 import com.pepe.jpa.entities.ProgramaPK;
 import com.pepe.jpa.entities.ResultadoAprendizaje;
+import com.pepe.jpa.entities.TipoCompetencia;
 import com.pepe.jpa.entities.TipoFormacion;
 import com.pepe.jpa.sesions.CompetenciaFacade;
 import com.pepe.jpa.sesions.ConocimientoConceptoPrincipiosFacade;
 import com.pepe.jpa.sesions.ConocimientoProcesoFacade;
 import com.pepe.jpa.sesions.CriteriosEvaluacionFacade;
+import com.pepe.jpa.sesions.FichaFacade;
 import com.pepe.jpa.sesions.LineaTecnologicaFacade;
 import com.pepe.jpa.sesions.ModalidadFormacionFacade;
 import com.pepe.jpa.sesions.NivelFormacionFacade;
 import com.pepe.jpa.sesions.PerfilEntradaFacade;
+import com.pepe.jpa.sesions.ProgramaFacade;
 import com.pepe.jpa.sesions.ResultadoAprendizajeFacade;
+import com.pepe.jpa.sesions.TipoCompetenciaFacade;
 import com.pepe.jpa.sesions.TipoFormacionFacade;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import javax.ejb.EJB;
 import javax.enterprise.context.SessionScoped;
 import javax.faces.application.FacesMessage;
-import com.pepe.jpa.entities.Programa;
-import com.pepe.jpa.sesions.ProgramaFacade;
-import javax.ejb.EJB;
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
@@ -51,6 +56,10 @@ public class ProgramaController implements Serializable {
     private Programa programaVersion = null;
     private List<Programa> programas;
     @EJB
+    private FichaFacade fichaFacade;
+    @EJB
+    private TipoCompetenciaFacade tipoCompetenciaFacade;
+    @EJB
     private CompetenciaFacade competenciaFacade;
     private Competencia competenciaActual = null;
     @EJB
@@ -68,11 +77,13 @@ public class ProgramaController implements Serializable {
     private ConocimientoConceptoPrincipios conocimientoConceptoPrincipiosActual = null;
     @EJB
     private ConocimientoProcesoFacade conocimientoProcesoFacade;
+    private ConocimientoProceso conocimientoProcesoActual = null;
     @EJB
     private CriteriosEvaluacionFacade criteriosEvaluacionFacade;
     private CriteriosEvaluacion criteriosEvaluacionActual = null;
     @EJB
     private ResultadoAprendizajeFacade resultadoAprendizajeFacade;
+    private ResultadoAprendizaje resultadoAprendizajeActual = null;
 
     private String codigo = "";
     private String version = "";
@@ -82,6 +93,7 @@ public class ProgramaController implements Serializable {
     private int idNivel;
     private int idTipo;
     private String duracion;
+    private int idTipoC;
     private boolean cod = true;
 
     public ProgramaController() {
@@ -95,11 +107,45 @@ public class ProgramaController implements Serializable {
         return programaVersion;
     }
 
+    public TipoCompetenciaFacade getTipoCompetenciaFacade() {
+        return tipoCompetenciaFacade;
+    }
+
+    public void setTipoCompetenciaFacade(TipoCompetenciaFacade tipoCompetenciaFacade) {
+        this.tipoCompetenciaFacade = tipoCompetenciaFacade;
+    }
+
     public String getDuracion() {
-        if(competenciaActual != null){
+        if (competenciaActual != null) {
             duracion = Integer.toString(getCompetenciaActual().getDuracionEstimadaHoras());
         }
         return duracion;
+    }
+
+    public ConocimientoProceso getConocimientoProcesoActual() {
+        if (conocimientoProcesoActual == null) {
+            conocimientoProcesoActual = new ConocimientoProceso();
+        }
+        return conocimientoProcesoActual;
+    }
+
+    public void setConocimientoProcesoActual(ConocimientoProceso conocimientoProcesoActual) {
+        this.conocimientoProcesoActual = conocimientoProcesoActual;
+    }
+
+    public List<TipoCompetencia> getTipoCompetenciaList() {
+        return getTipoCompetenciaFacade().findAll();
+    }
+
+    public int getIdTipoC() {
+        if (getCompetenciaActual().getIdCompetencia() != null) {
+            idTipoC = getCompetenciaActual().getIdTipoCompetencia().getIdTipoCompetencia();
+        }
+        return idTipoC;
+    }
+
+    public void setIdTipoC(int idTipoC) {
+        this.idTipoC = idTipoC;
     }
 
     public void setDuracion(String duracion) {
@@ -132,6 +178,25 @@ public class ProgramaController implements Serializable {
 
     public void setConocimientoConceptoPrincipiosFacade(ConocimientoConceptoPrincipiosFacade conocimientoConceptoPrincipiosFacade) {
         this.conocimientoConceptoPrincipiosFacade = conocimientoConceptoPrincipiosFacade;
+    }
+
+    public FichaFacade getFichaFacade() {
+        return fichaFacade;
+    }
+
+    public void setFichaFacade(FichaFacade fichaFacade) {
+        this.fichaFacade = fichaFacade;
+    }
+
+    public ResultadoAprendizaje getResultadoAprendizajeActual() {
+        if (resultadoAprendizajeActual == null) {
+            resultadoAprendizajeActual = new ResultadoAprendizaje();
+        }
+        return resultadoAprendizajeActual;
+    }
+
+    public void setResultadoAprendizajeActual(ResultadoAprendizaje resultadoAprendizajeActual) {
+        this.resultadoAprendizajeActual = resultadoAprendizajeActual;
     }
 
     public CriteriosEvaluacion getCriteriosEvaluacionActual() {
@@ -235,6 +300,10 @@ public class ProgramaController implements Serializable {
 
     public String programaConsulta() {
         return "programaTabla.xhtml";
+    }
+    
+    public String programaConsulta1() {
+        return "../programa/programaTabla.xhtml";
     }
 
     public LineaTecnologicaFacade getLineaTecnologicaFacade() {
@@ -383,6 +452,18 @@ public class ProgramaController implements Serializable {
         return getResultadoAprendizajeFacade().consulta(competenciaActual);
     }
 
+    public List<ResultadoAprendizaje> listaTotalRA() {
+        List<ResultadoAprendizaje> c = new ArrayList<>();
+        for (Competencia competencia : getListaCompetencia()) {
+            c.addAll(getResultadoAprendizajeFacade().consulta(competencia));
+        }
+        return c;
+    }
+
+    public int totalRAA() {
+        return listaTotalRA().size();
+    }
+
     public boolean competenciaNull() {
         if (getCompetenciaActual().getCodigo() == null) {
             return true;
@@ -395,6 +476,7 @@ public class ProgramaController implements Serializable {
         programaVersion = getProgramaFacade().consultaCodigoVersion(programaActual.getProgramaPK().getCodigo(), programaActual.getProgramaPK().getVersion());
         programaVersion.getProgramaPK().setVersion("");
         programaVersion.getCompetenciaList().clear();
+        programaVersion.getFichaList().clear();
     }
 
     public void anular() {
@@ -412,8 +494,14 @@ public class ProgramaController implements Serializable {
     }
 
     public void anularItem() {
+        resultadoAprendizajeActual = null;
+        conocimientoProcesoActual = null;
         criteriosEvaluacionActual = null;
         conocimientoConceptoPrincipiosActual = null;
+        getResultadoAprendizajeActual();
+        getConocimientoConceptoPrincipiosActual();
+        getConocimientoProcesoActual();
+        getCriteriosEvaluacionActual();
     }
 
     public boolean codigoBoolean() {
@@ -421,7 +509,13 @@ public class ProgramaController implements Serializable {
     }
 
     public List<Competencia> getListaCompetencia() {
-        return getProgramaActual().getCompetenciaList();
+        List<Competencia> c = new ArrayList<>();
+        for (Competencia competencia : programaActual.getCompetenciaList()) {
+            if (competencia.getEstado() == true) {
+                c.add(competencia);
+            }
+        }
+        return c;
     }
 
     public boolean programaBoolean() {
@@ -429,15 +523,27 @@ public class ProgramaController implements Serializable {
     }
 
     public boolean ccpBoolean() {
-        if (conocimientoConceptoPrincipiosActual.getIdConocimientoConceptoPrincipios() == null) {
+        return getConocimientoConceptoPrincipiosActual() == null && getConocimientoConceptoPrincipiosActual().getIdConocimientoConceptoPrincipios() == null;
+    }
+
+    public boolean ceBoolean() {
+        if (getCriteriosEvaluacionActual().getIdCriteriosEvaluacion() == null) {
             return true;
         } else {
             return false;
         }
     }
 
-    public boolean ceBoolean() {
-        if (criteriosEvaluacionActual.getIdCriteriosEvaluacion() == null) {
+    public boolean raBoolean() {
+        if (getResultadoAprendizajeActual().getIdResultadoAprendizaje() == null) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public boolean cpBoolean() {
+        if (getConocimientoProcesoActual().getIdConocimientoProceso() == null) {
             return true;
         } else {
             return false;
@@ -485,6 +591,10 @@ public class ProgramaController implements Serializable {
         return getProgramaFacade().consultaCodigo(codigo);
     }
 
+    public List<Ficha> getFichaListaPrograma() {
+        return getFichaFacade().consultaFichaPrograma(programaActual);
+    }
+
     public void crearPrograma() {
         try {
             programaActual.setIdLineaTecnologica(getLineaTecnologicaFacade().find(idLinea));
@@ -521,22 +631,27 @@ public class ProgramaController implements Serializable {
 
     public void crearCompetencia() {
         try {
+            competenciaActual.setIdTipoCompetencia(getTipoCompetenciaFacade().find(idTipoC));
             competenciaActual.setEstado(true);
             competenciaActual.setDuracionEstimadaHoras(Integer.parseInt(duracion));
             getCompetenciaFacade().create(competenciaActual);
             programaActual.getCompetenciaList().add(competenciaActual);
             getProgramaFacade().edit(programaActual);
             duracion = "";
+            idTipoC = 0;
+            competenciaActual = null;
         } catch (NumberFormatException e) {
             System.out.println(e.getMessage());
         }
     }
-    
+
     public void editarCompetencia() {
         try {
+            competenciaActual.setIdTipoCompetencia(getTipoCompetenciaFacade().find(idTipoC));
             competenciaActual.setDuracionEstimadaHoras(Integer.parseInt(duracion));
             getCompetenciaFacade().edit(competenciaActual);
             duracion = "";
+            idTipoC = 0;
         } catch (NumberFormatException e) {
             System.out.println(e.getMessage());
         }
@@ -600,7 +715,7 @@ public class ProgramaController implements Serializable {
 
     public void deshabilitarCE() {
         try {
-            criteriosEvaluacionActual.setEstado(true);
+            criteriosEvaluacionActual.setEstado(false);
             getCriteriosEvaluacionFacade().edit(criteriosEvaluacionActual);
             criteriosEvaluacionActual = null;
             getCriteriosEvaluacionActual();
@@ -610,6 +725,73 @@ public class ProgramaController implements Serializable {
         }
     }
 
+    public void crearCP() {
+        try {
+            conocimientoProcesoActual.setEstado(true);
+            conocimientoProcesoActual.setIdCompetencia(competenciaActual);
+            getConocimientoProcesoFacade().create(conocimientoProcesoActual);
+            conocimientoProcesoActual = null;
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    public void modificarCP() {
+        try {
+            getConocimientoProcesoFacade().edit(conocimientoProcesoActual);
+            conocimientoProcesoActual = null;
+            getConocimientoProcesoActual();
+            ceBoolean();
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    public void deshabilitarCP() {
+        try {
+            conocimientoProcesoActual.setEstado(false);
+            getConocimientoProcesoFacade().edit(conocimientoProcesoActual);
+            conocimientoProcesoActual = null;
+            getConocimientoProcesoActual();
+            ceBoolean();
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    public void crearRA() {
+        try {
+            resultadoAprendizajeActual.setEstado(true);
+            resultadoAprendizajeActual.setIdCompetencia(competenciaActual);
+            getResultadoAprendizajeFacade().create(resultadoAprendizajeActual);
+            resultadoAprendizajeActual = null;
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    public void modificarRA() {
+        try {
+            getResultadoAprendizajeFacade().edit(resultadoAprendizajeActual);
+            resultadoAprendizajeActual = null;
+            getResultadoAprendizajeActual();
+            ceBoolean();
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    public void deshabilitarRA() {
+        try {
+            resultadoAprendizajeActual.setEstado(false);
+            getResultadoAprendizajeFacade().edit(resultadoAprendizajeActual);
+            resultadoAprendizajeActual = null;
+            getResultadoAprendizajeActual();
+            ceBoolean();
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+    }
 
     /*   CONVERTER   */
     public Programa getPrograma(ProgramaPK id) {

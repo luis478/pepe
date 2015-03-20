@@ -19,7 +19,7 @@
             </h:panelGrid>
             <p:commandButton update=":listaCEVentanaForm"
                              action="#{programaController.deshabilitarCE()}"
-                             oncomplete="handleSubmit(args,'deshabilitarCEVentana','');"/>
+                             oncomplete="PF('deshabilitarCEVentana').hide()"/>
         </h:form>
     </p:dialog>
 </html>

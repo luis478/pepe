@@ -38,6 +38,7 @@ import javax.xml.bind.annotation.XmlTransient;
 @NamedQueries({
     @NamedQuery(name = "ResultadoAprendizaje.findAll", query = "SELECT r FROM ResultadoAprendizaje r"),
     @NamedQuery(name = "ResultadoAprendizaje.findByIdResultadoAprendizaje", query = "SELECT r FROM ResultadoAprendizaje r WHERE r.idResultadoAprendizaje = :idResultadoAprendizaje"),
+    @NamedQuery(name = "ResultadoAprendizaje.consultaRA", query = "SELECT r FROM ResultadoAprendizaje r WHERE r.idCompetencia.idCompetencia = :idCompetencia AND r.estado = 1"),
     @NamedQuery(name = "ResultadoAprendizaje.findByIdTipoResultadoAprendizaje", query = "SELECT r FROM ResultadoAprendizaje r WHERE r.idTipoResultadoAprendizaje = :idTipoResultadoAprendizaje"),
     @NamedQuery(name = "ResultadoAprendizaje.findByEstado", query = "SELECT r FROM ResultadoAprendizaje r WHERE r.estado = :estado")})
 public class ResultadoAprendizaje implements Serializable {
@@ -163,7 +164,7 @@ public class ResultadoAprendizaje implements Serializable {
 
     @Override
     public String toString() {
-        return "com.pepe.jpa.entities.ResultadoAprendizaje[ idResultadoAprendizaje=" + idResultadoAprendizaje + " ]";
+        return getNombreResultadoAprendizaje();
     }
     
 }

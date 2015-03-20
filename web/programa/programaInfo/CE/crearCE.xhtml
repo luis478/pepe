@@ -15,7 +15,7 @@
             <p:commandButton update="@this :listaCEVentanaForm"
                              action="#{programaController.crearCE()}"
                              value="crear"
-                             oncomplete="handleSubmit(args,'crearCEVentana','');"/>
+                             oncomplete="PF('crearCEVentana').hide()"/>
         </h:form>
     </p:dialog>
 </html>

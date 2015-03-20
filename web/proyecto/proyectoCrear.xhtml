@@ -1,57 +1,28 @@
-<!DOCTYPE html>
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html">
-    <body>       
-    <h:form>
-                <h:panelGrid columns="2">
-                    <h:outputLabel value="ID Proyecto" for="idProyecto" />
-                    <h:inputText id="idProyecto" value="#{proyectoController.proyectoActual.idProyecto}" title="#{bundle.CreateProyectoTitle_idProyecto}" required="true" requiredMessage="#{bundle.CreateProyectoRequiredMessage_idProyecto}"/>
-                    <h:outputLabel value="Nombre Proyecto" for="nombreProyecto" />
-                    <h:inputTextarea rows="4" cols="30" id="nombreProyecto" value="#{proyectoController.proyectoActual.nombreProyecto}" title="#{bundle.CreateProyectoTitle_nombreProyecto}" required="true" requiredMessage="#{bundle.CreateProyectoRequiredMessage_nombreProyecto}"/>
-                    <h:outputLabel value="#{bundle.CreateProyectoLabel_codigoProyecto}" for="codigoProyecto" />
-                    <h:inputText id="codigoProyecto" value="#{proyectoController.proyectoActual.codigoProyecto}" title="#{bundle.CreateProyectoTitle_codigoProyecto}" required="true" requiredMessage="#{bundle.CreateProyectoRequiredMessage_codigoProyecto}"/>
-                    <h:outputLabel value="#{bundle.CreateProyectoLabel_justificacion22}" for="justificacion22" />
-                    <h:inputTextarea rows="4" cols="30" id="justificacion22" value="#{proyectoController.proyectoActual.justificacion22}" title="#{bundle.CreateProyectoTitle_justificacion22}" required="true" requiredMessage="#{bundle.CreateProyectoRequiredMessage_justificacion22}"/>
-                    <h:outputLabel value="#{bundle.CreateProyectoLabel_objetivoGeneral23}" for="objetivoGeneral23" />
-                    <h:inputTextarea rows="4" cols="30" id="objetivoGeneral23" value="#{proyectoController.proyectoActual.objetivoGeneral23}" title="#{bundle.CreateProyectoTitle_objetivoGeneral23}" required="true" requiredMessage="#{bundle.CreateProyectoRequiredMessage_objetivoGeneral23}"/>
-                    <h:outputLabel value="#{bundle.CreateProyectoLabel_objetivoEspecifico24}" for="objetivoEspecifico24" />
-                    <h:inputTextarea rows="4" cols="30" id="objetivoEspecifico24" value="#{proyectoController.proyectoActual.objetivoEspecifico24}" title="#{bundle.CreateProyectoTitle_objetivoEspecifico24}" required="true" requiredMessage="#{bundle.CreateProyectoRequiredMessage_objetivoEspecifico24}"/>
-                    <h:outputLabel value="#{bundle.CreateProyectoLabel_palabrasClave17}" for="palabrasClave17" />
-                    <h:inputTextarea rows="4" cols="30" id="palabrasClave17" value="#{proyectoController.proyectoActual.palabrasClave17}" title="#{bundle.CreateProyectoTitle_palabrasClave17}" required="true" requiredMessage="#{bundle.CreateProyectoRequiredMessage_palabrasClave17}"/>
-                    <h:outputLabel value="#{bundle.CreateProyectoLabel_planteamiento21}" for="planteamiento21" />
-                    <h:inputTextarea rows="4" cols="30" id="planteamiento21" value="#{proyectoController.proyectoActual.planteamiento21}" title="#{bundle.CreateProyectoTitle_planteamiento21}" required="true" requiredMessage="#{bundle.CreateProyectoRequiredMessage_planteamiento21}"/>
-                    <h:outputLabel value="#{bundle.CreateProyectoLabel_impacto252}" for="impacto252" />
-                    <h:inputTextarea rows="4" cols="30" id="impacto252" value="#{proyectoController.proyectoActual.impacto252}" title="#{bundle.CreateProyectoTitle_impacto252}" required="true" requiredMessage="#{bundle.CreateProyectoRequiredMessage_impacto252}"/>
-                    <h:outputLabel value="#{bundle.CreateProyectoLabel_restricciones253}" for="restricciones253" />
-                    <h:inputTextarea rows="4" cols="30" id="restricciones253" value="#{proyectoController.proyectoActual.restricciones253}" title="#{bundle.CreateProyectoTitle_restricciones253}" required="true" requiredMessage="#{bundle.CreateProyectoRequiredMessage_restricciones253}"/>
-                    <h:outputLabel value="#{bundle.CreateProyectoLabel_productosResultados254}" for="productosResultados254" />
-                    <h:inputTextarea rows="4" cols="30" id="productosResultados254" value="#{proyectoController.proyectoActual.productosResultados254}" title="#{bundle.CreateProyectoTitle_productosResultados254}" required="true" requiredMessage="CreateProyectoRequiredMessage_productosResultados254}"/>
-                    <h:outputLabel value="#{bundle.CreateProyectoLabel_innovacion261}" for="innovacion261" />
-                    <h:inputText id="innovacion261" value="#{proyectoController.proyectoActual.innovacion261}" title="#{bundle.CreateProyectoTitle_innovacion261}" required="true" requiredMessage="#{bundle.CreateProyectoRequiredMessage_innovacion261}"/>
-                    <h:outputLabel value="#{bundle.CreateProyectoLabel_innovacion262}" for="innovacion262" />
-                    <h:inputText id="innovacion262" value="#{proyectoController.proyectoActual.innovacion262}" title="#{bundle.CreateProyectoTitle_innovacion262}" required="true" requiredMessage="#{bundle.CreateProyectoRequiredMessage_innovacion262}"/>
-                    <h:outputLabel value="#{bundle.CreateProyectoLabel_innovacion263}" for="innovacion263" />
-                    <h:inputText id="innovacion263" value="#{proyectoController.proyectoActual.innovacion263}" title="#{bundle.CreateProyectoTitle_innovacion263}" required="true" requiredMessage="#{bundle.CreateProyectoRequiredMessage_innovacion263}"/>
-                    <h:outputLabel value="#{bundle.CreateProyectoLabel_innovacion264}" for="innovacion264" />
-                    <h:inputText id="innovacion264" value="#{proyectoController.proyectoActual.innovacion264}" title="#{bundle.CreateProyectoTitle_innovacion264}" required="true" requiredMessage="#{bundle.CreateProyectoRequiredMessage_innovacion264}"/>
-                    <h:outputLabel value="#{bundle.CreateProyectoLabel_innovacion265}" for="innovacion265" />
-                    <h:inputText id="innovacion265" value="#{proyectoController.proyectoActual.innovacion265}" title="#{bundle.CreateProyectoTitle_innovacion265}" required="true" requiredMessage="#{bundle.CreateProyectoRequiredMessage_innovacion265}"/>
-                    <h:outputLabel value="#{bundle.CreateProyectoLabel_valoracion271}" for="valoracion271" />
-                    <h:inputText id="valoracion271" value="#{proyectoController.proyectoActual.valoracion271}" title="#{bundle.CreateProyectoTitle_valoracion271}" required="true" requiredMessage="#{bundle.CreateProyectoRequiredMessage_valoracion271}"/>
-                    <h:outputLabel value="#{bundle.CreateProyectoLabel_valoracion272}" for="valoracion272" />
-                    <h:inputText id="valoracion272" value="#{proyectoController.proyectoActual.valoracion272}" title="#{bundle.CreateProyectoTitle_valoracion272}" required="true" requiredMessage="#{bundle.CreateProyectoRequiredMessage_valoracion272}"/>
-                    <h:outputLabel value="#{bundle.CreateProyectoLabel_intructoresRequeridos}" for="intructoresRequeridos" />
-                    <h:inputText id="intructoresRequeridos" value="#{proyectoController.proyectoActual.intructoresRequeridos}" title="#{bundle.CreateProyectoTitle_intructoresRequeridos}" required="true" requiredMessage="#{bundle.CreateProyectoRequiredMessage_intructoresRequeridos}"/>
-                    <h:outputLabel value="#{bundle.CreateProyectoLabel_aprendicesSugeridos}" for="aprendicesSugeridos" />
-                    <h:inputText id="aprendicesSugeridos" value="#{proyectoController.proyectoActual.aprendicesSugeridos}" title="#{bundle.CreateProyectoTitle_aprendicesSugeridos}" required="true" requiredMessage="#{bundle.CreateProyectoRequiredMessage_aprendicesSugeridos}"/>
-                    <h:outputLabel value="#{bundle.CreateProyectoLabel_descripcionAmbiente}" for="descripcionAmbiente" />
-                    <h:inputTextarea rows="4" cols="30" id="descripcionAmbiente" value="#{proyectoController.proyectoActual.descripcionAmbiente}" title="#{bundle.CreateProyectoTitle_descripcionAmbiente}" required="true" requiredMessage="#{bundle.CreateProyectoRequiredMessage_descripcionAmbiente}"/>
-                </h:panelGrid>
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    <ui:composition template="../html_plantillas/plantilla_paginas.xhtml">
+        <ui:define name="body">
+            <h:form id="proyectoCrearForm">
+                
+                <p:commandButton rendered="#{fichaController.proyectoBoolean()}"
+                                 id="botonFormular"
+                                 value="Formular Proyecto"
+                                 onclick="proyectoCrearP1Ventana.show()"/>
+                <p:commandButton rendered="#{fichaController.proyectoActividadBoolean()}"
+                                 id="botonActividad"
+                                 value="Actividades de Proyecto"
+                                 onclick="actividadListVentana.show()"/>
             </h:form>
-    </body>
+            <ui:include src="crear/proyectoCrearP1.xhtml"/>
+            <ui:include src="crear/proyectoCrearP2.xhtml"/>
+            <ui:include src="crear/proyectoCrearP3.xhtml"/>
+            <ui:include src="actividad/actividadList.xhtml"/>
+            <ui:include src="actividad/actividadCrear.xhtml"/>
+        </ui:define>
+    </ui:composition>
 </html>
+

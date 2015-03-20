@@ -7,6 +7,7 @@
 package com.pepe.jpa.entities;
 
 import java.io.Serializable;
+import java.util.Date;
 import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
@@ -22,6 +23,8 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
@@ -35,6 +38,7 @@ import javax.xml.bind.annotation.XmlTransient;
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Seguimiento.findAll", query = "SELECT s FROM Seguimiento s"),
+    @NamedQuery(name = "Seguimiento.findByFichaSeguimiento", query = "SELECT s FROM Seguimiento s WHERE s.idFicha.idFicha = :idFicha"),
     @NamedQuery(name = "Seguimiento.findByIdSeguimiento", query = "SELECT s FROM Seguimiento s WHERE s.idSeguimiento = :idSeguimiento")})
 public class Seguimiento implements Serializable {
     private static final long serialVersionUID = 1L;
@@ -58,6 +62,9 @@ public class Seguimiento implements Serializable {
     @JoinColumn(name = "id_usuario", referencedColumnName = "id_usuario")
     @ManyToOne(optional = false)
     private Usuario idUsuario;
+    @Column(name = "fecha_registro")
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date fechaRegistro;
 
     public Seguimiento() {
     }
@@ -114,6 +121,15 @@ public class Seguimiento implements Serializable {
     public void setIdUsuario(Usuario idUsuario) {
         this.idUsuario = idUsuario;
     }
+
+    public Date getFechaRegistro() {
+        return fechaRegistro;
+    }
+
+    public void setFechaRegistro(Date fechaRegistro) {
+        this.fechaRegistro = fechaRegistro;
+    }
+    
 
     @Override
     public int hashCode() {

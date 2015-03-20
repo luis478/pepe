@@ -31,7 +31,7 @@ public class ConocimientoConceptoPrincipiosFacade extends AbstractFacade<Conocim
     public ConocimientoConceptoPrincipiosFacade() {
         super(ConocimientoConceptoPrincipios.class);
     }
-
+//@NamedQuery(name = "ConocimientoConceptoPrincipios.consultarCCP", query = "SELECT c FROM ConocimientoConceptoPrincipios c WHERE c.idCompetencia.idCompetencia = :idCompetencia AND c.estado = 1"),
     public List<ConocimientoConceptoPrincipios> consulta(Competencia c) {
         Query q = getEntityManager().createNamedQuery("ConocimientoConceptoPrincipios.consultarCCP");
         q.setParameter("idCompetencia", c.getIdCompetencia());

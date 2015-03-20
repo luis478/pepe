@@ -32,6 +32,7 @@ public class CriteriosEvaluacionFacade extends AbstractFacade<CriteriosEvaluacio
         super(CriteriosEvaluacion.class);
     }
     
+    //@NamedQuery(name = "CriteriosEvaluacion.consultaCE", query = "SELECT c FROM CriteriosEvaluacion c WHERE c.idCompetencia.idCompetencia = :idCompetencia AND c.estado = 1"),
     public List<CriteriosEvaluacion> consulta(Competencia c) {
         Query q = getEntityManager().createNamedQuery("CriteriosEvaluacion.consultaCE");
        q.setParameter("idCompetencia", c.getIdCompetencia());
@@ -43,3 +44,4 @@ public class CriteriosEvaluacionFacade extends AbstractFacade<CriteriosEvaluacio
         }
     }
 }
+
