@@ -33,7 +33,7 @@
             <textarea jsf:value="#{proyectoController.actividadActual.nombreActividadProyecto}"
                       jsf:id="crearDesActividad"
                       required="true"
-                      jsf:requiredMessage="Insgrese la descirpcion de la Actividad de Proyecto"
+                      jsf:requiredMessage="Insgrese la descripción de la Actividad de Proyecto"
                       placeholder="Nombre Proyecto">
                 <f:ajax execute="crearDesActividad"
                         render="crearDesActividadmsg"
@@ -57,9 +57,34 @@
             <h:message id="crearNombreActividadmsg"
                        for="crearNombreActividad"
                        styleClass="error"/>
+
+            <h:selectOneMenu id="idComp" 
+                             value="#{proyectoController.idComp}">
+                <f:selectItem itemLabel="Competencias ..." />
+                <f:selectItems value="#{proyectoController.listaCompetencia}" 
+                               var="com" 
+                               itemValue="#{com.idCompetencia}"/>  
+                <p:ajax process="idComp"
+                        update="actividadCrearVentanaForm"
+                        event="change"/>
+            </h:selectOneMenu>
+            <h:message id="idCompmsg"
+                       for="idComp"
+                       styleClass="error"/>
+            <p:selectCheckboxMenu  id="idRap" 
+                                   value="#{proyectoController.idRapSeleccionados}"
+                                   label="Resultados de Aprendizaje ...">
+                <f:selectItems value="#{proyectoController.listaRAP}" 
+                               var="rap" 
+                               itemValue="#{rap.idResultadoAprendizaje}"/>  
+                <p:ajax process="idRap"
+                        event="change"/>
+            </p:selectCheckboxMenu>
+            
+
             <p:commandButton value="Guardar"
                              id="botonGuardar"
-                             update=":actividadCrearVentanaForm"
+                             update="@(actividadCrearVentanaForm) :actividadCrearVentanaForm :actividadListVentanaForm"
                              actionListener="#{proyectoController.addActividad}"
                              oncomplete="handleSubmit(args,'actividadCrearVentana','actividadListVentana');">
             </p:commandButton>

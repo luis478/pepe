@@ -1,43 +1,311 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
+
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
-    <h:head>
-        <title>Facelet Title</title>
-    </h:head>
-    <h:body>
-        <f:view>
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:jsf="http://xmlns.jcp.org/jsf"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
+    <head jsf:id="head">
+        <title>PEPA</title>
+        <meta charset="UTF-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="stylesheet" type="text/css" href="#{request.contextPath}/resources/css/estilo.css" media="screen"/>
+        <link rel="stylesheet" type="text/css" href="#{request.contextPath}/resources/css/estilospepe.css" media="screen"/>
+        <link rel="stylesheet" type="text/css" href="#{request.contextPath}/resources/css/normalize.css" media="screen"/>
+        <link href='http://fonts.googleapis.com/css?family=Oswald:400,300,700' rel='stylesheet' type='text/css'/>
+
+    </head>
+    <body class="Bodypepe" jsf:id="body">
+
+        <header class="Header">
+            <h:form class="Header-Form">
+                <section class="Header-pepeForm">
+                    <h:panelGrid columns="8">
+                        <label class="Label1" for="nombreProgramaText">Programa de formacion:</label>
+                        <input class="Form-Input1" type="text" disabled="true"
+                               jsf:value="#{fichaController.fichaSeleccionada.programa.nombrePrograma}" maxlength="45" >
+                        </input>
+                        <label class="Label2" for="codigoProgramaText">Código del programa:</label>
+                        <input class="Form-Input2" type="text" disabled="true"
+                               jsf:value="#{fichaController.fichaSeleccionada.programa.programaPK.codigo}">
+                        </input>
+                        <label class="Label3" for="versionProgramaText">Versión del programa:</label>
+                        <input class="Form-Input3" type="text" disabled="true"
+                               jsf:value="#{fichaController.fichaSeleccionada.programa.programaPK.version}">
+                        </input>
+                    </h:panelGrid>
+                    <h:panelGrid columns="6">
+                        <label class="Label4" for="duracionProgramaText">Duración del programa:</label>
 
 
-            <h:form>
-                <h1><h:outputText value="Acompanamiento"/></h1>
-                <h:panelGrid columns="2">
-                    <h:outputLabel value="IdAcompanamiento:" for="idAcompanamiento" />
-                    <h:inputText id="idAcompanamiento" value="#{seguimientoController.acompanamientoActual.idAcompanamiento}" title="IdAcompanamiento" required="true" requiredMessage="The IdAcompanamiento field is required."/>
-                    <h:outputLabel value="FechaInicio:" for="fechaInicio" />
-                    <h:inputText id="fechaInicio" value="#{seguimientoController.acompanamientoActual.fechaInicio}" title="FechaInicio" required="true" requiredMessage="The FechaInicio field is required.">
-                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
-                    </h:inputText>
-                    <h:outputLabel value="FechaFin:" for="fechaFin" />
-                    <h:inputText id="fachaFin" value="#{seguimientoController.acompanamientoActual.fachaFin}" title="FechaFin" required="true" requiredMessage="The FechaFin field is required.">
-                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
-                    </h:inputText>
-                    <h:outputLabel value="Ficha:" for="fichaidFicha" />
-                    <h:selectOneMenu id="fichaidFicha" value="#{seguimientoController.acompanamientoActual.idFicha}" title="FichaidFicha" required="true" requiredMessage="The FichaidFicha field is required.">
-                       
-                        <f:selectItems value="#{seguimientoController.listFichaSelectOne}"/>
-                    </h:selectOneMenu>
-                    <h:outputLabel value="IdFase:" for="idFase" />
-                    <h:selectOneMenu id="idFase" value="#{seguimientoController.acompanamientoActual.idFase}" title="IdFase" required="true" requiredMessage="The IdFase field is required.">
-                     
-                        <f:selectItems value="#{seguimientoController.listFaseSelectOne}"/>
-                    </h:selectOneMenu>
-                </h:panelGrid>
-                <h:commandButton action="#{seguimientoController.addAcompanamiento()}" value="guardar"/>
+                        <label class="Label6" for="codigoProyectoText">Codigo del proyecto:</label>
+                        <input class="Form-Input6" type="text" disabled="true"
+                               jsf:value="#{fichaController.fichaSeleccionada.idProyecto.codigoProyecto}">
+                        </input>
+                        <label class="Label7" for="numeroFichaText">Numero de ficha:</label>
+                        <input class="Form-Input7" type="text" disabled="true"
+                               jsf:value="#{fichaController.fichaSeleccionada.codigoFicha}">
+                        </input>
+                    </h:panelGrid> 
+                    <label class="Label5" for="nombreProyectoText">Nombre del proyecto:</label>
+                    <input class="Form-Input5" type="text" disabled="true"
+                           jsf:value="#{fichaController.fichaSeleccionada.idProyecto.nombreProyecto}">
+                    </input>
+                    <h:panelGrid columns="3">
+                        <label class="Label8" for="liderEjecutorText">Lider ejecutor:</label>
+                        <input class="Form-Input8" type="text" disabled="true"
+                               jsf:value="#{fichaController.usuarioFicha.usuario}">
+                        </input>
+                    </h:panelGrid>
+                </section>
             </h:form>
-        </f:view>
+        </header>
+        <hr WIDTH='100%' SIZE='8' ALIGN='RIGHT'></hr>
+        <h:form>
+            <section class="pepe-color">
+                <ul class="Pepe-listColor">
+                    <li class="Pepe-listColorItem"><a href='#' class="PepeMenu-link"></a></li>
+                    <li class="Pepe-listColorItem"><a href='#' class="PepeMenu-link"></a></li>
+                    <li class="Pepe-listColorItem"><a href='#' class="PepeMenu-link"></a></li>
+                    <li class="Pepe-listColorItem"><a href='#' class="PepeMenu-link"></a></li>
+                    <li class="Pepe-listColorItem"><a href='#' class="PepeMenu-link"></a></li>
+                    <li class="Pepe-listColorItem"><a href='#' class="PepeMenu-link"></a></li>
+                    <li class="Pepe-listColorItem"><a href='#' class="PepeMenu-link"></a></li>
+                    <li class="Pepe-listColorItem"><a href='#' class="PepeMenu-link"></a></li>
+                    <li class="Pepe-listColorItem"><a href='#' class="PepeMenu-link"></a></li>
+                </ul> 
+            </section>
+            <section>
+                <nav class="Pepe-list">
+                    <ul class="Pepe-listMenu">
+                        <li class="Pepe-listMenuItem"><a href='#' class="PepeMenu-link">Formulación de Proyectos</a></li>
+                        <li class="Pepe-listMenuItem"><a href='#' class="PepeMenu-link">Programación del Proyecto</a></li>
+                        <li class="Pepe-listMenuItem"><a href='#' class="PepeMenu-link">Planeación Pedagógica</a></li>
+                        <li class="Pepe-listMenuItem"><a href='#' class="PepeMenu-link">Aprendices</a></li>
+                        <li class="Pepe-listMenuItem"><a href='#' class="PepeMenu-link">Otros Formatos</a></li>
+                        <li class="Pepe-listMenuItem"><a href='#' class="PepeMenu-link">Valoración de Proyecto</a></li>
+                        <li class="Pepe-listMenuItem"><a href='#' class="PepeMenu-link">Acompañamiento al Proyecto</a></li>
+                        <li class="Pepe-listMenuItem"><a href='#' class="PepeMenu-link">Administración del Proyecto</a></li>
+                        <li class="Pepe-listMenuItem"><a href='#' class="PepeMenu-link">Imprimibles PDF </a></li>
+                    </ul>        
+                </nav>    
+            </section>
+        </h:form>
+        <legend class="Titulo-pepe">Seguimiento</legend>
 
-    </h:body>
+
+        <section class="Panel_scroll">
+            <h:form id="formInicio" style="overflow: scroll">
+                
+                <h4>Fase</h4>
+                <h:selectOneMenu value="#{seguimientoController.idFase}" style="width:100%">
+                    <f:selectItem itemLabel="Seleccionar uno.." />
+                    <f:selectItems value="#{seguimientoController.listFaseSelectOne}" 
+                                   var="usuario" 
+                                   itemLabel="#{usuario}" 
+                                   itemValue="#{usuario}" />
+                    <!--<p:ajax event="change" 
+                            update=":formInicio"/>-->
+                </h:selectOneMenu>
+                
+                <h4>Tipo de criterio</h4>
+                <h:selectOneMenu id="idCri" value="#{seguimientoController.idTipoCriterio}" style="width:100%">
+                    <f:selectItem itemLabel="Seleccionar uno.." />
+                    <f:selectItems value="#{seguimientoController.listaCriterioSelectOne}" 
+                                   var="usuario" 
+                                   itemValue="#{usuario.idTipoCriterio}" />
+                    <p:ajax process="idCri"
+                            update="formInicio"
+                            event="change"/>
+                </h:selectOneMenu>
+
+                <!--tabla para el primer tipo de criterio-->
+                <p:dataTable id="criterioTable1"
+                             var="acompañamiento"
+                             rendered="#{seguimientoController.renderTabla1()}"
+                             value="#{seguimientoController.listaItems}"
+                             rowKey="#{acompañamiento.idItemCriterio}"
+                             editable="true" 
+                             editMode="cell">
+
+                    <p:column headerText="Descripcion" >   
+                        <h:outputText  value="#{acompañamiento.idDescripcionCriterio1.descrpcion}"/>
+                    </p:column>
+                    
+                   
+                    <p:column headerText="Valoracion">
+                       <p:cellEditor>
+                           <f:facet name="output"><h:outputText value="#{acompañamiento.valoracionItem}" /></f:facet>
+                            <f:facet name="input">
+                                <h:selectOneMenu  id="valoracion" value="#{acompañamiento.valoracionItem}">
+                                    <f:selectItem itemValue="satisfactorio" itemLabel="satisfactorio"  />
+                                    <f:selectItem itemValue="aceptable" itemLabel="aceptable"  />
+                                    <f:selectItem itemValue="por mejorar" itemLabel="por mejorar"  />
+                            </h:selectOneMenu>
+                            </f:facet>
+                        </p:cellEditor>
+                    </p:column>
+                  
+                    <p:column headerText="Observaciones">
+                        <p:cellEditor>
+                            <f:facet name="output"><h:outputText value="#{acompañamiento.observacion}" /></f:facet>
+                            <f:facet name="input"><p:inputText value="#{acompañamiento.observacion}" style="width:96%" label="Observaciones"/></f:facet>
+                        </p:cellEditor>                  
+                    </p:column>
+             
+                     
+                
+                </p:dataTable>
+                <!--tabla para el 2 tipo de criterio-->
+                <p:dataTable id="criterioTable2"
+                             var="acompañamiento"
+                             rendered="#{seguimientoController.renderTabla2()}"
+                             value="#{seguimientoController.listaItems}"
+                             rowKey="#{acompañamiento.idItemCriterio}"
+                             editable="true" 
+                             editMode="cell">
+
+                    <p:column headerText="Descripcion" >   
+                        <h:outputText  value="#{acompañamiento.idDescripcionCriterio2.descrpcion}"/>
+                    </p:column>
+                    
+                   
+                    <p:column headerText="Valoracion">
+                       <p:cellEditor>
+                            <f:facet name="output"><p:outputLabel value="#{acompañamiento.valoracionItem}" /></f:facet>
+                            <f:facet name="input">
+                                <h:selectOneMenu id="valoracion" value="#{acompañamiento.valoracionItem}">
+                                    <f:selectItem itemLabel="satisfactorio" itemValue="satisfactorio" />
+                                    <f:selectItem itemLabel="aceptable" itemValue="aceptable" />
+                                    <f:selectItem itemLabel="por mejorar" itemValue="por mejorar" />
+                                </h:selectOneMenu>
+                            </f:facet>
+                        </p:cellEditor>
+                    </p:column>
+                    
+                   
+                    
+                    <p:column headerText="Observaciones">
+                        <p:cellEditor>
+                            <f:facet name="output"><h:outputText value="#{acompañamiento.observacion}" /></f:facet>
+                            <f:facet name="input"><p:inputText value="#{acompañamiento.observacion}" style="width:96%" label="Observaciones"/></f:facet>
+                        </p:cellEditor>                  
+                    </p:column>
+             
+                     
+                
+                </p:dataTable>
+                <!--tabla para el 3 tipo de criterio-->
+                <p:dataTable id="criterioTable3"
+                             var="acompañamiento"
+                             rendered="#{seguimientoController.renderTabla3()}"
+                             value="#{seguimientoController.listaItems}"
+                             rowKey="#{acompañamiento.idItemCriterio}"
+                             editable="true" 
+                             editMode="cell">
+
+                    <p:column headerText="Descripcion" >   
+                        <h:outputText  value="#{acompañamiento.idDescripcionCriterio3.descrpcion}"/>
+                    </p:column>
+                    
+                   
+                    <p:column headerText="Valoracion">
+                       <p:cellEditor>
+                            <f:facet name="output"><p:outputLabel value="#{acompañamiento.valoracionItem}" /></f:facet>
+                            <f:facet name="input">
+                                <h:selectOneMenu id="valoracion" value="#{acompañamiento.valoracionItem}">
+                                    <f:selectItem itemLabel="satisfactorio" itemValue="satisfactorio" />
+                                    <f:selectItem itemLabel="aceptable" itemValue="aceptable" />
+                                    <f:selectItem itemLabel="por mejorar" itemValue="por mejorar" />
+                                </h:selectOneMenu>
+                            </f:facet>
+                        </p:cellEditor>
+                    </p:column>
+                    
+                   
+                    
+                    <p:column headerText="Observaciones">
+                        <p:cellEditor>
+                            <f:facet name="output"><h:outputText value="#{acompañamiento.observacion}" /></f:facet>
+                            <f:facet name="input"><p:inputText value="#{acompañamiento.observacion}" style="width:96%" label="Observaciones"/></f:facet>
+                        </p:cellEditor>                  
+                    </p:column>
+             
+                     
+                
+                </p:dataTable>
+                <!--tabla para el 4 tipo de criterio-->
+                <p:dataTable id="criterioTable4"
+                             var="acompañamiento"
+                             rendered="#{seguimientoController.renderTabla4()}"
+                             value="#{seguimientoController.listaItems}"
+                             rowKey="#{acompañamiento.idItemCriterio}"
+                             editable="true" 
+                             editMode="cell">
+
+                    <p:column headerText="Descripcion" >   
+                        <h:outputText  value="#{acompañamiento.idDescripcionCriterio4.descrpcion}"/>
+                    </p:column>
+                    
+                   
+                    <p:column headerText="Valoracion">
+                       <p:cellEditor>
+                            <f:facet name="output"><p:outputLabel value="#{acompañamiento.valoracionItem}" /></f:facet>
+                            <f:facet name="input">
+                                <h:selectOneMenu id="valoracion" value="#{acompañamiento.valoracionItem}">
+                                    <f:selectItem itemLabel="satisfactorio" itemValue="satisfactorio" />
+                                    <f:selectItem itemLabel="aceptable" itemValue="aceptable" />
+                                    <f:selectItem itemLabel="por mejorar" itemValue="por mejorar" />
+                                </h:selectOneMenu>
+                            </f:facet>
+                        </p:cellEditor>
+                    </p:column>
+                    
+                   
+                    
+                    <p:column headerText="Observaciones">
+                        <p:cellEditor>
+                            <f:facet name="output"><h:outputText value="#{acompañamiento.observacion}" /></f:facet>
+                            <f:facet name="input"><p:inputText value="#{acompañamiento.observacion}" style="width:96%" label="Observaciones"/></f:facet>
+                        </p:cellEditor>                  
+                    </p:column>
+             
+                     
+                
+                </p:dataTable>
+                <h3>Conclusiones</h3>
+                <textarea class="form-00" value="#{seguimientoController.acompanamientoActual.conclusiones}" >
+                        </textarea>
+                <p:commandButton process="@this formInicio" update="formInicio" value="guardar" action="#{seguimientoController.addAcompanamiento()}"/>
+
+            </h:form>
+        </section>
+
+        <article class="Pepe-button">
+            <button type="submit" class="Button">Cerrar sesión</button>
+            <button type="submit" class="Button1"> Guardar y continuar</button>
+        </article>
+
+        <hr WIDTH='100%' SIZE='8' ALIGN='RIGHT'></hr>
+        <footer class="Pepe-footer" >
+            <figure class="Footer-imageContainer">
+                <img src="../resources/images/logosena.png" heigth="50" width="50" alt="logo sena" class="Footer-image"/>
+            </figure>
+            <section>
+                <p class="Footer-description"> 
+                    Servicio Nacional de Aprendizaje SENA – Centro de Bioctecnologia Industrial- carrera 30 #40-25, Palmira-valle 
+                    <br></br>
+                    Línea gratuita de atención al ciudadano 275 0978 – Resto del país 018000 910270
+                    <br></br>
+                    Horario de atención: lunes a viernes de 8:00 am a 5:30 pm
+                    <br></br>
+                    Todos los derechos reservados ©
+                    <br></br>
+                    2015</p>
+            </section>
+        </footer>    
+    </body>
 </html>
-

@@ -39,6 +39,7 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "ResultadoAprendizaje.findAll", query = "SELECT r FROM ResultadoAprendizaje r"),
     @NamedQuery(name = "ResultadoAprendizaje.findByIdResultadoAprendizaje", query = "SELECT r FROM ResultadoAprendizaje r WHERE r.idResultadoAprendizaje = :idResultadoAprendizaje"),
     @NamedQuery(name = "ResultadoAprendizaje.consultaRA", query = "SELECT r FROM ResultadoAprendizaje r WHERE r.idCompetencia.idCompetencia = :idCompetencia AND r.estado = 1"),
+    @NamedQuery(name = "ResultadoAprendizaje.consultaRA1", query = "SELECT r FROM ResultadoAprendizaje r WHERE r.estado = :idEstado"),
     @NamedQuery(name = "ResultadoAprendizaje.findByIdTipoResultadoAprendizaje", query = "SELECT r FROM ResultadoAprendizaje r WHERE r.idTipoResultadoAprendizaje = :idTipoResultadoAprendizaje"),
     @NamedQuery(name = "ResultadoAprendizaje.findByEstado", query = "SELECT r FROM ResultadoAprendizaje r WHERE r.estado = :estado")})
 public class ResultadoAprendizaje implements Serializable {

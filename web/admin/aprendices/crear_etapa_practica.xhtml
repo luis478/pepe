@@ -96,7 +96,7 @@
         </h:form>
         
         <legend class="Titulo-pepe" >
-            <h2 style="margin-left:80px"> Deserción Aprendices</h2>
+            <h2 style="margin-left:80px"> Etapa Practica</h2>
         </legend>
 
 
@@ -105,28 +105,42 @@
                 
                 
                 <h:panelGrid columns="1">
-               <h:outputLabel class="form-1" value="Estado:"  />
-                        <h:selectOneMenu class="form-1" id="idEstadoselect" value="#{desercionController.desercionActual.idEstado}"  required="true" >
-                            <f:selectItem itemLabel="Seleccionar uno.." />
-                            <f:selectItems value="#{desercionController.listaEstadoSelectOne}" var="estado" itemValue="#{estado}"/>  
-                        </h:selectOneMenu>
-                        
-                        <h:outputLabel class="form-1" value="Motivo:" />
-                        <h:inputTextarea style="resize: none" class="form-1" value="#{desercionController.desercionActual.motivo}" required="true">
-                        </h:inputTextarea>
-                        
-                         <h:outputLabel class="form-1" value="Observaciones:" />
-                         <h:inputTextarea style="resize: none" class="form-1" value="#{desercionController.desercionActual.observacion}" required="true">
-                        </h:inputTextarea>
-                       
-                        
-                         <h:outputLabel class="form-1" for="fechaDesercion" value="Fecha Deserción:" />
-                        <p:calendar style="margin-left: 77px;"  id="fechaDesercion" value="#{desercionController.desercionActual.fecha}" pattern="MM/dd/yyyy HH:mm:ss" /> 
-                        
-                        
-                        
+                    
+                    <h:outputLabel  class="form-1" value="Tipo de Practica:" />
+                    <h:selectOneMenu id="tipoPractica"
+                                     value="#{practicasController.etapaPracticaActual.tipoPractica}"
+                                     style="margin-left: 80px"> 
+                                      
+                                     
+                                     
+                        <f:selectItem itemValue="Patrocinio"  itemLabel="Patrocinio"/>
+                        <f:selectItem itemValue="Contrato aprendizaje"  itemLabel="Contrato aprendizaje"/>
+                        <f:selectItem itemValue="Vínculo laboral"  itemLabel="Vínculo laboral"/>
+                        <f:selectItem itemValue="Proyecto productivo" itemLabel="Proyecto productivo"/>
+                        <f:selectItem itemValue="Servicio militar" itemLabel="Servicio militar"/>
+                        <f:selectItem itemValue="Pasantias"  itemLabel="Pasantias"/>
+                     
+                    </h:selectOneMenu>
+                   
+                     <h:outputLabel class="form-1" value="Nombre Empresa:" />
+                     <h:inputText  class="form-1" value="#{practicasController.etapaPracticaActual.nombreEmpresa}" required="true">
+                        </h:inputText> 
+                    
+                  <h:outputLabel class="form-1" value="Representante:" />
+                  <h:inputText  class="form-1" value="#{practicasController.etapaPracticaActual.representante}" required="true">
+                        </h:inputText>   
+                 
+                    <h:outputLabel class="form-1" value="Teléfono:" />
+                    <h:inputText  class="form-1" value="#{practicasController.etapaPracticaActual.telefono}" required="true">
+                        </h:inputText>   
+                    
+                     <h:outputLabel class="form-1" value="Correo:" />
+                     <h:inputText  class="form-1" value="#{practicasController.etapaPracticaActual.correo}" required="true">
+                        </h:inputText>  
+                 
                  </h:panelGrid>
-                    <h:commandButton class="Guardar" value="Guardar" action="#{desercionController.addDesercion}"/>
+                <h:commandButton class="Guardar" value="Guardar" action="#{practicasController.addEtapaPractica()}"/>
+               <h:button value="Cancelar" outcome="/admin/dlg_menuCrearUsuario"/>
 
             </h:form>
         </section>
@@ -156,6 +170,5 @@
         </footer>    
     </body>
 </html>
-
 
 

@@ -6,20 +6,17 @@
 
 package com.pepe.jpa.sesions;
 
-import com.pepe.jpa.entities.Competencia;
-import com.pepe.jpa.entities.Proyecto;
-import java.util.List;
+import com.pepe.jpa.entities.DescripcionCriterio1;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import javax.persistence.Query;
 
 /**
  *
  * @author ADSI TARDE
  */
 @Stateless
-public class CompetenciaFacade extends AbstractFacade<Competencia> {
+public class DescripcionCriterio1Facade extends AbstractFacade<DescripcionCriterio1> {
     @PersistenceContext(unitName = "pepeAplicacionPU")
     private EntityManager em;
 
@@ -28,7 +25,8 @@ public class CompetenciaFacade extends AbstractFacade<Competencia> {
         return em;
     }
 
-    public CompetenciaFacade() {
-        super(Competencia.class);
+    public DescripcionCriterio1Facade() {
+        super(DescripcionCriterio1.class);
     }
+    
 }

@@ -109,7 +109,7 @@ public class Estado implements Serializable {
 
     @Override
     public String toString() {
-        return "com.pepe.jpa.entities.Estado[ idEstado=" + idEstado + " ]";
+        return estado;
     }
     
 }

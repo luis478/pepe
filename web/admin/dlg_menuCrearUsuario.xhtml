@@ -16,7 +16,7 @@
                     <h:button value="Crear Empresa" outcome="/admin/configuracion/crear_empresa"/>
                     <h:button value="Crear Tipo de vocero" outcome="/admin/configuracion/crear_tipoVocero"/>
                     <h:button value="Crear Caracterizacion" outcome="/admin/aprendices/crear_caracterizacion"/>
-                    <h:button value="Crear Patrocinio" outcome="/admin/aprendices/crear_patrocinio"/>
+                    <h:commandButton  value="Crear Patrocinio"  action="#{practicasController.prepareCreate()}"/>
                     <h:button value="Crear Estilo de aprendizaje" outcome="/admin/configuracion/crear_estiloAprendizaje"/>
                     <h:button value="Crear Eps" outcome="/admin/configuracion/crear_eps"/>
                     <h:button value="Crear Libreta Militar" outcome="/admin/configuracion/crear_libretaMilitar"/>

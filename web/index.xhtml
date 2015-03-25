@@ -146,7 +146,7 @@
                             <input  type="text" 
                                     disabled="true" 
                                     class="Pepe-formInput4" 
-                                    jsf:value="#{fichaController.usuarioFicha.usuario}" 
+                                    jsf:value="#{fichaController.usuarioFicha.usuario.nombre1} #{fichaController.usuarioFicha.usuario.apellido1}" 
                                     jsf:id="nombreLider"/>      
                         </div>
                     </div>
@@ -177,7 +177,8 @@
 
 
             <h:form> 
-
+                <p:commandButton value="Programa"
+                                 action="programa/programaInicio.xhtml"/>
                 <p:commandButton value="Menu Planeacion pedagogica" 
                                      type="button" onclick="PF('botonPlaneacionPedagogicaDlg').show();"/>
             
@@ -192,6 +193,19 @@
                                  action="#{ejecucionController.cargarCreate}">
                     <f:attribute name="ficha" value="#{fichaController.fichaSeleccionada}"/>
                 </p:commandButton> 
+                
+                
+                
+                 <p:commandButton process="@this"
+                                  value="¡Acompañamiento!"
+                                  actionListener="#{seguimientoController.prepareCreate}" 
+                                  action="#{seguimientoController.cargarCreate}">
+                    <f:attribute name="ficha" value="#{fichaController.fichaSeleccionada}"/>
+                </p:commandButton> 
+                
+                
+                
+                
                 <p:commandButton value="¡Crear Ficha!" action="/ProgramaciondeProyecto/crear_ficha.xhtml" />
                 <p:commandButton process="@this" 
                                  value="Valoracion de proyecto" 

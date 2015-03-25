@@ -113,6 +113,7 @@
                            for="crearProducto"
                            styleClass="error"/>
                 <p:commandButton oncomplete="handleSubmit(args,'proyectoCrearP2Ventana','proyectoCrearP3Ventana');"
+                                 update="@(proyectoCrearP2VentanaForm) :proyectoCrearP2VentanaForm"
                                  value="Siguiente"/>
                 <p:commandButton onclick="proyectoCrearP2Ventana.hide(), proyectoCrearP1Ventana.show()"
                                  value="Atras"/>

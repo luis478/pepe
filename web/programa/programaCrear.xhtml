@@ -16,7 +16,7 @@
             <!-- CODIGO -->
             <input type="text"
                    jsf:id="createIdCodigo"
-                   jsf:value="#{programaController.programaActual.programaPK.codigo}"
+                   jsf:value="#{programaController.programaCrear.programaPK.codigo}"
                    pattern="[0-9]{6}" 
                    placeholder="codigo del programa"
                    maxlength="6"
@@ -35,7 +35,7 @@
             <!-- VERSION -->
             <input type="text"
                    jsf:id="createIdVersion"
-                   jsf:value="#{programaController.programaActual.programaPK.version}"
+                   jsf:value="#{programaController.programaCrear.programaPK.version}"
                    placeholder="numero de version"
                    pattern="[0-9]{1,3}" 
                    maxlength="3"
@@ -52,7 +52,7 @@
             <!-- NOMBRE -->
             <input type="text"
                    jsf:id="createNombre"
-                   jsf:value="#{programaController.programaActual.nombrePrograma}"
+                   jsf:value="#{programaController.programaCrear.nombrePrograma}"
                    placeholder="nombre del programa"
                    maxlength="45"
                    jsf:validatorMessage="esta mal">
@@ -68,7 +68,7 @@
             <textarea jsf:id="createJustificacion"
                       type="text"
                       resizable="false"
-                      jsf:value="#{programaController.programaActual.justificacion}"
+                      jsf:value="#{programaController.programaCrear.justificacion}"
                       placeholder="duracion en trimestres"
                       jsf:validatorMessage="esta mal">
                 <f:ajax execute="createJustificacion"
@@ -82,7 +82,7 @@
             <!-- DURACION LECTIVA -->
             <input type="number"
                    jsf:id="createDuracion"
-                   jsf:value="#{programaController.programaActual.duracionTrimestresLectiva}"
+                   jsf:value="#{programaController.programaCrear.duracionTrimestresLectiva}"
                    placeholder="duracion en trimestres"
                    max="8"
                    min="4"
@@ -95,11 +95,11 @@
                        for="createDuracion"
                        styleClass="error"/>
 
-            
-             <!-- DURACION PRODUCTIVA -->
+
+            <!-- DURACION PRODUCTIVA -->
             <input type="number"
                    jsf:id="createDuracionl"
-                   jsf:value="#{programaController.programaActual.duracionTrimestresProductiva}"
+                   jsf:value="#{programaController.programaCrear.duracionTrimestresProductiva}"
                    placeholder="duracion en trimestres"
                    max="8"
                    min="4"
@@ -111,51 +111,95 @@
             <h:message id="msgcreateDuracionl"
                        for="createDuracionl"
                        styleClass="error"/>
-            
+
             <!-- TIPO -->
-            <h:selectOneMenu value="#{programaController.idTipo}">
-                <f:selectItem itemLabel="Seleccionar uno.." />
+            <h:selectOneMenu value="#{programaController.idTipo}"
+                             id="idTipo"
+                             validator="#{programaController.validarIdTipo}">
+                <f:selectItem itemLabel="Tipo .." />
                 <f:selectItems value="#{programaController.listaTipoFormacion}"
                                var="itemt"
                                itemValue="#{itemt.idTipoFormacion}"/>
+            <f:ajax execute="idTipo"
+                        render="msgidTipo"
+                        event="blur"/>
             </h:selectOneMenu>
-            
+            <h:message id="msgidTipo"
+                       for="idTipo"
+                       styleClass="error"/>
+
             <!-- LINEA -->
-            <h:selectOneMenu value="#{programaController.idLinea}">
-                <f:selectItem itemLabel="Seleccionar uno.." />
+            <h:selectOneMenu value="#{programaController.idLinea}"
+                             id="idLinea">
+                <f:selectItem itemLabel="Linea Tecnológica ..." />
                 <f:selectItems value="#{programaController.listaLineaTecnologica}"
                                var="iteml"
                                itemValue="#{iteml.idLineaTecnologica}"/>
+            <f:ajax execute="idLinea"
+                        render="msgidLinea"
+                        event="blur"/>
+            <f:ajax execute="idLinea"
+                        render="msgidLinea"/>
             </h:selectOneMenu>
-            
+            <h:message id="msgidLinea"
+                       for="idLinea"
+                       styleClass="error"/>
+
             <!-- PERFIL -->
-            <h:selectOneMenu value="#{programaController.idPerfil}">
-                <f:selectItem itemLabel="Seleccionar uno.." />
+            <h:selectOneMenu value="#{programaController.idPerfil}"
+                             id="idPerfil">
+                <f:selectItem itemLabel="Perfil de Entrada ..." />
                 <f:selectItems value="#{programaController.listaPerfilEntrada}"
                                var="itemp"
                                itemValue="#{itemp.idPerfilEntrada}"/>
+            <f:ajax execute="idPerfil"
+                        render="msgidPerfil"
+                        event="blur"/>
+            <f:ajax execute="idPerfil"
+                        render="msgidPerfil"/>
             </h:selectOneMenu>
-            
+            <h:message id="msgidPerfil"
+                       for="idPerfil"
+                       styleClass="error"/>
+
             <!-- MODALIDAD -->
-            <h:selectOneMenu value="#{programaController.idModalidad}">
-                <f:selectItem itemLabel="Seleccionar uno.." />
+            <h:selectOneMenu value="#{programaController.idModalidad}"
+                             id="idModalidad">
+                <f:selectItem itemLabel="Modalidad de Formación.." />
                 <f:selectItems value="#{programaController.listaModalidadFormacion}"
                                var="itemm"
                                itemValue="#{itemm.idModalidadFormacion}"/>
+            <f:ajax execute="idModalidad"
+                        render="msgidModalidad"
+                        event="blur"/>
+            <f:ajax execute="idModalidad"
+                        render="msgidModalidad"/>
             </h:selectOneMenu>
-            
+            <h:message id="msgidModalidad"
+                       for="idModalidad"
+                       styleClass="error"/>
+
             <!-- NIVEL -->
-            <h:selectOneMenu value="#{programaController.idNivel}">
-                <f:selectItem itemLabel="Seleccionar uno.." />
+            <h:selectOneMenu value="#{programaController.idNivel}"
+                             id="idNivel">
+                <f:selectItem itemLabel="Nivel ..." />
                 <f:selectItems value="#{programaController.listaNivelFormacion}"
                                var="itemn"
                                itemValue="#{itemn.idNivelFormacion}"/>
+            <f:ajax execute="idNivel"
+                        render="msgidNivel"
+                        event="blur"/>
+            <f:ajax execute="idModalidad"
+                        render="msgidModalidad"/>
             </h:selectOneMenu>
-            
+            <h:message id="msgidNivel"
+                       for="idNivel"
+                       styleClass="error"/>
+
             <p:commandButton value="crear"
-                             update=":programaInicioForm"
+                             update="@(programaCrearVentanaForm) :programaCrearVentanaForm :programaInicioForm"
                              action="#{programaController.crearPrograma()}"
-                             oncomplete="PF('programaCrearVentana').hide()">
+                             oncomplete="handleSubmit(args,'programaCrearVentana','');">
             </p:commandButton>
         </h:form>
     </p:dialog>

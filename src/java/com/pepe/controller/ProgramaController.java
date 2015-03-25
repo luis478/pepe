@@ -54,6 +54,7 @@ public class ProgramaController implements Serializable {
     private ProgramaFacade programaFacade;
     private Programa programaActual = null;
     private Programa programaVersion = null;
+    private Programa programaCrear = null;
     private List<Programa> programas;
     @EJB
     private FichaFacade fichaFacade;
@@ -97,6 +98,18 @@ public class ProgramaController implements Serializable {
     private boolean cod = true;
 
     public ProgramaController() {
+    }
+
+    public Programa getProgramaCrear() {
+        if (programaCrear == null) {
+            programaCrear = new Programa();
+            programaCrear.setProgramaPK(new ProgramaPK());
+        }
+        return programaCrear;
+    }
+
+    public void setProgramaCrear(Programa programaCrear) {
+        this.programaCrear = programaCrear;
     }
 
     public Programa getProgramaActual() {
@@ -301,7 +314,7 @@ public class ProgramaController implements Serializable {
     public String programaConsulta() {
         return "programaTabla.xhtml";
     }
-    
+
     public String programaConsulta1() {
         return "../programa/programaTabla.xhtml";
     }
@@ -481,6 +494,7 @@ public class ProgramaController implements Serializable {
 
     public void anular() {
         programaActual = null;
+        programaCrear = null;
         codigo = "";
         version = "";
         cod = false;
@@ -550,6 +564,14 @@ public class ProgramaController implements Serializable {
         }
     }
 
+    public void validarIdTipo(FacesContext context, UIComponent component, Object o) throws ValidatorException {
+        if ((Integer)o != 0) {
+            programaCrear.setIdTipoFormacion(getTipoFormacionFacade().find((Integer)o));
+        } else {
+            throw new ValidatorException(new FacesMessage(FacesMessage.SEVERITY_ERROR, "", "Debe seleccionar el Tipo de Formación"));
+        }
+    }
+
     public void validarCodigoPrograma(FacesContext context, UIComponent component, Object o) throws ValidatorException {
         List<Programa> pro = getProgramaFacade().consultaCodigo((String) o);
         Pattern pat = Pattern.compile("[0-9]{6}");
@@ -597,13 +619,12 @@ public class ProgramaController implements Serializable {
 
     public void crearPrograma() {
         try {
-            programaActual.setIdLineaTecnologica(getLineaTecnologicaFacade().find(idLinea));
-            programaActual.setIdModalidadFormacion(getModalidadFormacionFacade().find(idModalidad));
-            programaActual.setIdNivelFormacion(getNivelFormacionFacade().find(idNivel));
-            programaActual.setIdPerfilEntrada(getPerfilEntradaFacade().find(idPerfil));
-            programaActual.setIdTipoFormacion(getTipoFormacionFacade().find(idTipo));
-            programaActual.setEstado((short) 1);
-            getProgramaFacade().create(programaActual);
+            programaCrear.setIdLineaTecnologica(getLineaTecnologicaFacade().find(idLinea));
+            programaCrear.setIdModalidadFormacion(getModalidadFormacionFacade().find(idModalidad));
+            programaCrear.setIdNivelFormacion(getNivelFormacionFacade().find(idNivel));
+            programaCrear.setIdPerfilEntrada(getPerfilEntradaFacade().find(idPerfil));
+            programaCrear.setEstado((short) 1);
+            getProgramaFacade().create(programaCrear);
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }

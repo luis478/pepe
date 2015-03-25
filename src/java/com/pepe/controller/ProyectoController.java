@@ -6,15 +6,20 @@
 package com.pepe.controller;
 
 import com.pepe.jpa.entities.Actividad;
+import com.pepe.jpa.entities.ActividadHasResultadoAprendizaje;
+import com.pepe.jpa.entities.ActividadHasResultadoAprendizajePK;
 import com.pepe.jpa.entities.Competencia;
 import com.pepe.jpa.entities.Fase;
 import com.pepe.jpa.entities.Ficha;
 import com.pepe.jpa.entities.Proyecto;
+import com.pepe.jpa.entities.ResultadoAprendizaje;
 import com.pepe.jpa.sesions.ActividadFacade;
+import com.pepe.jpa.sesions.ActividadHasResultadoAprendizajeFacade;
 import com.pepe.jpa.sesions.CompetenciaFacade;
 import com.pepe.jpa.sesions.FaseFacade;
 import com.pepe.jpa.sesions.FichaFacade;
 import com.pepe.jpa.sesions.ProyectoFacade;
+import com.pepe.jpa.sesions.ResultadoAprendizajeFacade;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -57,8 +62,83 @@ public class ProyectoController implements Serializable {
     private List<Competencia> listaCompetencia;
     @EJB
     private FaseFacade faseFacade;
+    @EJB
+    private ResultadoAprendizajeFacade resultadoAprendizajeFacade;
+    @EJB
+    private ActividadHasResultadoAprendizajeFacade actividadHasResultadoAprendizajeFacade;
     private int idFase;
     private int faseActividad;
+    private int[] idRapSeleccionados;
+    private List<ResultadoAprendizaje> rapSeleccionadosGlobal = null;
+    private int idComp;
+
+    public ProyectoController() {
+    }
+
+    public List<ResultadoAprendizaje> getRapSeleccionadosGlobal() {
+        if(rapSeleccionadosGlobal == null){
+            rapSeleccionadosGlobal = new ArrayList<>();
+        }
+        return rapSeleccionadosGlobal;
+    }
+
+    public void setRapSeleccionadosGlobal(List<ResultadoAprendizaje> rapSeleccionadosGlobal) {
+        this.rapSeleccionadosGlobal = rapSeleccionadosGlobal;
+    }
+
+    public ActividadHasResultadoAprendizajeFacade getActividadHasResultadoAprendizajeFacade() {
+        return actividadHasResultadoAprendizajeFacade;
+    }
+
+    public void setActividadHasResultadoAprendizajeFacade(ActividadHasResultadoAprendizajeFacade actividadHasResultadoAprendizajeFacade) {
+        this.actividadHasResultadoAprendizajeFacade = actividadHasResultadoAprendizajeFacade;
+    }
+
+    public ResultadoAprendizajeFacade getResultadoAprendizajeFacade() {
+        return resultadoAprendizajeFacade;
+    }
+
+    public void setResultadoAprendizajeFacade(ResultadoAprendizajeFacade resultadoAprendizajeFacade) {
+        this.resultadoAprendizajeFacade = resultadoAprendizajeFacade;
+    }
+
+    public List<ResultadoAprendizaje> getListaRAP() {
+        if (idComp != 0) {
+            return getResultadoAprendizajeFacade().consulta(getCompetenciaFacade().find(idComp));
+        } else {
+            return getResultadoAprendizajeFacade().consulta();
+        }
+    }
+
+    public int getIdComp() {
+        if (idRapSeleccionados != null) {
+            for (int i : idRapSeleccionados) {
+                getRapSeleccionadosGlobal().add(getResultadoAprendizajeFacade().find(i));
+            }
+            idRapSeleccionados = null;
+            getRapSeleccionadosGlobal();
+        }
+        return idComp;
+    }
+
+    public void setIdComp(int idComp) {
+        this.idComp = idComp;
+    }
+
+    public int[] getIdRapSeleccionados() {
+        if (idRapSeleccionados != null) {
+            System.out.println("****************************************");
+            for (int i : idRapSeleccionados) {
+                System.out.println(i);
+                System.out.println(getResultadoAprendizajeFacade().find(i));
+            }
+        }
+        return idRapSeleccionados;
+    }
+
+    public void setIdRapSeleccionados(int[] idRapSeleccionados) {
+        this.idRapSeleccionados = idRapSeleccionados;
+    }
 
     public ProyectoFacade getProyectoFacade() {
         return proyectoFacade;
@@ -132,7 +212,13 @@ public class ProyectoController implements Serializable {
     }
 
     public List<Competencia> getListaCompetencia() {
-        listaCompetencia = fichaActual.getPrograma().getCompetenciaList();
+        List<Competencia> c = fichaActual.getPrograma().getCompetenciaList();
+        listaCompetencia = new ArrayList<>();
+        for (Competencia competencia : c) {
+            if (competencia.getEstado() == true) {
+                listaCompetencia.add(competencia);
+            }
+        }
         return listaCompetencia;
     }
 
@@ -261,7 +347,22 @@ public class ProyectoController implements Serializable {
             actividadActual.setIdFase(getFaseFacade().find(idFase));
             actividadActual.setIdProyecto(fichaActual.getIdProyecto());
             getActividadFacade().create(actividadActual);
+            ActividadHasResultadoAprendizaje ahra;
+            ActividadHasResultadoAprendizajePK ahrapk;
+            for (ResultadoAprendizaje r : rapSeleccionadosGlobal) {
+                ahra = new ActividadHasResultadoAprendizaje();
+                ahrapk = new ActividadHasResultadoAprendizajePK();
+                ahrapk.setIdActividad(actividadActual.getIdActividad());
+                ahrapk.setIdResultadoAprendizaje(r.getIdResultadoAprendizaje());
+                ahra.setActividad(actividadActual);
+                ahra.setResultadoAprendizaje(r);
+                ahra.setActividadHasResultadoAprendizajePK(ahrapk);
+                getActividadHasResultadoAprendizajeFacade().create(ahra);
+            }
+            getActividadFacade().edit(actividadActual);
             actividadActual = null;
+            rapSeleccionadosGlobal = null;
+            idRapSeleccionados = null;
             getActividadActual();
             faseActividad = idFase;
             idFase = 0;
@@ -269,9 +370,6 @@ public class ProyectoController implements Serializable {
         } catch (Exception ex) {
             System.out.println(ex.getMessage());
         }
-    }
-
-    public ProyectoController() {
     }
 
     @FacesConverter(forClass = Proyecto.class)

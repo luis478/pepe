@@ -70,6 +70,7 @@
                            for="crearAmbiente"
                            styleClass="error"/>
                 <p:commandButton oncomplete="handleSubmit(args,'proyectoCrearP3Ventana','');"
+                                 update="@(proyectoCrearP3VentanaForm) :proyectoCrearP3VentanaForm"
                                  actionListener="#{proyectoController.addProyecto}"
                                  value="Siguiente">
                 </p:commandButton>

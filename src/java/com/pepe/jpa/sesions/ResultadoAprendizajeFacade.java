@@ -42,4 +42,15 @@ public class ResultadoAprendizajeFacade extends AbstractFacade<ResultadoAprendiz
             return null;
         }
     }
+    
+    public List<ResultadoAprendizaje> consulta() {
+        Query q = getEntityManager().createNamedQuery("ResultadoAprendizaje.consultaRA1");
+        q.setParameter("idEstado", true);
+        try {
+            return q.getResultList();
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            return null;
+        }
+    }
 }

@@ -129,11 +129,10 @@ public class FichaController implements Serializable {
         }
         return fichaSeleccionada;
     }
-    
+
 //    public void asignarFichaSeleccionada(){
 //        fichaSeleccionada = getFichaFacade().find(fichaActual.getIdFicha());
 //    }
-
     public int getFichaSeleccionadaInt() {
         return fichaSeleccionadaInt;
     }
@@ -231,7 +230,11 @@ public class FichaController implements Serializable {
 
     public UsuarioHasFicha getUsuarioFicha() {
         try {
-            return getUsuarioHasFichaFacade().finByTipoInstructor(fichaSeleccionada.getCodigoFicha());
+            if (getFichaSeleccionada().getCodigoFicha() != null) {
+                return getUsuarioHasFichaFacade().finByTipoInstructor(getFichaSeleccionada().getCodigoFicha());
+            } else {
+                return null;
+            }
         } catch (Exception ex) {
             Logger.getLogger(FichaController.class.getName()).log(Level.SEVERE, null, ex);
             return null;
