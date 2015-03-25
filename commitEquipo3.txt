@@ -1,9 +1,42 @@
+commit e91650058c8b0f42f6629ceb039fbca31a123a46
+Author: ShikiFuujin <shiki.fuujin@outlook.com>
+Date:   Wed Mar 25 17:42:15 2015 -0500
+
+    Actualizacion de Formulacion
+
+commit 216bc875a413ce7775a1772c9b02a4f1c5be0bcd
+Merge: 9ea1da2 f07a4ff
+Author: ShikiFuujin <shiki.fuujin@outlook.com>
+Date:   Wed Mar 18 08:52:25 2015 -0500
+
+    Merge remote-tracking branch 'origin/master'
+
+commit 9ea1da21c56e3e60477f7c842d33a5ecaf1c17e2
+Author: ShikiFuujin <shiki.fuujin@outlook.com>
+Date:   Wed Mar 18 08:51:57 2015 -0500
+
+    Actualizar commitEquipo3.txt
+
 commit 0616294eae2830e2f53566f9e8f6480c2cf33a17
 Merge: 21b80b2 a556d47
 Author: ShikiFuujin <shiki.fuujin@outlook.com>
 Date:   Wed Mar 18 08:51:15 2015 -0500
 
     Actualizacion Formulacio XVIII -III - MMXV 0851
+
+commit f07a4ffed1bcdc444dea9206ed6f7923b2f32e48
+Merge: 59fbf7b a556d47
+Author: Eider Ortiz Gonzalez <eortiz12@misena.edu.co>
+Date:   Wed Mar 18 08:31:24 2015 -0500
+
+    Actualizacion base de datos
+
+commit 59fbf7b4a5f0a699465b8eeb0fc2d4a78dd99658
+Merge: 78333e2 a888f86
+Author: Eider Ortiz Gonzalez <eortiz12@misena.edu.co>
+Date:   Wed Mar 18 08:25:06 2015 -0500
+
+    Validacion de horas por ficha en el programador
 
 commit 21b80b22f7570d3d156437c01433eb39e0e5038f
 Author: ShikiFuujin <shiki.fuujin@outlook.com>
@@ -23,6 +56,12 @@ Author: LuisCarlosCabal <lccabal@misena.edu.co>
 Date:   Wed Mar 18 07:57:11 2015 -0500
 
     Actualizacion repositorio nuevo
+
+commit 78333e2ff6df11236023a285151452969b0fa72e
+Author: Eider Ortiz Gonzalez <eortiz12@misena.edu.co>
+Date:   Tue Mar 17 18:29:50 2015 -0500
+
+    Validacion programador por ficha
 
 commit 6af9e3756d51480c11950f1a5a2dc2eca2e624bd
 Merge: d7310b2 a888f86
