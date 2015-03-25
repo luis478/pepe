@@ -38,8 +38,10 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Programador.findAll", query = "SELECT p FROM Programador p"),
     @NamedQuery(name = "Programador.findByFichaProgramador", query = "SELECT p FROM Programador p WHERE p.idFicha = :idFicha"),
     @NamedQuery(name = "Programador.findByIdProgramador", query = "SELECT p FROM Programador p WHERE p.idProgramador = :idProgramador"),
+    @NamedQuery(name = "Programador.findByFichaProgramador", query = "SELECT p FROM Programador p WHERE p.idFicha = :idFicha"),
     @NamedQuery(name = "Programador.findByCantidadHora", query = "SELECT p FROM Programador p WHERE p.cantidadHora = :cantidadHora"),
     @NamedQuery(name = "Programador.findByUsuarioP", query = "SELECT p FROM Programador p WHERE p.idUsuario = :idUsuario"),
+    @NamedQuery(name = "Programador.findByProyecto", query = "SELECT p FROM Programador p WHERE p.actividadHasResultadoAprendizaje.actividad.idProyecto.idProyecto = :idProyecto"),
     @NamedQuery(name = "Programador.findByTrimestre", query = "SELECT p FROM Programador p WHERE p.trimestre = :trimestre")})
 public class Programador implements Serializable {
     private static final long serialVersionUID = 1L;

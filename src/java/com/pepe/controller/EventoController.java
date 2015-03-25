@@ -47,7 +47,7 @@ import javax.faces.event.ActionEvent;
  */
 @ManagedBean
 @SessionScoped
-public class EventoController implements Serializable{
+public class EventoController implements Serializable {
 
     @EJB
     private ResultadoAprendizajeFacade resultadoAprendizajeFacade;
@@ -205,7 +205,6 @@ public class EventoController implements Serializable{
         this.actividadAprendizajeFacade = actividadAprendizajeFacade;
     }
 
-
     public CompetenciaFacade getCompetenciaFacade() {
         return competenciaFacade;
     }
@@ -236,7 +235,7 @@ public class EventoController implements Serializable{
         }
     }
 
-    public void sumaHoras(){
+    public void sumaHoras() {
         int acum = 0;
         if (listaProgramador != null) {
 
@@ -248,30 +247,39 @@ public class EventoController implements Serializable{
             }
         }
     }
-    
-    
+
     public void prepareCreate(ActionEvent event) {
         fichaActual = new Ficha();
         fichaActual = ((Ficha) event.getComponent().getAttributes().get("ficha"));
-        listaProgramador = new ArrayList<>();
-        programadorActual = getProgramadorFacade().find(fichaActual.getIdFicha())== null? new Programador(fichaActual.getIdFicha()): getProgramadorFacade().find(fichaActual.getIdFicha());
-        for (Actividad actividad : fichaActual.getIdProyecto().getActividadList()) {
-            for (ActividadHasResultadoAprendizaje resultado : actividadResultadoLista(actividad)) {
-                Programador programador = new Programador();
+        listaProgramador = getProgramadorFacade().findByProyecto(fichaActual);
+        programadorActual = getProgramadorFacade().find(fichaActual.getIdFicha()) == null ? new Programador(fichaActual.getIdFicha()) : getProgramadorFacade().find(fichaActual.getIdFicha());
+        boolean v;
+
+        for (ActividadHasResultadoAprendizaje resultado : getActividadHasResultadoAprendizajeFacade().findByIdActividadPoyecto(fichaActual)) {
+            v = false;
+            Programador programador;
+            for (Programador programado : listaProgramador) {
+                v = false;
+                if ((programado.getActividadHasResultadoAprendizaje().getActividad().equals(resultado.getActividad()) && programado.getActividadHasResultadoAprendizaje().getResultadoAprendizaje().equals(resultado.getResultadoAprendizaje()))) {
+                    v = true;
+                }
+
+            }
+            if (!v) {
+                 programador = new Programador();
+                 programador.setIdFicha(fichaActual);
                 programador.setActividadHasResultadoAprendizaje(resultado);
                 listaProgramador.add(programador);
             }
         }
-
     }
-    
-       
+
     public List<Usuario> getListaUsuarioSelectOne() {
         return getUsuarioHasFichaFacade().finByUsuario(fichaActual.getCodigoFicha());
 
-   }
-    
-    public List<Programador> getListaFichaProgramador(){
+    }
+
+    public List<Programador> getListaFichaProgramador() {
         return getProgramadorFacade().findByFichaProgramador(programadorActual.getIdFicha());
     }
 
@@ -294,9 +302,9 @@ public class EventoController implements Serializable{
 
     public String addProgramador() {
         try {
-            for ( Programador programador:listaProgramador) {
+            for (Programador programador : listaProgramador) {
                 getProgramadorFacade().edit(programador);
-            }  
+            }
             recargarLista();
             return "";
         } catch (Exception e) {
